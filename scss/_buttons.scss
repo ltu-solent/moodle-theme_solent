@@ -1,0 +1,9 @@
+button.btn-secondary, input.btn-secondary, .btn.btn-outline-secondary.dropdown-toggle:hover{
+	background-color: $btn-secondary-color !important;
+	color: $white !important;
+}
+
+button.btn-secondary:hover, input.btn-secondary:hover, input.btn-primary:hover{
+	background-color: $white !important;
+	color: $btn-secondary-color !important;
+}
