@@ -8,7 +8,7 @@ defined('MOODLE_INTERNAL') || die();
 // $THEME is defined before this page is included and we can define settings by adding properties to this global object.
 
 $THEME->name = 'solent';
-$THEME->sheets = [];
+$THEME->sheets = ['style'];
 $THEME->editor_sheets = [];
 $THEME->parents = ['boost'];
 $THEME->enable_dock = false;

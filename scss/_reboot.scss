@@ -1,8 +1,23 @@
 body{
-  background-color: $body-body-bg;
+  background-color: $white !important;
 }
 
 .header-image .card{
-  background-color: $white !important;
+  background-color: $body-body-bg !important;
   border: none;
+}
+
+@media only screen and (min-width: 1380px){
+  #region-main {
+      border: none;
+      padding: 4.25rem;
+  }
+}
+
+[data-region='blocks-column']{
+  padding-top: 4.25rem;
+}
+
+.pagelayout-mydashboard [data-region='blocks-column']{
+  padding-top: 0;
 }
