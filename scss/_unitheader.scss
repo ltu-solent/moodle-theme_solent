@@ -1,66 +1,66 @@
 /* Media CSS
 -------------------------*/
-// .pagelayout-course {
-// 	#page-header{
-// 		.header-image{
-// 			.card-body, .card {
-// 				background: transparent !important;
-// 			}
-//
-// 			.breadcrumb {
-// 				background: rgba(255,255,255,.9);
-// 				margin-top: 10px;
-// 				padding: 10px 10px 10px 30px;
-// 			}
-// 		}
-//
-// 		.dropdown {
-// 			 background-color: rgba(255,255,255,.9);
-// 			 border-radius: 5px;
-// 			 padding: 5px;
-// 			 margin-top: 0 !important;
-//
-// 		 /* Black gear dropdown menu icon */
-// 		 a {
-// 				 color: black;
-// 		 }
-//
-// 		.page-header-headings {
-// 			 display: inline-block;
-// 			 padding: 0 20px 0 25px;
-// 			 color: #fff;
-// 			 letter-spacing: .25em;
-// 			 text-transform: uppercase;
-// 			 background: rgba(0,0,0,0.40);
-// 			 position: absolute;
-// 			 webkit-clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
-// 			 clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
-//
-// 			 h1{
-// 				margin: 10px 0 10px 0;
-// 			 }
-// 		 }
-//
-// 		.pb-3, .py-3 {
-//     	padding-bottom: 0 !important;
-// 		}
-//
-// 		.d-flex {
-// 		    display: flex!important;
-// 		    margin: 40px 0 0 -35px;
-// 		}
-//
-// 		.page-context-header{
-// 			.header-button-group {
-// 		    position: relative;
-// 		    line-height: 24px;
-// 		    vertical-align: middle;
-// 				padding-left: 25px;
-// 			}
-// 		}
-// 	 }
-// 	}
-// }
+.pagelayout-course {
+	#page-header{
+		.header-image{
+			.card-body, .card {
+				background: transparent !important;
+			}
+
+			.breadcrumb {
+				background: rgba(255,255,255,.9);
+				margin-top: 10px;
+				padding: 10px 10px 10px 30px;
+			}
+		}
+
+		.dropdown {
+			 background-color: rgba(255,255,255,.9);
+			 border-radius: 5px;
+			 padding: 5px;
+			 margin-top: 0 !important;
+
+		 /* Black gear dropdown menu icon */
+		 a {
+				 color: black;
+		 }
+	 }
+
+		.page-header-headings {
+			 display: inline-block;
+			 padding: 0 20px 0 25px;
+			 color: #fff;
+			 letter-spacing: .25em;
+			 text-transform: uppercase;
+			 background: rgba(0,0,0,0.40);
+			 position: absolute;
+			 webkit-clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+			 clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+
+			 h1{
+				margin: 10px 0 10px 0;
+			 }
+		 }
+
+		.pb-3, .py-3 {
+    	padding-bottom: 0 !important;
+		}
+
+		.d-flex {
+		    display: flex!important;
+		    margin: 40px 0 0 -35px;
+		}
+
+		.page-context-header{
+			.header-button-group {
+		    position: relative;
+		    line-height: 24px;
+		    vertical-align: middle;
+				padding-left: 25px;
+			}
+		}
+	}
+}
 
 header#page-header.header-image{
 	max-height: 250px;
