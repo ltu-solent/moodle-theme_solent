@@ -1,0 +1,113 @@
+@media (max-width: 1150px) {                                                    //disable the sticky footer on small screens
+  footer {
+      position: relative !important;
+  }
+}
+
+@media (max-height: 750px) {
+  footer {
+      position: relative !important;
+  }
+}
+
+footer {                                                                        //allow the footer to be overlapped by the main content
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+
+  h3 {
+    letter-spacing: 0.25em;
+    font-size: 1.3rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  a {
+      color: $footer-links-color !important;
+      text-decoration: none !important;
+      line-height: 2;
+      &:hover {
+        color: $footer-links-color !important;
+        text-decoration: underline !important;
+      }
+  }
+
+  .footer_list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .footer--bottom {
+    border-top: 1px solid $footer-divider-color;
+    padding: 20px 0 20px;
+
+    .footer__copyright {
+      float: left;
+      color: $footer-links-color;
+    }
+
+    .social-wrap {                                                              //Social media icons in the footer
+      margin-left: auto;
+
+          li {
+            display: inline-block;
+
+            .social {
+              background-position: center;
+              background-repeat: no-repeat;
+              border: 2px solid $white;
+              border-radius: 50%;
+              display: inline-block;
+              height: 44px;
+              width: 44px;
+              margin-left: 10px;
+            }
+
+              a:hover, a:focus {
+                display: inline-block;
+                background-color: $white;
+                outline: none;
+                -webkit-transition: all .4s ease-out 0s;
+                transition: all .4s ease-out 0s;
+                text-decoration: none;
+            }
+
+              .twitter {
+                background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/twitter.svg");
+                background-size: 25px;
+
+                &:hover, &:focus {
+                  background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/twitter-dark.svg");
+              }
+            }
+
+              .facebook {
+                background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/facebook.svg");
+                background-size: 14px;
+
+                &:hover, &:focus {
+                  background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/facebook-dark.svg");
+              }
+            }
+
+              .youtube {
+                background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/youtube.svg");
+                background-size: 25px;
+
+                &:hover, &:focus {
+                  background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/youtube-dark.svg");
+              }
+            }
+
+              .linkedin {
+                background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/linkedin.svg");
+                background-size: 23px;
+
+                &:hover, &:focus {
+                  background-image: url("https://learn.solent.ac.uk/theme/solent2017/pix/linkedin-dark.svg");
+              }
+            }
+        }
+    }
+  }
+}

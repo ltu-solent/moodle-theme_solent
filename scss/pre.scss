@@ -1,4 +1,6 @@
 // Pre SCSS for the theme.
+
+//boost overrides
 $font-family-sans-serif: 'Open Sans', sans-serif;
 $font-family-base:       'Open Sans', sans-serif;
 
@@ -8,5 +10,10 @@ $primary: 						#466273;
 $background:					$primary;
 $btn-secondary-color: $primary;
 $navbar-height: 			80px;
+
+//custom variables
 $padding-15:          15px;
 $font-15:             15px;
+
+$footer-links-color: #8c979e;
+$footer-divider-color: #616265;

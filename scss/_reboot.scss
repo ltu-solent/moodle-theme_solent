@@ -1,17 +1,28 @@
-body{
-  background-color: $white !important;
-}
-
-.header-image .card{
-  background-color: $body-body-bg !important;
-  border: none;
-}
-
 @media only screen and (min-width: 1380px){
   #region-main {
       border: none;
       padding: 4.25rem;
   }
+}
+
+body{
+  background-color: $white !important;
+}
+
+#region-main-box {
+  background-color: $white;                                                     //ensures the main content will always fully overlap the footer
+  min-height: -webkit-fill-available !important;
+  min-height: 1002px;
+  z-index: 1;
+}
+
+#page-content {                                                                 //remove padding which affects the display of the footer
+  padding-bottom: 0 !important;
+}
+
+.header-image .card{
+  background-color: $body-body-bg !important;
+  border: none;
 }
 
 [data-region='blocks-column']{
