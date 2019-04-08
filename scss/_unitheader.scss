@@ -1,5 +1,32 @@
-/* Media CSS
--------------------------*/
+@media only screen and (max-width: 480px){                                      //mobile layout for the unit header
+  .page-header-headings {
+    display: none !important;
+  }
+
+  ol.breadcrumb, .pagelayout-course #page-header .dropdown {
+    margin-top: 0 !important;
+  }
+
+	.header-image {
+    height: auto !important;
+    background-image: none !important;
+	}
+
+	.pagelayout-course #page-header .d-flex, .context-header-settings-menu, .region-main-settings-menu {
+    margin: 0 !important;
+	}
+
+	.pagelayout-course #page-header .header-image .breadcrumb {
+    background: $white !important;
+    padding: 10px 0 10px 10px !important;
+	}
+
+	.header-image .card .card-body {
+    padding: 0 !important;
+	}
+}
+
+
 .pagelayout-course {
 	#page-header{
 		.header-image{
@@ -18,7 +45,7 @@
 			 background-color: rgba(255,255,255,.9);
 			 border-radius: 5px;
 			 padding: 5px;
-			 margin-top: -60px !important;
+			 margin-top: -60px;
 
 		 /* Black gear dropdown menu icon */
 		 a {

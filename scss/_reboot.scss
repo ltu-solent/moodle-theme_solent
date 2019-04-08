@@ -1,12 +1,15 @@
 @media only screen and (min-width: 1380px){
   #region-main {
-      border: none;
       padding: 4.25rem;
   }
 }
 
 body{
   background-color: $white !important;
+}
+
+#region-main {
+    border: none;
 }
 
 #region-main-box {
