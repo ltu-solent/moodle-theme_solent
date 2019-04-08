@@ -1,0 +1,12 @@
+{{!
+    @template theme_boost/nav-drawer
+
+
+    Example context (json): {}
+}}
+<div id="nav-drawer" data-region="drawer" class="d-print-none moodle-has-zindex {{^navdraweropen}}closed{{/navdraweropen}}" aria-hidden="{{#navdraweropen}}false{{/navdraweropen}}{{^navdraweropen}}true{{/navdraweropen}}" tabindex="-1">
+  <form class="search-input-form" action="/course/search.php"><label for="coursesearchbox" class="accesshide">Enter your search query</label><input type="text" name="search" placeholder="" size="13" tabindex="-1"
+      class="form-control"><input type="submit" class="btn btn-secondary search-btn" id="coursesearchbox" value="Search"></form>
+      <br>
+    {{> theme_boost/flat_navigation }}
+</div>

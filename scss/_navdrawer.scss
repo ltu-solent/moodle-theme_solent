@@ -1,0 +1,20 @@
+#nav-drawer{
+  background-color: $body-body-bg;
+  border-right: 1px solid #ddd;
+
+  .form-control {
+    display: inline;
+    width: 70%;
+  }
+
+  .search-btn {
+    width: 30%;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 4px;
+    border-color: $primary;
+    &:hover {
+      border-color: #ced4da;
+    }
+  }
+}
