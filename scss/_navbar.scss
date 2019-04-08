@@ -1,18 +1,3 @@
-.navbar {
-    height: $navbar-height;
-}
-
-#nav-drawer{
-  background-color: $body-body-bg;
-  border-right: 1px solid #ddd;
-}
-.navbar-brand{
-  margin-left: 0;
-  font-size: 28px;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-}
-
 @media only screen and (max-width: 870px){
   .navbar-brand{
     width: 150px;
@@ -27,7 +12,31 @@
   }
 }
 
-.navbar-nav .icon {
-    font-size: 25px;
-    opacity: .7;
+.navbar {
+    height: $navbar-height;
+
+    .dropdown {
+    margin-left: 20px;
+  }
+
+  .navbar-brand{
+    margin-left: 0;
+    font-size: 28px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+  }
+
+  .nav-item .nav-link {
+    margin-left: 10px;
+  }
+
+  .navbar-nav .icon {
+      font-size: 25px;
+      opacity: .7;
+  }
+}
+
+#nav-drawer{
+  background-color: $body-body-bg;
+  border-right: 1px solid #ddd;
 }

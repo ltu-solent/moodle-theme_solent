@@ -9,7 +9,7 @@
 
 			.breadcrumb {
 				background: rgba(255,255,255,.9);
-				margin-top: 10px;
+				margin-top: 72px;
 				padding: 10px 10px 10px 30px;
 			}
 		}
@@ -18,7 +18,7 @@
 			 background-color: rgba(255,255,255,.9);
 			 border-radius: 5px;
 			 padding: 5px;
-			 margin-top: 0 !important;
+			 margin-top: -60px !important;
 
 		 /* Black gear dropdown menu icon */
 		 a {
@@ -47,8 +47,12 @@
 		}
 
 		.d-flex {
-		    display: flex!important;
-		    margin: 40px 0 0 -35px;
+		  display: flex!important;
+		  margin: 40px -33px 0 -35px;
+
+			#page-navbar {
+	    	width: 100.11%																													//breadcrumbs width needs to be slightly over 100% to break out the div and reach the edge of the page
+			}
 		}
 
 		.page-context-header{
@@ -62,7 +66,7 @@
 	}
 }
 
-header#page-header.header-image{
+header.header-image{
 	max-height: 250px;
 	margin-top: 80px;
 	margin-bottom: 20px;
@@ -71,7 +75,7 @@ header#page-header.header-image{
 }
 
 /* Breadcrumbs */
-header#page-header.header-image .breadcrumb {
+header.header-image .breadcrumb {
     background: rgba(255,255,255,.9);
     margin-top: 180px;
     padding: 10px 10px 10px 20px;
