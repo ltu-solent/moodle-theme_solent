@@ -1,14 +1,43 @@
-@media only screen and (max-width: 870px){
+@media only screen and (max-width: 890px){
   .navbar-brand{
-    width: 150px;
+    width: 95px;
     display: block !important;
-    word-break: break-word;
     white-space: normal;
-    font-size: 10pt;
+    font-size: 10pt !important;
     line-height: 11pt;
     margin-left: 0;
     text-transform: uppercase;
     text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 475px) {
+  .usertext {
+    display: inline !important;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .navbar {
+    .nav-item .nav-link {
+      margin-left: -8px !important;
+    }
+
+    .navbar-nav .icon {
+      font-size: 20px !important;
+    }
+
+    .dropdown {
+      margin-left: 10px !important;
+    }
+
+    .navbar-brand {
+      margin-right: 0 !important;
+    }
+
+    .usermenu {
+    margin-left: -10px !important;
+    }
   }
 }
 
@@ -25,6 +54,10 @@
 
     .dropdown {
     margin-left: 20px;
+  }
+
+  .d-md-inline {
+      display: inline!important;
   }
 
   .navbar-brand{
