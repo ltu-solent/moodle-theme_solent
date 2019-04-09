@@ -1,0 +1,77 @@
+@media only screen and (max-width: 480px) {                                     //reduced margin and padding for better formatting on mobile
+  .course-content ul.section {
+      margin: 0 !important;
+  }
+
+  .section .label .contentwithoutlink, .section .label .activityinstance {
+    padding-right: 0 !important;
+  }
+
+  .onetopic .nav-item {                                                         //onetopic tabs take full width on mobile
+    width: 100%;
+  }
+}
+
+/* onetopic START */
+.tab_content {
+    color: white;
+    background-color: #466273;
+    &:hover {
+      color: black;
+      background-color: white;
+    }
+}
+
+.nav-link.active .tab_content {
+    background-color: $white;
+    color: $black;
+}
+
+.tab_content, a.nav-link.active {
+    border-radius: 5px 5px 0 0;
+    margin-left: 3px;
+}
+/* onetopic END */
+
+/* Course participants page START */
+#participantsform {
+  .lastinitial .initialbarlabel {
+      padding-right: 11px;
+  }
+
+  #checkallonpage, #checknone {
+    margin-right: 10px;
+  }
+}
+/* Course participants page END */
+
+#forummenu input {                                                              //spacing between buttons on forum pages
+    margin-left: 10px;
+}
+
+/* Course text overrides START */
+.dimmed_text span, .dimmed_text p{                                              //ensures hidden text on course pages will always be grey for users who can edit
+	color: #999 !important;
+}
+
+section#region-main .editor_atto h1[style], section#region-main .editor_atto h2[style], section#region-main .editor_atto h3[style], section#region-main .editor_atto h4[style], section#region-main .editor_atto h5[style], section#region-main .editor_atto h1, section#region-main .editor_atto h2, section#region-main .editor_atto h3, section#region-main .editor_atto h4, section#region-main .editor_atto h5, section#region-main .single-section h1, section#region-main .single-section h2, section#region-main .single-section h3, section#region-main .single-section h4, section#region-main .single-section h5, section#region-main .single-section h1[style], section#region-main .single-section h2[style], section#region-main .single-section h3[style], section#region-main .single-section h4[style], section#region-main .single-section h5[style] {
+    font-family: OpenSans-Semi,"Trebuchet MS"!important;
+    font-weight: 400;
+    letter-spacing: normal!important;
+    line-height: 25px!important;
+    font-size: 20px!important;
+    padding-top: 30px!important;
+    padding-left: 0px!important;
+    margin-left: 0px!important;
+}
+
+section#region-main .editor_atto span[style*="font-size: small;"], section#region-main .editor_atto span[style*="font-size: normal;"], section#region-main .editor_atto span[style*="font-size: medium;"], section#region-main .editor_atto span[style*="font-size: large;"], section#region-main .editor_atto span[style*="font-size: x-large;"], section#region-main .editor_atto span[style*="font-style: normal;"], section#region-main .single-section span[style*="font-size: small;"], section#region-main .single-section span[style*="font-size: normal;"], section#region-main .single-section span[style*="font-size: medium;"], section#region-main .single-section span[style*="font-size: large;"], section#region-main .single-section span[style*="font-size: x-large;"], section#region-main .single-section span[style*="font-style: normal;"], section#region-main .single-section p {
+    font-family: OpenSans,"Trebuchet MS"!important;
+    font-size: 15px!important;
+    font-weight: 400;
+    letter-spacing: 0.45px!important;
+    line-height: 25px!important;
+    padding-left: 0!important;
+    margin-left: 0!important;
+}
+/* Course text overrides END */

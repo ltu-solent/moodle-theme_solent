@@ -35,3 +35,7 @@ body{
 .pagelayout-mydashboard [data-region='blocks-column']{
   padding-top: 0;
 }
+
+.path-admin-theme .singlebutton {                                               //adds space between buttons on theme select page
+    margin-bottom: 20px;
+}
