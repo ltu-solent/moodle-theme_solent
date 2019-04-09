@@ -45,15 +45,47 @@
     height: $navbar-height;
 
     button {
-      background-color: $primary !important;
+        padding: 2px 0 2px 0;
+        background-color: $primary;
+        &:hover {
+          background-color: $white;
+          border-color: #b1bbc4;
+        }
+        &:hover span.icon-bar{
+          background: $black;
+        }
 
-      i {
-        color: $white;
+      span.icon-bar {
+        background-color: $white;
+        display: block;
+        width: 22px;
+        margin-top: 5px;
+        height: 3px;
+        transition: all 0.3s;
+      }
+
+      span.icon-bar.top-bar {
+        margin-top: 0;
       }
     }
 
+    button[aria-expanded="true"] {                                         //navdrawer button toggle animation
+
+      span.icon-bar.top-bar {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      span.icon-bar.middle-bar {
+        opacity: 0;
+    }
+
+      span.icon-bar.bottom-bar {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+
     .dropdown {
-    margin-left: 20px;
+      margin-left: 20px;
   }
 
   .d-md-inline {
