@@ -9,16 +9,21 @@
 
   .onetopic .nav-item {                                                         //onetopic tabs take full width on mobile
     width: 100%;
+    margin-bottom: 3px;
   }
 }
 
 /* onetopic START */
 .tab_content {
-    color: white;
+    color: $white;
     background-color: #466273;
+    border: 1px solid #466273;
+    border-radius: 5px 5px 0 0;
+    margin-left: 3px;
     &:hover {
-      color: black;
-      background-color: white;
+      color: $black;
+      background-color: $white;
+      border: 1px solid #e0e0e0;
     }
 }
 
@@ -27,9 +32,11 @@
     color: $black;
 }
 
-.tab_content, a.nav-link.active {
-    border-radius: 5px 5px 0 0;
-    margin-left: 3px;
+.nav-tabs .nav-link {
+    border: none !important;
+    &.active .tab_content{
+      border-color: #e0e0e0;
+    }
 }
 /* onetopic END */
 
