@@ -32,7 +32,7 @@
     color: $black;
 }
 
-.nav-tabs {
+#page-course-view-onetopic .nav-tabs .nav-link {
     border: none !important;
     &.active .tab_content{
       border-color: #e0e0e0;
@@ -44,6 +44,10 @@
 #participantsform {
   .lastinitial .initialbarlabel {
       padding-right: 11px;
+  }
+
+  .initialbar.lastinitial {
+      margin-bottom: 30px;
   }
 
   #checkallonpage, #checknone {
