@@ -21,6 +21,8 @@ body{
 
 #page-content {                                                                 //remove padding which affects the display of the footer
   padding-bottom: 0 !important;
+  z-index: 1;
+  background-color: $white;
 }
 
 .header-image .card{
@@ -38,4 +40,13 @@ body{
 
 .path-admin-theme .singlebutton {                                               //adds space between buttons on theme select page
     margin-bottom: 20px;
+}
+
+.tool_usertours-resettourcontainer {                                            //user tour reset link at bottom of page
+    width: 100%;
+
+    .usertour {
+    margin-bottom: 20px;
+    text-align: center;
+  }
 }
