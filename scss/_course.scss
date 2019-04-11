@@ -14,34 +14,35 @@
 }
 
 /* onetopic START */
-.tab_content {
-    color: $white;
-    background-color: #466273;
-    border: 1px solid #466273;
-    border-radius: 5px 5px 0 0;
-    margin-left: 3px;
-    &:hover {
-      color: $black;
+#page-course-view-onetopic {
+  .tab_content {
+      color: $white;
+      background-color: #466273;
+      border: 1px solid #466273;
+      border-radius: 5px 5px 0 0;
+      margin-left: 3px;
+      &:hover {
+        color: $black;
+        background-color: $white;
+        border: 1px solid #e0e0e0;
+      }
+  }
+
+  .nav-link.active .tab_content {
       background-color: $white;
-      border: 1px solid #e0e0e0;
-    }
-}
+      color: $black;
+  }
 
-.nav-link.active .tab_content {
-    background-color: $white;
-    color: $black;
-}
-
-#page-course-view-onetopic .nav-tabs .nav-link {
-    border: none !important;
-    &.active .tab_content{
-      border-color: #e0e0e0;
-    }
+  .nav-tabs .nav-link {
+      border: none !important;
+      &.active .tab_content{
+        border-color: #e0e0e0;
+      }
+  }
 }
 /* onetopic END */
 
 /* Course participants page START */
-#participantsform {
   .lastinitial .initialbarlabel {
       padding-right: 11px;
   }
@@ -53,7 +54,6 @@
   #checkallonpage, #checknone {
     margin-right: 10px;
   }
-}
 /* Course participants page END */
 
 #forummenu input {                                                              //spacing between buttons on forum pages
