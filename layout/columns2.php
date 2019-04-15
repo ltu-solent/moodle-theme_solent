@@ -39,6 +39,13 @@ if ($navdraweropen) {
 
 $header = $OUTPUT->full_header_ssu();
 
+// If in course or unit pages categories add the course title elements
+global $DB;
+$course_title_elements = "";
+if(substr($_SERVER['REQUEST_URI'], 0, 20) == '/course/view.php?id='){
+   $course_title_elements = unit_descriptor_course($COURSE);
+}
+
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
@@ -51,7 +58,8 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes,
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
+    'course_title_elements' => $course_title_elements
 ];
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
