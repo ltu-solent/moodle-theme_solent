@@ -25,6 +25,11 @@ body{
   background-color: $white;
 }
 
+.dropdown-item:active {
+    background-color: #e6e6e6;
+    color: $black;
+}
+
 .header-image .card{
   background-color: $body-body-bg !important;
   border: none;
