@@ -487,6 +487,13 @@ class renderer extends \core_course_management_renderer {
     public function course_listitem(core_course_category $category, core_course_list_element $course, $selectedcourse) {
 
         $text = $course->get_formatted_name();
+// SU_AMEND START - Unit start date: Manage categories
+        $categoryname = core_course_category::get($course->category)->get_formatted_name();
+        $catname = strtolower('x'.$categoryname);
+        if(strpos($catname, 'unit pages') !== false){
+          $text .= ' (' .date('d-m-Y',$course->startdate) .')';
+        }
+// SU_AMEND END
         $attributes = array(
             'class' => 'listitem listitem-course list-group-item list-group-item-action',
             'data-id' => $course->id,
@@ -674,12 +681,12 @@ class renderer extends \core_course_management_renderer {
 
         $text = $course->get_formatted_name();
 
-// SU_AMEND START - Add start date to manage categories page
-      $category = core_course_category::get($course->category)->get_formatted_name();
-      $catname = strtolower('x'.$category);
-      if(strpos($catname, 'unit pages') !== false){
-        $text .= ' (' .date('d-m-Y',$course->startdate) .')';
-      }
+// SU_AMEND START - Unit start date: Manage categories
+        $categoryname = core_course_category::get($course->category)->get_formatted_name();
+        $catname = strtolower('x'.$categoryname);
+        if(strpos($catname, 'unit pages') !== false){
+          $text .= ' (' .date('d-m-Y',$course->startdate) .')';
+        }
 // SU_AMEND END
 
         $attributes = array(
