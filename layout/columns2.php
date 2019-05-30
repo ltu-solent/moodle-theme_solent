@@ -43,7 +43,7 @@ $header = $OUTPUT->full_header_ssu();
 global $DB;
 $course_title_elements = "";
 if(substr($_SERVER['REQUEST_URI'], 0, 20) == '/course/view.php?id='){
-   $course_title_elements = unit_descriptor_course($COURSE);
+   $course_title_elements = su_unit_descriptor_course($COURSE);
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);

@@ -39,6 +39,10 @@
         border-color: #e0e0e0;
       }
   }
+
+  aside.block-region{
+    margin-top: 35px;
+  }
 }
 /* onetopic END */
 
@@ -65,7 +69,26 @@
 	color: #999 !important;
 }
 
-section#region-main .editor_atto h1[style], section#region-main .editor_atto h2[style], section#region-main .editor_atto h3[style], section#region-main .editor_atto h4[style], section#region-main .editor_atto h5[style], section#region-main .editor_atto h1, section#region-main .editor_atto h2, section#region-main .editor_atto h3, section#region-main .editor_atto h4, section#region-main .editor_atto h5, section#region-main .single-section h1, section#region-main .single-section h2, section#region-main .single-section h3, section#region-main .single-section h4, section#region-main .single-section h5, section#region-main .single-section h1[style], section#region-main .single-section h2[style], section#region-main .single-section h3[style], section#region-main .single-section h4[style], section#region-main .single-section h5[style] {
+section#region-main .editor_atto h1[style],
+section#region-main .editor_atto h2[style],
+section#region-main .editor_atto h3[style],
+section#region-main .editor_atto h4[style],
+section#region-main .editor_atto h5[style],
+section#region-main .editor_atto h1,
+section#region-main .editor_atto h2,
+section#region-main .editor_atto h3,
+section#region-main .editor_atto h4,
+section#region-main .editor_atto h5,
+section#region-main .single-section h1,
+section#region-main .single-section h2,
+section#region-main .single-section h3,
+section#region-main .single-section h4,
+section#region-main .single-section h5,
+section#region-main .single-section h1[style],
+section#region-main .single-section h2[style],
+section#region-main .single-section h3[style],
+section#region-main .single-section h4[style],
+section#region-main .single-section h5[style] {
     font-family: Open Sans,sans-serif!important;
     font-weight: 400;
     letter-spacing: normal!important;
@@ -76,7 +99,19 @@ section#region-main .editor_atto h1[style], section#region-main .editor_atto h2[
     margin-left: 0px!important;
 }
 
-section#region-main .editor_atto span[style*="font-size: small;"], section#region-main .editor_atto span[style*="font-size: normal;"], section#region-main .editor_atto span[style*="font-size: medium;"], section#region-main .editor_atto span[style*="font-size: large;"], section#region-main .editor_atto span[style*="font-size: x-large;"], section#region-main .editor_atto span[style*="font-style: normal;"], section#region-main .single-section span[style*="font-size: small;"], section#region-main .single-section span[style*="font-size: normal;"], section#region-main .single-section span[style*="font-size: medium;"], section#region-main .single-section span[style*="font-size: large;"], section#region-main .single-section span[style*="font-size: x-large;"], section#region-main .single-section span[style*="font-style: normal;"], section#region-main .single-section p {
+section#region-main .editor_atto span[style*="font-size: small;"],
+section#region-main .editor_atto span[style*="font-size: normal;"],
+section#region-main .editor_atto span[style*="font-size: medium;"],
+section#region-main .editor_atto span[style*="font-size: large;"],
+section#region-main .editor_atto span[style*="font-size: x-large;"],
+section#region-main .editor_atto span[style*="font-style: normal;"],
+section#region-main .single-section span[style*="font-size: small;"],
+section#region-main .single-section span[style*="font-size: normal;"],
+section#region-main .single-section span[style*="font-size: medium;"],
+section#region-main .single-section span[style*="font-size: large;"],
+section#region-main .single-section span[style*="font-size: x-large;"],
+section#region-main .single-section span[style*="font-style: normal;"],
+section#region-main .single-section p {
     font-family: "Open Sans",sans-serif!important;
     font-size: 15px!important;
     font-weight: 400;

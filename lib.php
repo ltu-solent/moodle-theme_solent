@@ -38,11 +38,10 @@ function theme_solent_get_main_scss_content($theme) {
     return $pre . "\n" . $scss . "\n" . $post;
 }
 
-function unit_descriptor_course($course){
+function su_unit_descriptor_course($course){
 	global $CFG;
 	require_once('../config.php');
-	require_once($CFG->libdir.'/coursecatlib.php');
-	$category = coursecat::get($course->category, IGNORE_MISSING);
+	$category = core_course_category::get($course->category, IGNORE_MISSING);
 
 	if(isset($category)){
 		$catname = strtolower('x'.$category->name);
