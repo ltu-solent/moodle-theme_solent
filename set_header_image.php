@@ -1,5 +1,5 @@
 <?php
-// SSU_AMEND START - UPDATE HEADER IMAGE
+// SU_AMEND START - Theme: Update header image
 //Called by form in theme/solent20xx/layout/columns3.php
 require('../../config.php');
 global $DB;
