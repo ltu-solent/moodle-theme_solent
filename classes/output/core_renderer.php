@@ -125,22 +125,22 @@ class core_renderer extends \core_renderer {
 
         $imageselector .=	'<div class="divcoursefieldset"><fieldset class="coursefieldset fieldsetheader">
              <form action="'. $CFG->wwwroot .'/theme/solent/set_header_image.php" method="post">
-             <label for "opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
-             <select name="opt">';
+             <label for="opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
+             </label><select name="opt">';
 
         $imageselector .= '<option value="00">No image</option>';
         foreach($options as $key=>$val){
           if(($val != 'options') && ($val != 'succeed') && ($val != '')){
             $imageselector .= '<option value="' . $key . '"'; if($key == $option->opt)
-            $imageselector .= 'selected="selected"';
+            $imageselector .= ' selected="selected"';
             $imageselector .= '>Option ' . $val . '</option>';
           }
         }
 
-        $imageselector .= '  <input type="hidden" name="course" value="'. $COURSE->id .'"/>';
+        $imageselector .= '  </select><input type="hidden" name="course" value="'. $COURSE->id .'"/>';
         $imageselector .= '  <input type="hidden" name="id" value="'. $option->id .'"/>';
         $imageselector .= '&nbsp;&nbsp;&nbsp;<input type="submit" value="Save">
-           </select></label></form></fieldset></div>';
+           </form></fieldset></div>';
       }
     }
 
