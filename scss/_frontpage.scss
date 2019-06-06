@@ -1,0 +1,17 @@
+#page-site-index {
+
+    #region-main-box {
+      background-image: url(/theme/solent/pix/login.jpg);
+      background-repeat: no-repeat;
+      min-height: 570px !important;
+    }
+
+    section#region-main {
+      display: none;
+    }
+
+    footer {
+      display: table-column;
+    }
+
+}

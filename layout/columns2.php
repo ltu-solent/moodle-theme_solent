@@ -37,7 +37,11 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
+if (isloggedin()) {
 $header = $OUTPUT->full_header_ssu();
+} else {
+$header = null;
+}
 
 // If in course or unit pages categories add the course title elements
 global $DB;
@@ -59,7 +63,8 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'course_title_elements' => $course_title_elements
+    'course_title_elements' => $course_title_elements,
+    'header' => $header
 ];
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
