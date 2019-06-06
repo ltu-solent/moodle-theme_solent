@@ -6,6 +6,14 @@
 
 body{
   background-color: $white !important;
+  font-family: $font-family-base !important;
+  color: $font-color !important;
+  font-size: 15px;
+  letter-spacing: .45px;
+}
+
+h5{
+  font-weight: 400;
 }
 
 #region-main {

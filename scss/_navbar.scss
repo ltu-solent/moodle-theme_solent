@@ -44,6 +44,22 @@
 .navbar {
     height: $navbar-height;
 
+    .count-container {
+        right: -15px;
+    }
+
+    .popover-region {
+        margin-right: 15px;
+    }
+
+    .usertext {
+    font-family: 'Open Sans', sans-serif !important;
+    }
+
+    .navbar-nav .icon {
+        font-size: 28px !important;
+    }
+
     button {
         padding: 2px 0 2px 0;
         background-color: $primary;
@@ -111,4 +127,8 @@
       opacity: .7;
     }
   }
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 1.5rem;
 }
