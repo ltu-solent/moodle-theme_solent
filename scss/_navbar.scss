@@ -1,4 +1,4 @@
-@media only screen and (max-width: 890px){
+@media only screen and (max-width: 930px){
   .navbar-brand{
     width: 95px;
     display: block !important;
@@ -11,33 +11,33 @@
   }
 }
 
-@media only screen and (min-width: 475px) {
+@media only screen and (min-width: 500px) {
   .usertext {
     display: inline !important;
   }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 415px) {
   .navbar {
     .nav-item .nav-link {
       margin-left: -8px !important;
-    }
-
-    .navbar-nav .icon {
-      font-size: 20px !important;
-    }
-
-    .dropdown {
-      margin-left: 10px !important;
     }
 
     .navbar-brand {
       margin-right: 0 !important;
     }
 
-    .usermenu {
-    margin-left: -10px !important;
+    .dropdown {
+      margin-left: -1px !important;
     }
+
+    .usermenu {
+      margin-right: -10px !important;
+    }
+  }
+
+  nav .mr-3 {
+    margin-right: 7px !important;
   }
 }
 
