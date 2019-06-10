@@ -65,7 +65,7 @@
 }
 
 .dropdown-toggle {
-    font-family: "Open Sans",sans-serif;                                        //prevent dropdown menu font being overriden by fontawesome
+    font-family: "Open Sans",sans-serif !important;                             //prevent dropdown menu font being overriden by fontawesome
 }
 
 /* Course text overrides START */
