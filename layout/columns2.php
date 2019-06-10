@@ -37,8 +37,6 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
-$header = $OUTPUT->full_header_ssu();
-
 // If in course or unit pages categories add the course title elements
 global $DB;
 $course_title_elements = "";
