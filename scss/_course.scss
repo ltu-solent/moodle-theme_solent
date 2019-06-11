@@ -45,6 +45,21 @@
   }
 }
 /* onetopic END */
+/* User tour reset link at bottom of grading page START */
+.tool_usertours-resettourcontainer {
+    width: 100%;
+
+    .usertour {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.usertour {
+  text-align: center;
+  padding-top: 10px;
+}
+/* User tour reset link at bottom of grading page END */
 
 /* Course participants page START */
   .lastinitial .initialbarlabel {
