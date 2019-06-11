@@ -68,6 +68,10 @@
     font-family: "Open Sans",sans-serif !important;                             //prevent dropdown menu font being overriden by fontawesome
 }
 
+.format-board .block-region {                                                   //on the board format, allow space above blocks column for unit dates and unit descriptor
+    padding-top: 30px;
+}
+
 /* Course text overrides START */
 .dimmed_text span, .dimmed_text p{                                              //ensures hidden text on course pages will always be grey for users who can edit
 	color: #999 !important;
