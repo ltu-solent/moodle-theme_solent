@@ -77,6 +77,12 @@
 }
 /* onetopic END */
 
+/* Board format START*/
+.format-board .block-region {                                                   //on the board format, allow space above blocks column for unit dates and unit descriptor
+    padding-top: 30px;
+}
+/* Board format END*/
+
 /* User tour reset link at bottom of grading page START */
 .tool_usertours-resettourcontainer {
     width: 100%;
