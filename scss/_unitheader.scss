@@ -67,14 +67,14 @@
 
 		.page-header-headings {
 			 display: inline-block;
-			 padding: 0 20px 0 25px;
+			 padding: 0 45px 0 25px;
 			 color: #fff;
 			 letter-spacing: .25em;
 			 text-transform: uppercase;
 			 background: rgba(0,0,0,0.40);
 			 position: absolute;
-			 webkit-clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
-			 clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+			 webkit-clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
+			 clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
 
 			 h1{
 				margin: 10px 0 10px 0;
@@ -113,6 +113,10 @@ header.header-image{
 	margin-left: -15px;
 }
 
+.divcoursefieldset {
+  padding-top: 20px;
+}
+
 /* Course settings dropdown menu */
 #course-header .dropdown {
     background-color: rgba(255,255,255,.9);
@@ -128,6 +132,7 @@ header.header-image{
 
 #page-header .card-body, #page-header .card {
     background: transparent !important;
+    background-position: center;
 }
 
 .pagelayout-course div#page-header.opt00{

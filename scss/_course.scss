@@ -13,6 +13,12 @@
   }
 }
 
+@media only screen and (min-width: 1380px){
+  #region-main {
+      padding: 3.5rem 4.25rem;
+  }
+}
+
 /* Grading page */
 .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"]{
     background-color: #fff;
@@ -23,14 +29,18 @@
 #page-course-view-onetopic {
   .tab_content {
       color: $white;
-      background-color: #466273;
-      border: 1px solid #466273;
+      background-color: $primary;
+      border: 1px solid $primary;
       border-radius: 5px 5px 0 0;
       margin-left: 3px;
       &:hover {
-        color: $black;
-        background-color: $white;
-        border: 1px solid #e0e0e0;
+        color: $black !important;
+        background-color: $white !important;
+        border: 1px solid #e0e0e0 !important;
+      }
+
+      .marker{
+        font-style: italic !important;
       }
   }
 
@@ -49,8 +59,24 @@
   aside.block-region{
     margin-top: 35px;
   }
+
+  .course-content .current::before {
+      display: none;
+  }
+}
+
+.format-onetopic{
+  .marker {
+    font-style: italic;
+    font-weight: inherit !important;
+  }
+
+  .active {
+      font-weight: 700;
+  }
 }
 /* onetopic END */
+
 /* User tour reset link at bottom of grading page START */
 .tool_usertours-resettourcontainer {
     width: 100%;

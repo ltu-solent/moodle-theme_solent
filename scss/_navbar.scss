@@ -56,9 +56,9 @@
     font-family: 'Open Sans', sans-serif !important;
     }
 
-    .navbar-nav .icon {
+    /* .popover-region-toggle .navbar-nav .icon {
         font-size: 28px !important;
-    }
+    } */
 
     button {
         padding: 2px 0 2px 0;
@@ -121,12 +121,11 @@
     }
   }
 
-  .navbar-nav {
-    .icon {
-      font-size: 25px;
-      opacity: .7;
-    }
+  .popover-region-toggle .icon {
+    font-size: 25px;
+    opacity: .7;
   }
+
 }
 
 .navbar-expand .navbar-nav .nav-link {
