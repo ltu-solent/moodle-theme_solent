@@ -661,7 +661,9 @@ class core_renderer extends \core_renderer {
 
             $this->page->navigation->initialise();
             $node = $this->page->navigation->find_active_node();
-            $buildmenu = false;
+//SU_AMEND START Enable settings menu for all levels of an assignment/activity
+            $buildmenu = true;
+//SU_AMEND END
             // If the settings menu has been forced then show the menu.
             if ($this->page->is_settings_menu_forced()) {
                 $buildmenu = true;
