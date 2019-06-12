@@ -126,34 +126,51 @@
 	color: #999 !important;
 }
 
-section#region-main .editor_atto h1[style],
-section#region-main .editor_atto h2[style],
-section#region-main .editor_atto h3[style],
-section#region-main .editor_atto h4[style],
-section#region-main .editor_atto h5[style],
-section#region-main .editor_atto h1,
-section#region-main .editor_atto h2,
-section#region-main .editor_atto h3,
-section#region-main .editor_atto h4,
-section#region-main .editor_atto h5,
-section#region-main .single-section h1,
-section#region-main .single-section h2,
-section#region-main .single-section h3,
-section#region-main .single-section h4,
-section#region-main .single-section h5,
-section#region-main .single-section h1[style],
-section#region-main .single-section h2[style],
-section#region-main .single-section h3[style],
-section#region-main .single-section h4[style],
-section#region-main .single-section h5[style] {
-    font-family: Open Sans,sans-serif !important;
-    font-weight: 400;
-    letter-spacing: normal!important;
-    line-height: 25px!important;
-    font-size: 20px!important;
-    padding-top: 30px!important;
-    padding-left: 0px!important;
-    margin-left: 0px!important;
+section#region-main {
+  .editor_atto h1[style],
+  .editor_atto h2[style],
+  .editor_atto h3[style],
+  .editor_atto h4[style],
+  .editor_atto h5[style],
+  .editor_atto h1,
+  .editor_atto h2,
+  .editor_atto h3,
+  .editor_atto h4,
+  .editor_atto h5,
+  .single-section h1,
+  .single-section h2,
+  .single-section h3,
+  .single-section h4,
+  .single-section h5,
+  .single-section h1[style],
+  .single-section h2[style],
+  .single-section h3[style],
+  .single-section h4[style],
+  .single-section h5[style] {
+      font-family: Open Sans,sans-serif !important;
+      font-weight: 400;
+      letter-spacing: normal!important;
+      line-height: 25px!important;
+      padding-top: 30px!important;
+      padding-left: 0px!important;
+      margin-left: 0px!important;
+  }
+
+  .single-section h1, .single-section h1[style]{
+    font-size: 1.45rem !important;
+  }
+  .single-section h2, .single-section h2[style]{
+    font-size: 1.45rem !important;
+  }
+  .single-section h3, .single-section h3[style]{
+    font-size: 1.35rem !important;
+  }
+  .single-section h4, .single-section h4[style]{
+    font-size: 1.25rem !important;
+  }
+  .single-section h5, .single-section h5[style]{
+    font-size: 1.15rem !important;
+  }
 }
 
 section#region-main .editor_atto span[style*="font-size: small;"],
