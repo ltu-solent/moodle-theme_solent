@@ -8,10 +8,15 @@
       background-image: url(/theme/solent/pix/login.jpg);
       background-repeat: no-repeat;
       min-height: 570px !important;
+      background-size: cover;
     }
 
     section#region-main {
       display: none;
+    }
+
+    .tool_usertours-resettourcontainer {
+    width: 0;
     }
 
     footer {
