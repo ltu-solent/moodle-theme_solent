@@ -43,9 +43,9 @@ h5{
   border: none;
 }
 
-[data-region='blocks-column']{
-  padding-top: 4.25rem;
-}
+// [data-region='blocks-column']{
+//   padding-top: 4.25rem;
+// }
 
 .pagelayout-mydashboard [data-region='blocks-column']{
   padding-top: 0;
@@ -53,4 +53,8 @@ h5{
 
 .path-admin-theme .singlebutton {                                               //adds space between buttons on theme select page
     margin-bottom: 20px;
+}
+
+.progress-bar {
+    background-color: #9BAE4D !important;
 }

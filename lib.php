@@ -48,7 +48,8 @@ function su_unit_descriptor_course($course){
 		$coursecode = substr($course->shortname, 0, strpos($course->shortname, "_"));
 
 		if(strpos($catname, 'unit pages') !== false){
-			$date = html_writer::start_div('unit_start') . 'Unit runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
+			$date = html_writer::start_div('unit-details');
+			$date .= html_writer::start_div('unit-start') . 'Unit runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
 
 			$descriptor = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc'; //STRING TO LOCATE THE UNIT CODE .DOC
 			$descriptorx = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx'; //STRING TO LOCATE THE UNIT CODE .DOCX
@@ -57,11 +58,11 @@ function su_unit_descriptor_course($course){
 
 			//CHECK IF THE FILE EXISTS
 			if ($d[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptor."' class='unit_desc' target='_blank'>Unit Descriptor</a>";//IF IT DOES EXIST ADD THE LINK
+				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
 			}elseif ($x[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptorx."'  class='unit_desc' target='_blank'>Unit Descriptor</a>";//IF IT DOES EXIST ADD THE LINK
+				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
 			}else{
-				return $date . "<span class='unit_desc'>No unit descriptor available</span>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
+				return $date . "<span class='unit-desc'>No unit descriptor available</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
 			}
 
 			clearstatcache();

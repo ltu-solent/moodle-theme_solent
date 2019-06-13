@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px) {                                     //reduced margin and padding for better formatting on mobile
+@media only screen and (max-width: 479px) {                                     //reduced margin and padding for better formatting on mobile
   .course-content ul.section {
       margin: 0 !important;
   }
@@ -11,6 +11,24 @@
     width: 100%;
     margin-bottom: 3px;
   }
+
+  #region-main{
+    padding: 0;
+  }
+
+  .section .label .mod-indent-outer {
+      padding-left: 0px;
+  }
+
+  .mr-auto, .mx-auto {
+      display: none;
+  }
+}
+
+@media only screen and (max-width: 1119px){
+  // [data-region='blocks-column'] {
+  //     padding-top: 10px;
+  // }
 }
 
 @media only screen and (min-width: 1380px){
@@ -195,3 +213,66 @@ section#region-main .single-section p {
     margin-left: 0 !important;
 }
 /* Course text overrides END */
+
+/* Activity/content overrides START */
+.section li.activity {
+    padding: .5em;
+}
+
+.activity img.activityicon {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+img.iconlarge {
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+}
+
+div[class^="mod-indent"]{
+	margin-left: 0px !important;
+	padding-left: 20px !important;
+}
+
+@media (max-width: 480px) {
+	div[class^="mod-indent"]{
+		padding-left: 0px !important;
+	}
+
+	div.editor-indent{
+		margin-left :0px;
+	}
+
+	.section .label .contentwithoutlink, .section .label .activityinstance {
+		padding-right: 0px;
+	}
+}
+
+div[class*="mod-indent-1"],
+div[class*="mod-indent-2"],
+div[class*="mod-indent-3"],
+div[class*="mod-indent-4"],
+div[class*="mod-indent-5"],
+div[class*="mod-indent-6"],
+div[class*="mod-indent-7"]
+{
+	width: 0px !important;
+}
+
+div.contentafterlink, div.activityinstance {
+    padding-left: 0px;
+}
+/* Activity/content overrides END */
+table caption { /* Calendar heading font-size */
+    font-size: initial;
+    text-align: center;
+}
+
+.unit-details{
+  padding-top: 35px;
+}
+
+#region-main-settings-menu.has-blocks, #region-main.has-blocks {
+  padding-top: 25px;
+}

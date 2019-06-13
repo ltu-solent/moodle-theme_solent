@@ -1,4 +1,4 @@
-@media only screen and (max-width: 480px){                                   //mobile layout for the unit header
+@media only screen and (max-width: 479px){                                   //mobile layout for the unit header
 
   .pagelayout-course #page-header{
     .page-header-headings {
@@ -17,7 +17,7 @@
     .card .card-body {
       padding: 0 !important;
   	}
-	}
+	}  
 }
 
 @media only screen and (min-width: 480px){

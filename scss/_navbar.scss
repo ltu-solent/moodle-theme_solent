@@ -46,10 +46,21 @@
 
     .count-container {
         right: -15px;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 3px;
+    }
+
+    a[id*="message-drawer-toggle"] .count-container{
+      right: -18px;
+    }
+
+    .popover-region-notifications{
+      right: -15px;
     }
 
     .popover-region {
-        margin-right: 15px;
+        margin-right: 20px;
     }
 
     .usertext {
