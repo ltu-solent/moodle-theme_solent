@@ -69,100 +69,84 @@ class core_renderer extends \core_renderer {
      *
      * @return string HTML to display the main header.
      */
-    // public function full_header() {
-    //     global $PAGE;
-    //
-    //     $header = new stdClass();
-    //     $header->settingsmenu = $this->context_header_settings_menu();
-    //     $header->contextheader = $this->context_header();
-    //     $header->hasnavbar = empty($PAGE->layout_options['nonavbar']);
-    //     $header->navbar = $this->navbar();
-    //     $header->pageheadingbutton = $this->page_heading_button();
-    //     $header->courseheader = $this->course_header();
-    //     return $this->render_from_template('theme_boost/header', $header);
-    // }
-    public function full_header_ssu() {
-    global $PAGE, $DB, $COURSE, $CFG;
+    public function full_header() {
+        global $PAGE, $DB, $COURSE, $CFG;
 
-    $opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
-    if($opt){
-      $opt = $opt->opt;
-    }else{
-      $record = new stdclass;
-      $record->id = null;
-      $record->course = $COURSE->id;
+        $header = new stdClass();
+        $header->settingsmenu = $this->context_header_settings_menu();
+        $header->contextheader = $this->context_header();
+        $header->hasnavbar = empty($PAGE->layout_options['nonavbar']);
+        $header->navbar = $this->navbar();
+        $header->pageheadingbutton = $this->page_heading_button();
+        $header->courseheader = $this->course_header();
+		
+		$opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
+		if($opt){
+		  $opt = $opt->opt;
+		}else{
+		  $record = new stdclass;
+		  $record->id = null;
+		  $record->course = $COURSE->id;
 
-      $currentcategory = $DB->get_record('course_categories', array('id' => $COURSE->category), '*');
-      $catname = strtolower('x'.$currentcategory->name);
-      if(isset($catname)){
-        if(strpos($catname, 'course pages') !== false){
-          $record->opt = '08';
-          $DB->insert_record('theme_header', $record, $returnid=true);
-          $opt = '08';
-        }else{
-          $record->opt = '01';
-          $DB->insert_record('theme_header', $record, $returnid=true);
-          $opt = '01';
-        }
-      }
+		  $currentcategory = $DB->get_record('course_categories', array('id' => $COURSE->category), '*');
+		  $catname = strtolower('x'.$currentcategory->name);
+		  if(isset($catname)){
+			if(strpos($catname, 'course pages') !== false){
+			  $record->opt = '08';
+			  $DB->insert_record('theme_header', $record, $returnid=true);
+			  $opt = '08';
+			}else{
+			  $record->opt = '01';
+			  $DB->insert_record('theme_header', $record, $returnid=true);
+			  $opt = '01';
+			}
+		  }
+		}
+		
+		$imageselector = '';
+		$oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
+		if ($PAGE->user_is_editing() && $oncoursepage != false){
+		  if ($COURSE->id > 1){
+			$option = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
+			$dir = $CFG->dirroot . '/theme/solent/pix/unit-header';
+			$files = scandir($dir);
+			array_splice($files, 0, 1);
+			array_splice($files, 0, 1);
+
+			$options = array();
+			foreach ($files as $k=>$v) {
+			  $img = substr($v, 0, strpos($v, "."));
+			  $options[$img] = $img;
+			}
+
+			$imageselector .=	'<div class="divcoursefieldset"><fieldset class="coursefieldset fieldsetheader">
+				 <form action="'. $CFG->wwwroot .'/theme/solent/set_header_image.php" method="post">
+				 <label for="opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
+				 </label><select name="opt">';
+
+			$imageselector .= '<option value="00">No image</option>';
+			foreach($options as $key=>$val){
+			  if(($val != 'options') && ($val != 'succeed') && ($val != '')){
+				$imageselector .= '<option value="' . $key . '"'; if($key == $option->opt)
+				$imageselector .= ' selected="selected"';
+				$imageselector .= '>Option ' . $val . '</option>';
+			  }
+			}
+
+			$imageselector .= '  </select><input type="hidden" name="course" value="'. $COURSE->id .'"/>';
+			$imageselector .= '  <input type="hidden" name="id" value="'. $option->id .'"/>';
+			$imageselector .= '&nbsp;&nbsp;&nbsp;<input type="submit" value="Save">
+			   </form></fieldset></div>';
+		  }
+		}
+		
+		if ($oncoursepage != false && $COURSE->id > 1 ){
+		  $header->imageclass = 'header-image opt'. $opt;
+		  $header->imageselector = $imageselector;
+		}
+		
+        return $this->render_from_template('theme_solent/header', $header);
     }
-
-    $imageselector = '';
-    $oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
-    if ($PAGE->user_is_editing() && $oncoursepage != false){
-      if ($COURSE->id > 1){
-        $option = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
-        $dir = $CFG->dirroot . '/theme/solent/pix/unit-header';
-        $files = scandir($dir);
-        array_splice($files, 0, 1);
-        array_splice($files, 0, 1);
-
-        $options = array();
-        foreach ($files as $k=>$v) {
-          $img = substr($v, 0, strpos($v, "."));
-          $options[$img] = $img;
-        }
-
-        $imageselector .=	'<div class="divcoursefieldset"><fieldset class="coursefieldset fieldsetheader">
-             <form action="'. $CFG->wwwroot .'/theme/solent/set_header_image.php" method="post">
-             <label for="opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
-             </label><select name="opt">';
-
-        $imageselector .= '<option value="00">No image</option>';
-        foreach($options as $key=>$val){
-          if(($val != 'options') && ($val != 'succeed') && ($val != '')){
-            $imageselector .= '<option value="' . $key . '"'; if($key == $option->opt)
-            $imageselector .= ' selected="selected"';
-            $imageselector .= '>Option ' . $val . '</option>';
-          }
-        }
-
-        $imageselector .= '  </select><input type="hidden" name="course" value="'. $COURSE->id .'"/>';
-        $imageselector .= '  <input type="hidden" name="id" value="'. $option->id .'"/>';
-        $imageselector .= '&nbsp;&nbsp;&nbsp;<input type="submit" value="Save">
-           </form></fieldset></div>';
-      }
-    }
-
-    $coursenamearray = explode("(Start", $COURSE->fullname, 2);
-    $coursename = $coursenamearray[0];
-    $unittitle = html_writer::start_div('unit_title') . $coursename . html_writer::end_div();
-
-    $header = new stdClass();
-    $header->settingsmenu = $this->context_header_settings_menu();
-    $header->contextheader = $this->context_header();
-    $header->hasnavbar = empty($PAGE->layout_options['nonavbar']);
-    $header->navbar = $this->navbar();
-    $header->pageheadingbutton = $this->page_heading_button();
-    $header->courseheader = $this->course_header();
-
-    if ($oncoursepage != false && $COURSE->id > 1 ){
-      $header->imageclass = 'header-image opt'. $opt;
-      $header->coursename = $unittitle;
-      $header->imageselector = $imageselector;
-    }
-    return $this->render_from_template('theme_solent/header', $header);
-  }
 
     /**
      * The standard tags that should be included in the <head> tag
@@ -213,7 +197,7 @@ class core_renderer extends \core_renderer {
         if ($this->should_display_main_logo($headinglevel)) {
             $sitename = format_string($SITE->fullname, true, array('context' => context_course::instance(SITEID)));
             return html_writer::div(html_writer::empty_tag('img', [
-                'src' => $this->get_logo_url(null, 150), 'alt' => $sitename]), 'logo');
+                'src' => $this->get_logo_url(null, 150), 'alt' => $sitename, 'class' => 'img-fluid']), 'logo');
         }
 
         return parent::context_header($headerinfo, $headinglevel);
@@ -418,6 +402,7 @@ class core_renderer extends \core_renderer {
         $context->showskiplink = !empty($context->skiptitle);
         $context->arialabel = $bc->arialabel;
         $context->ariarole = !empty($bc->attributes['role']) ? $bc->attributes['role'] : 'complementary';
+        $context->class = $bc->attributes['class'];
         $context->type = $bc->attributes['data-block'];
         $context->title = $bc->title;
         $context->content = $bc->content;
@@ -617,7 +602,7 @@ class core_renderer extends \core_renderer {
                 if ($skipped) {
                     $text = get_string('morenavigationlinks');
                     $url = new moodle_url('/course/admin.php', array('courseid' => $this->page->course->id));
-                    $link = new action_link($url, $text, null, null, new pix_icon('t/edit', $text));
+                    $link = new action_link($url, $text, null, null, new pix_icon('t/edit', ''));
                     $menu->add_secondary_action($link);
                 }
             }
@@ -631,7 +616,7 @@ class core_renderer extends \core_renderer {
                 if ($skipped) {
                     $text = get_string('morenavigationlinks');
                     $url = new moodle_url('/course/admin.php', array('courseid' => $this->page->course->id));
-                    $link = new action_link($url, $text, null, null, new pix_icon('t/edit', $text));
+                    $link = new action_link($url, $text, null, null, new pix_icon('t/edit', ''));
                     $menu->add_secondary_action($link);
                 }
             }
