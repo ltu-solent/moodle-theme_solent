@@ -1,4 +1,4 @@
-@media (max-width: 1150px) {                                                    //disable the sticky footer on small screens
+@media (max-width: 1150px) {                                                    //in chrome, disable the sticky footer on small screens
   footer {
       position: relative !important;
   }
@@ -10,8 +10,14 @@
   }
 }
 
-footer {                                                                        //allow the footer to be overlapped by the main content
-  position: sticky;
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {  //target chrome browser only
+  .selector:not(*:root), footer {                                                
+    position: sticky !important;                                                  //allow footer to be overlapped by main content (only works in chrome)
+  }
+}
+
+footer {
+  position: relative;
   bottom: 0;
   width: 100%;
   padding-top: 50px;

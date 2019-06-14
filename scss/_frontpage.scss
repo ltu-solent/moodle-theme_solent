@@ -8,6 +8,8 @@
       background-image: url(/theme/solent/pix/login.jpg);
       background-repeat: no-repeat;
       min-height: 570px !important;
+      background-size: cover;
+      background-position: center;
     }
 
     section#region-main {
@@ -15,7 +17,7 @@
     }
 
     footer {
-      position: static;
+      position: relative !important;
     }
 
 }
