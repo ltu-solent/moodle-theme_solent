@@ -79,7 +79,7 @@ class core_renderer extends \core_renderer {
         $header->navbar = $this->navbar();
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
-		
+
 		$opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
 		if($opt){
 		  $opt = $opt->opt;
@@ -102,7 +102,7 @@ class core_renderer extends \core_renderer {
 			}
 		  }
 		}
-		
+
 		$imageselector = '';
 		$oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
 		if ($PAGE->user_is_editing() && $oncoursepage != false){
@@ -139,12 +139,12 @@ class core_renderer extends \core_renderer {
 			   </form></fieldset></div>';
 		  }
 		}
-		
+
 		if ($oncoursepage != false && $COURSE->id > 1 ){
 		  $header->imageclass = 'header-image opt'. $opt;
 		  $header->imageselector = $imageselector;
 		}
-		
+
         return $this->render_from_template('theme_solent/header', $header);
     }
 
@@ -646,7 +646,10 @@ class core_renderer extends \core_renderer {
 
             $this->page->navigation->initialise();
             $node = $this->page->navigation->find_active_node();
-            $buildmenu = false;
+//SU_AMEND START - Enable settings menu for all levels of an assignment/activity
+            //$buildmenu = false;
+            $buildmenu = true;
+//SU_AMEND END
             // If the settings menu has been forced then show the menu.
             if ($this->page->is_settings_menu_forced()) {
                 $buildmenu = true;
