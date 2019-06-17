@@ -43,6 +43,19 @@
     padding: 30px;
 }
 
+#page-mod-assign-grading .alert {
+    margin-top: 25px;
+}
+
+#page-mod-assign-grader {
+  .col-md-3 {
+    max-width: 30%;
+  }
+  .form-group {
+      padding-bottom: 10px;
+  }
+}
+
 /* onetopic START */
 #page-course-view-onetopic {
   .tab_content {
@@ -60,6 +73,10 @@
       .marker{
         font-style: italic !important;
       }
+  }
+
+  .form-item.clearfix.form-group.row.fitem {
+    padding-left: 15px;
   }
 
   .nav-link.active .tab_content {

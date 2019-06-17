@@ -1,11 +1,11 @@
-@media (max-width: 1150px) {                                                    //in chrome, disable the sticky footer on small screens
-  footer {
+@media (max-width: 1150px) {                                                    //disable the sticky footer on small screens
+  footer#page-footer {
       position: relative !important;
   }
 }
 
 @media (max-height: 750px) {
-  footer {
+  footer#page-footer {
       position: relative !important;
   }
 }
