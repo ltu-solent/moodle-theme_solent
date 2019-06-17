@@ -9,6 +9,7 @@
       background-repeat: no-repeat;
       min-height: 570px !important;
       background-size: cover;
+      background-position: center;
     }
 
     section#region-main {
@@ -20,7 +21,7 @@
     }
 
     footer {
-      display: table-column;
+      position: relative !important;
     }
 
 }
