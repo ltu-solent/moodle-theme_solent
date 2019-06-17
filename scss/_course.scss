@@ -47,8 +47,13 @@
     margin-top: 25px;
 }
 
-#page-mod-assign-grader .col-md-3 {
+#page-mod-assign-grader {
+  .col-md-3 {
     max-width: 30%;
+  }
+  .form-group {
+      padding-bottom: 10px;
+  }
 }
 
 /* onetopic START */
