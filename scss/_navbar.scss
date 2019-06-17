@@ -142,3 +142,7 @@
 .navbar-expand .navbar-nav .nav-link {
     padding-right: 1.5rem;
 }
+
+.popover-region-toggle::after {
+      border-bottom: 9px solid transparent !important;
+}
