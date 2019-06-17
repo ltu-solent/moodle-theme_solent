@@ -62,6 +62,10 @@
       }
   }
 
+  .form-item.clearfix.form-group.row.fitem {
+    padding-left: 15px;
+  }
+
   .nav-link.active .tab_content {
       background-color: $white;
       color: $black;
