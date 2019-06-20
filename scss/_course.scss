@@ -98,6 +98,10 @@
   .course-content .current::before {
       display: none;
   }
+
+  .course-content ul.topics li.section .content, .course-content ul.weeks li.section .content {
+    margin: 30px 0;
+  }
 }
 
 .format-onetopic{
@@ -106,7 +110,7 @@
     font-weight: inherit !important;
   }
 
-  .active {
+  .nav-tabs .nav-item .active {
       font-weight: 700;
   }
 }
@@ -294,8 +298,7 @@ table caption { /* Calendar heading font-size */
   padding-top: 25px;
 }
 
-#course_format_onetopic_config_movesection{
-  border-top: $border;
-  margin-top: 30px;
-  padding-top: 20px;
+/* Course restore */
+#fitem_id_setting_root_restore_quickmail_history {
+    display: block;
 }
