@@ -98,6 +98,10 @@
   .course-content .current::before {
       display: none;
   }
+
+  .course-content ul.topics li.section .content, .course-content ul.weeks li.section .content {
+    margin: 30px 0;
+  }
 }
 
 .format-onetopic{
@@ -106,7 +110,7 @@
     font-weight: inherit !important;
   }
 
-  .active {
+  .nav-tabs .nav-item .active {
       font-weight: 700;
   }
 }
