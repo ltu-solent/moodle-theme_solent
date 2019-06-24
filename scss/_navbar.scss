@@ -22,6 +22,12 @@
   }
 }
 
+@media only screen and (max-width: 372px) {
+  a[id*="message-drawer-toggle"] {
+    margin-right: 20px;
+  }
+}
+
 @media only screen and (max-width: 410px) {
   .navbar {
     padding-right: 0 !important;
@@ -31,11 +37,15 @@
     }
 
     .usermenu {
-      margin-right: -10px !important;
+      margin-right: 5px !important;
     }
 
-    .count-container {
-      margin-right: 8px;
+    .navbar .count-container {
+      right: -14px;
+    }
+
+    a[id*="message-drawer-toggle"] .count-container{
+      right: -18px;
     }
   }
 
@@ -46,9 +56,6 @@
 
 @media only screen and (max-width: 372px) {
   .navbar {
-    .nav-item .nav-link {
-      margin-left: -4px !important;
-    }
     .userpicture {
       margin-right: 0;
     }
@@ -63,31 +70,19 @@
     height: $navbar-height;
 
     .count-container {
-        right: -15px;
+        right: -8px;
         font-size: 13px;
         font-weight: 600;
         padding: 3px;
     }
 
     a[id*="message-drawer-toggle"] .count-container{
-      right: -18px;
-    }
-
-    .popover-region-notifications{
-      right: -15px;
-    }
-
-    .popover-region {
-        margin-right: 20px;
+      right: -11px;
     }
 
     .usertext {
     font-family: 'Open Sans', sans-serif !important;
     }
-
-    /* .popover-region-toggle .navbar-nav .icon {
-        font-size: 28px !important;
-    } */
 
     button {
         padding: 2px 0 2px 0;
@@ -129,8 +124,8 @@
     }
   }
 
-    .dropdown {
-      margin-left: 20px;
+  .dropdown {
+    margin-left: 10px;
   }
 
   .d-md-inline {
@@ -154,7 +149,6 @@
     font-size: 25px;
     opacity: .7;
   }
-
 }
 
 .navbar-expand .navbar-nav .nav-link {
