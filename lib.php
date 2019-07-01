@@ -69,7 +69,12 @@ function su_unit_descriptor_course($course){
 		}
 
 		if(strpos($catname, 'course pages') !== false){
-			return '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='. $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="  class="unit_desc" target="_blank">External Examiner Report</a>';
+      $external = html_writer::start_div('unit-details');
+      $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
+                  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
+                  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
+      $external .= html_writer::end_div();
+      return $external;
 		}
 	}
 }
