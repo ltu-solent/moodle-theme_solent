@@ -308,3 +308,7 @@ table caption { /* Calendar heading font-size */
 #fitem_id_setting_root_restore_quickmail_history, #fitem_id_static_setting_root_restore_quickmail_history {
     display: block;
 }
+// Scale dropdown width
+[data-fieldtype="modgrade"] {
+    max-width: 50%;
+}
