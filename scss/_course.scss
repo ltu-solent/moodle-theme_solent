@@ -312,3 +312,13 @@ table caption { /* Calendar heading font-size */
 [data-fieldtype="modgrade"] {
     max-width: 50%;
 }
+
+/* Checklist */
+.path-mod-checklist .checklist{
+  label{
+    padding-left: 10px;
+  }
+  li{
+    padding-bottom:5px;
+  }
+}
