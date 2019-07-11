@@ -1,4 +1,5 @@
-#page-blocks-workflow-editcomment .editor_atto_content{
+/* Workflow START */
+.path-blocks-workflow .editor_atto_content{
   min-height: 222px !important;
   height: 222px !important;
 }
@@ -15,3 +16,16 @@ section[data-block="workflow"] h3 {
 section[data-block="login"] {
   margin-top: 120px;
 }
+
+#block-workflow-overview{
+  tr.aborted{
+    background-color: #f8d7da;
+  }
+  tr.active{
+    background-color: #d4edda;
+  }
+  tr.completed{
+    background-color: #e2e3e5;
+  }
+}
+/* Workflow END */
