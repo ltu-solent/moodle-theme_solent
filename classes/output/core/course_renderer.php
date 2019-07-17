@@ -15,6 +15,7 @@ use confirm_action;
 use core_course_category;
 use cm_info;
 use coursecat_helper;
+use core_course_list_element;
 
 require_once($CFG->dirroot.'/course/renderer.php');
 
