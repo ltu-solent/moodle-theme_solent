@@ -316,3 +316,10 @@ table caption { /* Calendar heading font-size */
 .mod-indent-outer .mediaplugin {  //make sure embeded videos display correctly
     display: block;
 }
+
+//H5P
+.modtype_hvp iframe {
+    // width: 100%; this doesn't work
+    max-width: 100% !important; //allow full width to be used
+    width: 2000px !important; //set width to a high value which will always be limited by the max-width
+}
