@@ -68,3 +68,7 @@ $templatecontext = [
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
 echo $OUTPUT->render_from_template('theme_solent/columns2', $templatecontext);
+
+if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){
+	echo "</div>";
+}
