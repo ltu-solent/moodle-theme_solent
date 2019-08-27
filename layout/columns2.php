@@ -27,6 +27,12 @@ defined('MOODLE_INTERNAL') || die();
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 require_once($CFG->libdir . '/behat/lib.php');
 
+$current_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){
+	echo "<div id='logged_out'>";
+}
+
 if (isloggedin()) {
     $navdraweropen = (get_user_preferences('drawer-open-nav', 'true') == 'true');
 } else {
@@ -62,3 +68,7 @@ $templatecontext = [
 
 $templatecontext['flatnavigation'] = $PAGE->flatnav;
 echo $OUTPUT->render_from_template('theme_solent/columns2', $templatecontext);
+
+if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){
+	echo "</div>";
+}
