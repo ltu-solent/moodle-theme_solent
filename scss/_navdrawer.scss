@@ -19,8 +19,15 @@
   }
 
 
-  a[data-key*="localboostnavigationcustombottomusersnoicon"] .icon{
+  a[data-key*="localboostnavigationcustombottomusersnoicon1"] .icon,
+  a[data-key*="localboostnavigationcustombottomusersnoicon2"] .icon,
+  a[data-key*="localboostnavigationcustombottomusersnoicon3"] .icon{
     display: none;
   }
 
+}
+
+/* Remove LinkedIn Learning menu item if logged out */
+body.context-2 #localboostnavigationcustombottomuserslinkedinlearning{
+  display: none;
 }
