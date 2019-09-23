@@ -31,3 +31,7 @@
 body.context-2 #localboostnavigationcustombottomuserslinkedinlearning{
   display: none;
 }
+
+.list-group-item[data-key^="localboostnavigationcustombottomusers"], .list-group-item[data-key^="localboostnavigationcustombottomadmins"] {
+    margin-top: 2rem;
+}
