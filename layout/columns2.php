@@ -47,13 +47,18 @@ if ($navdraweropen) {
 global $DB;
 $course_title_elements = "";
 if(substr($_SERVER['REQUEST_URI'], 0, 20) == '/course/view.php?id='){
-   $course_title_elements = su_unit_descriptor_course($COURSE);
+   $course_title_elements = unit_descriptor_course($COURSE);
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
-$regionmainsettingsmenu = $OUTPUT->region_main_settings_menu();
+// Force settings icon on all module pages
+$PAGE->force_settings_menu(true);
+
+$buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions();
+// If the settings menu will be included in the header then don't add it here.
+$regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settings_menu() : false;
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -66,7 +71,8 @@ $templatecontext = [
     'course_title_elements' => $course_title_elements
 ];
 
-$templatecontext['flatnavigation'] = $PAGE->flatnav;
+$nav = $PAGE->flatnav;
+$templatecontext['flatnavigation'] = $nav;
 echo $OUTPUT->render_from_template('theme_solent/columns2', $templatecontext);
 
 if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){

@@ -38,7 +38,7 @@ function theme_solent_get_main_scss_content($theme) {
     return $pre . "\n" . $scss . "\n" . $post;
 }
 
-function su_unit_descriptor_course($course){
+function unit_descriptor_course($course){
 	global $CFG;
 	require_once('../config.php');
 	$category = core_course_category::get($course->category, IGNORE_MISSING);
@@ -49,32 +49,28 @@ function su_unit_descriptor_course($course){
 
 		if(strpos($catname, 'unit pages') !== false){
 			$date = html_writer::start_div('unit-details');
-			$date .= html_writer::start_div('unit-start') . 'Unit runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
+			$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
 
 			$descriptor = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc'; //STRING TO LOCATE THE UNIT CODE .DOC
 			$descriptorx = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx'; //STRING TO LOCATE THE UNIT CODE .DOCX
-			$d = @get_headers($descriptor);
-			$x = @get_headers($descriptorx);
 
 			//CHECK IF THE FILE EXISTS
-			if ($d[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
-			}elseif ($x[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
+			if (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc')){
+				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>Module Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
+			}elseif (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx')){
+				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>Module Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
 			}else{
-				return $date . "<span class='unit-desc'>No unit descriptor available</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
+				return $date . "<span class='unit-desc'>No module descriptor available</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
 			}
-
-			clearstatcache();
 		}
 
 		if(strpos($catname, 'course pages') !== false){
-      $external = html_writer::start_div('unit-details');
-      $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
-                  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
-                  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
-      $external .= html_writer::end_div();
-      return $external;
+			  $external = html_writer::start_div('unit-details');
+			  $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
+						  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
+						  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
+			  $external .= html_writer::end_div();
+			  return $external;
 		}
 	}
 }

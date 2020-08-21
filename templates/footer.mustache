@@ -19,6 +19,13 @@
 }}
 <footer id="page-footer" class="bg-dark text-light">
   <div class="container">
+    <nav class="nav navbar-nav d-md-none" aria-label="{{#str}}custommenu, admin{{/str}}">
+        {{# output.custom_menu_flat }}
+            <ul class="list-unstyled pt-3">
+                {{> theme_boost/custom_menu_footer }}
+            </ul>
+        {{/ output.custom_menu_flat }}
+    </nav>
         <div id="course-footer">{{{ output.course_footer }}}</div>
         <!-- {{{ output.standard_footer_html }}} -->
         {{{ output.standard_end_of_body_html }}}

@@ -37,6 +37,12 @@
   }
 }
 
+// Fix labels not displaying
+.section .label .mod-indent-outer {
+    padding-left: 24px;
+    display: initial;
+}
+
 /* Grading page */
 .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"]{
     background-color: #fff;
@@ -275,6 +281,7 @@ div[class^="mod-indent"]{
 	}
 }
 
+div[class*="mod-indent"],
 div[class*="mod-indent-1"],
 div[class*="mod-indent-2"],
 div[class*="mod-indent-3"],

@@ -46,9 +46,9 @@ class course_renderer extends \core_course_renderer {
       // Render element that allows to edit activity name inline. It calls {@link course_section_cm_name_title()}
       // to get the display title of the activity.
       $tmpl = new \core_course\output\course_module_name($mod, $this->page->user_is_editing(), $displayoptions);
+// SU_AMEND START - Marks upload: Prevent quick edit of assignment name
       // return $this->output->render_from_template('core/inplace_editable', $tmpl->export_for_template($this->output)) .
       //     $groupinglabel;
-// SU_AMEND START - Marks upload: Prevent quick edit of assignment name
       if($mod->modname == 'assign' && $mod->idnumber){
         return $this->output->render_from_template('theme_solent/inplace_non_editable', $tmpl->export_for_template($this->output)) .
         $groupinglabel;
@@ -129,11 +129,8 @@ class course_renderer extends \core_course_renderer {
       }
       $content = '';
       $classes = trim('coursebox clearfix '. $additionalclasses);
-      if ($chelper->get_show_courses() >= self::COURSECAT_SHOW_COURSES_EXPANDED) {
-          $nametag = 'h3';
-      } else {
+      if ($chelper->get_show_courses() < self::COURSECAT_SHOW_COURSES_EXPANDED) {
           $classes .= ' collapsed';
-          $nametag = 'div';
       }
 
       // .coursebox
@@ -144,47 +141,17 @@ class course_renderer extends \core_course_renderer {
       ));
 
       $content .= html_writer::start_tag('div', array('class' => 'info'));
-
-      // course name
-      $coursename = $chelper->get_course_formatted_name($course);
-      $coursenamelink = html_writer::link(new moodle_url('/course/view.php', array('id' => $course->id)),
-                                          $coursename, array('class' => $course->visible ? '' : 'dimmed'));
-      $content .= html_writer::tag($nametag, $coursenamelink, array('class' => 'coursename'));
-
+      $content .= $this->course_name($chelper, $course);
 // SU_AMEND START - Unit descriptor: Search results
-  global $CFG;
-  $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  include_once($CFG->dirroot.'/local/search_unit_descriptor.php');
-  $content .= '<span class="solent_startdate_search">' .  unit_descriptor($course) . '</span>';
+      $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+      $content .= '<span class="solent_startdate_search">' .  unit_descriptor_course($course) . '</span>';
 // SU_AMEND END
-
-      // If we display course in collapsed form but the course has summary or course contacts, display the link to the info page.
-      $content .= html_writer::start_tag('div', array('class' => 'moreinfo'));
-      if ($chelper->get_show_courses() < self::COURSECAT_SHOW_COURSES_EXPANDED) {
-          if ($course->has_summary() || $course->has_course_contacts() || $course->has_course_overviewfiles()) {
-              $url = new moodle_url('/course/info.php', array('id' => $course->id));
-              $image = $this->output->pix_icon('i/info', $this->strings->summary);
-              $content .= html_writer::link($url, $image, array('title' => $this->strings->summary));
-              // Make sure JS file to expand course content is included.
-              $this->coursecat_include_js();
-          }
-      }
-      $content .= html_writer::end_tag('div'); // .moreinfo
-
-      // print enrolmenticons
-      if ($icons = enrol_get_course_info_icons($course)) {
-          $content .= html_writer::start_tag('div', array('class' => 'enrolmenticons'));
-          foreach ($icons as $pix_icon) {
-              $content .= $this->render($pix_icon);
-          }
-          $content .= html_writer::end_tag('div'); // .enrolmenticons
-      }
-
-      $content .= html_writer::end_tag('div'); // .info
+      $content .= $this->course_enrolment_icons($course);
+      $content .= html_writer::end_tag('div');
 
       $content .= html_writer::start_tag('div', array('class' => 'content'));
       $content .= $this->coursecat_coursebox_content($chelper, $course);
-      $content .= html_writer::end_tag('div'); // .content
+      $content .= html_writer::end_tag('div');
 
       $content .= html_writer::end_tag('div'); // .coursebox
       return $content;
