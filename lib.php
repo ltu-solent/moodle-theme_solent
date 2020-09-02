@@ -39,7 +39,7 @@ function theme_solent_get_main_scss_content($theme) {
 }
 
 function unit_descriptor_course($course){
-	global $CFG;
+	global $CFG, $PAGE;
 	require_once('../config.php');
 	$category = core_course_category::get($course->category, IGNORE_MISSING);
 
@@ -49,7 +49,10 @@ function unit_descriptor_course($course){
 
 		if(strpos($catname, 'unit pages') !== false){
 			$date = html_writer::start_div('unit-details');
-			$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
+			if($PAGE->bodyid != 'page-course-search'){
+				$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
+				. html_writer::end_div();
+			}
 
 			$descriptor = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc'; //STRING TO LOCATE THE UNIT CODE .DOC
 			$descriptorx = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx'; //STRING TO LOCATE THE UNIT CODE .DOCX
