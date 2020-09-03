@@ -4,7 +4,7 @@
 // This line protects the file from being accessed by a URL directly.
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = '2019060400';
+$plugin->version = '2020090300';
 $plugin->requires = '2018120302.00';
 
 $plugin->component = 'theme_solent';
