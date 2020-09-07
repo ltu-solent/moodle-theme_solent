@@ -233,8 +233,8 @@ class format_onetopic_renderer extends \format_onetopic_renderer {
                           //$movelisthtml .= html_writer::tag('li', html_writer::link($url, $sectionname),
                                           //array('class' => $liclass));
                           $category = core_course_category::get($course->category, IGNORE_MISSING);
-                          $catname = strtolower('x'.$category->name);
-                          if(strpos($catname, 'unit pages') !== false){
+                          $catname = strtolower('x'.$category->idnumber);
+                          if(strpos($catname, 'modules_') !== false){
                             if($section > 4 && $displaysection > 4 || is_siteadmin()){
                               $movelisthtml .= html_writer::tag('li', html_writer::link($url, $sectionname),
                                       array('class' => $liclass));
@@ -476,8 +476,8 @@ protected function section_edit_control_items($course, $section, $onsectionpage 
 // SU_AMEND START - Course: Prevent anyone except admins hiding or deleting default sections
         global $CFG;
         $category = core_course_category::get($course->category, IGNORE_MISSING);
-        $catname = strtolower('x'.$category->name);
-        if((strpos($catname, 'unit pages') !== false &&  $section->section < 5) && !is_siteadmin()){
+        $catname = strtolower('x'.$category->idnumber);
+        if((strpos($catname, 'modules_') !== false &&  $section->section < 5) && !is_siteadmin()){
           unset($merged['visiblity']);
           unset($merged['delete']);
         }

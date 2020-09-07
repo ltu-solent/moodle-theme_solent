@@ -65,13 +65,13 @@ class backup_renderer extends \core_backup_renderer {
       foreach ($component->get_results() as $course) {
   // SU_AMEND START - Unit start date: Course import
       global $DB;
-      $category = $DB->get_record_sql('SELECT cc.name FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
+      $category = $DB->get_record_sql('SELECT cc.idnumber FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
       $getcourse = get_course($course->id);
 
       if(isset($category)){
-        $catname = strtolower('x'.$category->name);
+        $catname = strtolower('x'.$category->idnumber);
 
-        if(strpos($catname, 'unit pages') !== false){
+        if(strpos($catname, 'modules_') !== false){
           $startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
         }else{
           $startdate = '';

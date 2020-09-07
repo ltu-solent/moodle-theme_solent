@@ -44,13 +44,13 @@ function unit_descriptor_course($course){
 	$category = core_course_category::get($course->category, IGNORE_MISSING);
 
 	if(isset($category)){
-		$catname = strtolower('x'.$category->name);
+		$catname = strtolower('x'.$category->idnumber);
 		$coursecode = substr($course->shortname, 0, strpos($course->shortname, "_"));
 
-		if(strpos($catname, 'unit pages') !== false){
+		if(strpos($catname, 'modules_') !== false){
 			$date = html_writer::start_div('unit-details');
 			if($PAGE->bodyid != 'page-course-search'){
-				$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
+				$date .= html_writer::start_div('unit-start') . get_string('modulerunsfrom', 'theme_solent') . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
 				. html_writer::end_div();
 			}
 
@@ -59,19 +59,19 @@ function unit_descriptor_course($course){
 
 			//CHECK IF THE FILE EXISTS
 			if (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc')){
-				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>Module Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
+				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";//IF IT DOES EXIST ADD THE LINK
 			}elseif (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx')){
-				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>Module Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
+				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";//IF IT DOES EXIST ADD THE LINK
 			}else{
-				return $date . "<span class='unit-desc'>No module descriptor available</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
+				return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
 			}
 		}
 
-		if(strpos($catname, 'course pages') !== false){
+		if(strpos($catname, 'courses_') !== false){
 			  $external = html_writer::start_div('unit-details');
 			  $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
 						  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
-						  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
+						  class="unit_desc" target="_blank">'. get_string('externalexaminer', 'theme_solent') .'</a>' .html_writer::end_div();
 			  $external .= html_writer::end_div();
 			  return $external;
 		}

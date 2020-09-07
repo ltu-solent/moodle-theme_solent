@@ -57,9 +57,9 @@ class renderer extends \core_course_management_renderer {
 
         $text = $course->get_formatted_name();
 // SU_AMEND START - Unit start date: Manage categories
-        $categoryname = core_course_category::get($course->category)->get_formatted_name();
-        $catname = strtolower('x'.$categoryname);
-        if(strpos($catname, 'unit pages') !== false){
+        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $catname = strtolower('x'.$category->idnumber);
+        if(strpos($catname, 'modules_') !== false){
           $text .= ' (' .date('d-m-Y',$course->startdate) .')';
         }
 // SU_AMEND END
@@ -122,9 +122,9 @@ class renderer extends \core_course_management_renderer {
         $text = $course->get_formatted_name();
 
 // SU_AMEND START - Unit start date: Manage categories
-        $categoryname = core_course_category::get($course->category)->get_formatted_name();
-        $catname = strtolower('x'.$categoryname);
-        if(strpos($catname, 'unit pages') !== false){
+        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $catname = strtolower('x'.$category->idnumber);
+        if(strpos($catname, 'modules_') !== false){
           $text .= ' (' .date('d-m-Y',$course->startdate) .')';
         }
 // SU_AMEND END
