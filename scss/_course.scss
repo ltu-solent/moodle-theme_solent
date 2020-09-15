@@ -47,6 +47,8 @@
 .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"]{
     background-color: #fff;
     padding: 30px;
+     
+  	white-space: nowrap !important;
 }
 
 #page-mod-assign-grading .alert {
@@ -83,6 +85,10 @@
 
   .form-item.clearfix.form-group.row.fitem {
     padding-left: 15px;
+  }
+
+  .activityinstance {
+  	white-space: nowrap !important;
   }
 
   .nav-link.active .tab_content {
@@ -237,7 +243,7 @@ section#region-main .single-section span[style*="font-size: x-large;"],
 section#region-main .single-section span[style*="font-style: normal;"],
 section#region-main .single-section p {
     font-family: "Open Sans",sans-serif !important;
-    font-size: 1rem !important;
+    font-size: 0.9375rem !important;
     font-weight: 400;
     letter-spacing: 0.45px !important;
     line-height: 25px !important;
