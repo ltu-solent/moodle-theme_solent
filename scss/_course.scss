@@ -262,11 +262,6 @@ img.iconlarge {
     margin-left: 20px;
 }
 
-div[class^="mod-indent"]{
-	margin-left: 0px !important;
-	padding-left: 20px !important;
-}
-
 @media (max-width: 480px) {
 	div[class^="mod-indent"]{
 		padding-left: 0px !important;
@@ -279,18 +274,6 @@ div[class^="mod-indent"]{
 	.section .label .contentwithoutlink, .section .label .activityinstance {
 		padding-right: 0px;
 	}
-}
-
-div[class*="mod-indent"],
-div[class*="mod-indent-1"],
-div[class*="mod-indent-2"],
-div[class*="mod-indent-3"],
-div[class*="mod-indent-4"],
-div[class*="mod-indent-5"],
-div[class*="mod-indent-6"],
-div[class*="mod-indent-7"]
-{
-	width: 0px !important;
 }
 
 div.contentafterlink, div.activityinstance {
@@ -348,4 +331,14 @@ table caption { /* Calendar heading font-size */
 
 ul{
   padding-left: 1.2rem;
+}
+
+/* Word wrap in assignment student summary */
+.path-mod-assign .submissionsummarytable .c0, .path-mod-assign .mod-assign-history-panel .c0 {
+    width: initial;
+} 
+
+/* Activity indent */
+.mod-indent-outer {
+    padding-left: 24px;
 }
