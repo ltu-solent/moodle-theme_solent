@@ -45,6 +45,11 @@
   }
 }
 
+// z-index of 'Editing on' button
+.pagelayout-course .singlebutton {
+	z-index: 1;
+}
+
 .pagelayout-course {
 	#page-header{
 
