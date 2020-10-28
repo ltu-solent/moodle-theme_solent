@@ -49,32 +49,49 @@ function su_unit_descriptor_course($course){
 
 		if(strpos($catname, 'unit pages') !== false){
 			$date = html_writer::start_div('unit-details');
-			$date .= html_writer::start_div('unit-start') . 'Unit runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
+			$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
 
-			$descriptor = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc'; //STRING TO LOCATE THE UNIT CODE .DOC
-			$descriptorx = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx'; //STRING TO LOCATE THE UNIT CODE .DOCX
-			$d = @get_headers($descriptor);
-			$x = @get_headers($descriptorx);
-
-			//CHECK IF THE FILE EXISTS
-			if ($d[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
-			}elseif ($x[0] == 'HTTP/1.1 200 OK'){
-				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>Unit Descriptor</a></div>";//IF IT DOES EXIST ADD THE LINK
-			}else{
-				return $date . "<span class='unit-desc'>No unit descriptor available</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
-			}
-
-			clearstatcache();
+			$descriptor = get_file($coursecode); 
+			 
+			if($descriptor){ 
+				return $date . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>"; 
+			}else{ 
+				return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>"; 
+			} 
 		}
 
 		if(strpos($catname, 'course pages') !== false){
-      $external = html_writer::start_div('unit-details');
-      $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
-                  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
-                  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
-      $external .= html_writer::end_div();
-      return $external;
+		  $external = html_writer::start_div('unit-details');
+		  $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
+					  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
+					  class="unit_desc" target="_blank">External Examiner Report</a>' .html_writer::end_div();
+		  $external .= html_writer::end_div();
+		  return $external;
 		}
+	}
+}
+
+function get_file_details($coursecode){
+    global $DB;
+    $file = $DB->get_record_sql("	SELECT filename, contextid, filepath FROM {files} f
+									JOIN {context} ctx ON ctx.id = f.contextid
+                                    WHERE ctx.instanceid = ?
+                                    AND (component = ? AND filearea = ?)
+									AND filename LIKE '$coursecode%' 
+									ORDER BY timemodified DESC", array(get_config('theme_solent', 'descriptors'), "mod_folder", "content"));
+    if($file){
+      return $file;
+    }else{
+      return null;
+    }
+}
+
+function get_file($coursecode){
+	$file = get_file_details($coursecode);
+	if($file){
+		$url= moodle_url::make_pluginfile_url($file->contextid,'mod_folder','content', 0,$file->filepath,$file->filename, true);
+		return $url;
+	}else{
+		return null;
 	}
 }
