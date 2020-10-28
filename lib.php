@@ -53,17 +53,13 @@ function unit_descriptor_course($course){
 				$date .= html_writer::start_div('unit-start') . get_string('modulerunsfrom', 'theme_solent') . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
 				. html_writer::end_div();
 			}
-
-			$descriptor = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc'; //STRING TO LOCATE THE UNIT CODE .DOC
-			$descriptorx = $CFG->wwwroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx'; //STRING TO LOCATE THE UNIT CODE .DOCX
-
-			//CHECK IF THE FILE EXISTS
-			if (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.doc')){
-				return $date . "<a href='".$descriptor."' class='unit-desc' target='_blank'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";//IF IT DOES EXIST ADD THE LINK
-			}elseif (file_exists($CFG->dirroot . '/amendments/course_docs/unit_descriptors/'.$coursecode.'.docx')){
-				return $date . "<a href='".$descriptorx."'  class='unit-desc' target='_blank'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";//IF IT DOES EXIST ADD THE LINK
+			
+			$descriptor = get_file($coursecode);
+			
+			if($descriptor){
+				return $date . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";
 			}else{
-				return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";//IF IT DOSN'T EXIST ADD ALTERNATIVE LINK
+				return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";
 			}
 		}
 
@@ -75,5 +71,30 @@ function unit_descriptor_course($course){
 			  $external .= html_writer::end_div();
 			  return $external;
 		}
+	}
+}
+
+function get_file_details($coursecode){
+    global $DB;
+    $file = $DB->get_record_sql("	SELECT filename, contextid, filepath FROM {files} f
+									JOIN {context} ctx ON ctx.id = f.contextid
+                                    WHERE ctx.instanceid = ?
+                                    AND (component = ? AND filearea = ?)
+									AND filename LIKE '$coursecode%' 
+									ORDER BY timemodified DESC", array(get_config('theme_solent', 'descriptors'), "mod_folder", "content"));
+    if($file){
+      return $file;
+    }else{
+      return null;
+    }
+}
+
+function get_file($coursecode){
+	$file = get_file_details($coursecode);
+	if($file){
+		$url= moodle_url::make_pluginfile_url($file->contextid,'mod_folder','content', 0,$file->filepath,$file->filename, true);
+		return $url;
+	}else{
+		return null;
 	}
 }
