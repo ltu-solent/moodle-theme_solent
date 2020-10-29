@@ -39,18 +39,21 @@ function theme_solent_get_main_scss_content($theme) {
 }
 
 function su_unit_descriptor_course($course){
-	global $CFG;
+	global $CFG, $PAGE;
 	require_once('../config.php');
 	$category = core_course_category::get($course->category, IGNORE_MISSING);
 
 	if(isset($category)){
-		$catname = strtolower('x'.$category->name);
+		$catname = strtolower('x'.$category->idnumber);
 		$coursecode = substr($course->shortname, 0, strpos($course->shortname, "_"));
 
-		if(strpos($catname, 'unit pages') !== false){
+		if(strpos($catname, 'modules_') !== false){
 			$date = html_writer::start_div('unit-details');
-			$date .= html_writer::start_div('unit-start') . 'Module runs from  ' . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) . html_writer::end_div();
-
+			if($PAGE->bodyid != 'page-course-search'){
+				$date .= html_writer::start_div('unit-start') . get_string('modulerunsfrom', 'theme_solent') . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
+				. html_writer::end_div();
+			}
+			
 			$descriptor = get_file($coursecode); 
 			 
 			if($descriptor){ 
@@ -60,7 +63,7 @@ function su_unit_descriptor_course($course){
 			} 
 		}
 
-		if(strpos($catname, 'course pages') !== false){
+		if(strpos($catname, 'courses_') !== false){
 		  $external = html_writer::start_div('unit-details');
 		  $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
 					  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
