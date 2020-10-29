@@ -152,10 +152,8 @@ class course_renderer extends \core_course_renderer {
       $content .= html_writer::tag($nametag, $coursenamelink, array('class' => 'coursename'));
 
 // SU_AMEND START - Unit descriptor: Search results
-  global $CFG;
-  $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  include_once($CFG->dirroot.'/local/search_unit_descriptor.php');
-  $content .= '<span class="solent_startdate_search">' .  unit_descriptor($course) . '</span>';
+      $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+      $content .= '<span class="solent_startdate_search">' .  su_unit_descriptor_course($course) . '</span>';
 // SU_AMEND END
 
       // If we display course in collapsed form but the course has summary or course contacts, display the link to the info page.
