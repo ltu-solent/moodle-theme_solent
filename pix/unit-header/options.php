@@ -16,8 +16,10 @@ echo "<div class='maindiv'>";
 
 $dir = dirname(__FILE__);
 $files = scandir($dir);
-array_splice($files, 0, 1);
-array_splice($files, 0, 1);	
+//var_dump($files);
+natsort($files);
+// array_splice($files, 0, 1);
+// array_splice($files, 0, 1);	
 echo '<div">';				
 echo '<table id="header-options" ><tr><th align="left" width="10%">Option</th><th>Image</th></tr>';
 
