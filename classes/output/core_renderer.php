@@ -92,7 +92,8 @@ class core_renderer extends \core_renderer {
 			  $img = substr($v, 0, strpos($v, "."));
 			  $options[$img] = $img;
 			}
-
+			natsort($options);
+			
 			$imageselector .=	'<div class="divcoursefieldset"><fieldset class="coursefieldset fieldsetheader">
 				 <form action="'. $CFG->wwwroot .'/theme/solent/set_header_image.php" method="post">
 				 <label for="opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
