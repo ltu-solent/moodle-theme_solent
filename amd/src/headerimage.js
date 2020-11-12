@@ -1,29 +1,16 @@
-// Standard license block omitted.
-/*
- * @package    theme_solent
- * @copyright  2020 Sarah Cotton
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
- /**
-  * @module theme_solent/headerimage
-  */
-define(['jquery', 'theme_solent/headerimage'], function($) {
+define(['jquery'], function($) {
 
     return {
         init: function() {
 
-            function setheaderimage() {
-				
-				document.getElementById("headerimageform").submit();
-
-            }
-
-            // $(document).ready(function() {
-                // var $window = $(window);
-                // $window.on('scroll resize', check_if_in_view);
-            // });
-
+            $("input[name='opt']").click(function(){
+                var opt = $("input[name='opt']:checked").val();
+                var url = "http://localhost/moodle36/theme/solent/set_header_image.php?";
+                if(opt){
+                    var course = document.getElementById('course').value;
+                    window.location.replace(url+"course="+course+"&opt="+opt);
+                }
+            });
         }
     };
 });

@@ -98,3 +98,46 @@ function get_file($coursecode){
 		return null;
 	}
 }
+
+function header_image(){
+	global $DB,$COURSE,$PAGE;
+	$opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
+	if($opt){
+	  $opt = $opt->opt;
+	}else{
+	  $record = new stdclass;
+	  $record->id = null;
+	  $record->course = $COURSE->id;
+
+	  $currentcategory = $DB->get_record('course_categories', array('id' => $COURSE->category), '*');
+	  $catname = strtolower('x'.$currentcategory->name);
+	  if(isset($catname)){
+		if(strpos($catname, 'course pages') !== false){
+		  $record->opt = '08';
+		  $DB->insert_record('theme_header', $record, $returnid=true);
+		  $opt = '08';
+		}else{
+		  $record->opt = '01';
+		  $DB->insert_record('theme_header', $record, $returnid=true);
+		  $opt = '01';
+		}
+	  }
+	}
+
+	$imageselector = '';
+	$oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
+	if ($PAGE->user_is_editing() && $oncoursepage != false){
+	  if ($COURSE->id > 1){
+		$url = new moodle_url('/theme/solent/layout/header_options.php', array('course' => $COURSE->id, 'opt' => $opt));
+		$imageselector = '<div class="header-image-link btn"><a class="btn btn-secondary" href="' . $url . '">Select header image</a></div>';
+	  }
+	}
+
+	if ($oncoursepage != false && $COURSE->id > 1 ){
+		$header = new stdClass();
+		$header->imageclass = 'header-image opt'. $opt;		  
+		$header->imageselector = $imageselector;
+	}
+		
+	return $header;
+}

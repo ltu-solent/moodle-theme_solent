@@ -27,9 +27,10 @@
 
     Context variables required for this template:
     * options - Array of items
-      * currentoption - The currently selected image
-      * searchurl - The option id
-      * id - The form option
+      * currentoptiontext - Current selection text
+      * instructiontext - Instruction text
+      * action - The option id
+      * formid - The form option
       * options - Course id
       * course - Course id
 
@@ -37,9 +38,10 @@
     {
         "options": [
             {
-                "currentoption": 1,
-                "searchurl": "",
-                "id": 1,
+                "currentoptiontext": "Option 1 is currently selected.",
+                "instructiontext": "Click the radio button next to an image to select it. You will automatically redirected back to the previous page.",
+                "action": "post",
+                "formid": 1,
                 "options": 1,
                 "course": 1,
             }
@@ -48,19 +50,16 @@
 }}
 
 <div>
-	<p>Option {{currentoption}} is currently selected.</p>
-	<p>Click the radio button next to an image to select it. You will then be redirected back to the previous page.</p>		
-
-
-		<form action="{{searchurl}}" id="{{id}}" method="post">	
+	<p>{{currentoptiontext}}</p>
+	<p>{{instructiontext}}</p>
+		<form action="{{action}}" id="{{id}}" method="post">	
 			<fieldset class="coursesearchbox invisiblefieldset">
 				<table>
 					{{{options}}}					
 				</table>
-				<input type="hidden" name="course" value="{{course}}"/>
-				<input type="hidden" name="id" value="{{option}}"/>
+				<input type="hidden" id="course" name="course" value="{{course}}"/>
+				<!--<input type="hidden" name="opt" value="{{option}}"/>-->
 			</fieldset>
-		</form>
-	
+		</form>	
 </div>
 

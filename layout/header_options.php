@@ -6,14 +6,13 @@ require_login(true);
 $course = required_param('course', PARAM_TEXT);
 $opt = required_param('opt', PARAM_TEXT);
 
-$PAGE->set_context(context_course::instance($course));
+$PAGE->set_context(context_system::instance());
 $PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt)));
-// $PAGE->set_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt));
 $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('report');
 
-//$PAGE->requires->js_call_amd('theme_solent2017/border', 'init', array());
+$PAGE->requires->js_call_amd('theme_solent/headerimage', 'init');
 	
 echo $OUTPUT->header();
 
@@ -46,12 +45,15 @@ foreach ($files as $k=>$v) {
 }
 
 $templatecontext = [    
-	'currentoption'=> $opt,
-	'searchurl'=> $CFG->wwwroot .'/theme/solent/set_header_image.php',
-	'id'=> 1,
+	'currentoptiontext'=> get_string('headerimagecurrent', 'theme_solent', array('opt'=>$opt)),
+	'instructiontext'=> get_string('headerimageinstructions', 'theme_solent'),
+	'action'=> $CFG->wwwroot .'/theme/solent/set_header_image.php',
+	'formid'=> 'header-image-form',
 	'options'=> $options,
 	'course'=> $course
 ];
 
 echo $OUTPUT->render_from_template('theme_solent/header_image_form', $templatecontext);
+
+echo $OUTPUT->footer();
 ?>

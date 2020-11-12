@@ -70,7 +70,7 @@ class core_renderer extends \core_renderer {
      * @return string HTML to display the main header.
      */
     public function full_header() {
-        global $PAGE, $DB, $COURSE, $CFG;
+        global $PAGE;
 
         $header = new stdClass();
         $header->settingsmenu = $this->context_header_settings_menu();
@@ -79,44 +79,11 @@ class core_renderer extends \core_renderer {
         $header->navbar = $this->navbar();
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
-// Create as a widget?
-		$opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
-		if($opt){
-		  $opt = $opt->opt;
-		}else{
-		  $record = new stdclass;
-		  $record->id = null;
-		  $record->course = $COURSE->id;
-
-		  $currentcategory = $DB->get_record('course_categories', array('id' => $COURSE->category), '*');
-		  $catname = strtolower('x'.$currentcategory->name);
-		  if(isset($catname)){
-			if(strpos($catname, 'course pages') !== false){
-			  $record->opt = '08';
-			  $DB->insert_record('theme_header', $record, $returnid=true);
-			  $opt = '08';
-			}else{
-			  $record->opt = '01';
-			  $DB->insert_record('theme_header', $record, $returnid=true);
-			  $opt = '01';
-			}
-		  }
-		}
-
-		$imageselector = '';
-		$oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
-		if ($PAGE->user_is_editing() && $oncoursepage != false){
-		  if ($COURSE->id > 1){
-			$url = new moodle_url('/theme/solent/layout/header_options.php', array('course' => $COURSE->id, 'opt' => $opt));
-			$imageselector = '<div><a href="' . $url . '">Select header image</a></div>';
-		  }
-		}
-
-		if ($oncoursepage != false && $COURSE->id > 1 ){
-			$header->imageclass = 'header-image opt'. $opt;		  
-			$header->imageselector = $imageselector;
-		}
-
+// SU_AMEND START		
+		$additionalheader = header_image();
+		$header->imageclass = $additionalheader->imageclass;
+		$header->imageselector = $additionalheader->imageselector;
+// SU_AMEND END
         return $this->render_from_template('theme_solent/header', $header);
     }
 
