@@ -1,9 +1,14 @@
 <?php
-require_once('../../../../config.php');
+require_once('../../../config.php');
 	
 require_login(true);
-$PAGE->set_context(context_system::instance());
-$PAGE->set_url('/theme/solent2017/pix/unit-header/options.php');
+
+$course = required_param('course', PARAM_TEXT);
+$opt = required_param('opt', PARAM_TEXT);
+
+$PAGE->set_context(context_course::instance($course));
+$PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt)));
+// $PAGE->set_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt));
 $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
 $PAGE->set_pagelayout('standard');
@@ -11,16 +16,16 @@ $PAGE->set_pagelayout('standard');
 //$PAGE->requires->js_call_amd('theme_solent2017/border', 'init', array());
 	
 echo $OUTPUT->header();
-//echo "<div class='maindiv'>";
 
-$dir = dirname(__FILE__);var_dump($dir);
+$dir = $CFG->dirroot . '/theme/solent/pix/unit-header/01.png';
+
+$dir = dirname($dir);
 $files = scandir($dir);
 natsort($files);
 
 $options = null;
 
-$course = required_param('course', PARAM_TEXT);
-$opt = required_param('opt', PARAM_TEXT);
+
 
 foreach ($files as $k=>$v) {
 	$name = substr($v, 0, strpos($v, "."));
@@ -35,7 +40,7 @@ foreach ($files as $k=>$v) {
 		
 		$options .= '<tr>
 						<td align="left"><input type="radio" id="' . $name . '" name="opt" value="' . $name .'" ' . $checked . '"></td>
-						<td><label for="opt">Option ' . $name. '<img class="header-image-option" src="' . $v . '"></label></td>
+						<td><label for="opt">Option ' . $name. '<img class="header-image-option" src="../pix/unit-header/' . $v . '"></label></td>
 					</tr>';
 	}
 }

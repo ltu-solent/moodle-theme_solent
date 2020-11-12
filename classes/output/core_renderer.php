@@ -79,7 +79,7 @@ class core_renderer extends \core_renderer {
         $header->navbar = $this->navbar();
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
-
+// Create as a widget?
 		$opt = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
 		if($opt){
 		  $opt = $opt->opt;
@@ -107,44 +107,14 @@ class core_renderer extends \core_renderer {
 		$oncoursepage = strpos($_SERVER['REQUEST_URI'], 'course/view');
 		if ($PAGE->user_is_editing() && $oncoursepage != false){
 		  if ($COURSE->id > 1){
-			$option = $DB->get_record('theme_header', array('course' => $COURSE->id), '*');
-			$dir = $CFG->dirroot . '/theme/solent/pix/unit-header';
-			$files = scandir($dir);
-			array_splice($files, 0, 1);
-			array_splice($files, 0, 1);
-
-			$options = array();
-			foreach ($files as $k=>$v) {
-			  $img = substr($v, 0, strpos($v, "."));
-			  $options[$img] = $img;
-			}
-			
-			natsort($options);
-
-			$imageselector .=	'<div class="divcoursefieldset"><fieldset class="coursefieldset fieldsetheader">
-				 <form action="'. $CFG->wwwroot .'/theme/solent/set_header_image.php" method="post">
-				 <label for="opt">Select header image (<a href="/theme/solent/pix/unit-header/options.php" target="_blank">browse options</a>):&nbsp;
-				 </label><select name="opt">';
-
-			$imageselector .= '<option value="00">No image</option>';
-			foreach($options as $key=>$val){
-			  if(($val != 'options') && ($val != 'succeed') && ($val != '')){
-				$imageselector .= '<option value="' . $key . '"'; if($key == $option->opt)
-				$imageselector .= ' selected="selected"';
-				$imageselector .= '>Option ' . $val . '</option>';
-			  }
-			}
-
-			$imageselector .= '  </select><input type="hidden" name="course" value="'. $COURSE->id .'"/>';
-			$imageselector .= '  <input type="hidden" name="id" value="'. $option->id .'"/>';
-			$imageselector .= '&nbsp;&nbsp;&nbsp;<input type="submit" value="Save">
-			   </form></fieldset></div>';
+			$url = new moodle_url('/theme/solent/layout/header_options.php', array('course' => $COURSE->id, 'opt' => $opt));
+			$imageselector = '<div><a href="' . $url . '">Select header image</a></div>';
 		  }
 		}
 
 		if ($oncoursepage != false && $COURSE->id > 1 ){
-		  $header->imageclass = 'header-image opt'. $opt;
-		  $header->imageselector = $imageselector;
+			$header->imageclass = 'header-image opt'. $opt;		  
+			$header->imageselector = $imageselector;
 		}
 
         return $this->render_from_template('theme_solent/header', $header);
