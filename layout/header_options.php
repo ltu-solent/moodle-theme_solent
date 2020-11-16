@@ -1,6 +1,6 @@
 <?php
 require_once('../../../config.php');
-	
+
 require_login(true);
 
 $course = required_param('course', PARAM_TEXT);
@@ -12,8 +12,8 @@ $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
 $PAGE->set_pagelayout('report');
 
-$PAGE->requires->js_call_amd('theme_solent/headerimage', 'init');
-	
+$PAGE->requires->js_call_amd('theme_solent/headerimage', 'init', [$CFG->wwwroot]);
+
 echo $OUTPUT->header();
 
 $dir = $CFG->dirroot . '/theme/solent/pix/unit-header/01.png';
@@ -30,13 +30,13 @@ foreach ($files as $k=>$v) {
 	$name = substr($v, 0, strpos($v, "."));
 	//Check if the file is an image
 	if(strpos($v, 'png') || strpos($v, 'jpg') || strpos($v, 'jpeg')){
-		
+
 		if($opt == $name){
 			$checked = 'checked="checked"';
 		}else{
 			$checked = "";
 		}
-		
+
 		$options .= '<tr>
 						<td align="left"><input type="radio" id="' . $name . '" name="opt" value="' . $name .'" ' . $checked . '"></td>
 						<td><label for="opt">Option ' . $name. '<img class="header-image-option" src="../pix/unit-header/' . $v . '"></label></td>
@@ -44,7 +44,7 @@ foreach ($files as $k=>$v) {
 	}
 }
 
-$templatecontext = [    
+$templatecontext = [
 	'currentoptiontext'=> get_string('headerimagecurrent', 'theme_solent', array('opt'=>$opt)),
 	'instructiontext'=> get_string('headerimageinstructions', 'theme_solent'),
 	'action'=> $CFG->wwwroot .'/theme/solent/set_header_image.php',
