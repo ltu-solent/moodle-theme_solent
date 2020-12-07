@@ -63,20 +63,17 @@ class backup_renderer extends \core_backup_renderer {
       $table->head = array('', get_string('shortnamecourse'), get_string('fullnamecourse'));
       $table->data = array();
       foreach ($component->get_results() as $course) {
-  // SU_AMEND START - Unit start date: Course import
+  // SU_AMEND START - Module start date: Course import
       global $DB;
-      $category = $DB->get_record_sql('SELECT cc.name FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
+      $catidnumber = $DB->get_record_sql('SELECT cc.idnumber FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
       $getcourse = get_course($course->id);
+      $catidnumber = strtolower('x'.$catidnumber->idnumber);
 
-      if(isset($category)){
-        $catname = strtolower('x'.$category->name);
-
-        if(strpos($catname, 'unit pages') !== false){
-          $startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
-        }else{
-          $startdate = '';
-        }
-      }
+		if(strpos($catidnumber, 'modules_') !== false){
+		  $startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
+		}else{
+		  $startdate = '';
+		}
   // SU_AMEND END
           $row = new html_table_row();
           $row->attributes['class'] = 'ics-course';
@@ -86,7 +83,7 @@ class backup_renderer extends \core_backup_renderer {
           $row->cells = array(
               html_writer::empty_tag('input', array('type' => 'radio', 'name' => 'importid', 'value' => $course->id)),
               format_string($course->shortname, true, array('context' => context_course::instance($course->id))),
-  // SU_AMEND START - Unit start date: Course import
+  // SU_AMEND START - Module start date: Course import
               //format_string($course->fullname, true, array('context' => context_course::instance($course->id)))
               format_string($course->fullname . $startdate, true, array('context' => context_course::instance($course->id)))
   // SU_AMEND END

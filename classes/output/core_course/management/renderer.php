@@ -487,10 +487,10 @@ class renderer extends \core_course_management_renderer {
     public function course_listitem(core_course_category $category, core_course_list_element $course, $selectedcourse) {
 
         $text = $course->get_formatted_name();
-// SU_AMEND START - Unit start date: Manage categories
-        $categoryname = core_course_category::get($course->category)->get_formatted_name();
-        $catname = strtolower('x'.$categoryname);
-        if(strpos($catname, 'unit pages') !== false){
+// SU_AMEND START - Module start date: Manage categories
+		$catidnumber = core_course_category::get($course->category, IGNORE_MISSING);
+		$catidnumber = strtolower('x'.$catidnumber->idnumber);
+		if(strpos($catidnumber, 'modules_') !== false){
           $text .= ' (' .date('d-m-Y',$course->startdate) .')';
         }
 // SU_AMEND END
@@ -682,9 +682,9 @@ class renderer extends \core_course_management_renderer {
         $text = $course->get_formatted_name();
 
 // SU_AMEND START - Unit start date: Manage categories
-        $categoryname = core_course_category::get($course->category)->get_formatted_name();
-        $catname = strtolower('x'.$categoryname);
-        if(strpos($catname, 'unit pages') !== false){
+		$catidnumber = core_course_category::get($course->category, IGNORE_MISSING);
+		$catidnumber = strtolower('x'.$catidnumber->idnumber);
+		if(strpos($catidnumber, 'modules_') !== false){
           $text .= ' (' .date('d-m-Y',$course->startdate) .')';
         }
 // SU_AMEND END

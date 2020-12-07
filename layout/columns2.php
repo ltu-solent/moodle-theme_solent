@@ -43,7 +43,7 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
-// If in course or unit pages categories add the course title elements
+// If in course or module pages categories add the course title elements
 global $DB;
 $course_title_elements = "";
 if(strpos($_SERVER['REQUEST_URI'], '/course/view.php?id=') !== false){
