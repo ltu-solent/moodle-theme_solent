@@ -132,11 +132,14 @@ function header_image(){
 		$imageselector = '<div class="header-image-link btn"><a class="btn btn-secondary" href="' . $url . '">Select header image</a></div>';
 	  }
 	}
-
-	if ($oncoursepage != false && $COURSE->id > 1 ){
-		$header = new stdClass();
+	
+	$header = new stdClass();
+	if ($oncoursepage != false && $COURSE->id > 1 ){		
 		$header->imageclass = 'header-image opt'. $opt;		  
 		$header->imageselector = $imageselector;
+	}else{
+		$header->imageclass = null;		  
+		$header->imageselector = null;
 	}
 		
 	return $header;
