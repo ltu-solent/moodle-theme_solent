@@ -53,10 +53,12 @@ class core_renderer extends \core_renderer {
         $header->navbar = $this->navbar();
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
-// SU_AMEND START		
+// SU_AMEND START
+	if(strpos($_SERVER['REQUEST_URI'], 'course/view')){		
 		$additionalheader = header_image();
 		$header->imageclass = $additionalheader->imageclass;
 		$header->imageselector = $additionalheader->imageselector;
+	}
 // SU_AMEND END
         return $this->render_from_template('theme_solent/header', $header);
     }

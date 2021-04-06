@@ -46,7 +46,7 @@ if ($navdraweropen) {
 // If in course or unit pages categories add the course title elements
 global $DB;
 $course_title_elements = "";
-if(substr($_SERVER['REQUEST_URI'], 0, 20) == '/course/view.php?id='){
+if(strpos($_SERVER['REQUEST_URI'], '/course/view.php?id=') !== false){
    $course_title_elements = unit_descriptor_course($COURSE);
 }
 
