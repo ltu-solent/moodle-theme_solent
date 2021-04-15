@@ -38,10 +38,7 @@
 }
 
 // Fix labels not displaying
-.section .label .mod-indent-outer {
-    padding-left: 24px;
-    display: initial;
-}
+
 
 /* Grading page */
 .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"]{
@@ -119,6 +116,10 @@
   .nav-tabs .nav-item .active {
       font-weight: 700;
   }
+  
+  .pagelayout-course #page-header .dropdown a:hover{
+	color: #fff;
+  }
 }
 /* onetopic END */
 
@@ -143,20 +144,6 @@
   padding-top: 15px;
 }
 /* User tour reset link at bottom of grading page END */
-
-/* Course participants page START */
-  .lastinitial .initialbarlabel {
-      padding-right: 11px;
-  }
-
-  .initialbar.lastinitial {
-      margin-bottom: 30px;
-  }
-
-  #checkallonpage, #checknone {
-    margin-right: 10px;
-  }
-/* Course participants page END */
 
 #forummenu input {                                                              //spacing between buttons on forum pages
     margin-left: 10px;

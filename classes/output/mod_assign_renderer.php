@@ -351,7 +351,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
 // SU_AMEND END
 
                     $o .= $this->output->box_end();
-                } else if ($submission->status == ASSIGN_SUBMISSION_STATUS_REOPENED) {
+				} else if ($submission->status == ASSIGN_SUBMISSION_STATUS_REOPENED) {
                     $o .= $this->output->box_start('generalbox submissionaction');
                     $urlparams = array('id' => $status->coursemoduleid,
                                        'action' => 'editprevioussubmission',
@@ -364,7 +364,6 @@ class mod_assign_renderer extends \mod_assign_renderer {
                     $o .= $this->output->box_end();
                     $o .= $this->output->box_start('generalbox submissionaction');
                     $urlparams = array('id' => $status->coursemoduleid, 'action' => 'editsubmission');
-
                     $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
                                                        get_string('addnewattempt', 'assign'), 'get');
                     $o .= $this->output->box_start('boxaligncenter submithelp');
@@ -439,7 +438,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
      * @return string
      */
     public function render_assign_attempt_history(assign_attempt_history $history) {
-        $o = '';
+		$o = '';
 
         // Don't show the last one because it is the current submission.
         array_pop($history->submissions);

@@ -1,5 +1,5 @@
 <?php
-// SU_AMEND START - Theme: Update header image
+// SU_AMEND START - Theme: Header image
 require('../../config.php');
 global $DB;
 

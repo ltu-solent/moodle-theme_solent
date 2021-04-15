@@ -68,7 +68,8 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'course_title_elements' => $course_title_elements
+    'course_title_elements' => $course_title_elements,
+	'wwwroot' => $CFG->wwwroot
 ];
 
 $nav = $PAGE->flatnav;
