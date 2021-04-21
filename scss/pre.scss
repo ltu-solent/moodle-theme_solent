@@ -1,22 +1,22 @@
 // Pre SCSS for the theme.
 
 //boost overrides
-$font-family-sans-serif: 'Open Sans', sans-serif;
-$font-family-base:       'Open Sans', sans-serif;
-$font-color:             #333;
+$font-family-sans-serif:	'Open Sans', sans-serif;
+$font-family-base:      	'Open Sans', sans-serif;
+$font-color:            	#333;
 
-$body-body-bg:			  #e9ecef;
-$card-bg: 					  rgba(255, 255, 255, 0.98);
-// $primary: 						#466273;
-$primary: 						#425B6C;
-$background:					$primary;
-$btn-secondary-color: $primary;
+$body-body-bg:				#e9ecef;
+$card-bg: 					rgba(255, 255, 255, 0.98);
+$primary: 					#425B6C;
+$background:				$primary;
+$btn-secondary-color: 		$primary;
 $navbar-height: 			80px;
-$border:              1px solid rgba(0,0,0,0.125);
+$border:              		1px solid rgba(0,0,0,0.125);
+$grey: 						#e6e6e6;						
 
 //custom variables
-$padding-15:          15px;
-$font-15:             0.9375rem;
+$padding-15:          		15px;
+$font-15:             		0.9375rem;
 
-$footer-links-color: #8c979e;
-$footer-divider-color: #616265;
+$footer-links-color: 		#8c979e;
+$footer-divider-color: 		#616265;

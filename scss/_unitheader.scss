@@ -11,12 +11,12 @@
   }
 
 	.header-image {
-    height: auto !important;
-    background-image: none !important;
+		height: auto !important;
+		background-image: none !important;
 
-    .card .card-body {
-      padding: 0 !important;
-  	}
+		.card .card-body {
+			padding: 0 !important;
+		}
 	}
 }
 
@@ -60,26 +60,26 @@
 		}
 
 		.dropdown {
-			 background-color: rgba(255,255,255,.9);
-			 border-radius: 3px;
-			 padding: 5px 5px 3px 5px;
-
-		 /* Black gear dropdown menu icon */
-		 a {
-				 color: $font-color;
-		 }
-	 }
+			background-color: rgba(255,255,255,.9);
+			border-radius: 3px;
+			padding: 5px 5px 3px 5px;
+			
+			/* Black gear dropdown menu icon */
+			.icon-no-margin {
+				color: $font-color;
+			}
+		}
 
 		.page-header-headings {
-			 display: inline-block;
-			 padding: 0 45px 0 25px;
-			 color: #fff;
-			 letter-spacing: .25em;
-			 text-transform: uppercase;
-			 background: rgba(0,0,0,0.40);
-			 position: absolute;
-			 webkit-clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
-			 clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
+			display: inline-block;
+			padding: 0 45px 0 25px;
+			color: #fff;
+			letter-spacing: .25em;
+			text-transform: uppercase;
+			background: rgba(0,0,0,0.40);
+			position: absolute;
+			webkit-clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
+			clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
 
 			 h1{
 				margin: 10px 0 10px 0;
@@ -87,7 +87,7 @@
 		 }
 
 		.pb-3, .py-3 {
-    	padding-bottom: 0 !important;
+			padding-bottom: 0 !important;
 		}
 
 		.d-flex {
@@ -95,15 +95,16 @@
 		  margin: 40px -10px 0 -35px;
 
 			#page-navbar {
-	    	width: 100.11%																													//breadcrumbs width needs to be slightly over 100% to break out the div and reach the edge of the page
+				width: 100.11%	
+				//breadcrumbs width needs to be slightly over 100% to break out the div and reach the edge of the page
 			}
 		}
 
 		.page-context-header{
 			.header-button-group {
-		    position: relative;
-		    line-height: 24px;
-		    vertical-align: middle;
+				position: relative;
+				line-height: 24px;
+				vertical-align: middle;
 				padding-left: 25px;
 			}
 		}
@@ -111,15 +112,7 @@
 }
 
 .divcoursefieldset {
-  padding-top: 20px;
-}
-
-/* Course settings dropdown menu */
-#course-header .dropdown {
-    background-color: rgba(255,255,255,.9);
-    border-radius: 5px;
-    padding: 5px;
-		margin-top: 0 !important;
+	padding-top: 20px;
 }
 
 /* stops part of the header image being hidden behind navbar  */
@@ -897,8 +890,14 @@
 	}
 }
 
-#page-theme-solent-pix-unit-header-options #region-main.span8{width:100%;}
-table#header-options{width:50%; margin:0}
+#page-theme-solent-pix-unit-header-options #region-main.span8{
+	width:100%;
+}
+
+table#header-options{
+	width:50%; 
+	margin:0;
+}
 
 table#header-options img {
     width: 200%;

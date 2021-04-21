@@ -37,9 +37,6 @@
   }
 }
 
-// Fix labels not displaying
-
-
 /* Grading page */
 .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"]{
     background-color: #fff;
@@ -64,9 +61,9 @@
   .tab_content {
       color: $white;
       background-color: $primary;
-      border: 1px solid $primary;
+      border: 1px solid #e9ecef;
       border-radius: 5px 5px 0 0;
-      margin-left: 3px;
+
       &:hover {
         color: $black !important;
         background-color: $white !important;
@@ -115,10 +112,6 @@
 
   .nav-tabs .nav-item .active {
       font-weight: 700;
-  }
-  
-  .pagelayout-course #page-header .dropdown a:hover{
-	color: #fff;
   }
 }
 /* onetopic END */
@@ -328,4 +321,16 @@ ul{
 /* Activity indent */
 .mod-indent-outer {
     padding-left: 24px;
+}
+
+/*.dropdown-item:active, .dropdown-item:hover, .dropdown-item:focus, .dropdown-item:focus-within {
+    background-color: #f8f9fa;
+	color: $black !important;
+}*/
+
+.onetopic .nav-tabs .nav-item, .nav-pills .nav-item {
+	flex: auto;
+    text-align: center;
+    margin-left: 1px;
+    margin-right: 1px;
 }
