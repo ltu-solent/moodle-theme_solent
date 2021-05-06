@@ -54,13 +54,17 @@ function unit_descriptor_course($course){
 				. html_writer::end_div();
 			}
 			
-			$descriptor = get_file($coursecode);
-			
-			if($descriptor){
-				return $date . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";
-			}else{
-				return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";
-			}
+            if($coursecode != '') {
+                $descriptor = get_file($coursecode);
+            } else {
+                $descriptor = null;
+            }  
+            
+            if($descriptor){
+                return $date . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";
+            }else{
+                return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";
+            }
 		}
 
 		if(strpos($catname, 'courses_') !== false){
