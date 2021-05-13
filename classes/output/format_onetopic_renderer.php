@@ -193,6 +193,12 @@ class format_onetopic_renderer extends \format_onetopic_renderer {
                 '<innertab style="' . $customstyles . '" class="tab_content ' . $specialstyle . '">' .
                 '<span class="sectionname">' . $sectionname . "</span>" . $availablemessage . "</innertab>", $sectionname);
 
+// SU_AMEND START - Course: Marker indicator
+                if(strpos($newtab->text, 'marker') !== false && $section != 0){
+                    $text = str_replace('</innertab>', '<span class="icon fa fa-lightbulb fa-fw"></span></innertab>', $newtab->text);                    
+                    $newtab->text = $text;
+                }
+// SU_AMEND END
                 if (is_array($formatoptions) && isset($formatoptions['level'])) {
 
                     if ($formatoptions['level'] == 0 || count($tabs) == 0) {
@@ -206,6 +212,10 @@ class format_onetopic_renderer extends \format_onetopic_renderer {
                             $tabs[$parentindex]->subtree[0] = clone($tabs[$parentindex]);
                             $tabs[$parentindex]->subtree[0]->id .= '_index';
 
+// SU_AMEND START - Course: Parent tab indicator.
+                            $text = str_replace('</innertab>', '<span class="icon fa fa-sort-down fa-fw"></span></innertab>', $tabs[$parentindex]->text);
+                            $tabs[$parentindex]->text = $text;
+// SU_AMEND END
                             $prevsectionindex = $section - 1;
                             do {
                                 $parentsection = $sections[$prevsectionindex];
