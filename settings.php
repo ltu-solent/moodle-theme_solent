@@ -70,7 +70,53 @@ if ($ADMIN->fulltree) {
     $name = 'theme_solent/brandcolor';
     $title = get_string('brandcolor', 'theme_solent');
     $description = get_string('brandcolor_desc', 'theme_solent');
-    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $default = '#425B6C';
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    
+    // Onetopic tab color
+    $name = 'theme_solent/tabcolor';
+    $title = get_string('tabcolor', 'theme_solent');
+    $description = get_string('tabcolor_desc', 'theme_solent');
+    $default = '#425B6C';
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    
+    // Navdrawer width.
+    $name = 'theme_solent/drawerwidth';
+    $title = get_string('drawerwidth', 'theme_solent');
+    $description = get_string('drawerwidth_desc', 'theme_solent');
+	$default = '285px';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Navbar height.
+    $name = 'theme_solent/navbarheight';
+    $title = get_string('navbarheight', 'theme_solent');
+    $description = get_string('navbarheight_desc', 'theme_solent');
+	$default = '50px';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    
+    // Block area width.
+    $name = 'theme_solent/blockwidth';
+    $title = get_string('blockwidth', 'theme_solent');
+    $description = get_string('blockwidth_desc', 'theme_solent');
+	$default = '360px';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+    
+    // Font size.
+    $name = 'theme_solent/fontsizebase';
+    $title = get_string('fontsizebase', 'theme_solent');
+    $description = get_string('fontsizebase_desc', 'theme_solent');
+	$default = '1rem';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
@@ -79,6 +125,24 @@ if ($ADMIN->fulltree) {
     $title = get_string('descriptors', 'theme_solent');
     $description = get_string('descriptors_desc', 'theme_solent');
 	$default = 0;
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+	// Exclude breadcrumbs.
+    $name = 'theme_solent/excludebreadcrumbs';
+    $title = get_string('excludebreadcrumbs', 'theme_solent');
+    $description = get_string('excludebreadcrumbs_desc', 'theme_solent');
+	$default = '';
+    $setting = new admin_setting_configtext($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+	// Breadcrumb icon.
+    $name = 'theme_solent/breadcrumbicon';
+    $title = get_string('breadcrumbicon', 'theme_solent');
+    $description = get_string('breadcrumbicon_desc', 'theme_solent');
+	$default = 'fa fa-caret-right fa-fw';
     $setting = new admin_setting_configtext($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
