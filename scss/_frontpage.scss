@@ -9,7 +9,7 @@
     }
 
     #region-main-box {
-      background-image: url(/theme/solent/pix/login.jpg);
+      background-image: url(solent/pix/login.jpg);
       background-repeat: no-repeat;
       min-height: 570px !important;
       background-size: cover;
@@ -29,3 +29,18 @@
     }
 
 }
+
+#page-my-index {
+    #page-header {
+        .card-body {
+            padding: 0;
+        }
+    }
+}
+
+@media (min-width: 1470px) {
+    #region-main .dashboard-card {
+        width: calc(25% - .5rem);
+    }
+}
+

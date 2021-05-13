@@ -1,23 +1,7 @@
-@media only screen and (min-width: 1380px){
-  #region-main {
-      padding: 4.25rem;
-  }
-}
-
 body{
   background-color: $white !important;
-  font-family: $font-family-base !important;
-  color: $font-color !important;
-  font-size: 1rem;
-  letter-spacing: .45px;
-}
-
-a {
-  color: #0066cb;
-}
-
-h5{
-  font-weight: 400;
+  color: $font-color;
+  letter-spacing: .8px;
 }
 
 #region-main {
@@ -31,30 +15,48 @@ h5{
   z-index: 1;
 }
 
-#page-content {                                                                 //remove padding which affects the display of the footer
-  padding-bottom: 0 !important;
-  z-index: 1;
-  background-color: $white;
-}
-
-.dropdown-item:active {
-    background-color: #e6e6e6;
-    color: $black;
-}
-
-.header-image .card{
-  background-color: $body-body-bg !important;
-  border: none;
-}
-
-.pagelayout-mydashboard [data-region='blocks-column']{
-  padding-top: 0;
-}
-
-.path-admin-theme .singlebutton {                                               //adds space between buttons on theme select page
-    margin-bottom: 20px;
+.dropdown-item {
+    a {
+        display: block;
+        width: 100%;
+        color: $font-color;
+    }
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-within {
+        outline: 0;
+        background-color: $dropdown-link-hover-bg;
+        a, .icon {
+            color: $dropdown-link-active-color;
+        }
+    }
+    &[aria-current="true"] {
+        position: relative;
+        display: flex;
+        align-items: center;
+        &:before {
+            @include fa-icon();
+            content: $fa-var-circle;
+            position: absolute;
+            left: 0.4rem;
+            font-size: 0.7rem;
+        }
+    }
 }
 
 .progress-bar {
     background-color: #9BAE4D !important;
 }
+
+/* Goto top button  */
+#goto-top-link{
+	z-index: 9;
+}
+
+#goto-top-link .btn{
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+}
+/* Goto top button */

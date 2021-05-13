@@ -1,31 +1,4 @@
-/* Workflow START */
-.path-blocks-workflow .editor_atto_content{
-  min-height: 222px !important;
-  height: 222px !important;
-}
-
-.block_workflow button {
-    margin-top: 10px;
-}
-
-section[data-block="workflow"] h3 {
-    font-size: 1rem !important;
-    font-weight: 400 !important;
-}
-
+// Login block
 section[data-block="login"] {
-  margin-top: 120px;
+  margin-top: 100px;
 }
-
-#block-workflow-overview{
-  tr.aborted{
-    background-color: #f8d7da;
-  }
-  tr.active{
-    background-color: #d4edda;
-  }
-  tr.completed{
-    background-color: #e2e3e5;
-  }
-}
-/* Workflow END */

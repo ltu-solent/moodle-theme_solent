@@ -10,7 +10,7 @@
 
 .coursebox>.info>h3.coursename {
     margin: 5px;
-    line-height: 1;
+    line-height: $line-height-base;
 }
 
 .solent_startdate_search {
@@ -35,5 +35,5 @@
 }
 
 .coursename .dimmed span {
-    color: #868e96!important;
+    color: $dimmed !important;
 }

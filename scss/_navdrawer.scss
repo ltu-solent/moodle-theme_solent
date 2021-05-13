@@ -1,37 +1,61 @@
 #nav-drawer{
-  background-color: $body-body-bg;
-  border-right: 1px solid #ddd;
+	
+	padding: 0;	
+	
+	.search-input-form{
+		padding: 20px 5px 0 5px;
+        margin-bottom: 0;
+        
+        .form-control {
+		display: inline;
+		width: 70%;
+        }
 
-  .form-control {
-    display: inline;
-    width: 70%;
-  }
-
-  .search-btn {
-    width: 30%;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin-bottom: 4px;
-    border-color: $primary;
-    &:hover {
-      border-color: #ced4da;
+        .btn {
+            width: 30%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-right: 2%;
+            margin-bottom: 4px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none !important;
+            height: 37.6px;
+            
+            &:hover {
+                border-color: $grey;
+            }
+        }
     }
-  }
 
-
-  a[data-key*="localboostnavigationcustombottomusersnoicon1"] .icon,
-  a[data-key*="localboostnavigationcustombottomusersnoicon2"] .icon,
-  a[data-key*="localboostnavigationcustombottomusersnoicon3"] .icon{
-    display: none;
-  }
-
+	a[data-key*="localboostnavigationcustombottomusersnoicon1"] .icon,
+	a[data-key*="localboostnavigationcustombottomusersnoicon2"] .icon,
+	a[data-key*="localboostnavigationcustombottomusersnoicon3"] .icon{
+		display: none;
+	}
+    
+    .list-group-item {
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        padding: .65rem 1.25rem;
+    }
+  
+	.list-group-item:hover, .list-group-item-action:hover {
+		color: $white;
+		background-color: $primary;
+	}
+	
+	.list-group, .list-group.mt-1 {
+		margin-bottom: 2rem !important;
+	}
+	
+	.localboostnavigationfirstcustombuttomusers,
+	.localboostnavigationfirstcustombuttomadmins {
+		margin-top: 2rem !important;
+	}
 }
 
 /* Remove LinkedIn Learning menu item if logged out */
 body.context-2 #localboostnavigationcustombottomuserslinkedinlearning{
   display: none;
-}
-
-.list-group-item[data-key^="localboostnavigationcustombottomusers"], .list-group-item[data-key^="localboostnavigationcustombottomadmins"] {
-    //margin-top: 2rem;
 }
