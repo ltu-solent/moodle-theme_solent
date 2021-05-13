@@ -113,7 +113,7 @@ function unit_descriptor_course($course){
 
 function get_file_details($coursecode){
     global $DB;
-    $file = $DB->get_record_sql("	SELECT filename, contextid, filepath FROM {files} f
+    $file = $DB->get_record_sql("	SELECT f.id, filename, contextid, filepath FROM {files} f
 									JOIN {context} ctx ON ctx.id = f.contextid
                                     WHERE ctx.instanceid = ?
                                     AND (component = ? AND filearea = ?)
