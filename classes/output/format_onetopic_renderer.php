@@ -129,7 +129,7 @@ class format_onetopic_renderer extends \format_onetopic_renderer {
 					// }
 					if (!empty($formatoptions['bgcolor'])) {
 						$customstyles .= 'color: ' . '#FFFFFF' . ';'; //change it back to the default colour
-						$customstyles .= 'border: 1px solid ' . $formatoptions['bgcolor'] .';';
+						$customstyles .= 'border: 1px solid #e9ecef;';
 					}else{
 						$customstyles .= ''; //remove color
 					}

@@ -81,11 +81,13 @@ function unit_descriptor_course($course){
 		$coursecode = substr($course->shortname, 0, strpos($course->shortname, "_"));
 
 		if(strpos($catname, 'modules_') !== false){
-			$date = html_writer::start_div('unit-details');
+			$details = html_writer::start_div('unit-details');
 			if($PAGE->bodyid != 'page-course-search'){
-				$date .= html_writer::start_div('unit-start') . get_string('modulerunsfrom', 'theme_solent') . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
-				. html_writer::end_div();
+				$details .= html_writer::start_div('unit-start') . get_string('modulerunsfrom', 'theme_solent') . date('d/m/Y',$course->startdate) . ' - ' . date('d/m/Y',$course->enddate) 
+				. html_writer::end_div();				
 			}
+            
+            $details .= html_writer::start_div('course-instance') . get_string('courseinstance', 'theme_solent') . $course->shortname . html_writer::end_div();
 			
             if($coursecode != '') {
                 $descriptor = get_file($coursecode);
@@ -94,9 +96,9 @@ function unit_descriptor_course($course){
             }  
             
             if($descriptor){
-                return $date . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";
+                return $details . "<a href='".$descriptor."' class='unit-desc'>". get_string('moduledescriptor', 'theme_solent') ."</a></div>";
             }else{
-                return $date . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";
+                return $details . "<span class='unit-desc'>". get_string('nomoduledescriptor', 'theme_solent') ."</span></div>";
             }
 		}
 
