@@ -159,7 +159,10 @@ class format_onetopic_renderer extends \format_onetopic_renderer {
 
                 $specialstyle = 'tab_position_' . $section . ' tab_level_' . $level;
                 if ($course->marker == $section) {
-                    $specialstyle = ' marker ';
+// SU_AMEND START - Course: Keep tab level for child tabs marker.
+                    // $specialstyle = ' marker ';
+                    $specialstyle .= ' marker ';
+// SU_AMEND END
                 }
 
                 if (!$thissection->visible || !$thissection->available) {
