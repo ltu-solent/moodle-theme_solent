@@ -96,6 +96,9 @@
 }
 
 section#region-main {
+
+  line-height: 1.75 !important;
+
   .editor_atto h1[style],
   .editor_atto h2[style],
   .editor_atto h3[style],
@@ -159,7 +162,7 @@ section#region-main{
             font-size: $font-size-base !important;
             font-weight: 400;
             letter-spacing: 0.45px !important;
-            line-height: $line-height-base;
+            // line-height: $line-height-base;
             padding-left: 0 !important;
             margin-left: 0 !important;
         }
