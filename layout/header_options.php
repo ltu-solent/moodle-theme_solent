@@ -1,12 +1,12 @@
 <?php
 require_once('../../../config.php');
 
-require_login(true);
+$course = required_param('course', PARAM_INT);
+$opt = required_param('opt', PARAM_ALPHANUM);
+$coursecontext = context_course::instance($course);
+require_capability('moodle/course:update', $coursecontext);
 
-$course = required_param('course', PARAM_TEXT);
-$opt = required_param('opt', PARAM_TEXT);
-
-$PAGE->set_context(context_system::instance());
+$PAGE->set_context($coursecontext);
 $PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt)));
 $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
@@ -56,4 +56,3 @@ $templatecontext = [
 echo $OUTPUT->render_from_template('theme_solent/header_image_form', $templatecontext);
 
 echo $OUTPUT->footer();
-?>
