@@ -4,6 +4,7 @@ namespace theme_solent\output;
 defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot.'/mod/assign/renderer.php');
 
+use assign;
 use html_writer;
 use html_table;
 use html_table_row;
@@ -12,6 +13,8 @@ use moodle_url;
 use assign_submission_status;
 use assign_submission_plugin_submission;
 use assign_attempt_history;
+use cm_info;
+use context_module;
 
 class mod_assign_renderer extends \mod_assign_renderer {
 
@@ -575,6 +578,103 @@ class mod_assign_renderer extends \mod_assign_renderer {
 
         $this->page->requires->yui_module('moodle-mod_assign-history', 'Y.one("#' . $containerid . '").history');
 
+        return $o;
+    }
+
+    /**
+     * Do some extra checks to determine if warning should be displayed.
+     *
+     * @param \assign_grading_table $table
+     * @return string html of grading table.
+     */
+    public function render_assign_grading_table(\assign_grading_table $table) {
+        global $DB;
+        $cmid = $table->get_course_module_id();
+        $courseid = $table->get_course_id();
+        $modinfo = get_fast_modinfo($courseid);
+        $cm = $modinfo->get_cm($cmid);
+        $rendered = parent::render_assign_grading_table($table);
+        $o = '';
+        $assign = new assign(context_module::instance($cm->id), $cm, $cm->get_course());
+
+        if ($cm->idnumber == '') {
+            $o .= $this->output->notification(get_string('assign_formativeinfo', 'local_quercus_tasks'), \core\notification::INFO);
+            return $o . $rendered;
+        }
+        // Debugging.
+        // return $rendered;
+
+        // Standard table filtering is done via query params, and these are saved in user preferences for later retrieval.
+        // Get the saved options first, then check the query params to find what the latest filters should be.
+        // Note the query param could be empty.
+        $prefs = json_decode(get_user_preferences('flextable_mod_assign_grading'), true);
+        if (!$prefs) {
+            $prefs = [
+                'i_first'  => '',
+                'i_last'   => '',
+            ];
+        }
+        $parammapping = ['tifirst' => 'i_first', 'tilast' => 'i_last'];
+        $showprefwarning = false;
+        $showfilterwarning = false;
+        foreach ($parammapping as $paramkey => $tablekey) {
+            $param = optional_param($paramkey, null, PARAM_RAW);
+            if ($param != null) {
+                $prefs[$tablekey] = $param;
+            }
+            if ($prefs[$tablekey] != '') {
+                $showprefwarning = true;
+            }
+        }
+
+        $workflowanchor = '';
+        if ($assign->get_instance()->markingworkflow) {
+            $workflowfilter = get_user_preferences('assign_workflowfilter');
+            if (!empty($workflowfilter)) {
+                $showfilterwarning = true;
+                $workflowanchor = 'id_general';
+            }
+        }
+        if ($assign->get_instance()->markingallocation) {
+            $markerfilter = get_user_preferences('assign_markerfilter');
+            if (!empty($markerfilter)) {
+                $showfilterwarning = true;
+                $workflowanchor = 'id_general';
+            }
+        }
+        if ($assign->is_any_submission_plugin_enabled()) {
+            $filter = get_user_preferences('assign_filter');
+            if (!empty($filter)) {
+                $showfilterwarning = true;
+                $workflowanchor = 'id_general';
+            }
+        }
+        if ($table->currpage > 0) {
+            $showfilterwarning = true;
+        }
+        if ($showfilterwarning || $showprefwarning) {
+            // Do I need to check which workflow states are available. Are we only concerned with releasing?
+            // How do we do anything more clever than that?
+            // Who sees this? Do I need to be more discriminating?
+
+            $o .= '<span data-quercus="disable-selectall"></span>';
+            $resetfilterurl = new moodle_url('/mod/assign/view.php', [
+                'action' => 'grading',
+                'id' => $cmid,
+                'treset' => 1,
+            ], $workflowanchor);
+            $msg = '';
+            if ($showprefwarning) {
+                $msg .= get_string('assign_resetprefs', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+            }
+            if ($showfilterwarning) {
+                $msg .= get_string('assign_resetworkflow', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+            }
+
+            $resetstring = get_string('assign_filterwarning', 'local_quercus_tasks', ['msg' => $msg]);
+            $o .= $this->output->notification($resetstring, \core\notification::WARNING);
+        }
+        $o .= $rendered;
         return $o;
     }
 
