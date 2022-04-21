@@ -109,4 +109,18 @@ class core_renderer extends \core_renderer {
         return $breadcrumbs;
     }
 
+    /**
+     * Course search box for the navdrawer
+     *
+     * @return string Rendered HTML
+     */
+    public function course_search_box() {
+        $data = new stdClass();
+        $data->searchurl = \core_search\manager::get_course_search_url()->out(false);
+        $data->value = optional_param('q', '', PARAM_ALPHANUMEXT);
+        $data->areaids = 'core_course-course';
+
+        return $this->render_from_template('theme_solent/course_search_box', $data);
+    }
+
 }
