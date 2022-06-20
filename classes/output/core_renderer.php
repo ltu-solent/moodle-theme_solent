@@ -123,4 +123,35 @@ class core_renderer extends \core_renderer {
         return $this->render_from_template('theme_solent/course_search_box', $data);
     }
 
+    /**
+     * Gathers communications and extra dash info to be contextually incorporated.
+     *
+     * @return string Rendered HTML
+     */
+    public function solentzone() {
+        $content = '';
+        // Separating into different types so we can prioritise and group them.
+        // More free html
+        $banners = [];
+        // Use notification objects for alerts.
+        $alerts = [];
+        // Links to resources
+        $dashlinks = [];
+        // Links to Reports
+        $reports = [];
+        // Plugins.
+        $pluginswithfunction = get_plugins_with_function('solentzone_alerts', 'lib.php');
+        foreach ($pluginswithfunction as $plugins) {
+            foreach ($plugins as $function) {
+                $alerts = $function($alerts);
+            }
+        }
+        foreach ($alerts as $alert) {
+            if ($alert instanceof \core\output\notification) {
+                $content .= $this->render($alert);
+            }
+        }
+        return $content;
+    }
+
 }

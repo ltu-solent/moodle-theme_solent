@@ -200,3 +200,24 @@ function header_image(){
 		
 	return $header;
 }
+
+/**
+ * Placeholder function to generate alerts within the theme.
+ *
+ * @param array $alerts of the \core\output\notification type
+ * @return array
+ */
+function theme_solent_solentzone_alerts($alerts) {
+	$alerts[] = 'Bad alert';
+	return $alerts;
+}
+
+/**
+ * Placeholder function to generate dashlinks.
+ *
+ * @param array $dashlinks
+ * @return array
+ */
+function theme_solent_solentzone_dashlinks($dashlinks) {
+	return $dashlinks;
+}
