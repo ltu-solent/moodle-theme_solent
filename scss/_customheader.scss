@@ -9,7 +9,7 @@
     }
 }
 
-.pagelayout-course #page-header {
+#page-header {
 	.breadcrumb{
 		background: rgba(255,255,255,0.85);
         padding: 5px 20px;
@@ -52,55 +52,53 @@
     }
 }
 
-.pagelayout-course {
-	#page-header {
+#page-header {
 
-        .header-image {
-            
-            padding-left: 0;            
-            
-			.card-body, .card {
-				background: transparent !important;
-				padding-left: 0;
-                border: none;
-			}		
-            
-            @media only screen and (max-width: 576px) { 
-                padding-bottom: 0 !important;                
-                background-image: none;       
-            }
+	.header-image {
+		
+		padding-left: 0;            
+		
+		.card-body, .card {
+			background: transparent !important;
+			padding-left: 0;
+			border: none;
+		}		
+		
+		@media only screen and (max-width: 576px) { 
+			padding-bottom: 0 !important;                
+			background-image: none;       
 		}
-			
-		/* Black gear dropdown menu icon */
-		.icon-no-margin {
-			color: $font-color;
+	}
+		
+	/* Black gear dropdown menu icon */
+	.icon-no-margin {
+		color: $font-color;
+	}
+
+	.page-header-headings {
+		padding: 0 20px 0 20px;
+		color: $black;
+		letter-spacing: .22em;
+		text-transform: uppercase;
+		background: rgba(255,255,255,0.85);
+		webkit-clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
+		clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+
+		h1{
+			margin: 10px 0 10px 0;
+			font-weight: 400;
 		}
+	}
 
-		.page-header-headings {
-			padding: 0 20px 0 20px;
-			color: $black;
-			letter-spacing: .22em;
-			text-transform: uppercase;
-			background: rgba(255,255,255,0.85);
-			webkit-clip-path: polygon(0 0, 100% 0%, 97% 100%, 0% 100%);
-			clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
-
-            h1{
-                margin: 10px 0 10px 0;
-                font-weight: 400;
-            }
-		 }
-
-		.page-context-header{
-			.header-button-group {
-				position: relative;
-				line-height: $line-height-base;
-				vertical-align: middle;
-				padding-left: 25px;
-			}
-			
-			padding: 0;
+	.page-context-header{
+		.header-button-group {
+			position: relative;
+			line-height: $line-height-base;
+			vertical-align: middle;
+			padding-left: 25px;
 		}
+		
+		padding: 0;
 	}
 }
 
