@@ -208,7 +208,6 @@ function header_image(){
  * @return array
  */
 function theme_solent_solentzone_alerts($alerts) {
-	$alerts[] = 'Bad alert';
 	return $alerts;
 }
 
