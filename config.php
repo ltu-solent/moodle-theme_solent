@@ -21,3 +21,5 @@ $THEME->prescsscallback = 'theme_solent_get_pre_scss';
 $THEME->scss = function($theme) {
     return theme_solent_get_main_scss_content($theme);
 };
+
+$THEME->haseditswitch = true;

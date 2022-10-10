@@ -23,6 +23,7 @@ use stdClass;
 use action_menu;
 use context_course;
 use html_writer;
+use theme_boost\output\core_renderer as core_renderer_base;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -34,7 +35,7 @@ defined('MOODLE_INTERNAL') || die;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-class core_renderer extends \core_renderer {
+class core_renderer extends core_renderer_base {
 
     /** @var custom_menu_item language The language menu if created */
     protected $language = null;
@@ -80,7 +81,7 @@ class core_renderer extends \core_renderer {
      * This renders the breadcrumbs
      * @return string $breadcrumbs
      */
-    public function navbar() {
+    public function navbar(): string {
         $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
         $excludebreadcrumbs = explode( ',', get_config('theme_solent', 'excludebreadcrumbs'));
 
