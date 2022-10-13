@@ -1,7 +1,8 @@
-body{
-  background-color: $white !important;
-  color: $font-color;
-  letter-spacing: .8px;
+/* stylelint-disable declaration-no-important */
+body {
+    background-color: $white !important;
+    color: $font-color;
+    letter-spacing: .8px;
 }
 
 #region-main {
@@ -9,10 +10,10 @@ body{
 }
 
 #region-main-box {
-  background-color: $white;                                                     //ensures the main content will always fully overlap the footer
-  min-height: -webkit-fill-available !important;
-  min-height: 1002px;
-  z-index: 1;
+    background-color: $white; // Ensures the main content will always fully overlap the footer
+    min-height: -webkit-fill-available !important;
+    min-height: 1002px;
+    z-index: 1;
 }
 
 .dropdown-item {
@@ -27,7 +28,8 @@ body{
     &:focus-within {
         outline: 0;
         background-color: $dropdown-link-hover-bg;
-        a, .icon {
+        a,
+        .icon {
             color: $dropdown-link-active-color;
         }
     }
@@ -46,15 +48,15 @@ body{
 }
 
 .progress-bar {
-    background-color: #9BAE4D !important;
+    background-color: #9bae4d !important;
 }
 
 /* Goto top button  */
-#goto-top-link{
-	z-index: 9;
+#goto-top-link {
+    z-index: 9;
 }
 
-#goto-top-link .btn{
+#goto-top-link .btn {
     background-color: $primary;
     border-color: $primary;
     color: $white;
