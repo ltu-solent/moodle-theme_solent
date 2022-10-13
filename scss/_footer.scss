@@ -1,121 +1,126 @@
+/* stylelint-disable declaration-no-important */
 @media (max-width: 1150px) {                                                    //disable the sticky footer on small screens
-  footer#page-footer {
-      position: relative !important;
-  }
+    footer#page-footer {
+        position: relative !important;
+    }
 }
 
 @media (max-height: 750px) {
-  footer#page-footer {
-      position: relative !important;
-  }
+    footer#page-footer {
+        position: relative !important;
+    }
 }
 
-@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {  //target chrome browser only
-  .selector:not(*:root), footer {
-    position: sticky !important;                                                  //allow footer to be overlapped by main content (only works in chrome)
-  }
+@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {  //target chrome browser only
+    .selector:not(*:root),
+    footer {
+        position: sticky !important; // Allow footer to be overlapped by main content (only works in chrome)
+    }
 }
 
 footer {
-  position: relative;
-  width: 100%;
-  padding-top: 50px;
-  background-color: $bg-dark;
-
-
-  h3 {
-    letter-spacing: 0.25em;
-    font-size: 1.25rem;
-    font-weight: 500;
-    white-space: break-spaces;
-  }
-
-  a {
-      color: $footer-links-color !important;
-      text-decoration: none !important;
-      line-height: $line-height-base;
-      &:hover {
-        color: $footer-links-color !important;
-        text-decoration: underline !important;
-      }
-  }
-
-  .footer_list {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  .footer--bottom {
-    border-top: 1px solid $footer-divider-color;
-    padding: 20px 0 20px;
-
-    .footer__copyright {
-      float: left;
-      color: $footer-links-color;
+    position: relative;
+    width: 100%;
+    padding-top: 50px;
+    background-color: $bg-dark;
+    h3 {
+        letter-spacing: 0.25em;
+        font-size: 1.25rem;
+        font-weight: 500;
+        white-space: break-spaces;
     }
 
-    .social-wrap {                                                              //Social media icons in the footer
-      margin-left: auto;
+    a {
+        color: $footer-links-color !important;
+        text-decoration: none !important;
+        line-height: $line-height-base;
+        &:hover {
+            color: $footer-links-color !important;
+            text-decoration: underline !important;
+        }
+    }
 
-          li {
-            display: inline-block;
+    .footer_list {
+        list-style-type: none;
+        padding: 0;
+    }
 
-            .social {
-              background-position: center;
-              background-repeat: no-repeat;
-              border: 2px solid $white;
-              border-radius: 50%;
-              display: inline-block;
-              height: 44px;
-              width: 44px;
-              margin-left: 10px;
-            }
+    .footer--bottom {
+        border-top: 1px solid $footer-divider-color;
+        padding: 20px 0 20px;
 
-              a:hover, a:focus {
+        .footer__copyright {
+            float: left;
+            color: $footer-links-color;
+        }
+        // Social media icons in the footer
+        .social-wrap {
+            margin-left: auto;
+
+            li {
                 display: inline-block;
-                background-color: $white;
-                outline: none;
-                -webkit-transition: all .4s ease-out 0s;
-                transition: all .4s ease-out 0s;
-                text-decoration: none;
-            }
 
-              .twitter {
-                background-image: url("/theme/solent/pix/twitter.svg");
-                background-size: 25px;
+                .social {
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    border: 2px solid $white;
+                    border-radius: 50%;
+                    display: inline-block;
+                    height: 44px;
+                    width: 44px;
+                    margin-left: 10px;
+                }
 
-                &:hover, &:focus {
-                  background-image: url("/theme/solent/pix/twitter-dark.svg");
-              }
-            }
+                a:hover,
+                a:focus {
+                    display: inline-block;
+                    background-color: $white;
+                    outline: none;
+                    -webkit-transition: all .4s ease-out 0s;
+                    transition: all .4s ease-out 0s;
+                    text-decoration: none;
+                }
 
-              .facebook {
-                background-image: url("/theme/solent/pix/facebook.svg");
-                background-size: 14px;
+                .twitter {
+                    background-image: url("/theme/solent/pix/twitter.svg");
+                    background-size: 25px;
 
-                &:hover, &:focus {
-                  background-image: url("/theme/solent/pix/facebook-dark.svg");
-              }
-            }
+                    &:hover,
+                    &:focus {
+                        background-image: url("/theme/solent/pix/twitter-dark.svg");
+                    }
+                }
 
-              .youtube {
-                background-image: url("/theme/solent/pix/youtube.svg");
-                background-size: 25px;
+                .facebook {
+                    background-image: url("/theme/solent/pix/facebook.svg");
+                    background-size: 14px;
 
-                &:hover, &:focus {
-                  background-image: url("/theme/solent/pix/youtube-dark.svg");
-              }
-            }
+                    &:hover,
+                    &:focus {
+                        background-image: url("/theme/solent/pix/facebook-dark.svg");
+                    }
+                }
 
-              .linkedin {
-                background-image: url("/theme/solent/pix/linkedin.svg");
-                background-size: 23px;
+                .youtube {
+                    background-image: url("/theme/solent/pix/youtube.svg");
+                    background-size: 25px;
 
-                &:hover, &:focus {
-                  background-image: url("/theme/solent/pix/linkedin-dark.svg");
-              }
+                    &:hover,
+                    &:focus {
+                        background-image: url("/theme/solent/pix/youtube-dark.svg");
+                    }
+                }
+
+                .linkedin {
+                    background-image: url("/theme/solent/pix/linkedin.svg");
+                    background-size: 23px;
+
+                    &:hover,
+                    &:focus {
+                        background-image: url("/theme/solent/pix/linkedin-dark.svg");
+                    }
+                }
             }
         }
     }
-  }
 }
