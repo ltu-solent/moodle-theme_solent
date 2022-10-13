@@ -11,13 +11,6 @@
     }
 }
 
-@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {  //target chrome browser only
-    .selector:not(*:root),
-    footer {
-        position: sticky !important; // Allow footer to be overlapped by main content (only works in chrome)
-    }
-}
-
 footer {
     position: relative;
     width: 100%;
