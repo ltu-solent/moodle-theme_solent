@@ -1,16 +1,4 @@
 /* stylelint-disable declaration-no-important */
-@media (max-width: 1150px) {                                                    //disable the sticky footer on small screens
-    footer#page-footer {
-        position: relative !important;
-    }
-}
-
-@media (max-height: 750px) {
-    footer#page-footer {
-        position: relative !important;
-    }
-}
-
 footer {
     position: relative;
     width: 100%;
