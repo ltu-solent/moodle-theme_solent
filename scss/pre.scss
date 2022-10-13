@@ -1,20 +1,35 @@
 // Pre SCSS for the theme.
 
+// Solent colours.
+$solent-red: #cd1423 !default;
+$solent-white: #fff !default;
+$solent-black: #000 !default;
+$solent-orange: #ff4d00 !default;
+$solent-yellow: #ffc11b !default;
+$solent-green: #c6c745 !default;
+$solent-sky-blue: #01c3de !default;
+$solent-teal: #1f988a !default;
+$solent-navy: #1d2136 !default;
+$solent-purple: #9243f4 !default;
+$solent-burgundy: #531623 !default;
+$solent-petrol-blue: #083237 !default;
+$solent-sea-blue: #0f435f !default;
+
 // Solent theme settings.
-$brand-color:               #425B6C !default;
-$tab-color:                 #425B6C !default;
+$brand-color:               $solent-red !default; //#425B6C !default;
+$tab-color:                 $solent-red !default; // #425B6C !default;
 $drawer-width:              285px !default;
 $block-width:               360px !default;
 $navbar-height: 			60px;
 
 // Boost overrides.
-$white:                     #fff;
-$black:                     #333;
+$white:                     $solent-white;
+$black:                     $solent-navy; // "Navy" #333;
 $font-family-sans-serif:	'Open Sans', sans-serif;
 $font-family-base:      	'Open Sans', sans-serif;
 $font-size-base:            1rem !default;
 $font-color:            	$black;
-$link-color:                #0066cb;
+$link-color:                $solent-red !default; // #0066cb;
 $body-bg:                   $white;
 $line-height-base:          1.5;
 $dropdown-link-color:       $font-color;
@@ -25,12 +40,12 @@ $body-body-bg:				#f8f9fa;
 // $card-bg: 					rgba(255, 255, 255, 0.98);
 $background:				$brand-color;
 $btn-secondary-color: 		$brand-color;
-$border:              		1px solid rgba(0,0,0,0.125);
-$grey: 						rgba(0,0,0,.125);	
+$border:              		1px solid rgba(0, 0, 0, 0.125);
+$grey: 						rgba(0, 0, 0, .125);
 
 // Blocks.
 $blocks-column-width:       $block-width;
-					
+
 //Custom variables.
 $padding-15:          		15px;
 $font-15:             		0.9375rem;
