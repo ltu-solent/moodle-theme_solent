@@ -11,9 +11,6 @@ body {
 
 #region-main-box {
     background-color: $white; // Ensures the main content will always fully overlap the footer
-    min-height: -webkit-fill-available !important;
-    min-height: 1002px;
-    z-index: 1;
 }
 
 .dropdown-item {
