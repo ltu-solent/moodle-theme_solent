@@ -82,6 +82,8 @@ class core_renderer extends core_renderer_base {
      * @return string $breadcrumbs
      */
     public function navbar(): string {
+        $newnav = new \theme_boost\boostnavbar($this->page);
+        return $this->render_from_template('core/navbar', $newnav);
         $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
         $excludebreadcrumbs = explode( ',', get_config('theme_solent', 'excludebreadcrumbs'));
 
