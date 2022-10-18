@@ -1,15 +1,15 @@
 /* stylelint-disable declaration-no-important */
-.pagelayout-frontpage #logged_out {
+.pagelayout-frontpage.notloggedin {
 
-    nav.fixed-top.navbar {
-        padding-right: 16px !important;
-    }
+    // nav.fixed-top.navbar {
+    //     padding-right: 16px !important;
+    // }
 
-    header {
-        display: none;
-    }
+    // header {
+    //     display: none;
+    // }
 
-    #region-main-box {
+    #page {
         background-image: url("/theme/solent/pix/login.jpg");
         background-repeat: no-repeat;
         min-height: 570px !important;
@@ -17,21 +17,21 @@
         background-position: center;
     }
 
-    section#region-main {
-        display: none;
-    }
+    // section#region-main {
+    //     display: none;
+    // }
 
-    #page-content {
-        padding-bottom: 0 !important;
-    }
+    // #page-content {
+    //     padding-bottom: 0 !important;
+    // }
 
-    .tool_usertours-resettourcontainer {
-        width: 0;
-    }
+    // .tool_usertours-resettourcontainer {
+    //     width: 0;
+    // }
 
-    footer {
-        position: relative !important;
-    }
+    // footer {
+    //     position: relative !important;
+    // }
 
 }
 
