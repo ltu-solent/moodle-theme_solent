@@ -1,14 +1,14 @@
 // Pre SCSS for the theme.
 
 // Solent colours.
-$solent-red: #cd1423 !default;
+$solent-red: #b0111f !default; // AAA(#B0111F) Original(#cd1423)
 $solent-white: #fff !default;
 $solent-black: #000 !default;
 $solent-orange: #ff4d00 !default;
 $solent-yellow: #ffc11b !default;
 $solent-green: #c6c745 !default;
 $solent-sky-blue: #01c3de !default;
-$solent-teal: #1f988a !default;
+$solent-teal: #1c8276 !default; // AA(#1C8276) Original(#1f988a)
 $solent-navy: #1d2136 !default;
 $solent-purple: #9243f4 !default;
 $solent-burgundy: #531623 !default;
@@ -29,7 +29,7 @@ $font-family-sans-serif:	'Open Sans', sans-serif;
 $font-family-base:      	'Open Sans', sans-serif;
 $font-size-base:            1rem !default;
 $font-color:            	$black;
-$link-color:                $solent-red !default; // #0066cb;
+$link-color:                $solent-teal !default; // #0066cb;
 $body-bg:                   $white;
 $line-height-base:          1.5;
 $dropdown-link-color:       $font-color;
@@ -39,7 +39,7 @@ $table-color:               $font-color;
 $body-body-bg:				#f8f9fa;
 // $card-bg: 					rgba(255, 255, 255, 0.98);
 $background:				$brand-color;
-$btn-secondary-color: 		$brand-color;
+$btn-secondary-color: 		$solent-teal;
 $border:              		1px solid rgba(0, 0, 0, 0.125);
 $grey: 						rgba(0, 0, 0, .125);
 
