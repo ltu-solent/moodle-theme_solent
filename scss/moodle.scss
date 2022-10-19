@@ -1,0 +1,12 @@
+// Import font awesome.
+// @import "../../boost/scss/fontawesome/moodle-path";
+@import "../../boost/scss/fontawesome";
+
+// Import the bootstrap variables.
+@import "../../boost/scss/bootstrap/bootstrap";
+// Specific overrides to make Bootstrap RTL.
+@import "../../boost/scss/moodle/bootstrap-rtl";
+@import "../../boost/scss/moodle";
+
+// Our own Moodle scss overrides. Match files with files in boost/scss/moodle dir.
+@import "moodle/moodle";

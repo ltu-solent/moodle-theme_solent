@@ -15,10 +15,13 @@ $string['breadcrumbicon'] = 'The breadcrumb fontawesome icon.';
 $string['breadcrumbicon_desc'] = 'The breadcrumb fontawesome icon.';
 $string['bootswatch'] = 'Bootswatch';
 $string['bootswatch_desc'] = 'A bootswatch is a set of Bootstrap variables and css to style Bootstrap';
+
 $string['choosereadme'] = 'Solent is a modern highly-customisable theme. This theme is intended to be used directly, or as a parent theme when creating new themes utilising Bootstrap 4.';
-$string['currentinparentheses'] = '(current)';
+$string['colours_settings'] = 'Colour settings';
 $string['configtitle'] = 'Solent theme settings';
 $string['courseinstance'] = 'Instance: ';
+$string['currentinparentheses'] = '(current)';
+
 $string['descriptors'] = 'Module descriptors folder';
 $string['descriptors_desc'] = 'ID of module descriptors folder';
 $string['drawerwidth'] = 'Navdrawer width';
@@ -31,18 +34,24 @@ $string['fontsizebase_desc'] = 'Enter a fontsize';
 $string['generalsettings'] = 'General settings';
 $string['headerimagecurrent'] = 'Option {$a->opt} is currently selected.';
 $string['headerimageinstructions'] = 'Click the radio button next to an image to select it. You will automatically redirected back to the previous page.';
+
+$string['layoutsettings'] = 'Layout settings';
+
 $string['moduledescriptor'] = 'Module Descriptor';
 $string['modulerunsfrom'] = 'Module runs: ';
 $string['navbarheight'] = 'Navbar height';
 $string['navbarheight_desc'] = 'Navbar height in pixels';
 $string['nomoduledescriptor'] = 'No module descriptor available';
 $string['nobootswatch'] = 'None';
+
 $string['pluginname'] = 'Solent';
-$string['presetfiles'] = 'Additional theme preset files';
-$string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Solent_Presets">Solent presets</a> for information on creating and sharing your own preset files, and see the <a href="http://moodle.net/Solent">Presets repository</a> for presets that others have shared.';
 $string['preset'] = 'Theme preset';
 $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.';
+$string['presetfiles'] = 'Additional theme preset files';
+$string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Solent_Presets">Solent presets</a> for information on creating and sharing your own preset files, and see the <a href="http://moodle.net/Solent">Presets repository</a> for presets that others have shared.';
+$string['presetsettings'] = 'Preset settings';
 $string['privacy:metadata'] = 'The Solent theme does not store any personal data about any user.';
+
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will be injected at the end of the style sheet.';
 $string['rawscsspre'] = 'Raw initial SCSS';
@@ -51,5 +60,7 @@ $string['region-side-pre'] = 'Right';
 $string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
 $string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
 $string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
+
 $string['tabcolor'] = 'Tab colour';
 $string['tabcolor_desc'] = 'Course page tab colour';
+$string['imagesettings'] = 'Image settings';

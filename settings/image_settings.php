@@ -15,17 +15,22 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Theme images settings
+ *
  * @package   theme_solent
- * @copyright 2016 Ryan Wyllie
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
-    require('settings/presets_settings.php');
-    require('settings/colours_settings.php');
-    require('settings/layout_settings.php');
-    require('settings/image_settings.php');
-}
+$page = new admin_settingpage('theme_solent_images', get_string('imagesettings', 'theme_solent'));
+
+// Background image setting.
+$name = 'theme_solent/backgroundimage';
+$title = get_string('backgroundimage', 'theme_solent');
+$description = get_string('backgroundimage_desc', 'theme_solent');
+$setting = new admin_setting_configstoredfile($name, $title, $description, 'backgroundimage');
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);

@@ -1,8 +1,0 @@
-@each $colour, $value in $solent-colours {
-    .text-#{$colour} {
-        color: $value;
-    }
-    .bg-#{$colour} {
-        background-color: $value;
-    }
-}
