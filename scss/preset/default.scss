@@ -116,6 +116,17 @@ $theme-colors: map-merge((
     info: $info,
     warning: $warning,
     danger: $danger,
+    solent-red: $solent-red,
+    solent-burgundy: $solent-burgundy,
+    solent-orange: $solent-orange,
+    solent-yellow: $solent-yellow,
+    solent-green: $solent-green,
+    solent-sky-blue: $solent-sky-blue,
+    solent-teal: $solent-teal,
+    solent-navy: $solent-navy,
+    solent-purple: $solent-purple,
+    solent-petrol-blue: $solent-petrol-blue,
+    solent-sea-blue: $solent-sea-blue,
 ), $theme-colors);
 // stylelint-enable
 

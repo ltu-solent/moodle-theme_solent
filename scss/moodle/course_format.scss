@@ -1,71 +1,63 @@
 // Course format (onetopic) style overrides.
 /* stylelint-disable */
 /* stylelint-disable declaration-no-important */
-.format_onetopic-tabs {
-    // .nav-tabs,
-    // .nav-item,
-    // .nav-pills,
-    // .nav-link {
-    //     text-align: center;
-    //     background-color: $white !important;
-    //     margin: 0 1px 0 1px;
-    //     border-bottom: 0 !important;
-    // }
-
-    .nav-link.active,
-    .nav-link:hover {
-        border-color: transparent !important;
-        background-color: $brand-color;
-        color: theme-color-level('primary', -12);
+body.format-onetopic {
+    #region-main {
+        overflow-x: inherit;
     }
+    .format_onetopic-tabs {
+        .nav-link {
+            // color: $font-color;
+            // // background-color: $white !important;
+            // border: 2px solid $primary;
+            // border-radius: $border-radius;
+            // margin: 2px;
+            // padding: 8px 4px;
 
-    .tab_content {
-        color: $font-color !important;
-        background-color: $white !important;
-        border: 2px solid $primary !important;
-        border-radius: 5px !important;
-        margin: 2px !important;
-        padding: 8px 4px !important;
-
-        &:hover {
-            background-color: $primary !important;
-            color: $white !important;
+            // Not sure where the icon comes in
+            // .icon {
+            //     margin-left: 5px;
+            //     vertical-align: middle;
+            //     margin-top: -10px;
+            //     margin-right: 0;
+            // }
         }
-
-        .icon {
-            margin-left: 5px;
-            vertical-align: middle;
-            margin-top: -10px;
-            margin-right: 0;
+    
+        .nav-link.active,
+        .nav-link:hover {
+            border-color: transparent;
+            background-color: $brand-color;
+            color: theme-color-level('solent-red', -12);
         }
+    
+        // .active .tab_content {
+        //     background-color: $tab-color !important;
+        //     color: $white !important;
+        // }
+    
+        // .marker .icon {
+        //     margin-top: -3px;
+        // }
+    
+        // [title="Overview"] .marker {
+        //     font-weight: normal;
+        // }
+    
+        // .tab_initial,
+        // .tab_level_1 {
+        //     font-size: 0.85rem;
+        // }
     }
-
-    // .active .tab_content {
-    //     background-color: $tab-color !important;
-    //     color: $white !important;
-    // }
-
-    // .marker .icon {
-    //     margin-top: -3px;
-    // }
-
-    // [title="Overview"] .marker {
-    //     font-weight: normal;
-    // }
-
-    // .tab_initial,
-    // .tab_level_1 {
-    //     font-size: 0.85rem;
-    // }
 }
 
-@media (max-width: 767.98px) {
-    // .onetopic {
-    //     .nav-tabs,
-    //     .nav-pills,
-    //     .nav-link {
-    //         background-color: $white !important;
-    //         margin: 0;
-    //     }
-    // }
+@include media-breakpoint-down(sm) {
+    body.format-onetopic {
+        .format_onetopic-tabs {
+            &.nav-tabs:not(.more-nav) .nav-link.active:not(:disabled):not(.disabled).active {
+                border-color: transparent;
+                background-color: $brand-color;
+                color: theme-color-level('solent-red', -12);
+            }
+        }
+    }
 }
