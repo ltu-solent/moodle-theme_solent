@@ -46,6 +46,7 @@ class core_renderer extends core_renderer_base {
      * @return string HTML to display the main header.
      */
     public function full_header() {
+        global $CFG;
 		$pagetype = $this->page->pagetype;
         $homepage = get_home_page();
         $homepagetype = null;
@@ -66,13 +67,19 @@ class core_renderer extends core_renderer_base {
                 ['id' => 'region-main-settings-menu']
             ));
         }
-
         $header = new stdClass();
+        if (!empty($CFG->maintenance_enabled)) {
+            // This replaces page_heading_button which now just outputs maintenance mode.
+            $header->pageheadingbutton = html_writer::link(
+                $CFG->wwwroot . '/' . $CFG->admin . '/settings.php?section=maintenancemode',
+                get_string('maintenancemode', 'admin'), ['class' => 'btn btn-warning']);
+        }
+
         $header->settingsmenu = $this->context_header_settings_menu();
         $header->contextheader = $this->context_header();
         $header->hasnavbar = empty($this->page->layout_options['nonavbar']);
         $header->navbar = $this->navbar();
-        $header->pageheadingbutton = $this->page_heading_button();
+        // $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
         if (!empty($pagetype) && !empty($homepagetype) && $pagetype == $homepagetype) {
