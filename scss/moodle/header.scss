@@ -1,19 +1,19 @@
 #page-header {
     .breadcrumb {
-        background: rgba(255, 255, 255, 0.85);
-        padding: 5px 20px;
-        margin-top: 5px;
+        background: rgba($white, .85);
+        padding: map-get($spacers, 2) $spacer;
+        margin-top: map-get($spacers, 2);
         clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
         border-radius: 0;
     }
     .page-header-headings {
-        padding: 0 20px 0 20px;
-        background: rgba(255, 255, 255, 0.85);
+        padding: 0 $spacer;
+        background: rgba($white, .85);
         clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
 
         h1 {
-            margin: 10px 0 10px 0;
-            font-weight: 400;
+            margin: $spacer 0;
+            font-weight: $font-weight-normal;
         }
     }
     &.opt01 {
