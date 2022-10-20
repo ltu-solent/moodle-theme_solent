@@ -48,7 +48,7 @@
         "hasregionmainsettingsmenu": false
     }
 }}
-{{> theme_solent/head }}
+{{> theme_boost/head }}
 
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
@@ -57,7 +57,7 @@
 
     {{{ output.standard_top_of_body_html }}}
 
-    {{> theme_boost/navbar }}
+    {{> theme_solent/navbar }}
 
     <div id="page" class="container-fluid d-print-block">
         {{{ output.full_header }}}
@@ -70,7 +70,8 @@
             <div id="region-main-box" class="col-12">
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
-                    <div> {{{ region_main_settings_menu }}} </div>
+                    <div> {{{ regionmainsettingsmenu }}} </div>
+                    <!-- region_main_settings_menu -->
                 </div>
                 {{/hasregionmainsettingsmenu}}
                 <section id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
@@ -98,7 +99,6 @@
                 </section>
                 {{/hasblocks}}
             </div>
-          <div class="tool_usertours-resettourcontainer"></div>
         </div>
     </div>
     {{{ output.standard_after_main_region_html }}}

@@ -46,7 +46,16 @@ class core_renderer extends core_renderer_base {
      * @return string HTML to display the main header.
      */
     public function full_header() {
-		if ($this->page->include_region_main_settings_in_header_actions() &&
+		$pagetype = $this->page->pagetype;
+        $homepage = get_home_page();
+        $homepagetype = null;
+        // Add a special case since /my/courses is a part of the /my subsystem.
+        if ($homepage == HOMEPAGE_MY || $homepage == HOMEPAGE_MYCOURSES) {
+            $homepagetype = 'my-index';
+        } else if ($homepage == HOMEPAGE_SITE) {
+            $homepagetype = 'site-index';
+        }
+        if ($this->page->include_region_main_settings_in_header_actions() &&
                 !$this->page->blocks->is_block_present('settings')) {
             // Only include the region main settings if the page has requested it and it doesn't already have
             // the settings block on it. The region main settings are included in the settings block and
@@ -66,22 +75,24 @@ class core_renderer extends core_renderer_base {
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
+        if (!empty($pagetype) && !empty($homepagetype) && $pagetype == $homepagetype) {
+            $header->welcomemessage = \core_user::welcome_message();
+        }
 
 // SU_AMEND START - Course: Header images
-		if(strpos($_SERVER['REQUEST_URI'], 'course/view')){		
-			$additionalheader = header_image();
-			$header->imageclass = $additionalheader->imageclass;
-			$header->imageselector = $additionalheader->imageselector;
-		}
+        $additionalheader = theme_solent_header_image();
+        $header->imageclass = $additionalheader->imageclass;
+        $header->imageselector = $additionalheader->imageselector;
 // SU_AMEND END
-        return $this->render_from_template('theme_solent/header', $header);
+        return $this->render_from_template('core/full_header', $header);
     }
-    
+
     /**
      * This renders the breadcrumbs
      * @return string $breadcrumbs
      */
     public function navbar(): string {
+        // Give up our navbar for core?
         $newnav = new \theme_boost\boostnavbar($this->page);
         return $this->render_from_template('core/navbar', $newnav);
         $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
