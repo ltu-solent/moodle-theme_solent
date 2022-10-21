@@ -7,11 +7,11 @@ $solent-yellow: #ffc11b !default;
 $solent-green: #c6c745 !default;
 $solent-sky-blue: #01c3de !default;
 $solent-teal: #1c8276 !default; // AA(#1C8276) Original(#1f988a)
-$solent-navy: #1d2136 !default;
+$solent-navy: #3f4254 !default; //  (#3f4254) Original(#1d2136)
 $solent-purple: #9243f4 !default;
 $solent-burgundy: #531623 !default;
 $solent-petrol-blue: #083237 !default;
-$solent-sea-blue: #0f435f !default;
+$solent-sea-blue: #2082b8 !default;
 
 // Bootstrap variables
 $white:    #fff !default;
@@ -38,10 +38,10 @@ $teal:    #20c997 !default;
 $cyan:    #008196 !default;
 
 
-$brand-color:               $solent-sea-blue !default; //#425B6C !default;
-$tab-color:                 $brand-color !default; // #425B6C !default;
+$brand-color:               $solent-navy !default; //#425B6C !default;
+$tab-color:                 rgba($solent-navy, .85) !default; // #425B6C !default;
 $font-color:            	$black;
-$link-color:                $solent-teal !default; // #0066cb;
+$link-color:                $solent-sea-blue !default; // #0066cb;
 
 $primary:       $brand-color !default;
 $success:       $green !default;
@@ -127,6 +127,13 @@ $theme-colors: map-merge((
     solent-purple: $solent-purple,
     solent-petrol-blue: $solent-petrol-blue,
     solent-sea-blue: $solent-sea-blue,
+    gray-100: $gray-100,
+    gray-200: $gray-200,
+    gray-300: $gray-300,
+    gray-400: $gray-400,
+    gray-500: $gray-500,
+    gray-600: $gray-600,
+    gray-700: $gray-700,
 ), $theme-colors);
 // stylelint-enable
 
