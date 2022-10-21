@@ -6,47 +6,12 @@ body.format-onetopic {
         overflow-x: inherit;
     }
     .format_onetopic-tabs {
-        .nav-link {
-            // color: $font-color;
-            // // background-color: $white !important;
-            // border: 2px solid $primary;
-            // border-radius: $border-radius;
-            // margin: 2px;
-            // padding: 8px 4px;
-
-            // Not sure where the icon comes in
-            // .icon {
-            //     margin-left: 5px;
-            //     vertical-align: middle;
-            //     margin-top: -10px;
-            //     margin-right: 0;
-            // }
-        }
-    
         .nav-link.active,
         .nav-link:hover {
             border-color: transparent;
             background-color: $brand-color;
             color: theme-color-level('solent-red', -12);
         }
-    
-        // .active .tab_content {
-        //     background-color: $tab-color !important;
-        //     color: $white !important;
-        // }
-    
-        // .marker .icon {
-        //     margin-top: -3px;
-        // }
-    
-        // [title="Overview"] .marker {
-        //     font-weight: normal;
-        // }
-    
-        // .tab_initial,
-        // .tab_level_1 {
-        //     font-size: 0.85rem;
-        // }
     }
 }
 
@@ -55,8 +20,8 @@ body.format-onetopic {
         .format_onetopic-tabs {
             &.nav-tabs:not(.more-nav) .nav-link.active:not(:disabled):not(.disabled).active {
                 border-color: transparent;
-                background-color: $tab-color;
-                color: theme-color-level('solent-red', -12);
+                background-color: $primary;
+                color: theme-color-level('primary', -12);
             }
         }
     }
