@@ -63,4 +63,5 @@ $string['privacy:drawernavopen'] = 'The current preference for the navigation dr
 
 $string['tabcolor'] = 'Tab colour';
 $string['tabcolor_desc'] = 'Course page tab colour';
+$string['totop'] = 'To top';
 $string['imagesettings'] = 'Image settings';
