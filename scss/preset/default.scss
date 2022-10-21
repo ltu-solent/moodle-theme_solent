@@ -38,12 +38,12 @@ $teal:    #20c997 !default;
 $cyan:    #008196 !default;
 
 
-$brand-color:               $solent-red !default; //#425B6C !default;
+$brand-color:               $solent-navy !default; //#425B6C !default;
 $tab-color:                 $solent-navy !default; // #425B6C !default;
 $font-color:            	$black;
 $link-color:                $solent-teal !default; // #0066cb;
 
-$primary:       $blue !default;
+$primary:       $brand-color !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $orange !default;

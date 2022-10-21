@@ -35,22 +35,22 @@ $page->add($setting);
 
 // Variable $body-color.
 // We use an empty default value because the default colour should come from the preset.
-$name = 'theme_solent/brandcolor';
-$title = get_string('brandcolor', 'theme_solent');
-$description = get_string('brandcolor_desc', 'theme_solent');
-$default = '#425B6C';
-$setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
+// $name = 'theme_solent/brandcolor';
+// $title = get_string('brandcolor', 'theme_solent');
+// $description = get_string('brandcolor_desc', 'theme_solent');
+// $default = '#425B6C';
+// $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+// $setting->set_updatedcallback('theme_reset_all_caches');
+// $page->add($setting);
 
 // Onetopic tab color
-$name = 'theme_solent/tabcolor';
-$title = get_string('tabcolor', 'theme_solent');
-$description = get_string('tabcolor_desc', 'theme_solent');
-$default = '#425B6C';
-$setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
+// $name = 'theme_solent/tabcolor';
+// $title = get_string('tabcolor', 'theme_solent');
+// $description = get_string('tabcolor_desc', 'theme_solent');
+// $default = '#425B6C';
+// $setting = new admin_setting_configcolourpicker($name, $title, $description, $default);
+// $setting->set_updatedcallback('theme_reset_all_caches');
+// $page->add($setting);
 
 
 // Raw SCSS to include after the content.

@@ -55,7 +55,7 @@ body.format-onetopic {
         .format_onetopic-tabs {
             &.nav-tabs:not(.more-nav) .nav-link.active:not(:disabled):not(.disabled).active {
                 border-color: transparent;
-                background-color: $brand-color;
+                background-color: $tab-color;
                 color: theme-color-level('solent-red', -12);
             }
         }
