@@ -8,7 +8,8 @@
     }
     .page-header-headings {
         padding: 0 $spacer;
-        background: rgba($white, .85);
+        background: rgba($solent-red, .85);
+        color: theme-color-level('solent-red', -12);
         clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
 
         h1 {
@@ -796,4 +797,16 @@
     &.opt257 {
         background-image: url("/theme/solent/pix/unit-header/257.png");
     }
+}
+
+.solentslice {
+    background-image: url("/theme/solent/pix/unit-header/red-white-wave-banner.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 24px;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    opacity: .7;
 }

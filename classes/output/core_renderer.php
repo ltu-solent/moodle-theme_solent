@@ -87,9 +87,12 @@ class core_renderer extends core_renderer_base {
         }
 
 // SU_AMEND START - Course: Header images
-        $additionalheader = theme_solent_header_image();
-        $header->imageclass = $additionalheader->imageclass;
-        $header->imageselector = $additionalheader->imageselector;
+        $showbanner = false;
+        if ($showbanner) {
+            $additionalheader = theme_solent_header_image();
+            $header->imageclass = $additionalheader->imageclass;
+            $header->imageselector = $additionalheader->imageselector;
+        }
 // SU_AMEND END
         return $this->render_from_template('core/full_header', $header);
     }
