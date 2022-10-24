@@ -59,70 +59,33 @@
             {{/output.moodle_release}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg col-md-6 col-sm-12">
-            <h3 class="footer__title footer__item nav__item footer_list">Study</h3>
-            <ul class="vertical footer_list">
-                <li><a class="footer__item nav__item" href="https://learn.solent.ac.uk/succeed">Succeed@Solent</a></li>
-                <li><a class="footer__item nav__item" href="https://learn.solent.ac.uk/succeed/referencing" target="_blank">Referencing</a></li>
-                <li><a class="footer__item nav__item" href="https://libguides.solent.ac.uk/" target="_blank">Subject Guides</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/studying/library" target="_blank">Library</a></li>
-                <li><a class="footer__item nav__item" href="https://ethics.app.solent.ac.uk" target="_blank">Ethics</a></li>
-            </ul>
+    {{#output.solent_footer_menu}}
+        <div class="row">
+        {{#output.solent_footer_menu.vertical}}
+            {{{.}}}
+        {{/output.solent_footer_menu.vertical}}
         </div>
-        <div class="col-lg col-md-6 col-sm-12">
-            <h3 class="footer__title footer__item nav__item footer_list">Organise</h3>
-            <ul class="vertical footer_list">
-                <li><a class="footer__item nav__item" href="https://email.solent.ac.uk" target="_blank">Email</a></li>
-                <li><a class="footer__item nav__item" href="https://timetable.solent.ac.uk/" target="_blank">Timetables</a></li>
-                <li><a class="footer__item nav__item" href="https://www.solent.ac.uk/about/term-dates" target="_blank">Term Dates</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/" target="_blank">Portal</a></li>
-            </ul>
-        </div>
-        <div class="col-lg col-md-6 col-sm-12">
-            <h3 class="footer__title footer__item nav__item footer_list">Support</h3>
-            <ul class="vertical footer_list">
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/student-hub" target="_blank">Student Hub</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/studying/learning-technologies-helpdesk" target="_blank">IT & Media</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/studying/print-service" target="_blank">Printing</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/studying/attendance-monitoring/extenuating-circumstances" target="_blank">Extenuating Circumstances</a></li>
-            </ul>
-        </div>
-        <div class="col-lg col-md-6 col-sm-12">
-            <h3 class="footer__title footer__item nav__item footer_list">Solent Futures</h3>
-            <ul class="vertical footer_list">
-                <li><a class="footer__item nav__item" href="https://solentfutures.careercentre.me/u/qdvwuzkl" target="_blank">Solent Futures Online</a></li>
-                <li><a class="footer__item nav__item" href="https://solentfutures.careercentre.me/u/7loi92gn" target="_blank">Job Vacancies</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/careers/cvs-applications-and-interviews" target="_blank">CV Help</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/careers/placements-and-work-experience" target="_blank">Placements</a></li>
-                <li><a class="footer__item nav__item" href="https://students.solent.ac.uk/events" target="_blank">Events &amp; Workshops</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer--bottom">
-        <div class="container-fluid footer_bottom">
-            <div class="row">
-                <div class="col-lg-8 col-sm-12">
-                    <a class="footer__item nav__item" href="https://www.solent.ac.uk/disclaimer" target="_blank">Disclaimer</a>&nbsp&nbsp
-                    <a class="footer__item nav__item" href="https://learn.solent.ac.uk/terms">Terms &amp; Conditions</a>&nbsp&nbsp
-                    <a class="footer__item nav__item" href="https://www.solent.ac.uk/disclaimer/cookies" target="_blank">Cookies</a>&nbsp&nbsp
-                    <a class="footer__item nav__item" href="https://learn.solent.ac.uk/accessibilitystatement" target="_blank">Accessibility Statement</a>
-                    <br><br>
-                    <p class="footer__copyright">© Solent University</p>
-                </div>
-                <div class="col-lg-4 col-sm-12">
-                    <nav class="nav">
-                        <ul class="menu social-wrap">
-                            <li><a class="social twitter" href="https://twitter.com/solentuni" target="_blank" aria-label="Solent Twitter"></a></li>
-                            <li><a class="social facebook" href="https://www.facebook.com/solentuniversity" target="_blank" aria-label="Solent Facebook"></a></li>
-                            <li><a class="social youtube" href="https://www.youtube.com/user/SolentUniOfficial" target="_blank" aria-label="Solent YouTube"></a></li>
-                            <li><a class="social linkedin" href="https://www.linkedin.com/edu/southampton-solent-university-12644" target="_blank" aria-label="Solent LinkedIn"></a></li>
-                        </ul>
-                    </nav>
+        <div class="footer--bottom">
+            <div class="container-fluid footer_bottom">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        {{{output.solent_footer_menu.tandcs}}}
+                        <br><br>
+                        <p class="footer__copyright">{{#str}} copyright, theme_solent {{/str}}</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        {{#output.solent_footer_menu.social}}
+                        <nav class="nav">
+                            <ul class="menu social-wrap">
+                                {{{.}}}
+                            </ul>
+                        </nav>
+                        {{/output.solent_footer_menu.social}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/output.solent_footer_menu}}
     <div class="footer-content-debugging footer-dark text-light">
         <div class="container-fluid footer-dark-inner">
             {{{ output.debug_footer_html }}}

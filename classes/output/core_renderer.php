@@ -16,14 +16,13 @@
 
 namespace theme_solent\output;
 
-use custom_menu_item;
-use custom_menu;
 use navigation_node;
 use stdClass;
 use action_menu;
 use context_course;
 use html_writer;
 use theme_boost\output\core_renderer as core_renderer_base;
+use theme_solent\helper as solent_helper;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -175,6 +174,33 @@ class core_renderer extends core_renderer_base {
                 $content .= $this->render($alert);
             }
         }
+        return $content;
+    }
+
+    public function solent_footer_menu() {
+        $content = new stdClass();
+        $content->vertical = [];
+        $columns = ['study', 'organise', 'support', 'solentfutures'];
+        foreach ($columns as $column) {
+            $menuconfig = get_config('theme_solent', $column . 'menuitems');
+            $menu = new vertical_footer_menu($menuconfig, get_string($column, 'theme_solent'));
+            if ($menu->count() > 0) {
+                $content->vertical[] = $this->render($menu);
+            }
+        }
+        // Terms and conditions.
+        $menuconfig = get_config('theme_solent', 'tandcsmenuitems');
+        $menu = new tandcs_footer_menu($menuconfig);
+        if ($menu->count() > 0) {
+            $content->tandcs = $this->render($menu);
+        }
+        // Social links.
+        $menuconfig = get_config('theme_solent', 'socialmenuitems');
+        $menu = new social_footer_menu($menuconfig);
+        if ($menu->count() > 0) {
+            $content->social = $this->render($menu);
+        }
+        // print_r($content);
         return $content;
     }
 

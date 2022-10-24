@@ -15,18 +15,42 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Vertical footer menu
+ *
  * @package   theme_solent
- * @copyright 2016 Ryan Wyllie
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace theme_solent\output;
+
+use renderable;
+use renderer_base;
+use stdClass;
+use templatable;
+use theme_solent\helper;
+
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
-    require('settings/presets_settings.php');
-    require('settings/colours_settings.php');
-    require('settings/layout_settings.php');
-    require('settings/image_settings.php');
-    require('settings/footer_settings.php');
+class vertical_footer_menu implements renderable, templatable {
+
+    private $title;
+    private $nodes;
+
+    public function __construct($menutext, $title = null) {
+        $this->title = $title;
+        $this->nodes = helper::convert_text_to_menu($menutext);
+    }
+
+    public function export_for_template(renderer_base $output) {
+        $context = new stdClass();
+        $context->title = $this->title;
+        $context->nodes = $this->nodes;
+        return $context;
+    }
+
+    public function count() {
+        return count($this->nodes);
+    }
 }

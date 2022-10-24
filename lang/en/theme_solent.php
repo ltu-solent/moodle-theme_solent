@@ -19,6 +19,7 @@ $string['bootswatch_desc'] = 'A bootswatch is a set of Bootstrap variables and c
 $string['choosereadme'] = 'Solent is a modern highly-customisable theme. This theme is intended to be used directly, or as a parent theme when creating new themes utilising Bootstrap 4.';
 $string['colours_settings'] = 'Colour settings';
 $string['configtitle'] = 'Solent theme settings';
+$string['copyright'] = '&copy; Solent University';
 $string['courseinstance'] = 'Instance: ';
 $string['currentinparentheses'] = '(current)';
 
@@ -26,14 +27,21 @@ $string['descriptors'] = 'Module descriptors folder';
 $string['descriptors_desc'] = 'ID of module descriptors folder';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
+
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
 $string['excludebreadcrumbs_desc'] = 'Breadcrumb names to exclude (comma separated)';
 $string['externalexaminer'] = 'External Examiner report';
+
 $string['fontsizebase'] = 'Theme base fontsize';
 $string['fontsizebase_desc'] = 'Enter a fontsize';
+$string['footer_settings'] = 'Footer settings';
+
 $string['generalsettings'] = 'General settings';
+
 $string['headerimagecurrent'] = 'Option {$a->opt} is currently selected.';
 $string['headerimageinstructions'] = 'Click the radio button next to an image to select it. You will automatically redirected back to the previous page.';
+
+$string['imagesettings'] = 'Image settings';
 
 $string['layoutsettings'] = 'Layout settings';
 
@@ -44,6 +52,10 @@ $string['navbarheight_desc'] = 'Navbar height in pixels';
 $string['nomoduledescriptor'] = 'No module descriptor available';
 $string['nobootswatch'] = 'None';
 
+$string['organise'] = 'Organise';
+$string['organisemenuitems'] = 'Organise menu items';
+$string['organisemenuitems_desc'] = 'Organise menu items';
+
 $string['pluginname'] = 'Solent';
 $string['preset'] = 'Theme preset';
 $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.';
@@ -51,17 +63,30 @@ $string['presetfiles'] = 'Additional theme preset files';
 $string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Solent_Presets">Solent presets</a> for information on creating and sharing your own preset files, and see the <a href="http://moodle.net/Solent">Presets repository</a> for presets that others have shared.';
 $string['presetsettings'] = 'Preset settings';
 $string['privacy:metadata'] = 'The Solent theme does not store any personal data about any user.';
+$string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
+$string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
+$string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
 
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will be injected at the end of the style sheet.';
 $string['rawscsspre'] = 'Raw initial SCSS';
 $string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS code, it will be injected before everything else. Most of the time you will use this setting to define variables.';
 $string['region-side-pre'] = 'Right';
-$string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
-$string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
-$string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
+
+$string['socialmenuitems'] = 'Social menu items';
+$string['socialmenuitems_desc'] = 'Social menu items';
+$string['solentfutures'] = 'Solent Futures';
+$string['solentfuturesmenuitems'] = 'Solent Futures menu items';
+$string['solentfuturesmenuitems_desc'] = 'Solent Futures menu items';
+$string['study'] = 'Study';
+$string['studymenuitems'] = 'Study menu items';
+$string['studymenuitems_desc'] = 'Study menu items';
+$string['support'] = 'Support';
+$string['supportmenuitems'] = 'Support menu items';
+$string['supportmenuitems_desc'] = 'Support menu items';
 
 $string['tabcolor'] = 'Tab colour';
 $string['tabcolor_desc'] = 'Course page tab colour';
+$string['tandcsmenuitems'] = 'Terms & Conditions menu items';
+$string['tandcsmenuitems_desc'] = 'Terms & Conditions menu items';
 $string['totop'] = 'To top';
-$string['imagesettings'] = 'Image settings';

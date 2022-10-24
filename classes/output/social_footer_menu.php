@@ -15,18 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Social footer menu
+ *
  * @package   theme_solent
- * @copyright 2016 Ryan Wyllie
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace theme_solent\output;
+
+use renderable;
+use templatable;
+
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
-    require('settings/presets_settings.php');
-    require('settings/colours_settings.php');
-    require('settings/layout_settings.php');
-    require('settings/image_settings.php');
-    require('settings/footer_settings.php');
+class social_footer_menu extends vertical_footer_menu implements renderable, templatable {
+
 }
