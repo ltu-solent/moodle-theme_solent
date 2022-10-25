@@ -91,6 +91,7 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+        <div id="topofscroll2"></div>
         <div id="topofscroll" class="main-inner">
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
@@ -170,6 +171,11 @@
     {{{ output.standard_after_main_region_html }}}
 </div>
 
+<a id="goto-top-link" class="btn btn-light" aria-label="{{#str}} totop, theme_solent {{/str}}">
+    {{#pix}} i/up, core{{/pix}}
+</a>
+
+
 </body>
 </html>
 {{#js}}
@@ -177,5 +183,8 @@ M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
     Drawer.init();
     M.util.js_complete('theme_boost/loader');
+});
+require(['theme_solent/solent'], function(Solent) {
+    Solent.totop();
 });
 {{/js}}

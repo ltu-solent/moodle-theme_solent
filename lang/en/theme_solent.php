@@ -89,4 +89,4 @@ $string['tabcolor'] = 'Tab colour';
 $string['tabcolor_desc'] = 'Course page tab colour';
 $string['tandcsmenuitems'] = 'Terms & Conditions menu items';
 $string['tandcsmenuitems_desc'] = 'Terms & Conditions menu items';
-$string['totop'] = 'To top';
+$string['totop'] = 'Back to top';
