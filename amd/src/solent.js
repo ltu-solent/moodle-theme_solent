@@ -13,7 +13,7 @@ export const totop = () => {
         button.setAttribute('id', 'back-to-top');
         button.setAttribute('class', 'btn btn-icon bg-secondary icon-no-margin d-print-none');
         button.setAttribute('aria-label', string);
-        button.innerHTML = '<i aria-hidden="true" class="fa fa-chevron-up fa-fw "></i>';
+        button.innerHTML = '<i aria-hidden="true" class="fa fa-chevron-up fa-fw"></i>';
         footer.after(button);
         // This function fades the button in when the page is scrolled down or fades it out
         // if the user is at the top of the page again.
