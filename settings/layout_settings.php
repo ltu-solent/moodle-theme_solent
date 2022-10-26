@@ -90,4 +90,13 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+// To banner or not to banner.
+$name = 'theme_solent/enablebanner';
+$title = new lang_string('enablebanner', 'theme_solent');
+$description = new lang_string('enablebanner_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 $settings->add($page);

@@ -28,6 +28,8 @@ $string['descriptors_desc'] = 'ID of module descriptors folder';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
 
+$string['enablebanner'] = 'Enable course banner';
+$string['enablebanner_desc'] = 'This will turn on or off banners across all courses';
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
 $string['excludebreadcrumbs_desc'] = 'Breadcrumb names to exclude (comma separated)';
 $string['externalexaminer'] = 'External Examiner report';

@@ -86,7 +86,7 @@ class core_renderer extends core_renderer_base {
         }
 
 // SU_AMEND START - Course: Header images
-        $showbanner = false;
+        $showbanner = get_config('theme_solent', 'enablebanner');
         if ($showbanner) {
             $additionalheader = theme_solent_header_image();
             $header->imageclass = $additionalheader->imageclass;
