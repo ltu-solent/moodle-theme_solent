@@ -12,6 +12,19 @@ body.format-onetopic {
             background-color: $brand-color;
             color: theme-color-level('solent-red', -12);
         }
+        .nav-item {
+            &.parenttab {
+                a {
+                    @include caret();
+                }
+            }
+            &.marker {
+                a:before {
+                    @extend .fa;
+                    @extend .fa-lightbulb-o;
+                }
+            }
+        }
     }
 }
 
