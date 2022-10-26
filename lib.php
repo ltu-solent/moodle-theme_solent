@@ -180,4 +180,6 @@ function theme_solent_header_image(){
 	return $header;
 }
 
-
+function theme_solent_page_init(moodle_page $page) {
+    $page->requires->js_call_amd('theme_solent/courseformat', 'sections');
+}
