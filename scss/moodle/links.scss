@@ -1,0 +1,35 @@
+// Accessible focus styling for links, add .aalink to links with custom css classes to get
+// accessible focus styles.
+#region-main {
+    .aalink,
+    #page-footer a:not([class]),
+    .arrow_link,
+    a:not([class]),
+    .activityinstance > a {
+        box-shadow: 0 1px transparent, 0 1px $link-color;
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .aalink,
+    #page-footer a:not([class]),
+    .arrow_link,
+    a:not([class]),
+    #page-navbar a,
+    .activityinstance > a {
+        &.focus,
+        &:focus,
+        &:hover {
+            outline: 1px solid transparent;
+            color: $gray-900;
+            background-color: lighten($link-color, 50%);
+            // background-color: $chi-gold;
+            box-shadow: 0 -#{$btn-focus-width} lighten($link-color, 50%), 0 $btn-focus-width $link-color;
+        }
+        &:focus:hover {
+            text-decoration: none;
+        }
+    }
+}
