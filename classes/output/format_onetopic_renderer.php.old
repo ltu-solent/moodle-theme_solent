@@ -17,7 +17,7 @@ use core_course_category;
 require_once($CFG->dirroot.'/course/format/onetopic/renderer.php');
 require_once($CFG->dirroot.'/course/format/renderer.php');
 
-class format_onetopic_renderer extends \format_onetopic_renderer {
+class format_onetopic_renderer extends \format_onetopic\output\renderer {
 
   /**
    * Output the html for a single section page .
