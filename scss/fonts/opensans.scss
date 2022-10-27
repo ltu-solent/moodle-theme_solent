@@ -1,0 +1,7 @@
+@font-face { /* where FontName and fontname represents the name of the font you want to add */
+    font-family: 'Open Sans';
+    src: url([[font:theme|OpenSans-Regular.ttf]]);
+    src: url([[font:theme|OpenSans-Regular.ttf]]) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

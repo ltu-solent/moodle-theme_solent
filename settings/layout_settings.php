@@ -54,15 +54,6 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Font size.
-$name = 'theme_solent/fontsizebase';
-$title = get_string('fontsizebase', 'theme_solent');
-$description = get_string('fontsizebase_desc', 'theme_solent');
-$default = '1rem';
-$setting = new admin_setting_configtext($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
-
 // Module descriptor.
 $name = 'theme_solent/descriptors';
 $title = get_string('descriptors', 'theme_solent');
@@ -105,6 +96,28 @@ $title = new lang_string('enableaccessibilitytool', 'theme_solent');
 $description = new lang_string('enableaccessibilitytool_desc', 'theme_solent');
 $default = 0;
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Font.
+$name = 'theme_solent/fontfamily';
+$title = new lang_string('fontfamily', 'theme_solent');
+$description = new lang_string('fontfamily_desc', 'theme_solent');
+$default = 'Open Sans';
+$options = [
+    'Open Sans' => 'Open Sans',
+    'PT Sans' => 'PT Sans'
+];
+$setting = new admin_setting_configselect($name, $title, $description, $default, $options);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Font size.
+$name = 'theme_solent/fontsizebase';
+$title = get_string('fontsizebase', 'theme_solent');
+$description = get_string('fontsizebase_desc', 'theme_solent');
+$default = '0.9375rem';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 

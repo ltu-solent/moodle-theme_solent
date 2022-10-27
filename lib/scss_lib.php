@@ -69,3 +69,27 @@ function theme_solent_get_extra_scss($theme) {
 
     return $extrascss;
 }
+
+function theme_solent_get_pre_scss($theme) {
+    $prescss = '';
+    $configurable = [
+        'fontfamily' => ['font-family-base'],
+        'fontsizebase' => ['font-size-base']
+    ];
+    foreach ($configurable as $configkey => $targets) {
+        $value = $theme->settings->{$configkey};
+        if (empty($value)) {
+            continue;
+        }
+        array_map(function($target) use (&$prescss, $value) {
+            $prescss .= '$' . $target . ': ' . $value . ";\n";
+        }, (array) $targets);
+    }
+
+    // Prepend pre-scss.
+    if (!empty($theme->settings->scsspre)) {
+        $prescss .= $theme->settings->scsspre;
+    }
+
+    return $prescss;
+}

@@ -63,9 +63,10 @@ $enable-responsive-font-sizes: true !default;
 $body-color:    $gray-900 !default;
 
 // Fonts
-$font-size-base: 0.9375rem !default;
+// $font-size-base: 0.9375rem !default;
 $rfs-base-font-size: 0.9rem !default;
 $headings-font-weight:   700 !default;
+$font-family-base: 'PT Sans', Arial, sans-serif !default;
 
 // Navbar
 $navbar-dark-hover-color:           rgba($white, 1) !default;

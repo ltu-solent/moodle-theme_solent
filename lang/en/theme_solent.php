@@ -37,6 +37,8 @@ $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
 $string['excludebreadcrumbs_desc'] = 'Breadcrumb names to exclude (comma separated)';
 $string['externalexaminer'] = 'External Examiner report';
 
+$string['fontfamily'] = 'Font family';
+$string['fontfamily_desc'] = 'This choice will apply across SOL';
 $string['fontsizebase'] = 'Theme base fontsize';
 $string['fontsizebase_desc'] = 'Enter a fontsize';
 $string['footer_settings'] = 'Footer settings';
