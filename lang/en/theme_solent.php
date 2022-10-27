@@ -28,6 +28,9 @@ $string['descriptors_desc'] = 'ID of module descriptors folder';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
 
+$string['enableaccessibilitytool'] = 'Enable accessibility tool';
+$string['enableaccessibilitytool_desc'] = 'Accessibility tool will allow users to choose their own colour scheme,
+    font and font sizes for themselves.';
 $string['enablebanner'] = 'Enable course banner';
 $string['enablebanner_desc'] = 'This will turn on or off banners across all courses';
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';

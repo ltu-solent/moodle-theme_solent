@@ -181,5 +181,11 @@ function theme_solent_header_image(){
 }
 
 function theme_solent_page_init(moodle_page $page) {
+    global $CFG;
     $page->requires->js_call_amd('theme_solent/courseformat', 'sections');
+    $includeaccessibilitytool = get_config('theme_solent', 'enableaccessibilitytool');
+    if ($includeaccessibilitytool && file_exists($CFG->dirroot . "/local/accessibilitytool/lib.php")) {
+        require_once($CFG->dirroot . "/local/accessibilitytool/lib.php");
+        local_accessibilitytool_page_init($page);
+    }
 }
