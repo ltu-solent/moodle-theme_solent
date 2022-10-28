@@ -2,7 +2,7 @@
 namespace theme_solent\output;
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot.'/mod/assign/renderer.php');
+// require_once($CFG->dirroot.'/mod/assign/renderer.php');
 
 use assign;
 use html_writer;
@@ -16,7 +16,7 @@ use assign_attempt_history;
 use cm_info;
 use context_module;
 
-class mod_assign_renderer extends \mod_assign_renderer {
+class mod_assign_renderer extends \mod_assign\output\renderer {
 
     /**
      * Utility function to add a row of data to a table with 2 columns where the first column is the table's header.
