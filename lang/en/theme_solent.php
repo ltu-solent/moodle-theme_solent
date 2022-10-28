@@ -33,6 +33,10 @@ $string['enableaccessibilitytool_desc'] = 'Accessibility tool will allow users t
     font and font sizes for themselves.';
 $string['enablebanner'] = 'Enable course banner';
 $string['enablebanner_desc'] = 'This will turn on or off banners across all courses';
+$string['enablecourseimage'] = 'Enable course image';
+$string['enablecourseimage_desc'] = 'Use course image as banner instead of Solent banner picker';
+$string['enablenavbar'] = 'Enable navbar';
+$string['enablenavbar_desc'] = 'Determines whether to display the breadcrumb trail';
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
 $string['excludebreadcrumbs_desc'] = 'Breadcrumb names to exclude (comma separated)';
 $string['externalexaminer'] = 'External Examiner report';

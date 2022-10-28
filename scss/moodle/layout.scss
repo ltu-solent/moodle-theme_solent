@@ -1,3 +1,22 @@
-#page.drawers {
-    position: relative;
+#page {
+    &.drawers {
+        position: relative;
+        .main-inner {
+            padding: 0 0 1.5rem 0;
+            box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+        }
+        .btn-footer-popover,
+        #back-to-top {
+            box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+        }
+    }
+    background-color: $gray-400;
+}
+
+.drawer-toggles {
+    .drawer-toggler {
+        .btn {
+            box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+        }
+    }
 }

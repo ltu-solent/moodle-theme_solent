@@ -1,4 +1,10 @@
 #page-header {
+    border-radius: $border-radius $border-radius 0 0;
+    height: 200px;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-image: url("/theme/solent/pix/unit-header/red-white-wave-banner.png");
     .breadcrumb {
         background: rgba($white, .85);
         padding: map-get($spacers, 2) $spacer;
@@ -6,15 +12,20 @@
         clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
         border-radius: 0;
     }
-    .page-header-headings {
-        padding: 0 $spacer;
-        background: rgba($solent-navy, 1);
-        color: theme-color-level('solent-navy', -12);
-        clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
-
-        h1 {
-            margin: $spacer 0;
-            font-weight: $font-weight-normal;
+    .page-context-header {
+        padding: 0;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        .page-header-headings {
+            padding: 0 $spacer;
+            background: rgba($solent-navy, 1);
+            color: $gray-100;
+            width: 100%;
+            h1 {
+                margin: map-get($spacers, 2) 0;
+                font-weight: $font-weight-normal;
+            }
         }
     }
     &.opt01 {
@@ -796,6 +807,14 @@
     }
     &.opt257 {
         background-image: url("/theme/solent/pix/unit-header/257.png");
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .header-maxwidth {
+        max-width: $course-content-maxwidth;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 

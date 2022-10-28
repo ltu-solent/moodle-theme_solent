@@ -20,6 +20,7 @@ use navigation_node;
 use stdClass;
 use action_menu;
 use context_course;
+use core_course\external\course_summary_exporter;
 use html_writer;
 use theme_boost\output\core_renderer as core_renderer_base;
 use theme_solent\helper as solent_helper;
@@ -49,6 +50,7 @@ class core_renderer extends core_renderer_base {
 		$pagetype = $this->page->pagetype;
         $homepage = get_home_page();
         $homepagetype = null;
+        $context = $this->page->context;
         // Add a special case since /my/courses is a part of the /my subsystem.
         if ($homepage == HOMEPAGE_MY || $homepage == HOMEPAGE_MYCOURSES) {
             $homepagetype = 'my-index';
@@ -78,6 +80,9 @@ class core_renderer extends core_renderer_base {
         $header->contextheader = $this->context_header();
         $header->hasnavbar = empty($this->page->layout_options['nonavbar']);
         $header->navbar = $this->navbar();
+        if ($header->navbar == '') {
+            unset($header->hasnavbar);
+        }
         // $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
@@ -92,6 +97,26 @@ class core_renderer extends core_renderer_base {
             $header->imageclass = $additionalheader->imageclass;
             $header->imageselector = $additionalheader->imageselector;
         }
+        $showcourseimage = get_config('theme_solent', 'enablecourseimage');
+        $courseimage = false;
+        if ($showcourseimage) {
+            // Course context.
+            if ($context->contextlevel == CONTEXT_COURSE && $this->page->course->id !== SITEID) {
+                $courseimage = course_summary_exporter::get_course_image($this->page->course);
+                if (!$courseimage) {
+                    $courseimage = $this->get_generated_image_for_id($this->page->course->id);
+                }
+            } else if ($context->contextlevel == CONTEXT_MODULE && $this->page->course->id !== SITEID) {
+                // Module context.
+                $courseimage = \core_course\external\course_summary_exporter::get_course_image($this->page->course);
+                if (!$courseimage) {
+                    $courseimage = $this->get_generated_image_for_id($this->page->course->id);
+                }
+            }
+        }
+        if ($courseimage) {
+            $header->courseimage = $courseimage;
+        }
 // SU_AMEND END
         return $this->render_from_template('core/full_header', $header);
     }
@@ -102,6 +127,10 @@ class core_renderer extends core_renderer_base {
      */
     public function navbar(): string {
         // Give up our navbar for core?
+        $shownavbar = get_config('theme_solent', 'enablenavbar');
+        if (!$shownavbar) {
+            return '';
+        }
         $newnav = new \theme_boost\boostnavbar($this->page);
         return $this->render_from_template('core/navbar', $newnav);
         $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');

@@ -90,6 +90,24 @@ $setting = new admin_setting_configcheckbox($name, $title, $description, $defaul
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+// Show course image instead of old banner.
+$name = 'theme_solent/enablecourseimage';
+$title = new lang_string('enablecourseimage', 'theme_solent');
+$description = new lang_string('enablecourseimage_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Show course image instead of old banner.
+$name = 'theme_solent/enablenavbar';
+$title = new lang_string('enablenavbar', 'theme_solent');
+$description = new lang_string('enablenavbar_desc', 'theme_solent');
+$default = 1;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // Accessibility tool.
 $name = 'theme_solent/enableaccessibilitytool';
 $title = new lang_string('enableaccessibilitytool', 'theme_solent');
