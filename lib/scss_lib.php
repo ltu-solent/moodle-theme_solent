@@ -91,5 +91,18 @@ function theme_solent_get_pre_scss($theme) {
         $prescss .= $theme->settings->scsspre;
     }
 
+    // Set the default image for the header.
+    $headerbg = $theme->setting_file_url('headerdefaultimage', 'headerdefaultimage');
+    if (isset($headerbg)) {
+        $prescss .= 'header#page-header {background-image: url("' . $headerbg . '");}';
+    }
+
+    // Set the background image for the login page.
+    $loginbg = $theme->setting_file_url('loginimage', 'loginimage');
+    if (isset($loginbg)) {
+        $prescss .= '.pagelayout-login #page {background-image: url("' . $loginbg . '") !important;'
+            . 'background-size:cover !important; background-position:center !important;}';
+    }
+
     return $prescss;
 }

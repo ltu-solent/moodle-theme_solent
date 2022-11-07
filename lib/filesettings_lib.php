@@ -25,3 +25,28 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Serves any files associated with the theme settings.
+ *
+ * @param stdClass $course
+ * @param stdClass $cm
+ * @param context $context
+ * @param string $filearea
+ * @param array $args
+ * @param bool $forcedownload
+ * @param array $options
+ * @return bool
+ */
+function theme_solent_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = []) {
+    static $theme;
+    if (empty($theme)) {
+        $theme = theme_config::load('solent');
+    }
+    if ($filearea == 'headerdefaultimage') {
+        return $theme->setting_file_serve('headerdefaultimage', $args, $forcedownload, $options);
+    } else if ($filearea === 'loginimage') { // Login page image.
+        return $theme->setting_file_serve('loginimage', $args, $forcedownload, $options);
+    } else {
+        send_file_not_found();
+    }
+}

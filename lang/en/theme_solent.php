@@ -49,12 +49,16 @@ $string['footer_settings'] = 'Footer settings';
 
 $string['generalsettings'] = 'General settings';
 
+$string['headerdefaultimage'] = 'Default header image';
+$string['headerdefaultimage_desc'] = 'Default image for course headers and non-course pages';
 $string['headerimagecurrent'] = 'Option {$a->opt} is currently selected.';
 $string['headerimageinstructions'] = 'Click the radio button next to an image to select it. You will automatically redirected back to the previous page.';
 
 $string['imagesettings'] = 'Image settings';
 
 $string['layoutsettings'] = 'Layout settings';
+$string['loginimage'] = 'Default Login image';
+$string['loginimage_desc'] = 'Background image for login page';
 
 $string['moduledescriptor'] = 'Module Descriptor';
 $string['modulerunsfrom'] = 'Module runs: ';

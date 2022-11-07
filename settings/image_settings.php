@@ -34,3 +34,21 @@ $description = get_string('backgroundimage_desc', 'theme_solent');
 $setting = new admin_setting_configstoredfile($name, $title, $description, 'backgroundimage');
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
+
+// Default header image.
+$name = 'theme_solent/headerdefaultimage';
+$title = new lang_string('headerdefaultimage', 'theme_solent');
+$description = new lang_string('headerdefaultimage_desc', 'theme_solent');
+$setting = new admin_setting_configstoredfile($name, $title, $description, 'headerdefaultimage');
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Default login page image.
+$name = 'theme_solent/loginimage';
+$title = new lang_string('loginimage', 'theme_solent');
+$description = new lang_string('loginimage_desc', 'theme_solent');
+$setting = new admin_setting_configstoredfile($name, $title, $description, 'loginimage');
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$settings->add($page);
