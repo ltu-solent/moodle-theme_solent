@@ -35,6 +35,7 @@ class course_renderer extends \core_course_renderer {
    * @return string
    */
   public function course_section_cm_name(cm_info $mod, $displayoptions = array()) {
+    return parent::course_section_cm_name($mod, $displayoptions);
       if (!$mod->is_visible_on_course_page() || !$mod->url) {
           // Nothing to be displayed to the user.
           return '';
