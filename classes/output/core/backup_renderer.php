@@ -63,44 +63,44 @@ class backup_renderer extends \core_backup_renderer {
         $table->head = array('', get_string('shortnamecourse'), get_string('fullnamecourse'));
         $table->data = array();
         foreach ($component->get_results() as $course) {
- // SU_AMEND START - Unit start date: Course import
-		global $DB;
-		$category = $DB->get_record_sql('SELECT cc.idnumber FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
-		$getcourse = get_course($course->id);
+            // SU_AMEND START - Unit start date: Course import
+            global $DB;
+            $category = $DB->get_record_sql('SELECT cc.idnumber FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
+            $getcourse = get_course($course->id);
 
-		$startdate = '';
-		if(isset($category->idnumber)){
-			$catname = strtolower('x'.$category->idnumber);
+            $startdate = '';
+            if(isset($category->idnumber)){
+                $catname = strtolower('x'.$category->idnumber);
 
-			if(strpos($catname, 'modules_') !== false){
-				$startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
-			}
-		}
-  // SU_AMEND END
-		$row = new html_table_row();
-		$row->attributes['class'] = 'ics-course';
-		if (!$course->visible) {
-			$row->attributes['class'] .= ' dimmed';
-		}
-		$id = $this->make_unique_id('import-course');
-		$row->cells = [
-			html_writer::empty_tag('input', ['type' => 'radio', 'name' => 'importid', 'value' => $course->id,
-				'id' => $id]),
-			html_writer::label(
-                    format_string($course->shortname, true, ['context' => context_course::instance($course->id)]),
-                    $id,
-                    true,
-                    ['class' => 'd-block']
-                ),
-  // SU_AMEND START - Unit start date: Course import
-			// format_string($course->fullname, true, ['context' => context_course::instance($course->id)])
-					// ];
-			format_string($course->fullname . $startdate, true, ['context' => context_course::instance($course->id)])
-  // SU_AMEND END
-  		];
-          $table->data[] = $row;
-      }
-      if ($component->has_more_results()) {
+                if(strpos($catname, 'modules_') !== false){
+                    $startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
+                }
+            }
+            // SU_AMEND END
+            $row = new html_table_row();
+            $row->attributes['class'] = 'ics-course';
+            if (!$course->visible) {
+                $row->attributes['class'] .= ' dimmed';
+            }
+            $id = $this->make_unique_id('import-course');
+            $row->cells = [
+                html_writer::empty_tag('input', ['type' => 'radio', 'name' => 'importid', 'value' => $course->id,
+                    'id' => $id]),
+                html_writer::label(
+                        format_string($course->shortname, true, ['context' => context_course::instance($course->id)]),
+                        $id,
+                        true,
+                        ['class' => 'd-block']
+                    ),
+                // SU_AMEND START - Unit start date: Course import
+                // format_string($course->fullname, true, ['context' => context_course::instance($course->id)])
+                        // ];
+                format_string($course->fullname . $startdate, true, ['context' => context_course::instance($course->id)])
+                // SU_AMEND END
+            ];
+            $table->data[] = $row;
+        }
+        if ($component->has_more_results()) {
             $cell = new html_table_cell(get_string('moreresults', 'backup'));
             $cell->colspan = 3;
             $cell->attributes['class'] = 'notifyproblem';
@@ -131,5 +131,5 @@ class backup_renderer extends \core_backup_renderer {
 
         $output .= html_writer::end_tag('div');
         return $output;
-  }
+    }
 }
