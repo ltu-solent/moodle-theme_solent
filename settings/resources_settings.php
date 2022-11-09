@@ -15,19 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Resourse settings file
+ *
  * @package   theme_solent
- * @copyright 2016 Ryan Wyllie
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
-    require('settings/presets_settings.php');
-    require('settings/colours_settings.php');
-    require('settings/layout_settings.php');
-    require('settings/image_settings.php');
-    require('settings/footer_settings.php');
-    require('settings/resources_settings.php');
-}
+
+$page = new admin_settingpage('theme_solent_resources', new lang_string('resources_settings', 'theme_solent'));
+
+// External examiner link.
+$name = new lang_string('externalexaminerlink', 'theme_solent');
+$desc = new lang_string('externalexaminerlink_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtext('theme_solent/externalexaminerlink', $name, $desc, $default, PARAM_URL);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$settings->add($page);

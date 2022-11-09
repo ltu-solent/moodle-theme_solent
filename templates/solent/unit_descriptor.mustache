@@ -1,0 +1,29 @@
+{{#module}}
+<div class="unit-details">
+    {{#startdate}}
+    <div class="unit-start">
+        <strong>{{#str}} modulerunsfrom, theme_solent {{/str}}</strong>
+        {{startdate}} - {{enddate}}
+    </div>
+    {{/startdate}}
+    <div class="course-instance">
+        <strong>{{#str}} courseinstance, theme_solent {{/str}}</strong>
+        {{instance}}
+    </div>
+    {{#descriptor}}
+        <strong>{{#str}} moduledescriptor, theme_solent {{/str}}:</strong>
+        <a href="{{{.}}}" class="unit-desc">{{#str}} moduledescriptor, theme_solent {{/str}}</a>
+    {{/descriptor}}
+    {{^descriptor}}
+        <strong>{{#str}} moduledescriptor, theme_solent {{/str}}:</strong>
+        {{#str}} nomoduledescriptor, theme_solent {{/str}}
+    {{/descriptor}}
+</div>
+{{/module}}
+{{#course}}
+<div class="unit-details">
+    {{#externalexaminer}}
+        <a href="{{{.}}}">{{#str}} externalexaminer, theme_solent {{/str}}</a>
+    {{/externalexaminer}}
+</div>
+{{/course}}

@@ -40,6 +40,8 @@ $string['enablenavbar_desc'] = 'Determines whether to display the breadcrumb tra
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
 $string['excludebreadcrumbs_desc'] = 'Breadcrumb names to exclude (comma separated)';
 $string['externalexaminer'] = 'External Examiner report';
+$string['externalexaminerlink'] = 'External examiner link';
+$string['externalexaminerlink_desc'] = 'External examiner url. Include ::IDNUMBER:: in the url. This will be replaced with the course code.';
 
 $string['fontfamily'] = 'Font family';
 $string['fontfamily_desc'] = 'This choice will apply across SOL';
@@ -87,6 +89,7 @@ $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will
 $string['rawscsspre'] = 'Raw initial SCSS';
 $string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS code, it will be injected before everything else. Most of the time you will use this setting to define variables.';
 $string['region-side-pre'] = 'Right';
+$string['resources_settings'] = 'Resources settings';
 
 $string['socialmenuitems'] = 'Social menu items';
 $string['socialmenuitems_desc'] = 'Social menu items';
