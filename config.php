@@ -1,12 +1,29 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-// Every file should have GPL and copyright in the header - we skip it in tutorials but you should not skip it for real.
+/**
+ * Theme config file
+ *
+ * @package   theme_solent
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
-// This line protects the file from being accessed by a URL directly.
 defined('MOODLE_INTERNAL') || die();
-
-// $THEME is defined before this page is included and we can define settings by adding properties to this global object.
-
 
 $THEME->name = 'solent';
 $THEME->sheets = [];
@@ -26,5 +43,3 @@ $THEME->scss = function($theme) {
 // Call css/scss processing functions and renderers.
 $THEME->prescsscallback = 'theme_solent_get_pre_scss';
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-
-
