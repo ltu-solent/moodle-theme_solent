@@ -43,8 +43,7 @@ trait solent_toolbox {
         global $PAGE;
         $content = '';
 	    $category = core_course_category::get($course->category, IGNORE_MISSING);
-        $catparts = explode('_', $category->idnumber);
-        $cattype = $catparts[0]; // Modules, Courses.
+        $cattype = helper::get_category_type($category);
         if (!in_array($cattype, ['modules', 'courses'])) {
             return $content;
         }
