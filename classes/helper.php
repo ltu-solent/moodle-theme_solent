@@ -130,4 +130,44 @@ class helper {
         $cattype = $catparts[0]; // Modules, Courses.
         return $cattype;
     }
+
+    /**
+     * Get url for unit descriptor document
+     *
+     * @param string $coursecode Course code (without instance information e.g. ABC101)
+     * @return moodle_url|null
+     */
+    public static function get_unit_descriptor_file_url($coursecode) {
+        global $DB;
+        $descriptorinstanceid = get_config('theme_solent', 'descriptors');
+        if (!($descriptorinstanceid > 0)) {
+            return null;
+        }
+        $sqllike = $DB->sql_like('filename', ':filename');
+        $file = $DB->get_record_sql("
+            SELECT f.id, filename, contextid, filepath
+            FROM {files} f
+            JOIN {context} ctx ON ctx.id = f.contextid
+            WHERE ctx.instanceid = :descriptorinstanceid
+                AND (component = 'mod_folder' AND filearea = 'content')
+                AND {$sqllike}
+            ORDER BY timemodified DESC", [
+                'descriptorinstanceid' => $descriptorinstanceid,
+                'filename' => $DB->sql_like_escape($coursecode) . '%'
+            ]
+        );
+        if (!$file) {
+            return null;
+        }
+        $url = moodle_url::make_pluginfile_url(
+            $file->contextid,
+            'mod_folder',
+            'content',
+            0,
+            $file->filepath,
+            $file->filename,
+            true
+        );
+        return $url;
+    }
 }

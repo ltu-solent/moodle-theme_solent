@@ -54,14 +54,6 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Module descriptor.
-$name = 'theme_solent/descriptors';
-$title = get_string('descriptors', 'theme_solent');
-$description = get_string('descriptors_desc', 'theme_solent');
-$default = 0;
-$setting = new admin_setting_configtext($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
 
 // Exclude breadcrumbs.
 $name = 'theme_solent/excludebreadcrumbs';

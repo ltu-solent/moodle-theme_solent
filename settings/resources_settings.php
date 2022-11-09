@@ -28,6 +28,15 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_solent_resources', new lang_string('resources_settings', 'theme_solent'));
 
+// Module descriptor.
+$name = 'theme_solent/descriptors';
+$title = new lang_string('descriptors', 'theme_solent');
+$description = new lang_string('descriptors_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // External examiner link.
 $name = new lang_string('externalexaminerlink', 'theme_solent');
 $desc = new lang_string('externalexaminerlink_desc', 'theme_solent');

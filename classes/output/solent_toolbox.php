@@ -27,6 +27,7 @@ namespace theme_solent\output;
 
 use core_course_category;
 use stdClass;
+use theme_solent\helper;
 
 /**
  * Use the toolbox to add functions to renderers but still keeping them separate.
@@ -61,7 +62,12 @@ trait solent_toolbox {
 			}
             $data->module->instance = $course->shortname;
             if ($coursecode != '') {
-                $data->module->descriptor = get_file($coursecode);
+                $descriptor = new stdClass();
+                $descriptor->url = helper::get_unit_descriptor_file_url($coursecode);
+                $descriptor->coursecode = $coursecode;
+                if ($descriptor->url != null) {
+                    $data->module->descriptor = $descriptor;
+                }
             }
 		}
 
