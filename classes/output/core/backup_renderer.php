@@ -10,6 +10,7 @@ use html_table;
 use html_table_row;
 use html_table_cell;
 use context_course;
+use theme_solent\helper;
 
 require_once($CFG->dirroot.'/backup/util/ui/renderer.php');
 
@@ -63,18 +64,10 @@ class backup_renderer extends \core_backup_renderer {
         $table->head = array('', get_string('shortnamecourse'), get_string('fullnamecourse'));
         $table->data = array();
         foreach ($component->get_results() as $course) {
-            // SU_AMEND START - Unit start date: Course import
-            global $DB;
-            $category = $DB->get_record_sql('SELECT cc.idnumber FROM {course_categories} cc JOIN {course} c ON c.category = cc.id WHERE c.id = ?', array($course->id));
-            $getcourse = get_course($course->id);
-
-            $startdate = '';
-            if(isset($category->idnumber)){
-                $catname = strtolower('x'.$category->idnumber);
-
-                if(strpos($catname, 'modules_') !== false){
-                    $startdate = ' - Start date: ' . date('d-m-Y', $getcourse->startdate);
-                }
+            // SU_AMEND_START: Adds Unit start date (if relevant) to list of courses to import from.
+            $courseobj = get_course($course->id);
+            if (helper::is_module($courseobj)) {
+                $course->fullname .= ' - ' . get_string('startdate', 'theme_solent', userdate($courseobj->startdate, "%d/%m/%Y"));
             }
             // SU_AMEND END
             $row = new html_table_row();
@@ -92,11 +85,7 @@ class backup_renderer extends \core_backup_renderer {
                         true,
                         ['class' => 'd-block']
                     ),
-                // SU_AMEND START - Unit start date: Course import
-                // format_string($course->fullname, true, ['context' => context_course::instance($course->id)])
-                        // ];
-                format_string($course->fullname . $startdate, true, ['context' => context_course::instance($course->id)])
-                // SU_AMEND END
+                format_string($course->fullname, true, ['context' => context_course::instance($course->id)])
             ];
             $table->data[] = $row;
         }

@@ -25,12 +25,16 @@
 
 namespace theme_solent;
 
+use core_course_category;
 use moodle_exception;
 use moodle_url;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Theme helper class. Bundle of functions to do general tasks.
+ */
 class helper {
     /**
      * Takes a string text similar to custommenu format and builds a structure for output.
@@ -83,5 +87,47 @@ class helper {
         }
 
         return $menu;
+    }
+
+    /**
+     * Is this course a module page.
+     *
+     * @param stdClass $course Course object
+     * @return boolean
+     */
+    public static function is_module($course) {
+        if (!isset($course->category)) {
+            return false;
+        }
+        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $cattype = self::get_category_type($category);
+        return $cattype == 'modules';
+    }
+
+    /**
+     * Is this course a course page.
+     *
+     * @param stdClass $course Course object
+     * @return boolean
+     */
+    public static function is_course($course) {
+        if (!isset($course->category)) {
+            return false;
+        }
+        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $cattype = self::get_category_type($category);
+        return $cattype == 'courses';
+    }
+
+    /**
+     * Is this category a course or module category. Returns the type.
+     *
+     * @param core_course_category $category
+     * @return void
+     */
+    public static function get_category_type(core_course_category $category) {
+        $catparts = explode('_', $category->idnumber);
+        $cattype = $catparts[0]; // Modules, Courses.
+        return $cattype;
     }
 }

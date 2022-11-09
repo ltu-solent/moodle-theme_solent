@@ -96,6 +96,7 @@ $string['socialmenuitems_desc'] = 'Social menu items';
 $string['solentfutures'] = 'Solent Futures';
 $string['solentfuturesmenuitems'] = 'Solent Futures menu items';
 $string['solentfuturesmenuitems_desc'] = 'Solent Futures menu items';
+$string['startdate'] = 'Start date: {$a}';
 $string['study'] = 'Study';
 $string['studymenuitems'] = 'Study menu items';
 $string['studymenuitems_desc'] = 'Study menu items';
