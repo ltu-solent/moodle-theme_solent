@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Old hvp renderer
+ * h5pactivity renderer overrider
  *
  * @package   theme_solent
  * @author    Mark Sharp <mark.sharp@solent.ac.uk>
@@ -25,12 +25,12 @@
 
 namespace theme_solent\output;
 
-use mod_hvp_renderer as mod_hvp_renderer_base;
+use core_h5p\output\renderer as renderer_base;
 
 /**
- * Renderer class.
+ * Renderer class
  */
-class mod_hvp_renderer extends mod_hvp_renderer_base {
+class core_h5p_renderer extends renderer_base {
 
     /**
      * Alter which stylesheets are loaded for H5P.
@@ -39,7 +39,7 @@ class mod_hvp_renderer extends mod_hvp_renderer_base {
      * @param array $libraries Array of libraries indexed by the library's machineName
      * @param string $embedtype Possible values: div, iframe, external, editor
      */
-    public function hvp_alter_styles(&$styles, $libraries, $embedType) {
+    public function h5p_alter_styles(&$styles, $libraries, $embedType) {
         global $CFG;
         $styles[] = (object) array(
             'path'    => $CFG->wwwroot . '/theme/solent/style/h5pstyle.css',
