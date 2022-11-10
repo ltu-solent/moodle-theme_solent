@@ -69,7 +69,7 @@ class mod_assign_renderer extends renderer_base {
      * @return string
      */
     public function render_assign_submission_status(assign_submission_status $status) {
-        $o = 'gibberish';
+        $o = '';
         $o .= $this->output->container_start('submissionstatustable');
         $o .= $this->output->heading(get_string('submissionstatusheading', 'assign'), 3);
         $time = time();
