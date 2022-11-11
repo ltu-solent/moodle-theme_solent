@@ -24,6 +24,21 @@ body.format-onetopic {
                     @extend .fa-lightbulb-o;
                 }
             }
+            &.disabled {
+                a {
+                    &:before {
+                        @extend .fa;
+                        @extend .fa-eye-slash;
+                    }
+                    border-color: $gray-200;
+                    color: theme-color-level('primary', 6);
+                    &.nav-link.active,
+                    &.nav-link:hover {
+                        background-color: $gray-200;
+                        color: theme-color-level('primary', 6);
+                    }
+                }
+            }
         }
     }
 }
