@@ -65,6 +65,7 @@ $string['loginimage_desc'] = 'Background image for login page';
 $string['moduledescriptor'] = 'Module Descriptor';
 $string['moduledescriptorfor'] = 'Module descriptor for {$a}';
 $string['modulerunsfrom'] = 'Module runs: ';
+
 $string['navbarheight'] = 'Navbar height';
 $string['navbarheight_desc'] = 'Navbar height in pixels';
 $string['nomoduledescriptor'] = 'No module descriptor available';
