@@ -5,6 +5,10 @@
     background-position: center;
     background-size: cover;
     background-image: url("/theme/solent/pix/unit-header/red-white-wave-banner.png");
+    a[href$="section=maintenancemode"] {
+        @extend .btn;
+        @extend .btn-warning;
+    }
     .breadcrumb {
         background: rgba($white, .85);
         padding: map-get($spacers, 2) $spacer;
