@@ -52,13 +52,12 @@ trait solent_toolbox {
         $data = new stdClass();
 		if ($cattype == 'modules') {
             $data->module = new stdClass();
-            // Don't show start and end dates on search page.
-			if ($PAGE->bodyid != 'page-course-search') {
-                $data->module->startdate = userdate($course->startdate, get_string('strftimedatefullshort', 'langconfig'));
-                if ($course->enddate > 0) {
-                    $data->module->enddate = userdate($course->enddate, get_string('strftimedatefullshort', 'langconfig'));
-                }
-			}
+            $data->module->startdate = userdate($course->startdate, get_string('strftimedatefullshort', 'langconfig'), 99, false);
+            $data->module->startdatemachine = userdate($course->startdate, '%Y-%m-%d', 99, false);
+            if ($course->enddate > 0) {
+                $data->module->enddate = userdate($course->enddate, get_string('strftimedatefullshort', 'langconfig'), 99, false);
+                $data->module->enddatemachine = userdate($course->enddate, '%Y-%m-%d', 99, false);
+            }
             $data->module->instance = $course->shortname;
             if ($coursecode != '') {
                 $descriptor = new stdClass();

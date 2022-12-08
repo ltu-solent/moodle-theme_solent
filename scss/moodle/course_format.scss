@@ -6,6 +6,9 @@ body.format-onetopic {
         overflow-x: inherit;
     }
     .format_onetopic-tabs {
+        .nav-link {
+            margin-bottom: inherit;
+        }
         .nav-link.active,
         .nav-link:hover {
             border-color: transparent;

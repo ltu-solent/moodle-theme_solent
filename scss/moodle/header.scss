@@ -32,6 +32,9 @@
             }
         }
     }
+    .welcome {
+        background-color: rgba($white, .85);
+    }
     &.opt01 {
         background-image: url("/theme/solent/pix/unit-header/01.png");
     }

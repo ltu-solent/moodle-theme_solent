@@ -55,9 +55,12 @@ class course_renderer extends \core_course_renderer {
         if ($course instanceof stdClass) {
             $course = new core_course_list_element($course);
         }
-        $content = \html_writer::start_tag('div', ['class' => 'd-flex']);
-        $content .= $this->course_overview_files($course);
-        $content .= \html_writer::start_tag('div', ['class' => 'flex-grow-1']);
+        $content = \html_writer::start_tag('div');
+        $courseoverviewfiles = $this->course_overview_files($course);
+        if (!empty($courseoverviewfiles)) {
+            $content .= $courseoverviewfiles;
+        }
+        $content .= \html_writer::start_tag('div');
         // SU_AMEND_START: Add unit descriptor if available.
         $content .= $this->course_unit_descriptor($course);
         // SU_AMEND_END.
