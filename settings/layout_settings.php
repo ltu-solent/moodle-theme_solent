@@ -131,4 +131,12 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+$name = 'theme_solent/enablewelcome';
+$title = new lang_string('enablewelcome', 'theme_solent');
+$description = new lang_string('enablewelcome_desc', 'theme_solent');
+$default = 1;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 $settings->add($page);

@@ -79,8 +79,11 @@ class core_renderer extends core_renderer_base {
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
+        $iswelcome = get_config('theme_solent', 'enablewelcome');
         if (!empty($pagetype) && !empty($homepagetype) && $pagetype == $homepagetype) {
-            $header->welcomemessage = \core_user::welcome_message();
+            if ($iswelcome) {
+                $header->welcomemessage = \core_user::welcome_message();
+            }
         }
 
 // SU_AMEND START - Course: Header images
