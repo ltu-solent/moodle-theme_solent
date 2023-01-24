@@ -21,7 +21,7 @@ body.format-onetopic {
                     @include caret();
                 }
             }
-            &.marker {
+            &.marker:not(.tab_position_0.tab_level_0) {
                 a:before {
                     @extend .fa;
                     @extend .fa-lightbulb-o;
