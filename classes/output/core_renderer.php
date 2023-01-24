@@ -187,6 +187,7 @@ class core_renderer extends core_renderer_base {
         $dashlinks = [];
         // Links to Reports
         $reports = [];
+        $notices = [];
         // Plugins.
         $pluginswithfunction = get_plugins_with_function('solentzone_alerts', 'lib.php');
         foreach ($pluginswithfunction as $plugins) {
@@ -198,6 +199,18 @@ class core_renderer extends core_renderer_base {
             if ($alert instanceof \core\output\notification) {
                 $content .= $this->render($alert);
             }
+        }
+        $pluginswithfunction = get_plugins_with_function('solentzone_notices', 'lib.php');
+        foreach ($pluginswithfunction as $plugins) {
+            foreach ($plugins as $function) {
+                $notices = $function($notices);
+            }
+        }
+        foreach ($notices as $notice) {
+            $content .= html_writer::div(format_text($notice), 'solentzone-notice border p-2 mb-2');
+        }
+        if ($content != '') {
+            $content = html_writer::div($content, 'solentzone m-2');
         }
         return $content;
     }
