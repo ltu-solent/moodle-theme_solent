@@ -1,0 +1,239 @@
+// I think this is intended to size any font-awesome icons inside a styles box.
+// It might be too general here, if .fa-style is more widely used.
+.fa-style > .fa {
+    font-size: 26px;
+ }
+
+// Styles dropdown items.
+.solid-box,
+.outline-box,
+.highlight-box {
+    padding: 10px;
+    border-radius: 3px;
+    min-height: 40px;
+}
+
+.solid-box {
+    color: $white;
+    &-teal {
+        background-color: #008085;
+    }
+    &-cerulean{
+        background-color: #007EA8;
+    }
+    &-cadetblue{
+        background-color: #4F7A7D;
+    }
+    &-yellowgreen{
+        background-color: #7B7A1E;
+    }
+    &-rainforest{
+        background-color: #6D7C36;
+    }
+    &-elfgreen{
+        background-color: #1D8666;
+    }
+    &-eminence{
+        background-color: #763978;
+    }
+    &-cinnabar{
+        background-color: #D83B3B;
+    }
+}
+
+.outline-box {
+    border-radius: 3px;
+    &-teal {
+        border: 2px solid #008085;
+        .fa {
+            color: #008085;
+        }
+    }
+    &-cerulean {
+        border: 2px solid #007EA8;
+        .fa {
+            color: #007EA8;
+        }
+    }
+    &-cadetblue {
+        border: 2px solid #4F7A7D;
+        .fa {
+            color: #4F7A7D;
+        }
+    }
+    &-yellowgreen {
+        border: 2px solid #7B7A1E;
+        .fa {
+            color: #7B7A1E;
+        }
+    }
+    &-rainforest {
+        border: 2px solid #6D7C36;
+        .fa {
+            color: #6D7C36;
+        }
+    }
+    &-elfgreen {
+        border: 2px solid #1D8666;
+        .fa {
+            color: #1D8666;
+        }
+    }
+    &-eminence {
+        border: 2px solid #763978;
+        .fa {
+            color: #763978;
+        }
+    }
+
+    &-cinnabar {
+        border: 2px solid #D83B3B;
+        .fa {
+            color: #D83B3B;
+        }
+    }
+}
+
+.highlight-box {
+    border: 1px solid rgba(0, 0, 0, .125);
+    &-teal {
+        border-left: 5px solid #008085;
+        .fa {
+            color: #008085;
+        }
+    }
+    &-cerulean {
+        border-left: 5px solid #007EA8;
+        .fa {
+            color: #007EA8;
+        }
+    }
+    &-cadetblue {
+        border-left: 5px solid #4F7A7D;
+        .fa {
+            color: #4F7A7D;
+        }
+    }
+    &-yellowgreen {
+        border-left: 5px solid #7B7A1E;
+        .fa {
+            color: #7B7A1E;
+        }
+    }
+    &-rainforest {
+        border-left: 5px solid #6D7C36;
+        .fa {
+            color: #6D7C36;
+        }
+    }
+    &-elfgreen {
+        border-left: 5px solid #1D8666;
+        .fa {
+            color: #1D8666;
+        }
+    }
+    &-eminence {
+        border-left: 5px solid #763978;
+        .fa {
+            color: #763978;
+        }
+    }
+    &-cinnabar {
+        border-left: 5px solid #D83B3B;
+        .fa {
+            color: #D83B3B;
+        }
+    }
+}
+
+.succeed_bulb_new,
+.succeed_quiz_new,
+.succeed_download_new,
+.succeed_link_new {
+    background-repeat: no-repeat;
+    background-position: left;
+    padding: 10px 10px 10px 55px;
+    min-height: 40px;
+    margin: 10px;
+}
+
+.succeed_bulb_new {
+    background-image: url(/theme/solent/pix/succeed_remember-bg.jpg);
+}
+.succeed_quiz_new{
+    background-image: url(/theme/solent/pix/succeed_quiz-sq.jpg);
+}
+.succeed_download_new{
+    background-image: url(/theme/solent/pix/succeed_download-sq.jpg);
+}
+.succeed_link_new{
+    background-image: url(/theme/solent/pix/succeed_web-sq.jpg);
+}
+
+.help_remember {
+    padding: 10px;
+    min-height: 50px;
+    &:before {
+        padding-right: 25px;
+        content: $fa-var-exclamation-triangle;
+        font-family: 'FontAwesome';
+        font-size: 2em;
+    }
+}
+.help_top_tip {
+    min-height: 50px;
+    padding: 10px;
+    &:before {
+        padding-right: 25px;
+        content: $fa-var-check-square-o;
+        font-family: 'FontAwesome';
+        font-size: 2em;
+    }
+}
+.help_advanced{
+    min-height: 50px;
+    padding: 10px;
+    &:before {
+        padding-right: 25px;
+        content: $fa-var-sliders;
+        font-family: 'FontAwesome';
+        font-size: 2em;
+    }
+}
+
+.blockindent {
+    border-left: 10px solid #ccc;
+    margin: 1.5em 0;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+    max-width: 100%;
+}
+.blockindent:before {
+    color: #ccc;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+.blockindent p {
+    display: inline;
+}
+
+.blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 0;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D";
+}
+.blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+.blockquote p {
+    display: inline;
+}
