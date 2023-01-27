@@ -40,3 +40,33 @@ export const totop = () => {
         return true;
     }).fail(Notification.exception);
 };
+
+/**
+ * Toggle any form fieldset to be open on load.
+ * @param {array} ids List of IDs. Full id including #
+ */
+export const togglefieldsets = (ids) => {
+    ids.forEach(element => {
+        togglefieldset(element);
+    });
+};
+
+const togglefieldset = (id) => {
+    // Just in case wierd characters manage to get to the query selector,
+    // using a try/catch block to quietly fail.
+    try {
+        id.replace('/[^a-zA-Z0-9#_-]/i', '');
+        let header = document.querySelector('fieldset' + id);
+        if (!header) {
+            return;
+        }
+        header.classList.remove('collapsed');
+        let toggle = header.querySelector('a[data-toggle="collapse"]');
+        toggle.classList.remove('collapsed');
+        toggle.setAttribute('aria-expanded', "true");
+        let container = header.querySelector(id + 'container');
+        container.classList.add('show');
+    } catch (ex) {
+        return;
+    }
+};

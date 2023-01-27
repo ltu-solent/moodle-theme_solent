@@ -98,4 +98,26 @@ function theme_solent_page_init(moodle_page $page) {
     }
     $page->requires->css('/theme/solent/fonts/fontawesome5/css/all.min.css');
     $page->requires->css('/theme/solent/fonts/fontawesome5/css/v4-shims.min.css');
+    $expands = explode("\r\n", get_config('theme_solent', 'expandfieldsets'));
+    $openfieldsets = ['id' => []];
+    foreach ($expands as $expand) {
+        $expand = trim($expand);
+        $expand = preg_replace('/[^a-zA-Z0-9#_-]/i', '', (string)$expand);
+        if (!empty($expand)) {
+            $expand = (strpos($expand, '#') === 0) ? $expand : '#' . $expand;
+            $openfieldsets['id'][] = $expand;
+        }
+    }
+    $page->requires->js_call_amd('theme_solent/solent', 'togglefieldsets', $openfieldsets);
+}
+
+/**
+ * Override default icons with our preferred FA icons
+ *
+ * @return array
+ */
+function theme_solent_get_fontawesome_icon_map() {
+    return [
+        'atto_styles:icon' => 'fa-fill-drip',
+    ];
 }

@@ -54,6 +54,13 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+$name = 'theme_solent/expandfieldsets';
+$title = new lang_string('expandfieldsets', 'theme_solent');
+$description = new lang_string('expandfieldsets_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtextarea($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
 
 // Exclude breadcrumbs.
 $name = 'theme_solent/excludebreadcrumbs';
