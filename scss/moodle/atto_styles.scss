@@ -18,26 +18,35 @@
     &-teal {
         background-color: #008085;
     }
-    &-cerulean{
+    &-cerulean {
         background-color: #007EA8;
     }
-    &-cadetblue{
+    &-cadetblue {
         background-color: #4F7A7D;
     }
-    &-yellowgreen{
+    &-yellowgreen {
         background-color: #7B7A1E;
     }
-    &-rainforest{
+    &-rainforest {
         background-color: #6D7C36;
     }
-    &-elfgreen{
+    &-elfgreen {
         background-color: #1D8666;
     }
-    &-eminence{
+    &-eminence {
         background-color: #763978;
     }
-    &-cinnabar{
+    &-cinnabar {
         background-color: #D83B3B;
+    }
+    &-solent-burgundy-light {
+        background-color: $solent-burgundy-light;
+    }
+    &-solent-sea-blue {
+        background-color: $solent-sea-blue;
+    }
+    &-solent-teal-dark {
+        background-color: $solent-teal-dark;
     }
 }
 
@@ -85,11 +94,28 @@
             color: #763978;
         }
     }
-
     &-cinnabar {
         border: 2px solid #D83B3B;
         .fa {
             color: #D83B3B;
+        }
+    }
+    &-solent-burgundy-light {
+        border: 2px solid $solent-burgundy-light;
+        .fa {
+            color: $solent-burgundy-light;
+        }
+    }
+    &-solent-sea-blue {
+        border: 2px solid $solent-sea-blue;
+        .fa {
+            color: $solent-sea-blue;
+        }
+    }
+    &-solent-teal-dark {
+        border: 2px solid $solent-teal-dark;
+        .fa {
+            color: $solent-teal-dark;
         }
     }
 }
@@ -142,6 +168,24 @@
         border-left: 5px solid #D83B3B;
         .fa {
             color: #D83B3B;
+        }
+    }
+    &-solent-burgundy-light {
+        border-left: 5px solid $solent-burgundy-light;
+        .fa {
+            color: $solent-burgundy-light;
+        }
+    }
+    &-solent-sea-blue {
+        border-left: 5px solid $solent-sea-blue;
+        .fa {
+            color: $solent-sea-blue;
+        }
+    }
+    &-solent-teal-dark {
+        border-left: 5px solid $solent-teal-dark;
+        .fa {
+            color: $solent-teal-dark;
         }
     }
 }
