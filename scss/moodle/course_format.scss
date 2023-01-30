@@ -4,6 +4,9 @@
 body.format-onetopic {
     #region-main {
         overflow-x: inherit;
+        [data-region="completion-info"] {
+            margin-bottom: .5rem;
+        }
     }
     ul.format_onetopic-tabs {
         .nav-link {
