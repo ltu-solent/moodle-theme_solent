@@ -73,9 +73,10 @@ trait solent_toolbox {
             $data->course = new stdClass();
             $eeurl = get_config('theme_solent', 'externalexaminerlink');
             if ($eeurl) {
-                $neweeurl = str_replace("::IDNUMBER::", $course->idnumber, $eeurl);
-                if ($neweeurl != $eeurl) {
-                    $data->course->externalexaminer = $neweeurl;
+                $eeurl = str_replace("::IDNUMBER::", $course->idnumber, $eeurl);
+                // If IDNUMBER is not in the string, either it's been replaced or wasn't there to begin with.
+                if (strpos($eeurl, "::IDNUMBER::") === false) {
+                    $data->course->externalexaminer = $eeurl;
                 }
             }
 		}
