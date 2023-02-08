@@ -105,7 +105,7 @@ function unit_descriptor_course($course){
 		if(strpos($catname, 'courses_') !== false) {
 			$oldurl = 'https://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search=' . $course->idnumber .
 			  	'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="';
-			$newurl = new moodle_url('/course/view.php', ['id' => '6152', 'section' => '3']);
+			$newurl = new moodle_url('/externalexaminers');
 			$external =
 				html_writer::start_div('unit-details') .
 					html_writer::start_div('external') .
