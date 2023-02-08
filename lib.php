@@ -73,7 +73,7 @@ function theme_solent_get_pre_scss($theme) {
 
 function unit_descriptor_course($course){
 	global $CFG, $PAGE;
-	require_once('../config.php');
+	// require_once('../config.php');
 	$category = core_course_category::get($course->category, IGNORE_MISSING);
 
 	if(isset($category)){
@@ -102,13 +102,20 @@ function unit_descriptor_course($course){
             }
 		}
 
-		if(strpos($catname, 'courses_') !== false){
-			  $external = html_writer::start_div('unit-details');
-			  $external .= html_writer::start_div('external') . '<a href="http://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search='.
-						  $course->idnumber .'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="
-						  class="unit_desc" target="_blank">'. get_string('externalexaminer', 'theme_solent') .'</a>' .html_writer::end_div();
-			  $external .= html_writer::end_div();
-			  return $external;
+		if(strpos($catname, 'courses_') !== false) {
+			$oldurl = 'https://learn.solent.ac.uk/mod/data/view.php?d=288&perpage=1000&search=' . $course->idnumber .
+			  	'&sort=0&order=ASC&advanced=0&filter=1&f_1174=&f_1175=&f_1176=&f_1177=&f_1178=&f_1179=&f_1180=&u_fn=&u_ln="';
+			$newurl = new moodle_url('/course/view.php', ['id' => '6152', 'section' => '3']);
+			$external =
+				html_writer::start_div('unit-details') .
+					html_writer::start_div('external') .
+						html_writer::link($newurl, get_string('externalexaminer', 'theme_solent'), [
+							'class' => 'unit_desc',
+							'target' => '_blank'
+						]) .
+					html_writer::end_div() .
+				html_writer::end_div();
+			return $external;
 		}
 	}
 }
