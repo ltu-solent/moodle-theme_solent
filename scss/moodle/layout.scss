@@ -15,8 +15,20 @@
 
 .drawer-toggles {
     .drawer-toggler {
+        // Move the toggler down a little to avoid the top of the scrollbar.
+        top: calc(#{$navbar-height} + 2.1rem);
         .btn {
             box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    //the scroll to top button
+    .drawer-toggles {
+        .drawer-right-toggle,
+        .drawer-left-toggle {
+            top: calc(99vh - (#{$navbar-height} * 2.5));
         }
     }
 }
