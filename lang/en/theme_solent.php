@@ -33,6 +33,8 @@ $string['enableaccessibilitytool_desc'] = 'Accessibility tool will allow users t
     font and font sizes for themselves.';
 $string['enablebanner'] = 'Enable course banner';
 $string['enablebanner_desc'] = 'This will turn on or off banners across all courses';
+$string['enablebottomnavbar'] = 'Enable bottom navbar';
+$string['enablebottomnavbar_desc'] = 'Display navbar at the bottom of the page to make it easier to navigate back when user is can\'t see the breadcrumbs at the top.';
 $string['enablecourseimage'] = 'Enable course image';
 $string['enablecourseimage_desc'] = 'Use course image as banner instead of Solent banner picker';
 $string['enablenavbar'] = 'Enable navbar';

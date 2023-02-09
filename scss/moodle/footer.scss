@@ -132,3 +132,13 @@ footer {
     right: calc(#{$drawer-right-width} + 2rem);
 }
 /* Goto top button */
+
+.bottomnavbar {
+    .breadcrumb {
+        background: rgba($white, .85);
+        padding: map-get($spacers, 2) $spacer;
+        margin-top: map-get($spacers, 2);
+        clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+        border-radius: 0;
+    }
+}

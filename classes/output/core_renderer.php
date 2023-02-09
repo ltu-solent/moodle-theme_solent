@@ -157,6 +157,17 @@ class core_renderer extends core_renderer_base {
         return $breadcrumbs;
     }
 
+    public function bottom_navbar(): string {
+        if (!get_config('theme_solent', 'enablebottomnavbar')) {
+            return '';
+        }
+        $navbar =
+            html_writer::start_div("bottomnavbar") .
+                $this->navbar() .
+            html_writer::end_div();
+        return $navbar;
+    }
+
     /**
      * Course search box for the navdrawer
      *

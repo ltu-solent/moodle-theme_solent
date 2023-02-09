@@ -68,6 +68,7 @@ $secondarynavigation = false;
 $overflow = '';
 
 $participant = !has_capability('moodle/course:update', $PAGE->context);
+$participant = false;
 if (!$participant) {
     if ($PAGE->has_secondary_navigation()) {
         $tablistnav = $PAGE->has_tablist_secondary_navigation();

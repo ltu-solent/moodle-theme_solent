@@ -27,6 +27,15 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_solent_navigation', get_string('navigationsettings', 'theme_solent'));
 
+// Navbar at bottom of page.
+$name = 'theme_solent/enablebottomnavbar';
+$title = new lang_string('enablebottomnavbar', 'theme_solent');
+$description = new lang_string('enablebottomnavbar_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // ScrollSpy.
 $name = 'theme_solent/enablescrollspy';
 $title = new lang_string('enablescrollspy', 'theme_solent');
