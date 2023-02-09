@@ -37,6 +37,8 @@ $string['enablecourseimage'] = 'Enable course image';
 $string['enablecourseimage_desc'] = 'Use course image as banner instead of Solent banner picker';
 $string['enablenavbar'] = 'Enable navbar';
 $string['enablenavbar_desc'] = 'Determines whether to display the breadcrumb trail';
+$string['enablescrollspy'] = 'Enable ScrollSpy';
+$string['enablescrollspy_desc'] = 'ScrollSpy remembers where on the page you were before enabling editing mode and take you back there to continue your work.';
 $string['enablewelcome'] = 'Enable welcome message';
 $string['enablewelcome_desc'] = 'Display welcome message when user logs in.';
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
@@ -72,6 +74,7 @@ $string['modulerunsfrom'] = 'Module runs: ';
 
 $string['navbarheight'] = 'Navbar height';
 $string['navbarheight_desc'] = 'Navbar height in pixels';
+$string['navigationsettings'] = 'Navigation settings';
 $string['nomoduledescriptor'] = 'No module descriptor available';
 $string['nobootswatch'] = 'None';
 

@@ -86,7 +86,7 @@ function theme_solent_header_image(){
  */
 function theme_solent_page_init(moodle_page $page) {
     global $CFG;
-
+    $config = get_config('theme_solent');
     $includeaccessibilitytool = get_config('theme_solent', 'enableaccessibilitytool');
     if ($includeaccessibilitytool && file_exists($CFG->dirroot . "/local/accessibilitytool/lib.php")) {
         require_once($CFG->dirroot . "/local/accessibilitytool/lib.php");
@@ -98,6 +98,11 @@ function theme_solent_page_init(moodle_page $page) {
     }
     $page->requires->css('/theme/solent/fonts/fontawesome5/css/all.min.css');
     $page->requires->css('/theme/solent/fonts/fontawesome5/css/v4-shims.min.css');
+
+    if ($config->enablescrollspy) {
+        $page->requires->js_call_amd('theme_solent/scrollspy', 'init');
+    }
+
     $expands = explode("\r\n", get_config('theme_solent', 'expandfieldsets'));
     $openfieldsets = ['id' => []];
     foreach ($expands as $expand) {
