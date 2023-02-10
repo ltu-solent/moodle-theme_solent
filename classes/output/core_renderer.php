@@ -127,10 +127,10 @@ class core_renderer extends core_renderer_base {
         if (!$shownavbar) {
             return '';
         }
-        $newnav = new \theme_boost\boostnavbar($this->page);
+        $newnav = new \theme_solent\boostnavbar($this->page);
         return $this->render_from_template('core/navbar', $newnav);
         $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
-        $excludebreadcrumbs = explode( ',', get_config('theme_solent', 'excludebreadcrumbs'));
+        $excludebreadcrumbs = explode(',', get_config('theme_solent', 'excludebreadcrumbs'));
 
         $breadcrumbs = html_writer::tag('span', get_string('pagepath'), array('class' => 'accesshide', 'id' => 'navbar-label'));
         $breadcrumbs .= html_writer::start_tag('nav', array('aria-labelledby' => 'navbar-label'));
@@ -148,7 +148,7 @@ class core_renderer extends core_renderer_base {
                 if(!$item->is_last()) {
                     $breadcrumbs .= html_writer::tag('span', '', array('class' => 'icon ' . $breadcrumbicon));
                 }
-                $breadcrumbs .= html_writer::end_tag('li');                
+                $breadcrumbs .= html_writer::end_tag('li');
             }
         }
         $breadcrumbs .= html_writer::end_tag('ul');
