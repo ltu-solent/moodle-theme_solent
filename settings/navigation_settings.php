@@ -54,4 +54,12 @@ $setting = new admin_setting_configcheckbox($name, $title, $description, $defaul
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+$name = 'theme_solent/enablestudentsecondarynav';
+$title = new lang_string('enablestudentsecondarynav', 'theme_solent');
+$description = new lang_string('enablestudentsecondarynav_desc', 'theme_solent');
+$default = 1;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 $settings->add($page);

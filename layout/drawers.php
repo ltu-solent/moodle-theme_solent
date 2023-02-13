@@ -67,9 +67,9 @@ $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 $secondarynavigation = false;
 $overflow = '';
 
-$participant = !has_capability('moodle/course:update', $PAGE->context);
-$participant = false;
-if (!$participant) {
+$courseeditor = has_capability('moodle/course:update', $PAGE->context);
+$enablestudentsecondarynav = get_config('theme_solent', 'enablestudentsecondarynav');
+if ($courseeditor || $enablestudentsecondarynav) {
     if ($PAGE->has_secondary_navigation()) {
         $tablistnav = $PAGE->has_tablist_secondary_navigation();
         $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);

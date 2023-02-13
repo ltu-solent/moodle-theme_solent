@@ -49,6 +49,8 @@ $string['enablenavbar'] = 'Enable navbar';
 $string['enablenavbar_desc'] = 'Determines whether to display the breadcrumb trail';
 $string['enablescrollspy'] = 'Enable ScrollSpy';
 $string['enablescrollspy_desc'] = 'ScrollSpy remembers where on the page you were before enabling editing mode and take you back there to continue your work.';
+$string['enablestudentsecondarynav'] = 'Enable student secondary nav';
+$string['enablestudentsecondarynav_desc'] = 'The secondary nav is below the banner and includes Course - other users may be affected by turning this off.';
 $string['enablewelcome'] = 'Enable welcome message';
 $string['enablewelcome_desc'] = 'Display welcome message when user logs in.';
 $string['excludebreadcrumbs'] = 'Breadcrumb names to exclude (comma separated)';
@@ -116,6 +118,7 @@ $string['runsto'] = 'runs to';
 
 $string['shortcode:externalexaminerlink'] = 'Outputs a link to the external examiner report';
 $string['shortcode:moduledescriptor'] = 'Outputs a module descriptor that is context dependent.';
+$string['shortcode:moduledescriptorfile'] = 'Returns the url to the Module descriptor file.';
 $string['socialmenuitems'] = 'Social menu items';
 $string['socialmenuitems_desc'] = 'Social menu items';
 $string['solentfutures'] = 'Solent Futures';
