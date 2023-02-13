@@ -48,8 +48,7 @@ class boostnavbar extends \theme_boost\boostnavbar {
                 $this->remove('permissions');
             }
         }
-        // We're not using the mycourses page.
-        $this->remove('mycourses');
+
         if ($this->page->context->contextlevel == CONTEXT_COURSE) {
             // Remove any duplicate navbar nodes.
             $this->remove_duplicate_items();
@@ -83,6 +82,12 @@ class boostnavbar extends \theme_boost\boostnavbar {
                     $this->remove('mygrades');
                     $this->remove('grades');
             }
+        }
+        $excludebreadcrumbs = explode(',', get_config('theme_solent', 'excludebreadcrumbs'));
+        foreach ($excludebreadcrumbs as $breadcrumb) {
+            // Allows for deleting by key, or guessing the key. e.g. "My Courses" becomes "mycourses".
+            $breadcrumb = str_replace(' ', '', strtolower($breadcrumb));
+            $this->remove($breadcrumb);
         }
     }
 }

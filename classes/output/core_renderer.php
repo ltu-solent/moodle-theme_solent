@@ -122,39 +122,8 @@ class core_renderer extends core_renderer_base {
      * @return string $breadcrumbs
      */
     public function navbar(): string {
-        // Give up our navbar for core?
-        $shownavbar = get_config('theme_solent', 'enablenavbar');
-        if (!$shownavbar) {
-            return '';
-        }
         $newnav = new \theme_solent\boostnavbar($this->page);
         return $this->render_from_template('core/navbar', $newnav);
-        $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
-        $excludebreadcrumbs = explode(',', get_config('theme_solent', 'excludebreadcrumbs'));
-
-        $breadcrumbs = html_writer::tag('span', get_string('pagepath'), array('class' => 'accesshide', 'id' => 'navbar-label'));
-        $breadcrumbs .= html_writer::start_tag('nav', array('aria-labelledby' => 'navbar-label'));
-        $breadcrumbs .= html_writer::start_tag('ul', array('class' => "breadcrumb "));
-        foreach ($this->page->navbar->get_items() as $item) {
-
-            if(!in_array($item->text, $excludebreadcrumbs)) {
-                // Test for single space hide section name trick.
-                if ((strlen($item->text) == 1) && ($item->text[0] == ' ')) {
-                    continue;
-                }
-
-                $breadcrumbs .= html_writer::start_tag('li');
-                $breadcrumbs .= $this->render($item);
-                if(!$item->is_last()) {
-                    $breadcrumbs .= html_writer::tag('span', '', array('class' => 'icon ' . $breadcrumbicon));
-                }
-                $breadcrumbs .= html_writer::end_tag('li');
-            }
-        }
-        $breadcrumbs .= html_writer::end_tag('ul');
-        $breadcrumbs .= html_writer::end_tag('nav');
-
-        return $breadcrumbs;
     }
 
     public function bottom_navbar(): string {

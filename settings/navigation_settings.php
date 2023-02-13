@@ -25,7 +25,16 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$page = new admin_settingpage('theme_solent_navigation', get_string('navigationsettings', 'theme_solent'));
+$page = new admin_settingpage('theme_solent_navigation', new lang_string('navigationsettings', 'theme_solent'));
+
+// Exclude breadcrumbs.
+$name = 'theme_solent/excludebreadcrumbs';
+$title = new lang_string('excludebreadcrumbs', 'theme_solent');
+$description = new lang_string('excludebreadcrumbs_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
 
 // Navbar at bottom of page.
 $name = 'theme_solent/enablebottomnavbar';

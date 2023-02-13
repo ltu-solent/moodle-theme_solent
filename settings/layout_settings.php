@@ -27,27 +27,27 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_solent_layout', get_string('layoutsettings', 'theme_solent'));
 
-// Navdrawer width.
+// Navdrawer width (Not using).
 $name = 'theme_solent/drawerwidth';
-$title = get_string('drawerwidth', 'theme_solent');
+$title = get_string('drawerwidth', 'theme_solent') . ' (Not using)';
 $description = get_string('drawerwidth_desc', 'theme_solent');
 $default = '285px';
 $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Navbar height.
+// Navbar height (Not using).
 $name = 'theme_solent/navbarheight';
-$title = get_string('navbarheight', 'theme_solent');
+$title = get_string('navbarheight', 'theme_solent') . ' (Not using)';
 $description = get_string('navbarheight_desc', 'theme_solent');
 $default = '50px';
 $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Block area width.
+// Block area width (Not using).
 $name = 'theme_solent/blockwidth';
-$title = get_string('blockwidth', 'theme_solent');
+$title = get_string('blockwidth', 'theme_solent') . ' (Not using)';
 $description = get_string('blockwidth_desc', 'theme_solent');
 $default = '360px';
 $setting = new admin_setting_configtext($name, $title, $description, $default);
@@ -59,24 +59,6 @@ $title = new lang_string('expandfieldsets', 'theme_solent');
 $description = new lang_string('expandfieldsets_desc', 'theme_solent');
 $default = '';
 $setting = new admin_setting_configtextarea($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
-
-// Exclude breadcrumbs.
-$name = 'theme_solent/excludebreadcrumbs';
-$title = get_string('excludebreadcrumbs', 'theme_solent');
-$description = get_string('excludebreadcrumbs_desc', 'theme_solent');
-$default = '';
-$setting = new admin_setting_configtext($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
-
-// Breadcrumb icon.
-$name = 'theme_solent/breadcrumbicon';
-$title = get_string('breadcrumbicon', 'theme_solent');
-$description = get_string('breadcrumbicon_desc', 'theme_solent');
-$default = 'fa fa-caret-right fa-fw';
-$setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
@@ -94,15 +76,6 @@ $name = 'theme_solent/enablecourseimage';
 $title = new lang_string('enablecourseimage', 'theme_solent');
 $description = new lang_string('enablecourseimage_desc', 'theme_solent');
 $default = 0;
-$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
-
-// Show course image instead of old banner.
-$name = 'theme_solent/enablenavbar';
-$title = new lang_string('enablenavbar', 'theme_solent');
-$description = new lang_string('enablenavbar_desc', 'theme_solent');
-$default = 1;
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
