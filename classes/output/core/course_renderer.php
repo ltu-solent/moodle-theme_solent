@@ -32,14 +32,12 @@ use core_course_category;
 use coursecat_helper;
 use core_course_list_element;
 use theme_solent\helper;
-use theme_solent\output\solent_toolbox;
 
 /**
  * Override core course renderer to add unit descriptor and external examiner info to the coursecat page.
  *
  */
 class course_renderer extends \core_course_renderer {
-    use solent_toolbox;
     /**
      * Returns HTML to display course content (summary, course contacts and optionally category name)
      *
