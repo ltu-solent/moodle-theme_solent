@@ -25,12 +25,12 @@
 
 namespace theme_solent;
 
+use context_course;
 use core_course_category;
+use filter_manager;
 use moodle_exception;
 use moodle_url;
 use stdClass;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Theme helper class. Bundle of functions to do general tasks.
@@ -123,7 +123,7 @@ class helper {
      * Is this category a course or module category. Returns the type.
      *
      * @param core_course_category $category
-     * @return void
+     * @return string modules, courses
      */
     public static function get_category_type(core_course_category $category) {
         $catparts = explode('_', $category->idnumber);
@@ -134,26 +134,43 @@ class helper {
     /**
      * Get url for unit descriptor document
      *
-     * @param string $coursecode Course code (without instance information e.g. ABC101)
-     * @return moodle_url|null
+     * @param object $course Course object
+     * @return array|null [moodle_url, filename]
      */
-    public static function get_unit_descriptor_file_url($coursecode) {
+    public static function get_unit_descriptor_file_url($course) {
         global $DB;
-        $descriptorinstanceid = get_config('theme_solent', 'descriptors');
-        if (!($descriptorinstanceid > 0)) {
+        $config = get_config('theme_solent');
+        // Is this a course or a module?
+        $ismodule = self::is_module($course);
+        $iscourse = false;
+        if (!$ismodule) {
+            $iscourse = self::is_course($course);
+        }
+        if (!($ismodule || $iscourse)) {
             return null;
         }
+        // Descriptor folder: 1 for course and 1 for module.
+        $descriptorfolderid = 0;
+        if ($ismodule) {
+            $descriptorfolderid = $config->descriptorfolder;
+        } else {
+            $descriptorfolderid = $config->coursedescriptorfolder;
+        }
+        if ($descriptorfolderid == 0) {
+            return null;
+        }
+        $filename = substr($course->shortname, 0, strpos($course->shortname, '_'));
         $sqllike = $DB->sql_like('filename', ':filename');
         $file = $DB->get_record_sql("
             SELECT f.id, filename, contextid, filepath
             FROM {files} f
             JOIN {context} ctx ON ctx.id = f.contextid
-            WHERE ctx.instanceid = :descriptorinstanceid
+            WHERE ctx.instanceid = :descriptorfolderid
                 AND (component = 'mod_folder' AND filearea = 'content')
                 AND {$sqllike}
             ORDER BY timemodified DESC", [
-                'descriptorinstanceid' => $descriptorinstanceid,
-                'filename' => $DB->sql_like_escape($coursecode) . '%'
+                'descriptorfolderid' => $descriptorfolderid,
+                'filename' => $DB->sql_like_escape($filename) . '%'
             ]
         );
         if (!$file) {
@@ -168,6 +185,43 @@ class helper {
             $file->filename,
             true
         );
-        return $url;
+        return [$url, $file->filename];
+    }
+
+    /**
+     * Course unit descriptor
+     *
+     * @param stdClass $course
+     * @return string Rendered descriptor
+     */
+    public static function course_unit_descriptor($course): string {
+        $content = '';
+        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $cattype = self::get_category_type($category);
+        if (!in_array($cattype, ['modules', 'courses'])) {
+            return $content;
+        }
+
+        $coursecontext = context_course::instance($course->id);
+        $filterman = filter_manager::instance();
+        $descriptor = '';
+        if ($cattype == 'modules') {
+            $descriptor = get_config('theme_solent', 'moduledescriptor');
+        } else {
+            $descriptor = get_config('theme_solent', 'coursedescriptor');
+        }
+        $descriptor = trim(clean_text($descriptor));
+        if (empty($descriptor)) {
+            return '';
+        }
+        // Before passing into the filter, add the courseid to module startenddate.
+        // On a course page this can be inferred from context, however, in search results it needs to be explicit.
+        $descriptor = str_replace('[startenddates]', '[startenddates courseid=' . $course->id . ']', $descriptor);
+        // And to the modulecode.
+        $descriptor = str_replace('[modulecode]', '[modulecode courseid=' . $course->id . ']', $descriptor);
+        $descriptor = str_replace('[moduledescriptorfile]', '[moduledescriptorfile courseid=' . $course->id . ']', $descriptor);
+        $descriptor = str_replace('[externalexaminerlink]', '[externalexaminerlink courseid=' . $course->id . ']', $descriptor);
+        $content = $filterman->filter_text($descriptor, $coursecontext);
+        return $content;
     }
 }

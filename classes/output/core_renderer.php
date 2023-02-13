@@ -36,7 +36,7 @@ defined('MOODLE_INTERNAL') || die;
  */
 
 class core_renderer extends core_renderer_base {
-    use solent_toolbox;
+
     /** @var custom_menu_item language The language menu if created */
     protected $language = null;
 

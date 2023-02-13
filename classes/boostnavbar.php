@@ -25,6 +25,9 @@
 
 namespace theme_solent;
 
+/**
+ * Override boostnavbar
+ */
 class boostnavbar extends \theme_boost\boostnavbar {
     /**
      * Prepares the navigation nodes for use with boost.
@@ -33,8 +36,9 @@ class boostnavbar extends \theme_boost\boostnavbar {
         global $PAGE;
 
         // Remove the navbar nodes that already exist in the primary navigation menu.
+        // phpcs:disable
         // $this->remove_items_that_exist_in_navigation($PAGE->primarynav);
-
+        // phpcs:enable
         // Defines whether section items with an action should be removed by default.
         $removesections = true;
 
@@ -44,6 +48,8 @@ class boostnavbar extends \theme_boost\boostnavbar {
                 $this->remove('permissions');
             }
         }
+        // We're not using the mycourses page.
+        $this->remove('mycourses');
         if ($this->page->context->contextlevel == CONTEXT_COURSE) {
             // Remove any duplicate navbar nodes.
             $this->remove_duplicate_items();
@@ -54,9 +60,11 @@ class boostnavbar extends \theme_boost\boostnavbar {
             $this->remove($this->page->course->category, \breadcrumb_navigation_node::TYPE_CATEGORY);
             // SU_AMEND_START: We want the course in the breadcrumb.
             // Remove the course breadcrumb node.
+            // phpcs:disable
             // $this->remove($this->page->course->id, \breadcrumb_navigation_node::TYPE_COURSE);
             // Remove the navbar nodes that already exist in the secondary navigation menu.
             // $this->remove_items_that_exist_in_navigation($PAGE->secondarynav);
+            // phpcs:enable
             // SU_AMEND_END.
             switch ($this->page->pagetype) {
                 case 'group-groupings':

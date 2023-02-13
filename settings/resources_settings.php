@@ -28,21 +28,63 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_solent_resources', new lang_string('resources_settings', 'theme_solent'));
 
+$page->add(new admin_setting_heading(
+    'theme_solent/descriptors',
+    new lang_string('descriptors', 'theme_solent'),
+    new lang_string('descriptors_desc', 'theme_solent')
+));
+
 // Module descriptor.
-$name = 'theme_solent/descriptors';
-$title = new lang_string('descriptors', 'theme_solent');
-$description = new lang_string('descriptors_desc', 'theme_solent');
-$default = 0;
-$setting = new admin_setting_configtext($name, $title, $description, $default, PARAM_INT);
+$name = 'theme_solent/moduledescriptor';
+$title = new lang_string('moduledescriptor', 'theme_solent');
+$desc = new lang_string('moduledescriptor_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_confightmleditor($name, $title, $desc, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// External examiner link.
-$name = new lang_string('externalexaminerlink', 'theme_solent');
-$desc = new lang_string('externalexaminerlink_desc', 'theme_solent');
-$default = '';
-$setting = new admin_setting_configtext('theme_solent/externalexaminerlink', $name, $desc, $default, PARAM_URL);
+$name = 'theme_solent/descriptorfolder';
+$title = new lang_string('descriptorfolder', 'theme_solent');
+$desc = new lang_string('descriptorfolder_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_INT);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
+
+// Module External examiner link.
+$name = 'theme_solent/externalexaminerlink';
+$title = new lang_string('externalexaminerlink', 'theme_solent');
+$desc = new lang_string('externalexaminerlink_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_URL);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Course descriptor.
+$name = 'theme_solent/coursedescriptor';
+$title = new lang_string('coursedescriptor', 'theme_solent');
+$desc = new lang_string('coursedescriptor_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_confightmleditor($name, $title, $desc, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$name = 'theme_solent/coursedescriptorfolder';
+$title = new lang_string('coursedescriptorfolder', 'theme_solent');
+$desc = new lang_string('coursedescriptorfolder_desc', 'theme_solent');
+$default = 0;
+$setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_INT);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Course External examiner link.
+$name = 'theme_solent/courseexternalexaminerlink';
+$title = new lang_string('courseexternalexaminerlink', 'theme_solent');
+$desc = new lang_string('courseexternalexaminerlink_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_URL);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 
 $settings->add($page);

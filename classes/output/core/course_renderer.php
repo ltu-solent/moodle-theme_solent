@@ -31,6 +31,7 @@ use stdClass;
 use core_course_category;
 use coursecat_helper;
 use core_course_list_element;
+use theme_solent\helper;
 use theme_solent\output\solent_toolbox;
 
 /**
@@ -62,7 +63,7 @@ class course_renderer extends \core_course_renderer {
         }
         $content .= \html_writer::start_tag('div');
         // SU_AMEND_START: Add unit descriptor if available.
-        $content .= $this->course_unit_descriptor($course);
+        $content .= helper::course_unit_descriptor($course);
         // SU_AMEND_END.
         $content .= $this->course_summary($chelper, $course);
         $content .= $this->course_contacts($course);

@@ -20,11 +20,19 @@ $string['choosereadme'] = 'Solent is a modern highly-customisable theme. This th
 $string['colours_settings'] = 'Colour settings';
 $string['configtitle'] = 'Solent theme settings';
 $string['copyright'] = '&copy; Solent University';
+$string['coursedescriptor'] = 'Course descriptor';
+$string['coursedescriptor_desc'] = 'This content will be displayed for Course pages. You can use filters within it. It will appear whereever the [moduledescriptor] shortcode is used. You can use HTML here.';
+$string['coursedescriptorfolder'] = 'Course descriptors folder';
+$string['coursedescriptorfolder_desc'] = 'ID of course descriptors folder activity';
+$string['courseexternalexaminerlink'] = 'Course External examiner link';
+$string['courseexternalexaminerlink_desc'] = 'Course External examiner url. Include ::IDNUMBER:: in the url. This will be replaced with the course code.';
 $string['courseinstance'] = 'Instance: ';
 $string['currentinparentheses'] = '(current)';
 
-$string['descriptors'] = 'Module descriptors folder';
-$string['descriptors_desc'] = 'ID of module descriptors folder';
+$string['descriptors'] = 'Module and course descriptors';
+$string['descriptors_desc'] = 'Module and course descriptor settings';
+$string['descriptorfolder'] = 'Module descriptors folder';
+$string['descriptorfolder_desc'] = 'ID of module descriptors folder activity';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
 
@@ -70,7 +78,9 @@ $string['layoutsettings'] = 'Layout settings';
 $string['loginimage'] = 'Default Login image';
 $string['loginimage_desc'] = 'Background image for login page';
 
-$string['moduledescriptor'] = 'Module Descriptor';
+$string['moduledescriptor'] = 'Module descriptor';
+$string['moduledescriptor_desc'] = 'This content will be displayed for Module pages. You can use filters within it. It will appear whereever the [moduledescriptor] shortcode is used. You can use HTML here.';
+$string['moduledescriptorfile'] = 'Returns the url to the Module descriptor file.';
 $string['moduledescriptorfor'] = 'Module descriptor for {$a}';
 $string['modulerunsfrom'] = 'Module runs: ';
 
@@ -104,6 +114,8 @@ $string['resources_settings'] = 'Resources settings';
 $string['runsfrom'] = 'runs from';
 $string['runsto'] = 'runs to';
 
+$string['shortcode:externalexaminerlink'] = 'Outputs a link to the external examiner report';
+$string['shortcode:moduledescriptor'] = 'Outputs a module descriptor that is context dependent.';
 $string['socialmenuitems'] = 'Social menu items';
 $string['socialmenuitems_desc'] = 'Social menu items';
 $string['solentfutures'] = 'Solent Futures';

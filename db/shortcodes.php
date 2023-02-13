@@ -15,20 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Shortcodes to be used with Solent theme
+ *
  * @package   theme_solent
- * @copyright 2016 Ryan Wyllie
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2023 Solent University {@link https://www.solent.ac.uk}
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
-    require('settings/layout_settings.php');
-    require('settings/navigation_settings.php');
-    require('settings/image_settings.php');
-    require('settings/resources_settings.php');
-    require('settings/presets_settings.php');
-    require('settings/colours_settings.php');
-    require('settings/footer_settings.php');
-}
+$shortcodes = [
+    'moduledescriptor' => [
+        'callback' => 'theme_solent\local\shortcodes::moduledescriptor',
+        'description' => 'shortcode:moduledescriptor'
+    ],
+    'moduledescriptorfile' => [
+        'callback' => 'theme_solent\local\shortcodes::moduledescriptorfile',
+        'description' => 'shortcode:moduledescriptorfile'
+    ],
+    'externalexaminerlink' => [
+        'callback' => 'theme_solent\local\shortcodes::externalexaminerlink',
+        'description' => 'shortcode:externalexaminerlink'
+    ]
+];
