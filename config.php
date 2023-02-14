@@ -43,7 +43,4 @@ $THEME->scss = function($theme) {
 // Call css/scss processing functions and renderers.
 $THEME->prescsscallback = 'theme_solent_get_pre_scss';
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
-$THEME->removedprimarynavitems = [
-    'courses',
-    'home'
-];
+$THEME->removedprimarynavitems = explode(',', get_config('theme_solent', 'hidenodesprimarynavigation'));

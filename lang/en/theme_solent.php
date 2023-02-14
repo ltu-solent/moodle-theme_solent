@@ -94,6 +94,8 @@ $string['headerdefaultimage'] = 'Default header image';
 $string['headerdefaultimage_desc'] = 'Default image for course headers and non-course pages';
 $string['headerimagecurrent'] = 'Option {$a->opt} is currently selected.';
 $string['headerimageinstructions'] = 'Click the radio button next to an image to select it. You will automatically redirected back to the previous page.';
+$string['hidenodesprimarynavigationsetting'] = 'Hide nodes in primary navigation';
+$string['hidenodesprimarynavigationsetting_desc'] = 'With this setting, you can hide one or multiple nodes from the primary navigation.';
 
 $string['imagesettings'] = 'Image settings';
 
