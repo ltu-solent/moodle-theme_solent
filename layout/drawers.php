@@ -74,6 +74,20 @@ if ($courseeditor || $enablestudentsecondarynav) {
         $tablistnav = $PAGE->has_tablist_secondary_navigation();
         $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
         $secondarynavigation = $moremenu->export_for_template($OUTPUT);
+        // SU_AMEND_START: Remove grades from Secondary nav.
+        if (isset($secondarynavigation['nodecollection']->children)) {
+            $secondarynavigation['nodecollection']->children->remove('grades');
+            // phpcs:disable
+            // Optionally add a new grades node.
+            // $solgrades = new navigation_node([
+            //     'text' => 'SOL Grades',
+            //     'action' => new moodle_url('/report/grade/index.php', ['id' => $COURSE->id]),
+            //     'key' => 'solgrades'
+            // ]);
+            // $secondarynavigation['nodecollection']->children->add($solgrades, 'coursereports');
+            // phpcs:enable
+        }
+        // SU_AMEND_END.
         $overflowdata = $PAGE->secondarynav->get_overflow_menu_data();
         if (!is_null($overflowdata)) {
             $overflow = $overflowdata->export_for_template($OUTPUT);
