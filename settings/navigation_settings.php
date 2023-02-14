@@ -52,6 +52,15 @@ $setting = new admin_setting_configtext($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+// Exclude Secondary nav items.
+$name = 'theme_solent/excludesecondarynavitems';
+$title = new lang_string('excludesecondarynavitems', 'theme_solent');
+$description = new lang_string('excludesecondarynavitems_desc', 'theme_solent');
+$default = 'grades';
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // Navbar at bottom of page.
 $name = 'theme_solent/enablebottomnavbar';
 $title = new lang_string('enablebottomnavbar', 'theme_solent');

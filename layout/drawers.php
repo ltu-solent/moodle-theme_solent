@@ -76,7 +76,10 @@ if ($courseeditor || $enablestudentsecondarynav) {
         $secondarynavigation = $moremenu->export_for_template($OUTPUT);
         // SU_AMEND_START: Remove grades from Secondary nav.
         if (isset($secondarynavigation['nodecollection']->children)) {
-            $secondarynavigation['nodecollection']->children->remove('grades');
+            $excludesecondarynavitems = explode(',', get_config('theme_solent', 'excludesecondarynavitems'));
+            foreach ($excludesecondarynavitems as $navitem) {
+                $secondarynavigation['nodecollection']->children->remove($navitem);
+            }
             // phpcs:disable
             // Optionally add a new grades node.
             // $solgrades = new navigation_node([
