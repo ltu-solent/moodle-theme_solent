@@ -25,8 +25,6 @@
 
 namespace theme_solent\output\core;
 
-defined('MOODLE_INTERNAL') || die();
-
 use stdClass;
 use core_course_category;
 use coursecat_helper;

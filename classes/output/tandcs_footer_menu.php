@@ -28,8 +28,9 @@ namespace theme_solent\output;
 use renderable;
 use templatable;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Terms and conditions footer
+ */
 class tandcs_footer_menu extends vertical_footer_menu implements renderable, templatable {
 
 }

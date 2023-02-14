@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $page = new admin_settingpage('theme_solent_footer', new lang_string('footer_settings', 'theme_solent'));
 
-// Study column menu
+// Study column menu.
 $name = new lang_string('studymenuitems', 'theme_solent');
 $desc = new lang_string('studymenuitems_desc', 'theme_solent');
 $default =
@@ -41,7 +41,7 @@ $setting = new admin_setting_configtextarea('theme_solent/studymenuitems', $name
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Organise column menu
+// Organise column menu.
 $name = new lang_string('organisemenuitems', 'theme_solent');
 $desc = new lang_string('organisemenuitems_desc', 'theme_solent');
 $default =
@@ -53,7 +53,7 @@ $setting = new admin_setting_configtextarea('theme_solent/organisemenuitems', $n
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Support column menu
+// Support column menu.
 $name = new lang_string('supportmenuitems', 'theme_solent');
 $desc = new lang_string('supportmenuitems_desc', 'theme_solent');
 $default =
@@ -65,7 +65,7 @@ $setting = new admin_setting_configtextarea('theme_solent/supportmenuitems', $na
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Solent Futures column menu
+// Solent Futures column menu.
 $name = new lang_string('solentfuturesmenuitems', 'theme_solent');
 $desc = new lang_string('solentfuturesmenuitems_desc', 'theme_solent');
 $default =
@@ -78,7 +78,7 @@ $setting = new admin_setting_configtextarea('theme_solent/solentfuturesmenuitems
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Terms & Conditions
+// Terms & Conditions.
 $name = new lang_string('tandcsmenuitems', 'theme_solent');
 $desc = new lang_string('tandcsmenuitems_desc', 'theme_solent');
 $default =
@@ -91,7 +91,7 @@ $setting = new admin_setting_configtextarea('theme_solent/tandcsmenuitems', $nam
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Social menu items
+// Social menu items.
 $name = new lang_string('socialmenuitems', 'theme_solent');
 $desc = new lang_string('socialmenuitems_desc', 'theme_solent');
 $default =

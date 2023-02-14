@@ -23,8 +23,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Placeholder function to generate alerts within the theme.
  *
@@ -32,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * @return array
  */
 function theme_solent_solentzone_alerts($alerts) {
-	return $alerts;
+    return $alerts;
 }
 
 /**
@@ -42,5 +40,5 @@ function theme_solent_solentzone_alerts($alerts) {
  * @return array
  */
 function theme_solent_solentzone_dashlinks($dashlinks) {
-	return $dashlinks;
+    return $dashlinks;
 }

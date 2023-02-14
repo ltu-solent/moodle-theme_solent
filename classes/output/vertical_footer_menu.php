@@ -31,18 +31,41 @@ use stdClass;
 use templatable;
 use theme_solent\helper;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Multicolumn menu
+ */
 class vertical_footer_menu implements renderable, templatable {
 
+    /**
+     * Menu title
+     *
+     * @var string
+     */
     private $title;
+    /**
+     * list of links
+     *
+     * @var array
+     */
     private $nodes;
 
+    /**
+     * Constructor
+     *
+     * @param string $menutext Multiline text to be parsed into a menu
+     * @param string $title
+     */
     public function __construct($menutext, $title = null) {
         $this->title = $title;
         $this->nodes = helper::convert_text_to_menu($menutext);
     }
 
+    /**
+     * Export template context
+     *
+     * @param renderer_base $output
+     * @return stdClass
+     */
     public function export_for_template(renderer_base $output) {
         $context = new stdClass();
         $context->title = $this->title;
@@ -50,6 +73,11 @@ class vertical_footer_menu implements renderable, templatable {
         return $context;
     }
 
+    /**
+     * How many nodes?
+     *
+     * @return int
+     */
     public function count() {
         return count($this->nodes);
     }

@@ -1,4 +1,28 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Backup renderer
+ *
+ * @package   theme_solent
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2023 Solent University {@link https://www.solent.ac.uk}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace theme_solent\output\core;
 
 defined('MOODLE_INTERNAL') || die();
@@ -14,23 +38,26 @@ use theme_solent\helper;
 
 require_once($CFG->dirroot.'/backup/util/ui/renderer.php');
 
+/**
+ * Backup renderer override
+ */
 class backup_renderer extends \core_backup_renderer {
 
-  /**
-   * Renders an import course search object
-   *
-   * @param import_course_search $component
-   * @return string
-   */
-	public function render_import_course_search(import_course_search $component) {
-		$output = html_writer::start_tag('div', array('class' => 'import-course-search'));
+    /**
+     * Renders an import course search object
+     *
+     * @param import_course_search $component
+     * @return string
+     */
+    public function render_import_course_search(import_course_search $component) {
+        $output = html_writer::start_tag('div', array('class' => 'import-course-search'));
         if ($component->get_count() === 0) {
             $output .= $this->output->notification(get_string('nomatchingcourses', 'backup'));
 
             $output .= html_writer::start_tag('div', array('class' => 'ics-search form-inline'));
             $attrs = array(
                 'type' => 'text',
-                'name' => restore_course_search::$VAR_SEARCH,
+                'name' => restore_course_search::$VAR_SEARCH, // phpcs:ignore
                 'value' => $component->get_search(),
                 'aria-label' => get_string('searchcourses'),
                 'placeholder' => get_string('searchcourses'),
@@ -69,7 +96,7 @@ class backup_renderer extends \core_backup_renderer {
             if (helper::is_module($courseobj)) {
                 $course->fullname .= ' - ' . get_string('startdate', 'theme_solent', userdate($courseobj->startdate, "%d/%m/%Y"));
             }
-            // SU_AMEND END
+            // SU_AMEND END.
             $row = new html_table_row();
             $row->attributes['class'] = 'ics-course';
             if (!$course->visible) {
@@ -103,7 +130,7 @@ class backup_renderer extends \core_backup_renderer {
         $output .= html_writer::start_tag('div', array('class' => 'ics-search form-inline'));
         $attrs = array(
             'type' => 'text',
-            'name' => restore_course_search::$VAR_SEARCH,
+            'name' => restore_course_search::$VAR_SEARCH, // phpcs:ignore
             'value' => $component->get_search(),
             'aria-label' => get_string('searchcourses'),
             'placeholder' => get_string('searchcourses'),

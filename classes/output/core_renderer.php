@@ -25,8 +25,6 @@ use html_writer;
 use theme_boost\output\core_renderer as core_renderer_base;
 use theme_solent\helper as solent_helper;
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
  *
@@ -34,7 +32,6 @@ defined('MOODLE_INTERNAL') || die;
  * @copyright  2021 Sarah Cotton
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class core_renderer extends core_renderer_base {
 
     /** @var custom_menu_item language The language menu if created */
@@ -47,7 +44,7 @@ class core_renderer extends core_renderer_base {
      */
     public function full_header() {
         global $CFG;
-		$pagetype = $this->page->pagetype;
+        $pagetype = $this->page->pagetype;
         $homepage = get_home_page();
         $homepagetype = null;
         $context = $this->page->context;
@@ -86,7 +83,7 @@ class core_renderer extends core_renderer_base {
             }
         }
 
-// SU_AMEND START - Course: Header images
+        // SU_AMEND START - Course: Header images.
         $showbanner = get_config('theme_solent', 'enablebanner');
         if ($showbanner) {
             $additionalheader = theme_solent_header_image();
@@ -113,7 +110,7 @@ class core_renderer extends core_renderer_base {
         if ($courseimage) {
             $header->courseimage = $courseimage;
         }
-// SU_AMEND END
+        // SU_AMEND END.
         return $this->render_from_template('core/full_header', $header);
     }
 
@@ -126,6 +123,11 @@ class core_renderer extends core_renderer_base {
         return $this->render_from_template('core/navbar', $newnav);
     }
 
+    /**
+     * Return navbar if required at bottom of the page.
+     *
+     * @return string HTML for navbar.
+     */
     public function bottom_navbar(): string {
         if (!get_config('theme_solent', 'enablebottomnavbar')) {
             return '';
@@ -159,13 +161,13 @@ class core_renderer extends core_renderer_base {
     public function solentzone() {
         $content = '';
         // Separating into different types so we can prioritise and group them.
-        // More free html
+        // More free html.
         $banners = [];
         // Use notification objects for alerts.
         $alerts = [];
-        // Links to resources
+        // Links to resources.
         $dashlinks = [];
-        // Links to Reports
+        // Links to Reports.
         $reports = [];
         $notices = [];
         // Plugins.
@@ -195,6 +197,11 @@ class core_renderer extends core_renderer_base {
         return $content;
     }
 
+    /**
+     * Footer menu
+     *
+     * @return stdClass Context for footer menu template
+     */
     public function solent_footer_menu() {
         $content = new stdClass();
         $content->vertical = [];
@@ -218,7 +225,6 @@ class core_renderer extends core_renderer_base {
         if ($menu->count() > 0) {
             $content->social = $this->render($menu);
         }
-        // print_r($content);
         return $content;
     }
 

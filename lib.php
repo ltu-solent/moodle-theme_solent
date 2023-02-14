@@ -35,10 +35,10 @@ require_once('lib/solentzone_lib.php');
  *
  * @return stdClass Template ready context for imageclass and imageselector.
  */
-function theme_solent_header_image(){
-	global $DB, $COURSE, $PAGE;
-	$oncoursepage = in_array($PAGE->pagelayout, ['course', 'incourse']);
-	$isediting = $PAGE->user_is_editing();
+function theme_solent_header_image() {
+    global $DB, $COURSE, $PAGE;
+    $oncoursepage = in_array($PAGE->pagelayout, ['course', 'incourse']);
+    $isediting = $PAGE->user_is_editing();
 
     $header = new stdClass();
     $header->imageclass = null;
@@ -56,13 +56,13 @@ function theme_solent_header_image(){
         $currentcategory = $DB->get_record('course_categories', array('id' => $COURSE->category));
         $catname = strtolower('x' . $currentcategory->name);
         if (isset($catname)) {
-                if (strpos($catname, 'course pages') !== false) {
-                    $record->opt = '08';
-                    $record->id = $DB->insert_record('theme_header', $record);
-                } else {
-                    $record->opt = '01';
-                    $record->id = $DB->insert_record('theme_header', $record);
-                }
+            if (strpos($catname, 'course pages') !== false) {
+                $record->opt = '08';
+                $record->id = $DB->insert_record('theme_header', $record);
+            } else {
+                $record->opt = '01';
+                $record->id = $DB->insert_record('theme_header', $record);
+            }
         }
     }
 
@@ -70,12 +70,9 @@ function theme_solent_header_image(){
         $url = new moodle_url('/theme/solent/layout/header_options.php',
             array('course' => $COURSE->id, 'opt' => $record->opt));
         $header->imageselector = html_writer::link($url, 'Select header image', ['class' => 'header-image-link btn btn-secondary']);
-        
-        // '<div class="header-image-link btn">
-        //     <a class="btn btn-secondary" href="' . $url . '">Select header image</a></div>';
     }
     $header->imageclass = 'header-image opt' . $record->opt;
-	return $header;
+    return $header;
 }
 
 /**

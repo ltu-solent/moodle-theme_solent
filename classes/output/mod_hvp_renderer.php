@@ -35,11 +35,11 @@ class mod_hvp_renderer extends mod_hvp_renderer_base {
     /**
      * Alter which stylesheets are loaded for H5P.
      *
-     * @param array|object $scripts List of stylesheets that will be loaded
+     * @param array|object $styles List of stylesheets that will be loaded
      * @param array $libraries Array of libraries indexed by the library's machineName
      * @param string $embedtype Possible values: div, iframe, external, editor
      */
-    public function hvp_alter_styles(&$styles, $libraries, $embedType) {
+    public function hvp_alter_styles(&$styles, $libraries, $embedtype) {
         global $CFG;
         $styles[] = (object) array(
             'path'    => $CFG->wwwroot . '/theme/solent/style/h5pstyle.css',

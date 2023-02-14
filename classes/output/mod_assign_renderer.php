@@ -31,8 +31,9 @@ use mod_assign\output\assign_submission_status;
 use mod_assign\output\renderer as renderer_base;
 use moodle_url;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Assign renderer overrride
+ */
 class mod_assign_renderer extends renderer_base {
     /**
      * Utility function to add a row of data to a table with 2 columns where the first column is the table's header.
@@ -151,7 +152,7 @@ class mod_assign_renderer extends renderer_base {
                 $members = $status->submissiongroupmemberswhoneedtosubmit;
                 $userslist = array();
                 foreach ($members as $member) {
-                    $urlparams = array('id' => $member->id, 'course'=>$status->courseid);
+                    $urlparams = array('id' => $member->id, 'course' => $status->courseid);
                     $url = new \moodle_url('/user/view.php', $urlparams);
                     if ($status->view == assign_submission_status::GRADER_VIEW && $status->blindmarking) {
                         $userslist[] = $member->alias;
@@ -232,7 +233,7 @@ class mod_assign_renderer extends renderer_base {
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], ['class' => $cell2attributes]);
         }
 
-        // SU_AMEND_START - Assignment: Cut off date/time remaining in submission status
+        // SU_AMEND_START - Assignment: Cut off date/time remaining in submission status.
         if ($status->view == assign_submission_status::STUDENT_VIEW) {
             $cutoffdate = 0;
             $cutoffdate = $status->cutoffdate;
@@ -244,7 +245,7 @@ class mod_assign_renderer extends renderer_base {
                 }
             }
         }
-        // SU_AMEND_END
+        // SU_AMEND_END.
 
         // Add time limit info if there is one.
         $timelimitenabled = get_config('assign', 'enabletimelimit') && $status->timelimit > 0;
@@ -358,8 +359,8 @@ class mod_assign_renderer extends renderer_base {
                 $submissionsummary = get_string('nosubmission', 'assign');
             }
 
-            $attemptsummaryparams = array('attemptnumber'=>$submission->attemptnumber+1,
-                                          'submissionsummary'=>$submissionsummary);
+            $attemptsummaryparams = array('attemptnumber' => $submission->attemptnumber + 1,
+                                          'submissionsummary' => $submissionsummary);
             $o .= $this->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
 
             $t = new \html_table();
@@ -392,20 +393,20 @@ class mod_assign_renderer extends renderer_base {
             if ($grade) {
                 // Heading 'feedback'.
                 $title = get_string('feedback', 'assign', $i);
-                $title .= $this->output->spacer(array('width'=>10));
+                $title .= $this->output->spacer(array('width' => 10));
                 if ($history->cangrade) {
                     // Edit previous feedback.
                     $returnparams = http_build_query($history->returnparams);
                     $urlparams = array('id' => $history->coursemoduleid,
-                                   'rownum'=>$history->rownum,
-                                   'useridlistid'=>$history->useridlistid,
-                                   'attemptnumber'=>$grade->attemptnumber,
-                                   'action'=>'grade',
-                                   'returnaction'=>$history->returnaction,
-                                   'returnparams'=>$returnparams);
+                                   'rownum' => $history->rownum,
+                                   'useridlistid' => $history->useridlistid,
+                                   'attemptnumber' => $grade->attemptnumber,
+                                   'action' => 'grade',
+                                   'returnaction' => $history->returnaction,
+                                   'returnparams' => $returnparams);
                     $url = new \moodle_url('/mod/assign/view.php', $urlparams);
                     $icon = new \pix_icon('gradefeedback',
-                                            get_string('editattemptfeedback', 'assign', $grade->attemptnumber+1),
+                                            get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
                                             'mod_assign');
                     $title .= $this->output->action_icon($url, $icon);
                 }
