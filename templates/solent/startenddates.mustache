@@ -1,0 +1,14 @@
+{{#enddate}}
+    <div class="small">
+        <span class="sr-only">{{#str}} startenddates, theme_solent {{/str}}</span>
+        <span aria-label="{{#str}} starts, theme_solent {{/str}}">
+            <time datetime="{{#userdate}} {{startdate}}, %F {{/userdate}}">
+                {{#userdate}} {{startdate}}, {{#str}} strftimedatefullshort, core_langconfig {{/str}} {{/userdate}}
+            </time>
+        </span>
+        -
+        <span aria-label="{{#str}} ends, theme_solent {{/str}}">
+            <time datetime="{{#userdate}} {{enddate}}, %F {{/userdate}}">{{#userdate}} {{enddate}}, {{#str}} strftimedatefullshort, core_langconfig {{/str}} {{/userdate}}</time>
+        </span>
+    </div>
+{{/enddate}}
