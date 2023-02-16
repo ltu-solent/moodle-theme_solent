@@ -168,7 +168,8 @@ class helper {
             WHERE ctx.instanceid = :descriptorfolderid
                 AND (component = 'mod_folder' AND filearea = 'content')
                 AND {$sqllike}
-            ORDER BY timemodified DESC", [
+            ORDER BY timemodified DESC
+            LIMIT 1", [
                 'descriptorfolderid' => $descriptorfolderid,
                 'filename' => $DB->sql_like_escape($filename) . '%'
             ]
