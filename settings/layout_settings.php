@@ -119,4 +119,51 @@ $setting = new admin_setting_configcheckbox($name, $title, $description, $defaul
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+$page->add(new admin_setting_heading(
+    'theme_solent/fitvids',
+    new lang_string('fitvids', 'theme_solent'),
+    new lang_string('fitvids_desc', 'theme_solent')
+));
+
+$name = 'theme_solent/enable_fitvid';
+$title = new lang_string('enable_fitvid', 'theme_solent');
+$description = new lang_string('enable_fitvid_desc', 'theme_solent');
+$default = 1;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+// Embedded video max width.
+$name = 'theme_solent/vidmaxwidth';
+$title = new lang_string('vidmaxwidth', 'theme_solent');
+$description = new lang_string('vidmaxwidth_desc', 'theme_solent');
+$default = 450;
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$name = 'theme_solent/vidmaxheight';
+$title = new lang_string('vidmaxheight', 'theme_solent');
+$description = new lang_string('vidmaxheight_desc', 'theme_solent');
+$default = 300;
+$setting = new admin_setting_configtext($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$name = 'theme_solent/customselectors';
+$title = new lang_string('customselectors', 'theme_solent');
+$description = new lang_string('customselectors_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtextarea($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
+$name = 'theme_solent/ignoreselectors';
+$title = new lang_string('ignoreselectors', 'theme_solent');
+$description = new lang_string('ignoreselectors_desc', 'theme_solent');
+$default = '';
+$setting = new admin_setting_configtextarea($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 $settings->add($page);

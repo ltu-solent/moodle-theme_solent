@@ -100,7 +100,7 @@ function theme_solent_page_init(moodle_page $page) {
         $page->requires->js_call_amd('theme_solent/scrollspy', 'init');
     }
 
-    $expands = explode("\r\n", get_config('theme_solent', 'expandfieldsets'));
+    $expands = explode("\r\n", $config->expandfieldsets);
     $openfieldsets = ['id' => []];
     foreach ($expands as $expand) {
         $expand = trim($expand);
@@ -111,6 +111,16 @@ function theme_solent_page_init(moodle_page $page) {
         }
     }
     $page->requires->js_call_amd('theme_solent/solent', 'togglefieldsets', $openfieldsets);
+    $fitvidsenabled = $config->enable_fitvid ?? false;
+    if ($fitvidsenabled) {
+        error_log("Enabled");
+        $settings = [];
+        $settings['maxwidth'] = $config->vidmaxwidth;
+        $settings['maxheight'] = $config->vidmaxheight;
+        $settings['customSelector'] = explode("\n", $config->customselectors);
+        $settings['ignore'] = explode("\n", $config->ignoreselectors);
+        $page->requires->js_call_amd('theme_solent/fitvids', 'init', [$settings]);
+    }
 }
 
 /**

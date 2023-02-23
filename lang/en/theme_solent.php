@@ -49,6 +49,10 @@ $string['courseexternalexaminerlink'] = 'Course External examiner link';
 $string['courseexternalexaminerlink_desc'] = 'Course External examiner url. Include ::IDNUMBER:: in the url. This will be replaced with the course code.';
 $string['courseinstance'] = 'Instance: ';
 $string['currentinparentheses'] = '(current)';
+$string['customselectors'] = 'Custom selectors';
+$string['customselectors_desc'] = 'This allows you to specify other types of media to which this will apply, without changing the code. e.g. Facebook videos.<br />
+    Each line should contain a css selector for fitvids to operate on. e.g. <code>iframe[src*=\'facebook.com\/plugins\/video.php\']</code>
+';
 
 $string['descriptors'] = 'Module and course descriptors';
 $string['descriptors_desc'] = 'Module and course descriptor settings';
@@ -57,6 +61,8 @@ $string['descriptorfolder_desc'] = 'ID of module descriptors folder activity';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
 
+$string['enable_fitvid'] = 'Enable fitvid';
+$string['enable_fitvid_desc'] = 'Fitvid automatically fits a video to the screen size.';
 $string['enableaccessibilitytool'] = 'Enable accessibility tool';
 $string['enableaccessibilitytool_desc'] = 'Accessibility tool will allow users to choose their own colour scheme,
     font and font sizes for themselves.';
@@ -85,6 +91,8 @@ $string['externalexaminer'] = 'External Examiner report';
 $string['externalexaminerlink'] = 'External examiner link';
 $string['externalexaminerlink_desc'] = 'External examiner url. Include ::IDNUMBER:: in the url. This will be replaced with the course code.';
 
+$string['fitvids'] = 'Responsive videos';
+$string['fitvids_desc'] = 'Make videos responsive according to available screen size.';
 $string['fontfamily'] = 'Font family';
 $string['fontfamily_desc'] = 'This choice will apply across SOL';
 $string['fontsizebase'] = 'Theme base fontsize';
@@ -100,6 +108,8 @@ $string['headerimageinstructions'] = 'Click the radio button next to an image to
 $string['hidenodesprimarynavigationsetting'] = 'Hide nodes in primary navigation';
 $string['hidenodesprimarynavigationsetting_desc'] = 'With this setting, you can hide one or multiple nodes from the primary navigation.';
 
+$string['ignoreselectors'] = 'Ignore selectors';
+$string['ignoreselectors_desc'] = 'Ignore these selectors. One per line.';
 $string['imagesettings'] = 'Image settings';
 
 $string['layoutsettings'] = 'Layout settings';
@@ -165,3 +175,8 @@ $string['tabcolor_desc'] = 'Course page tab colour';
 $string['tandcsmenuitems'] = 'Terms & Conditions menu items';
 $string['tandcsmenuitems_desc'] = 'Terms & Conditions menu items';
 $string['totop'] = 'Back to top';
+
+$string['vidmaxwidth'] = 'Video MaxWidth';
+$string['vidmaxwidth_desc'] = 'Resizes videos, but limited the width to this size. 0 means, it will fill large screens.';
+$string['vidmaxheight'] = 'Video MaxHeight';
+$string['vidmaxheight_desc'] = 'Resizes videos, but limited the height to this size. 0 means, it will fill large screens.';
