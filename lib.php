@@ -113,7 +113,6 @@ function theme_solent_page_init(moodle_page $page) {
     $page->requires->js_call_amd('theme_solent/solent', 'togglefieldsets', $openfieldsets);
     $fitvidsenabled = $config->enable_fitvid ?? false;
     if ($fitvidsenabled) {
-        error_log("Enabled");
         $settings = [];
         $settings['maxwidth'] = $config->vidmaxwidth;
         $settings['maxheight'] = $config->vidmaxheight;
