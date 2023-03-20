@@ -129,6 +129,7 @@ $string['navigationsettings'] = 'Navigation settings';
 $string['nomoduledescriptor'] = 'No module descriptor available';
 $string['nobootswatch'] = 'None';
 
+$string['otherlogin'] = 'All other users, please <a href="#login" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="#login">Click here to log in</a>';
 $string['organise'] = 'Organise';
 $string['organisemenuitems'] = 'Organise menu items';
 $string['organisemenuitems_desc'] = 'Organise menu items';
