@@ -227,3 +227,11 @@ function theme_solent_solentzone_alerts($alerts) {
 function theme_solent_solentzone_dashlinks($dashlinks) {
 	return $dashlinks;
 }
+
+function theme_solent_page_init(moodle_page $page) {
+	global $CFG;
+	if (file_exists($CFG->dirroot . '/local/solent/lib.php')) {
+        require_once($CFG->dirroot . '/local/solent/lib.php');
+        local_solent_page_init($page);
+    }
+}
