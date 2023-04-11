@@ -36,7 +36,9 @@
 const initScrollSpy = () => {
     // Unfortunately the editmode-switch carries no unique ID
     let editToggle = document.querySelector('form.editmode-switch-form');
-
+    if (!editToggle) {
+        return;
+    }
     editToggle.addEventListener('click', () => {
 
         window.sessionStorage.setItem('edittoggled', true);
