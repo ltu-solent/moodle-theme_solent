@@ -482,7 +482,7 @@ class mod_assign_renderer extends renderer_base {
         $assign = new assign(context_module::instance($cm->id), $cm, $cm->get_course());
         // This is not a Summative assignment.
         if ($cm->idnumber == '') {
-            $o .= $this->output->notification(get_string('assign_formativeinfo', 'local_quercus_tasks'), \core\notification::INFO);
+            $o .= $this->output->notification(get_string('assign_formativeinfo', 'theme_solent'), \core\notification::INFO);
             return $o . $rendered;
         }
 
@@ -547,13 +547,13 @@ class mod_assign_renderer extends renderer_base {
             ], $workflowanchor);
             $msg = '';
             if ($showprefwarning) {
-                $msg .= get_string('assign_resetprefs', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+                $msg .= get_string('assign_resetprefs', 'theme_solent', ['url' => $resetfilterurl->out()]);
             }
             if ($showfilterwarning) {
-                $msg .= get_string('assign_resetworkflow', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+                $msg .= get_string('assign_resetworkflow', 'theme_solent', ['url' => $resetfilterurl->out()]);
             }
 
-            $resetstring = get_string('assign_filterwarning', 'local_quercus_tasks', ['msg' => $msg]);
+            $resetstring = get_string('assign_filterwarning', 'theme_solent', ['msg' => $msg]);
             $o .= $this->output->notification($resetstring, \core\notification::WARNING);
         }
         $o .= $rendered;

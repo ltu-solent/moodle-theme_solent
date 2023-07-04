@@ -26,6 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['advancedsettings'] = 'Advanced settings';
+$string['assign_filterwarning'] = '<i class="fa fa-warning"></i> <strong>Warning:</strong> You are not displaying all users and will not be able to release your grades. {$a->msg}';
+$string['assign_formativeinfo'] = '<i class="fa fa-info-circle"></i> The marks for these assignments will not be uploaded to Quercus as this is not a Quercus Assignment.';
+$string['assign_resetprefs'] = ' <a href="{$a->url}">"Reset your table preferences"</a>.';
+$string['assign_resetworkflow'] = ' <a href="{$a->url}">Set all Options to "No filter"</a>.';
 
 $string['backgroundimage'] = 'Background image';
 $string['backgroundimage_desc'] = 'The image to display as a background of the site. The background image you upload here will override the background image in your theme preset files.';
