@@ -1,8 +1,8 @@
-@theme @theme_solent @sol @javascript
-Feature: Show warning on grading page when users are using filters
+@theme @theme_solent @sol @javascript @mod_assign
+Feature: Select all grades state changes depending on filters and assignment type
   In order to prevent partial grade release
   As a teacher
-  I should see a warning when I've used any filters for a Summative assignment
+  The "Select all" option is controlled depending on any active filters in use on a Summative assignment
 
   Background:
     Given the following "courses" exist:
@@ -30,7 +30,7 @@ Feature: Show warning on grading page when users are using filters
       | config | value  | plugin |
       | theme  | solent |        |
 
-  Scenario: Formative assignment shows no message
+  Scenario: Allow select single and select all on Formative assignments when active filters
     Given I log in as "teacher1"
     And I am on "Course1" course homepage
     And I follow "Formative1"
@@ -38,16 +38,11 @@ Feature: Show warning on grading page when users are using filters
     When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should not see "Reset your table preferences"
-    And I should not see "You are not displaying all users and will not be able to release your grades"
-    When I click on "All" "link" in the ".initialbar.firstinitial" "css_element"
-    Then I should see "Abe Lincoln"
-    And I should see "Celia Fate"
-    When I set the field "Workflow filter" to "In review"
-    Then I should not see "You are not displaying all users and will not be able to release your grades"
-    And I should not see "Set all Options to \"No filter\""
+    And "[data-quercus='disable-selectall']" "css_element" should not exist
+    And the "[name=selectall]" "css_element" should be enabled
+    And the "Select Abe Lincoln" "checkbox" should be enabled
 
-  Scenario: Summative assignment shows messages
+  Scenario: Disallow select single and select all on Summative assignments when active filters
     Given I log in as "teacher1"
     And I am on "Course1" course homepage
     And I follow "Quercus1"
@@ -55,13 +50,22 @@ Feature: Show warning on grading page when users are using filters
     When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should see "Reset your table preferences"
-    And I should see "You are not displaying all users and will not be able to release your grades"
+    And "[data-quercus='disable-selectall']" "css_element" should exist
+    And the "[name=selectall]" "css_element" should be disabled
+    And the "Select Abe Lincoln" "checkbox" should be disabled
     When I click on "All" "link" in the ".initialbar.firstinitial" "css_element"
-    Then I should see "Abe Lincoln"
-    And I should see "Celia Fate"
-    When I set the field "Workflow filter" to "In review"
-    Then I should see "You are not displaying all users and will not be able to release your grades"
-    And I should see "Set all Options to \"No filter\""
-    When I set the field "Workflow filter" to ""
-    Then I should not see "You are not displaying all users and will not be able to release your grades"
+    Then the "[name=selectall]" "css_element" should be enabled
+    And the "Select Abe Lincoln" "checkbox" should be enabled
+
+  Scenario: Select one, select all on Summative assignments
+    Given I log in as "teacher1"
+    And I am on "Course1" course homepage
+    And I follow "Quercus1"
+    And I follow "View all submissions"
+    Then "[data-quercus='disable-selectall']" "css_element" should not exist
+    And the "[name=selectall]" "css_element" should be enabled
+    And the "Select Abe Lincoln" "checkbox" should be enabled
+    And the field "Select Abe Lincoln" matches value ""
+    When I set the field "Select Abe Lincoln" to "checked"
+    Then the field "Select Abe Lincoln" matches value "checked"
+    And the field "Select Ben Franklin" matches value "checked"

@@ -1,4 +1,4 @@
-@theme @theme_solent @sol @javascript
+@theme @theme_solent @sol @javascript @mod_assign
 Feature: Guidance message is displayed to those who can view the grading page
   In order to warn that Formative assignment grades are not uploaded to SRS
   As a teacher
