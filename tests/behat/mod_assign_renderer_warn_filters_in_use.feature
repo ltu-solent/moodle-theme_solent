@@ -40,6 +40,14 @@ Feature: Show warning on grading page when users are using filters
     And I should not see "Ben Franklin"
     And I should not see "Reset your table preferences"
     And I should not see "You are not displaying all users and will not be able to release your grades"
+    # Return to the page without the filters in the url (this will check the preferences).
+    And I am on "Course1" course homepage
+    And I follow "Formative1"
+    When I follow "View all submissions"
+    Then I should see "Abe Lincoln"
+    And I should not see "Ben Franklin"
+    And I should not see "Reset your table preferences"
+    And I should not see "You are not displaying all users and will not be able to release your grades"
     When I click on "All" "link" in the ".initialbar.firstinitial" "css_element"
     Then I should see "Abe Lincoln"
     And I should see "Celia Fate"
@@ -53,6 +61,14 @@ Feature: Show warning on grading page when users are using filters
     And I follow "Quercus1"
     And I follow "View all submissions"
     When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
+    Then I should see "Abe Lincoln"
+    And I should not see "Ben Franklin"
+    And I should see "Reset your table preferences"
+    And I should see "You are not displaying all users and will not be able to release your grades"
+    # Return to the page without the filters in the url (this will check the preferences).
+    And I am on "Course1" course homepage
+    And I follow "Quercus1"
+    When I follow "View all submissions"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
     And I should see "Reset your table preferences"

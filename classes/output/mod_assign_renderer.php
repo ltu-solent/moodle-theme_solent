@@ -489,7 +489,7 @@ class mod_assign_renderer extends renderer_base {
         // Standard table filtering is done via query params, and these are saved in user preferences for later retrieval.
         // Get the saved options first, then check the query params to find what the latest filters should be.
         // Note the query param could be empty.
-        $prefs = json_decode(get_user_preferences('flextable_mod_assign_grading'), true);
+        $prefs = json_decode(get_user_preferences('flextable_mod_assign_grading-' . $assign->get_context()->id), true);
         if (!$prefs) {
             $prefs = [
                 'i_first'  => '',

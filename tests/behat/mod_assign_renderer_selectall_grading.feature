@@ -41,6 +41,15 @@ Feature: Select all grades state changes depending on filters and assignment typ
     And "[data-quercus='disable-selectall']" "css_element" should not exist
     And the "[name=selectall]" "css_element" should be enabled
     And the "Select Abe Lincoln" "checkbox" should be enabled
+    # Return to the page without the filters in the url (this will check the preferences).
+    And I am on "Course1" course homepage
+    And I follow "Formative1"
+    When I follow "View all submissions"
+    Then I should see "Abe Lincoln"
+    And I should not see "Ben Franklin"
+    And "[data-quercus='disable-selectall']" "css_element" should not exist
+    And the "[name=selectall]" "css_element" should be enabled
+    And the "Select Abe Lincoln" "checkbox" should be enabled
 
   Scenario: Disallow select single and select all on Summative assignments when active filters
     Given I log in as "teacher1"
@@ -48,6 +57,15 @@ Feature: Select all grades state changes depending on filters and assignment typ
     And I follow "Quercus1"
     And I follow "View all submissions"
     When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
+    Then I should see "Abe Lincoln"
+    And I should not see "Ben Franklin"
+    And "[data-quercus='disable-selectall']" "css_element" should exist
+    And the "[name=selectall]" "css_element" should be disabled
+    And the "Select Abe Lincoln" "checkbox" should be disabled
+    # Return to the page without the filters in the url (this will check the preferences).
+    And I am on "Course1" course homepage
+    And I follow "Quercus1"
+    When I follow "View all submissions"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
     And "[data-quercus='disable-selectall']" "css_element" should exist
