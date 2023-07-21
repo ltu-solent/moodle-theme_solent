@@ -197,7 +197,7 @@ class helper {
      */
     public static function course_unit_descriptor($course): string {
         $content = '';
-        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
         $cattype = self::get_category_type($category);
         if (!in_array($cattype, ['modules', 'courses'])) {
             return $content;
