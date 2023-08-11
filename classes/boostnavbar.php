@@ -56,7 +56,10 @@ class boostnavbar extends \theme_boost\boostnavbar {
             $this->remove('mycourses');
             $this->remove('courses');
             // Remove the course category breadcrumb node.
-            $this->remove($this->page->course->category, \breadcrumb_navigation_node::TYPE_CATEGORY);
+            foreach ($this->items as $key => $item) {
+                // Remove if it is a course category breadcrumb node.
+                $this->remove($item->key, \breadcrumb_navigation_node::TYPE_CATEGORY);
+            }
             // SU_AMEND_START: We want the course in the breadcrumb.
             // Remove the course breadcrumb node.
             // phpcs:disable
