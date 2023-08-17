@@ -99,7 +99,10 @@ class helper {
         if (!isset($course->category)) {
             return false;
         }
-        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+        if (!$category) {
+            return false;
+        }
         $cattype = self::get_category_type($category);
         return $cattype == 'modules';
     }
@@ -114,7 +117,10 @@ class helper {
         if (!isset($course->category)) {
             return false;
         }
-        $category = core_course_category::get($course->category, IGNORE_MISSING);
+        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+        if (!$category) {
+            return false;
+        }
         $cattype = self::get_category_type($category);
         return $cattype == 'courses';
     }
@@ -126,6 +132,9 @@ class helper {
      * @return string modules, courses
      */
     public static function get_category_type(core_course_category $category) {
+        if (empty($category->idnumber)) {
+            return '';
+        }
         $catparts = explode('_', $category->idnumber);
         $cattype = $catparts[0]; // Modules, Courses.
         return $cattype;
@@ -198,6 +207,9 @@ class helper {
     public static function course_unit_descriptor($course): string {
         $content = '';
         $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+        if (!$category) {
+            return $content;
+        }
         $cattype = self::get_category_type($category);
         if (!in_array($cattype, ['modules', 'courses'])) {
             return $content;
