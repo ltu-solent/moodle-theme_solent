@@ -69,7 +69,7 @@ $templatecontext = [
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'course_title_elements' => $coursetitleelements,
-    'wwwroot' => $CFG->wwwroot
+    'wwwroot' => $CFG->wwwroot,
 ];
 
 $nav = $PAGE->flatnav;

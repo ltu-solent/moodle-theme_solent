@@ -62,7 +62,7 @@ $title = get_string('presetfiles', 'theme_solent');
 $description = get_string('presetfiles_desc', 'theme_solent');
 
 $setting = new admin_setting_configstoredfile($name, $title, $description, 'preset', 0,
-    array('maxfiles' => 20, 'accepted_types' => array('.scss')));
+    ['maxfiles' => 20, 'accepted_types' => ['.scss']]);
 $page->add($setting);
 
 $settings->add($page);

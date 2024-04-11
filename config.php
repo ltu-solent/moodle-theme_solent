@@ -34,7 +34,7 @@ $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
 $THEME->enable_dock = false;
 $THEME->haseditswitch = true;
 $THEME->requiredblocks = '';
-$THEME->yuicssmodules = array();
+$THEME->yuicssmodules = [];
 
 $THEME->scss = function($theme) {
     return theme_solent_get_main_scss_content($theme);
@@ -45,5 +45,5 @@ $THEME->prescsscallback = 'theme_solent_get_pre_scss';
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
 $THEME->removedprimarynavitems = explode(',', get_config('theme_solent', 'hidenodesprimarynavigation'));
 $THEME->activityheaderconfig = [
-    'notitle' => true
+    'notitle' => true,
 ];

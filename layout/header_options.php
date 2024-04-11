@@ -32,7 +32,7 @@ require_login($course);
 require_capability('moodle/course:update', $coursecontext);
 
 $PAGE->set_context($coursecontext);
-$PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', array('course' => $course, 'opt' => $opt)));
+$PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', ['course' => $course, 'opt' => $opt]));
 $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
 $PAGE->set_pagelayout('report');
@@ -75,12 +75,12 @@ foreach ($files as $k => $v) {
 }
 
 $templatecontext = [
-    'currentoptiontext' => get_string('headerimagecurrent', 'theme_solent', array('opt' => $opt)),
+    'currentoptiontext' => get_string('headerimagecurrent', 'theme_solent', ['opt' => $opt]),
     'instructiontext' => get_string('headerimageinstructions', 'theme_solent'),
     'action' => $CFG->wwwroot . '/theme/solent/set_header_image.php',
     'formid' => 'header-image-form',
     'options' => $options,
-    'course' => $course
+    'course' => $course,
 ];
 
 echo $OUTPUT->render_from_template('theme_solent/header_image_form', $templatecontext);

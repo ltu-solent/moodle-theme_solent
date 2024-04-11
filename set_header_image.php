@@ -35,7 +35,7 @@ $o = required_param('opt', PARAM_ALPHANUM);
 require_login($c);
 require_capability('moodle/course:update', context_course::instance($c));
 
-$opt = $DB->get_record('theme_header', array('course' => $c));
+$opt = $DB->get_record('theme_header', ['course' => $c]);
 if ($opt) {
     $opt->opt = $o;
     $DB->update_record('theme_header', $opt);

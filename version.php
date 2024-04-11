@@ -32,5 +32,5 @@ $plugin->release = "v4.1.0";
 $plugin->component = 'theme_solent';
 
 $plugin->dependencies = [
-    'theme_boost' => '2022112800'
+    'theme_boost' => '2022112800',
 ];

@@ -180,7 +180,7 @@ class helper {
             ORDER BY timemodified DESC
             LIMIT 1", [
                 'descriptorfolderid' => $descriptorfolderid,
-                'filename' => $DB->sql_like_escape($filename) . '%'
+                'filename' => $DB->sql_like_escape($filename) . '%',
             ]
         );
         if (!$file) {

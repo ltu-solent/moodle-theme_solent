@@ -41,9 +41,9 @@ class core_h5p_renderer extends renderer_base {
      */
     public function h5p_alter_styles(&$styles, $libraries, $embedtype) {
         global $CFG;
-        $styles[] = (object) array(
+        $styles[] = (object) [
             'path'    => $CFG->wwwroot . '/theme/solent/style/h5pstyle.css',
             'version' => '?ver=0.0.3',
-        );
+        ];
     }
 }

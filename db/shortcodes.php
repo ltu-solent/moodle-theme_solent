@@ -28,14 +28,14 @@ defined('MOODLE_INTERNAL') || die();
 $shortcodes = [
     'moduledescriptor' => [
         'callback' => 'theme_solent\local\shortcodes::moduledescriptor',
-        'description' => 'shortcode:moduledescriptor'
+        'description' => 'shortcode:moduledescriptor',
     ],
     'moduledescriptorfile' => [
         'callback' => 'theme_solent\local\shortcodes::moduledescriptorfile',
-        'description' => 'shortcode:moduledescriptorfile'
+        'description' => 'shortcode:moduledescriptorfile',
     ],
     'externalexaminerlink' => [
         'callback' => 'theme_solent\local\shortcodes::externalexaminerlink',
-        'description' => 'shortcode:externalexaminerlink'
-    ]
+        'description' => 'shortcode:externalexaminerlink',
+    ],
 ];

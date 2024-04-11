@@ -28,18 +28,18 @@ defined('MOODLE_INTERNAL') || die();
 $page = new admin_settingpage('theme_solent_navigation', new lang_string('navigationsettings', 'theme_solent'));
 
 // Prepare hide nodes options.
-$hidenodesoptions = array(
+$hidenodesoptions = [
     'home' => get_string('home'),
     'myhome' => get_string('myhome'),
     'courses' => get_string('mycourses'),
-    'siteadmin' => get_string('administrationsite')
-);
+    'siteadmin' => get_string('administrationsite'),
+];
 
 // Setting: Hide nodes in primary navigation.
 $name = 'theme_solent/hidenodesprimarynavigation';
 $title = new lang_string('hidenodesprimarynavigationsetting', 'theme_solent', null, true);
 $description = new lang_string('hidenodesprimarynavigationsetting_desc', 'theme_solent', null, true);
-$setting = new admin_setting_configmulticheckbox($name, $title, $description, array(), $hidenodesoptions);
+$setting = new admin_setting_configmulticheckbox($name, $title, $description, [], $hidenodesoptions);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 

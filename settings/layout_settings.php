@@ -96,7 +96,7 @@ $description = new lang_string('fontfamily_desc', 'theme_solent');
 $default = 'Open Sans';
 $options = [
     'Open Sans' => 'Open Sans',
-    'PT Sans' => 'PT Sans'
+    'PT Sans' => 'PT Sans',
 ];
 $setting = new admin_setting_configselect($name, $title, $description, $default, $options);
 $setting->set_updatedcallback('theme_reset_all_caches');

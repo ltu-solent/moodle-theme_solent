@@ -59,7 +59,7 @@ class mod_assign_renderer extends renderer_base {
         if (!empty($secondattributes)) {
             $cell2->attributes = $secondattributes;
         }
-        $row->cells = array($cell1, $cell2);
+        $row->cells = [$cell1, $cell2];
         $table->data[] = $row;
     }
 
@@ -122,7 +122,7 @@ class mod_assign_renderer extends renderer_base {
                 $cell2content = get_string('currentattempt', 'assign', $currentattempt);
             } else {
                 $cell2content = get_string('currentattemptof', 'assign',
-                    array('attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts));
+                    ['attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts]);
             }
 
             $this->add_table_row_tuple($t, $cell1content, $cell2content);
@@ -133,7 +133,7 @@ class mod_assign_renderer extends renderer_base {
         if (!$status->teamsubmissionenabled) {
             if ($status->submission && $status->submission->status != ASSIGN_SUBMISSION_STATUS_NEW) {
                 $cell2content = get_string('submissionstatus_' . $status->submission->status, 'assign');
-                $cell2attributes = array('class' => 'submissionstatus' . $status->submission->status);
+                $cell2attributes = ['class' => 'submissionstatus' . $status->submission->status];
             } else {
                 if (!$status->submissionsenabled) {
                     $cell2content = get_string('noonlinesubmissions', 'assign');
@@ -150,9 +150,9 @@ class mod_assign_renderer extends renderer_base {
                 $cell2content = get_string('submissionstatus_' . $teamstatus, 'assign');
 
                 $members = $status->submissiongroupmemberswhoneedtosubmit;
-                $userslist = array();
+                $userslist = [];
                 foreach ($members as $member) {
-                    $urlparams = array('id' => $member->id, 'course' => $status->courseid);
+                    $urlparams = ['id' => $member->id, 'course' => $status->courseid];
                     $url = new \moodle_url('/user/view.php', $urlparams);
                     if ($status->view == assign_submission_status::GRADER_VIEW && $status->blindmarking) {
                         $userslist[] = $member->alias;
@@ -167,7 +167,7 @@ class mod_assign_renderer extends renderer_base {
                     $cell2content .= $this->output->container($formatteduserstr);
                 }
 
-                $cell2attributes = array('class' => 'submissionstatus' . $status->teamsubmission->status);
+                $cell2attributes = ['class' => 'submissionstatus' . $status->teamsubmission->status];
             } else {
                 if (!$status->submissionsenabled) {
                     $cell2content = get_string('noonlinesubmissions', 'assign');
@@ -183,7 +183,7 @@ class mod_assign_renderer extends renderer_base {
         if ($status->locked) {
             $cell1content = '';
             $cell2content = get_string('submissionslocked', 'assign');
-            $cell2attributes = array('class' => 'submissionlocked');
+            $cell2attributes = ['class' => 'submissionlocked'];
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
 
@@ -198,9 +198,9 @@ class mod_assign_renderer extends renderer_base {
         }
         if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
             $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED) {
-            $cell2attributes = array('class' => 'submissiongraded');
+            $cell2attributes = ['class' => 'submissiongraded'];
         } else {
-            $cell2attributes = array('class' => 'submissionnotgraded');
+            $cell2attributes = ['class' => 'submissionnotgraded'];
         }
         $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
 
@@ -260,10 +260,10 @@ class mod_assign_renderer extends renderer_base {
             $cell1content = get_string('editingstatus', 'assign');
             if ($status->canedit) {
                 $cell2content = get_string('submissioneditable', 'assign');
-                $cell2attributes = array('class' => 'submissioneditable');
+                $cell2attributes = ['class' => 'submissioneditable'];
             } else {
                 $cell2content = get_string('submissionnoteditable', 'assign');
-                $cell2attributes = array('class' => 'submissionnoteditable');
+                $cell2attributes = ['class' => 'submissionnoteditable'];
             }
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
@@ -359,8 +359,8 @@ class mod_assign_renderer extends renderer_base {
                 $submissionsummary = get_string('nosubmission', 'assign');
             }
 
-            $attemptsummaryparams = array('attemptnumber' => $submission->attemptnumber + 1,
-                                          'submissionsummary' => $submissionsummary);
+            $attemptsummaryparams = ['attemptnumber' => $submission->attemptnumber + 1,
+                                          'submissionsummary' => $submissionsummary];
             $o .= $this->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
 
             $t = new \html_table();
@@ -393,17 +393,17 @@ class mod_assign_renderer extends renderer_base {
             if ($grade) {
                 // Heading 'feedback'.
                 $title = get_string('feedback', 'assign', $i);
-                $title .= $this->output->spacer(array('width' => 10));
+                $title .= $this->output->spacer(['width' => 10]);
                 if ($history->cangrade) {
                     // Edit previous feedback.
                     $returnparams = http_build_query($history->returnparams);
-                    $urlparams = array('id' => $history->coursemoduleid,
+                    $urlparams = ['id' => $history->coursemoduleid,
                                    'rownum' => $history->rownum,
                                    'useridlistid' => $history->useridlistid,
                                    'attemptnumber' => $grade->attemptnumber,
                                    'action' => 'grade',
                                    'returnaction' => $history->returnaction,
-                                   'returnparams' => $returnparams);
+                                   'returnparams' => $returnparams];
                     $url = new \moodle_url('/mod/assign/view.php', $urlparams);
                     $icon = new \pix_icon('gradefeedback',
                                             get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
@@ -413,7 +413,7 @@ class mod_assign_renderer extends renderer_base {
                 $cell = new \html_table_cell($title);
                 $cell->attributes['class'] = 'feedbacktitle';
                 $cell->colspan = 2;
-                $t->data[] = new \html_table_row(array($cell));
+                $t->data[] = new \html_table_row([$cell]);
 
                 // Grade.
                 $cell1content = get_string('gradenoun');
@@ -429,7 +429,7 @@ class mod_assign_renderer extends renderer_base {
                 if (!empty($grade->grader) && is_object($grade->grader)) {
                     $cell1content = get_string('gradedby', 'assign');
                     $cell2content = $this->output->user_picture($grade->grader) .
-                                    $this->output->spacer(array('width' => 30)) . fullname($grade->grader);
+                                    $this->output->spacer(['width' => 30]) . fullname($grade->grader);
                     $this->add_table_row_tuple($t, $cell1content, $cell2content);
                 }
 

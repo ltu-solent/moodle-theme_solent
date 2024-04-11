@@ -84,7 +84,7 @@ function theme_solent_get_pre_scss($theme) {
     $prescss = '';
     $configurable = [
         'fontfamily' => ['font-family-base'],
-        'fontsizebase' => ['font-size-base']
+        'fontsizebase' => ['font-size-base'],
     ];
     foreach ($configurable as $configkey => $targets) {
         $value = $theme->settings->{$configkey};
