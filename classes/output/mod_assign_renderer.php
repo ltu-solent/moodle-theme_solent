@@ -536,7 +536,11 @@ class mod_assign_renderer extends renderer_base {
         if ($table->currpage > 0) {
             $showfilterwarning = true;
         }
-        if ($showfilterwarning || $showprefwarning) {
+
+        // Neither false nor zero.
+        $groupfiltering = groups_get_activity_group($cm);
+
+        if ($showfilterwarning || $showprefwarning || $groupfiltering) {
             // Do I need to check which workflow states are available. Are we only concerned with releasing?
             // How do we do anything more clever than that?
             // Who sees this? Do I need to be more discriminating?
@@ -548,6 +552,9 @@ class mod_assign_renderer extends renderer_base {
                 'treset' => 1,
             ], $workflowanchor);
             $msg = '';
+            if ($groupfiltering) {
+                $msg .= get_string('assign_resetgroupfiltering', 'theme_solent');
+            }
             if ($showprefwarning) {
                 $msg .= get_string('assign_resetprefs', 'theme_solent', ['url' => $resetfilterurl->out()]);
             }

@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['advancedsettings'] = 'Advanced settings';
 $string['assign_filterwarning'] = '<i class="fa fa-warning"></i> <strong>Warning:</strong> You are not displaying all users and will not be able to release your grades. {$a->msg}';
 $string['assign_formativeinfo'] = '<i class="fa fa-info-circle"></i> The marks for these assignments will not be uploaded to Quercus or Gateway (SITS) as this is not a Summative Assignment.';
+$string['assign_resetgroupfiltering'] = '<strong>You are using groups - select "All participants" in the groups drop-down above.</strong>';
 $string['assign_resetprefs'] = ' <a href="{$a->url}">"Reset your table preferences"</a>.';
 $string['assign_resetworkflow'] = ' <a href="{$a->url}">Set all Options to "No filter"</a>.';
 
