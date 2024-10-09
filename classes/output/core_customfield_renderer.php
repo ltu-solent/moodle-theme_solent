@@ -32,7 +32,7 @@ class core_customfield_renderer extends \core_customfield\output\renderer {
      */
     protected function render_field_data(\core_customfield\output\field_data $field) {
         $context = $field->export_for_template($this);
-        if ($context->shortname == 'related_courses') {
+        if ($context->shortname == 'related_courses' && $context->hasvalue) {
             $value = explode(',', $context->value);
             $value = join(', ', $value);
             $context->value = $value;
