@@ -132,3 +132,25 @@ function theme_solent_get_fontawesome_icon_map() {
         'atto_styles:icon' => 'fa-fill-drip',
     ];
 }
+
+/**
+ * Get the current user preferences that are available
+ *
+ * @return array[]
+ */
+function theme_solent_user_preferences(): array {
+    return [
+        'drawer-open-block' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => false,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+        'drawer-open-index' => [
+            'type' => PARAM_BOOL,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => true,
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+    ];
+}
