@@ -1,0 +1,7 @@
+// Custom style variables used by Solent.
+// Load them before the rest of the style sheets, otherwise you'll get failures.
+
+// $tab-color: $primary !default;
+
+@import "fonts/fonts";
+@import "moodle/moodle";

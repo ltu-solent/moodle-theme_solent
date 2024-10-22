@@ -27,10 +27,10 @@ defined('MOODLE_INTERNAL') || die();
 user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 require_once($CFG->libdir . '/behat/lib.php');
 
-$current_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$currenturl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){
-	echo "<div id='logged_out'>";
+if ((!isloggedin() || isguestuser()) && $currenturl == $CFG->wwwroot.'/') {
+    echo "<div id='logged_out'>";
 }
 
 if (isloggedin()) {
@@ -43,17 +43,17 @@ if ($navdraweropen) {
     $extraclasses[] = 'drawer-open-left';
 }
 
-// If in course or unit pages categories add the course title elements
+// If in course or unit pages categories add the course title elements.
 global $DB;
-$course_title_elements = "";
-if(strpos($_SERVER['REQUEST_URI'], '/course/view.php?id=') !== false){
-   $course_title_elements = unit_descriptor_course($COURSE);
+$coursetitleelements = "";
+if (strpos($_SERVER['REQUEST_URI'], '/course/view.php?id=') !== false) {
+    $coursetitleelements = \theme_solent\helper::course_unit_descriptor($COURSE);
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = strpos($blockshtml, 'data-block=') !== false;
-// Force settings icon on all module pages
+// Force settings icon on all module pages.
 $PAGE->force_settings_menu(true);
 
 $buildregionmainsettings = !$PAGE->include_region_main_settings_in_header_actions();
@@ -68,14 +68,14 @@ $templatecontext = [
     'navdraweropen' => $navdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
-    'course_title_elements' => $course_title_elements,
-	'wwwroot' => $CFG->wwwroot
+    'course_title_elements' => $coursetitleelements,
+    'wwwroot' => $CFG->wwwroot,
 ];
 
 $nav = $PAGE->flatnav;
 $templatecontext['flatnavigation'] = $nav;
 echo $OUTPUT->render_from_template('theme_solent/columns2', $templatecontext);
 
-if((!isloggedin() || isguestuser()) && $current_url == $CFG->wwwroot.'/'){
-	echo "</div>";
+if ((!isloggedin() || isguestuser()) && $currenturl == $CFG->wwwroot.'/') {
+    echo "</div>";
 }

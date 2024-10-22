@@ -1,0 +1,4 @@
+/* stylelint-disable declaration-no-important */
+.sr-only-focusable {
+    position: fixed !important; /* Required to override Bootstrap 5 */
+}

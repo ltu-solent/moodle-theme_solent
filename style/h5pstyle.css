@@ -1,0 +1,27 @@
+@font-face { /* where FontName and fontname represents the name of the font you want to add */
+    font-family: 'Open Sans';
+    src: url('/theme/solent/fonts/OpenSans-Regular.ttf');
+    src: url('/theme/solent/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face { /* where FontName and fontname represents the name of the font you want to add */
+    font-family: 'PT Sans';
+    src: url('/theme/solent/fonts/PT_Sans-Web-Regular.ttf');
+    src: url('/theme/solent/fonts/PT_Sans-Web-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* These styles cannot use the scss variables we use for the general theme,
+ * so we would need to change these if we ever change the theme.
+ */
+.h5p-content {
+    font-family: 'PT Sans';
+    font-size: 1rem;
+    /* line-height: 1.5;
+    letter-spacing: .45px; */
+    color: #1d2125;
+    /* background-color: aqua; */
+}

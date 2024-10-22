@@ -1,47 +1,65 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Assignment output renderer override
+ *
+ * @package   theme_solent
+ * @author    Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Solent University {@link https://www.solent.ac.uk}
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace theme_solent\output;
 
-defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot.'/mod/assign/renderer.php');
-
 use assign;
-use html_writer;
-use html_table;
-use html_table_row;
-use html_table_cell;
-use moodle_url;
-use assign_submission_status;
-use assign_submission_plugin_submission;
-use assign_attempt_history;
-use cm_info;
 use context_module;
+use mod_assign\output\assign_submission_status;
+use mod_assign\output\renderer as renderer_base;
+use moodle_url;
 
-class mod_assign_renderer extends \mod_assign_renderer {
-
+/**
+ * Assign renderer overrride
+ */
+class mod_assign_renderer extends renderer_base {
     /**
      * Utility function to add a row of data to a table with 2 columns where the first column is the table's header.
      * Modified the table param and does not return a value.
+     * Solent: This needs to be overridden here because the function is private in the private class.
      *
-     * @param html_table $table The table to append the row of data to
+     * @param \html_table $table The table to append the row of data to
      * @param string $first The first column text
      * @param string $second The second column text
      * @param array $firstattributes The first column attributes (optional)
      * @param array $secondattributes The second column attributes (optional)
      * @return void
      */
-    private function add_table_row_tuple(html_table $table, $first, $second, $firstattributes = [],
+    private function add_table_row_tuple(\html_table $table, $first, $second, $firstattributes = [],
             $secondattributes = []) {
-        $row = new html_table_row();
-        $cell1 = new html_table_cell($first);
+        $row = new \html_table_row();
+        $cell1 = new \html_table_cell($first);
         $cell1->header = true;
         if (!empty($firstattributes)) {
             $cell1->attributes = $firstattributes;
         }
-        $cell2 = new html_table_cell($second);
+        $cell2 = new \html_table_cell($second);
         if (!empty($secondattributes)) {
             $cell2->attributes = $secondattributes;
         }
-        $row->cells = array($cell1, $cell2);
+        $row->cells = [$cell1, $cell2];
         $table->data[] = $row;
     }
 
@@ -57,21 +75,10 @@ class mod_assign_renderer extends \mod_assign_renderer {
         $o .= $this->output->heading(get_string('submissionstatusheading', 'assign'), 3);
         $time = time();
 
-        if ($status->allowsubmissionsfromdate &&
-                $time <= $status->allowsubmissionsfromdate) {
-            $o .= $this->output->box_start('generalbox boxaligncenter submissionsalloweddates');
-            if ($status->alwaysshowdescription) {
-                $date = userdate($status->allowsubmissionsfromdate);
-                $o .= get_string('allowsubmissionsfromdatesummary', 'assign', $date);
-            } else {
-                $date = userdate($status->allowsubmissionsfromdate);
-                $o .= get_string('allowsubmissionsanddescriptionfromdatesummary', 'assign', $date);
-            }
-            $o .= $this->output->box_end();
-        }
         $o .= $this->output->box_start('boxaligncenter submissionsummarytable');
 
-        $t = new html_table();
+        $t = new \html_table();
+        $t->attributes['class'] = 'generaltable table-bordered';
 
         $warningmsg = '';
         if ($status->teamsubmissionenabled) {
@@ -115,7 +122,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
                 $cell2content = get_string('currentattempt', 'assign', $currentattempt);
             } else {
                 $cell2content = get_string('currentattemptof', 'assign',
-                    array('attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts));
+                    ['attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts]);
             }
 
             $this->add_table_row_tuple($t, $cell1content, $cell2content);
@@ -126,12 +133,12 @@ class mod_assign_renderer extends \mod_assign_renderer {
         if (!$status->teamsubmissionenabled) {
             if ($status->submission && $status->submission->status != ASSIGN_SUBMISSION_STATUS_NEW) {
                 $cell2content = get_string('submissionstatus_' . $status->submission->status, 'assign');
-                $cell2attributes = array('class' => 'submissionstatus' . $status->submission->status);
+                $cell2attributes = ['class' => 'submissionstatus' . $status->submission->status];
             } else {
                 if (!$status->submissionsenabled) {
                     $cell2content = get_string('noonlinesubmissions', 'assign');
                 } else {
-                    $cell2content = get_string('noattempt', 'assign');
+                    $cell2content = get_string('nosubmissionyet', 'assign');
                 }
             }
         } else {
@@ -143,10 +150,10 @@ class mod_assign_renderer extends \mod_assign_renderer {
                 $cell2content = get_string('submissionstatus_' . $teamstatus, 'assign');
 
                 $members = $status->submissiongroupmemberswhoneedtosubmit;
-                $userslist = array();
+                $userslist = [];
                 foreach ($members as $member) {
-                    $urlparams = array('id' => $member->id, 'course'=>$status->courseid);
-                    $url = new moodle_url('/user/view.php', $urlparams);
+                    $urlparams = ['id' => $member->id, 'course' => $status->courseid];
+                    $url = new \moodle_url('/user/view.php', $urlparams);
                     if ($status->view == assign_submission_status::GRADER_VIEW && $status->blindmarking) {
                         $userslist[] = $member->alias;
                     } else {
@@ -160,7 +167,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
                     $cell2content .= $this->output->container($formatteduserstr);
                 }
 
-                $cell2attributes = array('class' => 'submissionstatus' . $status->teamsubmission->status);
+                $cell2attributes = ['class' => 'submissionstatus' . $status->teamsubmission->status];
             } else {
                 if (!$status->submissionsenabled) {
                     $cell2content = get_string('noonlinesubmissions', 'assign');
@@ -176,7 +183,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
         if ($status->locked) {
             $cell1content = '';
             $cell2content = get_string('submissionslocked', 'assign');
-            $cell2attributes = array('class' => 'submissionlocked');
+            $cell2attributes = ['class' => 'submissionlocked'];
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
 
@@ -191,20 +198,15 @@ class mod_assign_renderer extends \mod_assign_renderer {
         }
         if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
             $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED) {
-            $cell2attributes = array('class' => 'submissiongraded');
+            $cell2attributes = ['class' => 'submissiongraded'];
         } else {
-            $cell2attributes = array('class' => 'submissionnotgraded');
+            $cell2attributes = ['class' => 'submissionnotgraded'];
         }
         $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
 
         $submission = $status->teamsubmission ? $status->teamsubmission : $status->submission;
         $duedate = $status->duedate;
         if ($duedate > 0) {
-            // Due date.
-            $cell1content = get_string('duedate', 'assign');
-            $cell2content = userdate($duedate);
-            $this->add_table_row_tuple($t, $cell1content, $cell2content);
-
             if ($status->view == assign_submission_status::GRADER_VIEW) {
                 if ($status->cutoffdate) {
                     // Cut off date.
@@ -221,60 +223,47 @@ class mod_assign_renderer extends \mod_assign_renderer {
                 $this->add_table_row_tuple($t, $cell1content, $cell2content);
                 $duedate = $status->extensionduedate;
             }
+        }
 
-            // Time remaining.
+        // Time remaining.
+        // Only add the row if there is a due date, or a countdown.
+        if ($status->duedate > 0 || !empty($submission->timestarted)) {
             $cell1content = get_string('timeremaining', 'assign');
-            $cell2attributes = [];
-            if ($duedate - $time <= 0) {
-                if (!$submission ||
-                        $submission->status != ASSIGN_SUBMISSION_STATUS_SUBMITTED) {
-                    if ($status->submissionsenabled) {
-                        $cell2content = get_string('overdue', 'assign', format_time($time - $duedate));
-                        $cell2attributes = array('class' => 'overdue');
-                    } else {
-                        $cell2content = get_string('duedatereached', 'assign');
-                    }
-                } else {
-                    if ($submission->timemodified > $duedate) {
-                        $cell2content = get_string('submittedlate',
-                                              'assign',
-                                              format_time($submission->timemodified - $duedate));
-                        $cell2attributes = array('class' => 'latesubmission');
-                    } else {
-                        $cell2content = get_string('submittedearly',
-                                               'assign',
-                                               format_time($submission->timemodified - $duedate));
-                        $cell2attributes = array('class' => 'earlysubmission');
-                    }
+            [$cell2content, $cell2attributes] = $this->get_time_remaining($status);
+            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], ['class' => $cell2attributes]);
+        }
+
+        // SU_AMEND_START - Assignment: Cut off date/time remaining in submission status.
+        if ($status->view == assign_submission_status::STUDENT_VIEW) {
+            $cutoffdate = 0;
+            $cutoffdate = $status->cutoffdate;
+            if ($cutoffdate) {
+                if ($cutoffdate > $status->duedate) {
+                    $cell1content = get_string('latesubmissions', 'assign');
+                    $cell2content = userdate($status->cutoffdate);
+                    $this->add_table_row_tuple($t, $cell1content, $cell2content);
                 }
-            } else {
-                $cell2content = format_time($duedate - $time);
             }
-            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
-// SU_AMEND START - Assignment: Cut off date/time remaining in submission status
-    if($status->view == assign_submission_status::STUDENT_VIEW){
-      $cutoffdate = 0;
-      $cutoffdate = $status->cutoffdate;
-      if($cutoffdate){
-        if($cutoffdate > $status->duedate){
-          $cell1content = get_string('latesubmissions', 'assign');
-          $cell2content = userdate($status->cutoffdate);
-          $this->add_table_row_tuple($t, $cell1content, $cell2content);
+        // SU_AMEND_END.
+
+        // Add time limit info if there is one.
+        $timelimitenabled = get_config('assign', 'enabletimelimit') && $status->timelimit > 0;
+        if ($timelimitenabled && $status->timelimit > 0) {
+            $cell1content = get_string('timelimit', 'assign');
+            $cell2content = format_time($status->timelimit);
+            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], []);
         }
-      }
-    }
-// SU_AMEND END
 
         // Show graders whether this submission is editable by students.
         if ($status->view == assign_submission_status::GRADER_VIEW) {
             $cell1content = get_string('editingstatus', 'assign');
             if ($status->canedit) {
                 $cell2content = get_string('submissioneditable', 'assign');
-                $cell2attributes = array('class' => 'submissioneditable');
+                $cell2attributes = ['class' => 'submissioneditable'];
             } else {
                 $cell2content = get_string('submissionnoteditable', 'assign');
-                $cell2attributes = array('class' => 'submissionnoteditable');
+                $cell2attributes = ['class' => 'submissionnoteditable'];
             }
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
@@ -283,7 +272,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
         if (!empty($status->gradingcontrollerpreview)) {
             $cell1content = get_string('gradingmethodpreview', 'assign');
             $cell2content = $status->gradingcontrollerpreview;
-            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
+            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], []);
         }
 
         // Last modified.
@@ -291,11 +280,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
             $cell1content = get_string('timemodified', 'assign');
 
             if ($submission->status != ASSIGN_SUBMISSION_STATUS_NEW) {
-// SU_AMEND START - Assignment: Show seconds for submission time
-              // $cell2content = userdate($submission->timemodified);
-              $cell2content = userdate($submission->timemodified, '%d %B %Y, %I:%M:%S %p');
-// SU_AMEND END
-                $cell2content = userdate($submission->timemodified);
+                $cell2content = userdate($submission->timemodified, get_string('strftimedatetimeaccurate', 'langconfig'));
             } else {
                 $cell2content = "-";
             }
@@ -312,8 +297,8 @@ class mod_assign_renderer extends \mod_assign_renderer {
                     ) {
 
                         $cell1content = $plugin->get_name();
-                        $displaymode = assign_submission_plugin_submission::SUMMARY;
-                        $pluginsubmission = new assign_submission_plugin_submission($plugin,
+                        $displaymode = \assign_submission_plugin_submission::SUMMARY;
+                        $pluginsubmission = new \assign_submission_plugin_submission($plugin,
                             $submission,
                             $displaymode,
                             $status->coursemoduleid,
@@ -327,108 +312,8 @@ class mod_assign_renderer extends \mod_assign_renderer {
         }
 
         $o .= $warningmsg;
-        $o .= html_writer::table($t);
+        $o .= \html_writer::table($t);
         $o .= $this->output->box_end();
-
-        // Links.
-        if ($status->view == assign_submission_status::STUDENT_VIEW) {
-            if ($status->canedit) {
-                if (!$submission || $submission->status == ASSIGN_SUBMISSION_STATUS_NEW) {
-                    $o .= $this->output->box_start('generalbox submissionaction');
-
-// SU_AMEND START - Assignment: Submission help string position (add)
-                    //New string position
-                    $o .= $this->output->box_start('boxaligncenter submithelp');
-                    $o .= get_string('addsubmission_help', 'assign');
-                    $o .= $this->output->box_end();
-// SU_AMEND END
-                    $urlparams = array('id' => $status->coursemoduleid, 'action' => 'editsubmission');
-                    $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                       get_string('addsubmission', 'assign'), 'get');
-
-// SU_AMEND START - Assignment: Submission help string position (add)
-                  // Old help string positions
-                  // $o .= $this->output->box_start('boxaligncenter submithelp');
-                  // $o .= get_string('addsubmission_help', 'assign');
-                  // $o .= $this->output->box_end();
-// SU_AMEND END
-
-                    $o .= $this->output->box_end();
-				} else if ($submission->status == ASSIGN_SUBMISSION_STATUS_REOPENED) {
-                    $o .= $this->output->box_start('generalbox submissionaction');
-                    $urlparams = array('id' => $status->coursemoduleid,
-                                       'action' => 'editprevioussubmission',
-                                       'sesskey'=>sesskey());
-                    $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                       get_string('addnewattemptfromprevious', 'assign'), 'get');
-                    $o .= $this->output->box_start('boxaligncenter submithelp');
-                    $o .= get_string('addnewattemptfromprevious_help', 'assign');
-                    $o .= $this->output->box_end();
-                    $o .= $this->output->box_end();
-                    $o .= $this->output->box_start('generalbox submissionaction');
-                    $urlparams = array('id' => $status->coursemoduleid, 'action' => 'editsubmission');
-                    $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                       get_string('addnewattempt', 'assign'), 'get');
-                    $o .= $this->output->box_start('boxaligncenter submithelp');
-                    $o .= get_string('addnewattempt_help', 'assign');
-                    $o .= $this->output->box_end();
-                    $o .= $this->output->box_end();
-                } else {
-                    $o .= $this->output->box_start('generalbox submissionaction');
-// SU_AMEND START - Assignment: Submission help string position (edit)
-                    //New string position
-                    global $DB;
-                    $file = $DB->get_record_sql("SELECT cm.instance
-                        FROM {assign} a
-                        JOIN {course_modules} cm ON cm.instance = a.id
-                        JOIN {assign_plugin_config} pc ON pc.assignment = a.id
-                        WHERE (pc.plugin = 'file' AND pc.subtype = 'assignsubmission' AND pc.name = 'enabled')
-                        AND pc.value = 1
-                        AND cm.id = ?", array($status->coursemoduleid));
-                    if($file){
-                      $o .= $this->output->box_start('boxaligncenter submithelp');
-                      $o .= get_string('editsubmission_help', 'assign');
-                      $o .= $this->output->box_end();
-                    }
-// SU_AMEND END
-                    $urlparams = array('id' => $status->coursemoduleid, 'action' => 'editsubmission');
-                    $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                       get_string('editsubmission', 'assign'), 'get');
-                    $urlparams = array('id' => $status->coursemoduleid, 'action' => 'removesubmissionconfirm');
-                    $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                       get_string('removesubmission', 'assign'), 'get');
-// SU_AMEND START - Assignment: Submission help string position (edit)
-                  // Old string position
-                  // $o .= $this->output->box_start('boxaligncenter submithelp');
-                  // $o .= get_string('editsubmission_help', 'assign');
-                  // $o .= $this->output->box_end();
-// SU_AMEND END
-                    $o .= $this->output->box_end();
-                }
-            }
-
-            if ($status->cansubmit) {
-                $urlparams = array('id' => $status->coursemoduleid, 'action'=>'submit');
-                $o .= $this->output->box_start('generalbox submissionaction');
-// SU_AMEND START - Assignment: Submission help string position (submit)
-              //New string position
-              if($file){
-                $o .= $this->output->box_start('boxaligncenter submithelp');
-                $o .= get_string('submitassignment_help', 'assign');
-                $o .= $this->output->box_end();
-              }
-// SU_AMEND END
-                $o .= $this->output->single_button(new moodle_url('/mod/assign/view.php', $urlparams),
-                                                   get_string('submitassignment', 'assign'), 'get');
-// SU_AMEND START - Assignment: Submission help string position (submit)
-              // Old string position
-              // $o .= $this->output->box_start('boxaligncenter submithelp');
-              // $o .= get_string('submitassignment_help', 'assign');
-              // $o .= $this->output->box_end();
-// SU_AMEND END
-                $o .= $this->output->box_end();
-            }
-        }
 
         $o .= $this->output->container_end();
         return $o;
@@ -437,11 +322,11 @@ class mod_assign_renderer extends \mod_assign_renderer {
     /**
      * Output the attempt history for this assignment
      *
-     * @param assign_attempt_history $history
+     * @param \assign_attempt_history $history
      * @return string
      */
-    public function render_assign_attempt_history(assign_attempt_history $history) {
-		$o = '';
+    public function render_assign_attempt_history(\assign_attempt_history $history) {
+        $o = '';
 
         // Don't show the last one because it is the current submission.
         array_pop($history->submissions);
@@ -469,19 +354,16 @@ class mod_assign_renderer extends \mod_assign_renderer {
             }
 
             if ($submission) {
-// SU_AMEND START - Assignment: Show seconds for submission time
-              //$submissionsummary = userdate($submission->timemodified);
-              $submissionsummary = userdate($submission->timemodified, '%d %B %Y, %I:%M:%S %p');
-// SU_AMEND END
+                $submissionsummary = userdate($submission->timemodified, '%d %B %Y, %I:%M:%S %p');
             } else {
                 $submissionsummary = get_string('nosubmission', 'assign');
             }
 
-            $attemptsummaryparams = array('attemptnumber'=>$submission->attemptnumber+1,
-                                          'submissionsummary'=>$submissionsummary);
+            $attemptsummaryparams = ['attemptnumber' => $submission->attemptnumber + 1,
+                                          'submissionsummary' => $submissionsummary];
             $o .= $this->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
 
-            $t = new html_table();
+            $t = new \html_table();
 
             if ($submission) {
                 $cell1content = get_string('submissionstatus', 'assign');
@@ -496,9 +378,9 @@ class mod_assign_renderer extends \mod_assign_renderer {
                             $pluginshowsummary) {
 
                         $cell1content = $plugin->get_name();
-                        $pluginsubmission = new assign_submission_plugin_submission($plugin,
+                        $pluginsubmission = new \assign_submission_plugin_submission($plugin,
                                                                                     $submission,
-                                                                                    assign_submission_plugin_submission::SUMMARY,
+                                                                                    \assign_submission_plugin_submission::SUMMARY,
                                                                                     $history->coursemoduleid,
                                                                                     $history->returnaction,
                                                                                     $history->returnparams);
@@ -511,30 +393,30 @@ class mod_assign_renderer extends \mod_assign_renderer {
             if ($grade) {
                 // Heading 'feedback'.
                 $title = get_string('feedback', 'assign', $i);
-                $title .= $this->output->spacer(array('width'=>10));
+                $title .= $this->output->spacer(['width' => 10]);
                 if ($history->cangrade) {
                     // Edit previous feedback.
                     $returnparams = http_build_query($history->returnparams);
-                    $urlparams = array('id' => $history->coursemoduleid,
-                                   'rownum'=>$history->rownum,
-                                   'useridlistid'=>$history->useridlistid,
-                                   'attemptnumber'=>$grade->attemptnumber,
-                                   'action'=>'grade',
-                                   'returnaction'=>$history->returnaction,
-                                   'returnparams'=>$returnparams);
-                    $url = new moodle_url('/mod/assign/view.php', $urlparams);
-                    $icon = new pix_icon('gradefeedback',
-                                            get_string('editattemptfeedback', 'assign', $grade->attemptnumber+1),
+                    $urlparams = ['id' => $history->coursemoduleid,
+                                   'rownum' => $history->rownum,
+                                   'useridlistid' => $history->useridlistid,
+                                   'attemptnumber' => $grade->attemptnumber,
+                                   'action' => 'grade',
+                                   'returnaction' => $history->returnaction,
+                                   'returnparams' => $returnparams];
+                    $url = new \moodle_url('/mod/assign/view.php', $urlparams);
+                    $icon = new \pix_icon('gradefeedback',
+                                            get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
                                             'mod_assign');
                     $title .= $this->output->action_icon($url, $icon);
                 }
-                $cell = new html_table_cell($title);
+                $cell = new \html_table_cell($title);
                 $cell->attributes['class'] = 'feedbacktitle';
                 $cell->colspan = 2;
-                $t->data[] = new html_table_row(array($cell));
+                $t->data[] = new \html_table_row([$cell]);
 
                 // Grade.
-                $cell1content = get_string('grade');
+                $cell1content = get_string('gradenoun');
                 $cell2content = $grade->gradefordisplay;
                 $this->add_table_row_tuple($t, $cell1content, $cell2content);
 
@@ -547,7 +429,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
                 if (!empty($grade->grader) && is_object($grade->grader)) {
                     $cell1content = get_string('gradedby', 'assign');
                     $cell2content = $this->output->user_picture($grade->grader) .
-                                    $this->output->spacer(array('width' => 30)) . fullname($grade->grader);
+                                    $this->output->spacer(['width' => 30]) . fullname($grade->grader);
                     $this->add_table_row_tuple($t, $cell1content, $cell2content);
                 }
 
@@ -558,8 +440,8 @@ class mod_assign_renderer extends \mod_assign_renderer {
                         $plugin->has_user_summary() &&
                         !$plugin->is_empty($grade)) {
 
-                        $pluginfeedback = new assign_feedback_plugin_feedback(
-                            $plugin, $grade, assign_feedback_plugin_feedback::SUMMARY, $history->coursemoduleid,
+                        $pluginfeedback = new \assign_feedback_plugin_feedback(
+                            $plugin, $grade, \assign_feedback_plugin_feedback::SUMMARY, $history->coursemoduleid,
                             $history->returnaction, $history->returnparams
                         );
 
@@ -572,7 +454,7 @@ class mod_assign_renderer extends \mod_assign_renderer {
 
             }
 
-            $o .= html_writer::table($t);
+            $o .= \html_writer::table($t);
         }
         $o .= $this->box_end();
 
@@ -589,30 +471,32 @@ class mod_assign_renderer extends \mod_assign_renderer {
      */
     public function render_assign_grading_table(\assign_grading_table $table) {
         global $DB;
+        // SU_AMEND_START: Workflow notifications.
         $cmid = $table->get_course_module_id();
         $courseid = $table->get_course_id();
         $modinfo = get_fast_modinfo($courseid);
         $cm = $modinfo->get_cm($cmid);
+        // Store the normally rendered table so that we can append contextual notifications before returning.
         $rendered = parent::render_assign_grading_table($table);
         $o = '';
         $assign = new assign(context_module::instance($cm->id), $cm, $cm->get_course());
-
+        // This is not a Summative assignment.
         if ($cm->idnumber == '') {
-            $o .= $this->output->notification(get_string('assign_formativeinfo', 'local_quercus_tasks'), \core\notification::INFO);
+            $o .= $this->output->notification(get_string('assign_formativeinfo', 'theme_solent'), \core\notification::INFO);
             return $o . $rendered;
         }
-        // Debugging.
-        // return $rendered;
 
         // Standard table filtering is done via query params, and these are saved in user preferences for later retrieval.
         // Get the saved options first, then check the query params to find what the latest filters should be.
         // Note the query param could be empty.
-        $prefs = json_decode(get_user_preferences('flextable_mod_assign_grading'), true);
-        if (!$prefs) {
+        $gradingprefs = get_user_preferences('flextable_mod_assign_grading-' . $assign->get_context()->id);
+        if (!$gradingprefs) {
             $prefs = [
                 'i_first'  => '',
                 'i_last'   => '',
             ];
+        } else {
+            $prefs = json_decode($gradingprefs, true);
         }
         $parammapping = ['tifirst' => 'i_first', 'tilast' => 'i_last'];
         $showprefwarning = false;
@@ -652,7 +536,11 @@ class mod_assign_renderer extends \mod_assign_renderer {
         if ($table->currpage > 0) {
             $showfilterwarning = true;
         }
-        if ($showfilterwarning || $showprefwarning) {
+
+        // Neither false nor zero.
+        $groupfiltering = groups_get_activity_group($cm);
+
+        if ($showfilterwarning || $showprefwarning || $groupfiltering) {
             // Do I need to check which workflow states are available. Are we only concerned with releasing?
             // How do we do anything more clever than that?
             // Who sees this? Do I need to be more discriminating?
@@ -664,18 +552,21 @@ class mod_assign_renderer extends \mod_assign_renderer {
                 'treset' => 1,
             ], $workflowanchor);
             $msg = '';
+            if ($groupfiltering) {
+                $msg .= get_string('assign_resetgroupfiltering', 'theme_solent');
+            }
             if ($showprefwarning) {
-                $msg .= get_string('assign_resetprefs', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+                $msg .= get_string('assign_resetprefs', 'theme_solent', ['url' => $resetfilterurl->out()]);
             }
             if ($showfilterwarning) {
-                $msg .= get_string('assign_resetworkflow', 'local_quercus_tasks', ['url' => $resetfilterurl->out()]);
+                $msg .= get_string('assign_resetworkflow', 'theme_solent', ['url' => $resetfilterurl->out()]);
             }
 
-            $resetstring = get_string('assign_filterwarning', 'local_quercus_tasks', ['msg' => $msg]);
+            $resetstring = get_string('assign_filterwarning', 'theme_solent', ['msg' => $msg]);
             $o .= $this->output->notification($resetstring, \core\notification::WARNING);
         }
         $o .= $rendered;
+        // SU_AMEND_END.
         return $o;
     }
-
 }

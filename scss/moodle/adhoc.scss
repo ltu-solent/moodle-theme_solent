@@ -1,0 +1,81 @@
+//  #page-site-index form.loginform{
+//    display: none; 
+//  }
+
+
+.ssu_anchor {
+    content: "";
+    display: flex;
+    height: 100px;
+    margin: -100px 0 0;
+}
+
+.user_example{
+    background-color: #d9edf7;
+    /* border-color: #bce8f1; */
+    border: 1px solid #bce8f1;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+/*Teach to succeed */
+.h4-solent{
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.h4-solent:after{
+    background-color: #e20613;
+    content: "";
+    display: block;
+    height: 3px;
+    margin: 0.7rem 0 0;
+    width: 10%;
+}
+/* Medial grading overlay */
+.yui-panel-container.yui-dialog.shadow {
+    top: 80px !important;
+}
+
+div.block_rss_client  .title{
+    font-family: OpenSans-Semi,"Trebuchet MS";
+    font-size: medium;
+    color: #575757;
+    padding-bottom: 5px;
+}
+
+
+.message-icon-container{border: 1px solid rgba(0,0,0,.125);border-left: 5px solid #2E5DCC;padding:10px;min-height: 60px;}
+.message-icon-icon{float:left;}
+.message-icon{padding:10px 10px 10px 55px;}
+.message-icon-text{ color: #2E5DCC;font-weight: 600;}
+
+.alert-icon-container{border: 1px solid rgba(0,0,0,.125);border-left: 5px solid #D22703;padding:10px;min-height: 60px;}
+.alert-icon-icon{float:left;}
+.alert-icon{padding:10px 10px 10px 55px;}
+.alert-icon-text{ color: #D22703;font-weight: 600;}
+
+
+.path-mod-quiz #mod_quiz_navblock .qnbutton .thispageholder {
+    border: 1px solid black;
+}
+
+.block_workflow .h5p-panel-title {
+    font-weight: normal !important;
+    font-size: 1 em !important;
+}
+
+.block input[type="radio"], .block input[type="checklist"] {
+    margin-right: 10px;
+}
+
+/* Fix for feedback comments not expanding in Safari */
+.path-mod-assign.jsenabled .expandsummaryicon {
+    display: inline-block;
+}
+
+/* Fix for MDL-72494 - Chrome 93 error */
+fieldset:target::before {
+    content: unset;
+}

@@ -1,0 +1,144 @@
+footer {
+    width: 100%;
+    background-image: url("/theme/solent/pix/branding/wave.75775d05.png");
+    background-position: top right;
+    background-size: auto;
+    background-repeat: no-repeat;
+    padding: 10px;
+
+    h3 {
+        letter-spacing: 0.25em;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    a {
+        color: $gray-100;
+        text-decoration: none;
+        line-height: $line-height-base;
+        &:hover {
+            color: $white;
+            text-decoration: underline;
+        }
+    }
+
+    .footer_list {
+        list-style-type: none;
+        padding: 0;
+    }
+    // Social media icons in the footer
+    .social-wrap {
+        margin-left: auto;
+
+        li {
+            display: inline-block;
+
+            .social {
+                background-position: center;
+                background-repeat: no-repeat;
+                border: 2px solid $white;
+                border-radius: 50%;
+                display: inline-block;
+                height: 44px;
+                width: 44px;
+                margin-left: 10px;
+            }
+
+            a:hover,
+            a:focus {
+                display: inline-block;
+                background-color: $white;
+                outline: none;
+                -webkit-transition: all .4s ease-out 0s;
+                transition: all .4s ease-out 0s;
+                text-decoration: none;
+            }
+
+            .twitter {
+                background-image: url("/theme/solent/pix/twitter.svg");
+                background-size: 25px;
+
+                &:hover,
+                &:focus {
+                    background-image: url("/theme/solent/pix/twitter-dark.svg");
+                }
+            }
+
+            .facebook {
+                background-image: url("/theme/solent/pix/facebook.svg");
+                background-size: 14px;
+
+                &:hover,
+                &:focus {
+                    background-image: url("/theme/solent/pix/facebook-dark.svg");
+                }
+            }
+
+            .youtube {
+                background-image: url("/theme/solent/pix/youtube.svg");
+                background-size: 25px;
+
+                &:hover,
+                &:focus {
+                    background-image: url("/theme/solent/pix/youtube-dark.svg");
+                }
+            }
+
+            .linkedin {
+                background-image: url("/theme/solent/pix/linkedin.svg");
+                background-size: 23px;
+
+                &:hover,
+                &:focus {
+                    background-image: url("/theme/solent/pix/linkedin-dark.svg");
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    body.limitedwidth #page.drawers .footer-popover {
+        width: 100%;
+        max-width: inherit;
+    }
+}
+
+/* Goto top button  */
+#back-to-top {
+    /* Hide the back to top icon initially. It will be unhidden by JS only. */
+    display: none;
+    /* Place the back to top button at a fixed place. */
+    position: fixed;
+    right: 2rem;
+    /* As a start = on really small screens, the back to top button is shown in the bottom right corner. */
+    bottom: 2rem;
+    /* On larger screens, there is the footer button already in the bottom right corner and
+       the back to top button has to be shown above of the footer button. */
+    @include media-breakpoint-up(sm) {
+        bottom: 5rem;
+    }
+    /* Make sure that the back to top button is not covered by anything else. */
+    z-index: $zindex-dropdown;
+    /* Animate position together with footer button. */
+    @include transition(0.5s);
+}
+#back-to-top i::before {
+    /* Move the caret icon slightly up for a nicer look. */
+    vertical-align: 0.3rem;
+}
+#page.drawers.show-drawer-right #back-to-top {
+    /* Move the back to top button when right drawer is shown. */
+    right: calc(#{$drawer-right-width} + 2rem);
+}
+/* Goto top button */
+
+.bottomnavbar {
+    .breadcrumb {
+        background: rgba($white, .85);
+        padding: map-get($spacers, 2) $spacer;
+        margin-top: map-get($spacers, 2);
+        clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+        border-radius: 0;
+    }
+}

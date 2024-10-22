@@ -1,0 +1,42 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_solent/startenddates
+
+    This template renders start and end dates of a course as human and screen readable strings (if the enddate is set)
+    Example context (json):
+    {
+        "startdate": 1657494000,
+        "enddate": 1689321420
+    }
+}}
+{{#enddate}}
+    <div class="small">
+        <span class="sr-only">{{#str}} startenddates, theme_solent {{/str}}</span>
+        <span aria-label="{{#str}} starts, theme_solent {{/str}}">
+            <time datetime="{{#userdate}} {{startdate}}, %F {{/userdate}}">
+                {{#userdate}} {{startdate}}, {{#str}} strftimedatefullshort, core_langconfig {{/str}} {{/userdate}}
+            </time>
+        </span>
+        -
+        <span aria-label="{{#str}} ends, theme_solent {{/str}}">
+            <time datetime="{{#userdate}} {{enddate}}, %F {{/userdate}}">
+                {{#userdate}} {{enddate}}, {{#str}} strftimedatefullshort, core_langconfig {{/str}} {{/userdate}}
+            </time>
+        </span>
+    </div>
+{{/enddate}}

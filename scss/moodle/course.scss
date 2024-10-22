@@ -1,0 +1,20 @@
+.coursebox {
+    > .info > .coursename {
+        font-size: $h3-font-size;
+    }
+    .content {
+        .courseimage img {
+            max-width: 50%;
+        }
+    }
+}
+
+#page-course-index-category {
+    .coursebox {
+        padding: $spacer / 2;
+        border: $border-width solid $border-color;
+        margin-bottom: $spacer / 2;
+
+        @include border-radius();
+    }
+}

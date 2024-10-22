@@ -1,0 +1,357 @@
+/* stylelint-disable declaration-no-important */
+@media only screen and (max-width: 479px) { // Reduced margin and padding for better formatting on mobile
+    .course-content ul.section {
+        margin: 0 !important;
+    }
+
+    .section .label .contentwithoutlink,
+    .section .label .activityinstance {
+        padding-right: 0 !important;
+    }
+
+    .onetopic .nav-item { // Onetopic tabs take full width on mobile
+        width: 100%;
+        margin-bottom: 3px;
+    }
+
+    #region-main {
+        padding: 0;
+    }
+
+    .section .label .mod-indent-outer {
+        padding-left: 0;
+    }
+}
+
+/* Grading page */
+.path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"] {
+    background-color: $white;
+    padding: 30px;
+}
+
+#page-mod-assign-grading .alert {
+    margin-top: 25px;
+}
+
+#page-mod-assign-grader {
+    .col-md-3 {
+        max-width: 30%;
+    }
+    .form-group {
+        padding-bottom: 10px;
+    }
+}
+
+/* onetopic START */
+#page-course-view-onetopic,
+#page-course-view-nonumbers,
+#page-course-view-vanilla {
+    .form-item.clearfix.form-group.row.fitem {
+        padding-left: 15px;
+    }
+
+    aside.block-region {
+        margin-top: 35px;
+    }
+
+    .course-content .current::before {
+        display: none;
+    }
+
+    .course-content ul.topics li.section .content,
+    .course-content ul.weeks li.section .content {
+        margin: 30px 0;
+    }
+}
+
+/* User tour reset link at bottom of grading page START */
+.tool_usertours-resettourcontainer {
+    width: 100%;
+
+    .usertour {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.usertour {
+    text-align: center;
+    padding-top: 15px;
+}
+/* User tour reset link at bottom of grading page END */
+
+#forummenu input { // Spacing between buttons on forum pages
+    margin-left: 10px;
+}
+
+.dropdown-toggle {
+    font-family: "Open Sans", sans-serif !important; // Prevent dropdown menu font being overriden by fontawesome
+}
+
+/* Course text overrides START */
+.dimmed_text span,
+.dimmed_text p { // Ensures hidden text on course pages will always be grey for users who can edit
+    color: #999 !important;
+}
+
+section#region-main {
+
+    line-height: 1.75 !important;
+
+    .editor_atto h1[style],
+    .editor_atto h2[style],
+    .editor_atto h3[style],
+    .editor_atto h4[style],
+    .editor_atto h5[style],
+    .editor_atto h1,
+    .editor_atto h2,
+    .editor_atto h3,
+    .editor_atto h4,
+    .editor_atto h5,
+    .single-section h1,
+    .single-section h2,
+    .single-section h3,
+    .single-section h4,
+    .single-section h5,
+    .single-section h1[style],
+    .single-section h2[style],
+    .single-section h3[style],
+    .single-section h4[style],
+    .single-section h5[style],
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: Open Sans, sans-serif !important;
+        font-weight: 400;
+        letter-spacing: normal !important;
+        line-height: 25px !important;
+        padding-top: 30px !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+
+    .single-section h1,
+    .single-section h1[style],
+    #maincontent h1 {
+        font-size: 1.45rem !important;
+    }
+    .single-section h2,
+    .single-section h2[style],
+    #maincontent h2 {
+        font-size: 1.45rem !important;
+    }
+    .single-section h3,
+    .single-section h3[style],
+    #maincontent h3 {
+        font-size: 1.35rem !important;
+    }
+    .single-section h4,
+    .single-section h4[style],
+    #maincontent h5 {
+        font-size: 1.25rem !important;
+    }
+    .single-section h5,
+    .single-section h5[style],
+    #maincontent h5 {
+        font-size: 1.15rem !important;
+    }
+}
+
+section#region-main {
+    .editor_atto,
+    .single-section {
+        span[style*="font-size: small;"],
+        span[style*="font-size: normal;"],
+        span[style*="font-size: medium;"],
+        span[style*="font-size: large;"],
+        span[style*="font-size: x-large;"],
+        p {
+            font-family: $font-family-base !important;
+            font-size: $font-size-base !important;
+            font-weight: 400;
+            letter-spacing: 0.45px !important;
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    .section-navigation {
+        border-top: 1px solid $grey;
+        padding-top: 20px;
+    }
+}
+/* Course text overrides END */
+
+/* Activity/content overrides START */
+.section li.activity {
+    padding: .5em;
+}
+
+.activity img.activityicon {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+img.iconlarge {
+    height: 30px;
+    width: 30px;
+    margin-left: 20px;
+}
+
+@media (max-width: 480px) {
+    div[class^="mod-indent"] {
+        padding-left: 0 !important;
+    }
+
+    div.editor-indent {
+        margin-left: 0;
+    }
+
+    .section .label .contentwithoutlink,
+    .section .label .activityinstance {
+        padding-right: 0;
+    }
+}
+
+div.contentafterlink,
+div.activityinstance {
+    padding-left: 0;
+}
+/* Activity/content overrides END */
+table caption { /* Calendar heading font-size */
+    font-size: initial;
+    text-align: center;
+}
+
+.pagelayout-course .unit-details {
+    padding-top: 35px;
+}
+
+#page-course-view-onetopic #region-main-settings-menu.has-blocks,
+#page-course-view-onetopic #region-main.has-blocks {
+    padding-top: 15px;
+}
+
+#course_format_onetopic_config_movesection {
+    border-top: $border;
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+/* Course restore */
+#fitem_id_setting_root_restore_quickmail_history,
+#fitem_id_static_setting_root_restore_quickmail_history {
+    display: block;
+}
+/* Scale dropdown width */
+[data-fieldtype="modgrade"] {
+    max-width: 50%;
+}
+
+/* Checklist */
+.path-mod-checklist .checklist {
+    label {
+        padding-left: 10px;
+    }
+    li {
+        padding-bottom: 5px;
+    }
+}
+
+.mod-indent-outer .mediaplugin {  // make sure embeded videos display correctly
+    display: block;
+}
+
+/* H5P */
+.modtype_hvp iframe {
+    max-width: 100% !important; //allow full width to be used
+    width: 2000px !important; //set width to a high value which will always be limited by the max-width
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+/* Word wrap in assignment student summary */
+.path-mod-assign .submissionsummarytable .c0,
+.path-mod-assign .mod-assign-history-panel .c0 {
+    width: initial;
+}
+
+/* Activity indent */
+.mod-indent-outer {
+    padding-left: 24px;
+}
+
+.onetopic {
+    .nav-tabs,
+    .nav-item,
+    .nav-pills,
+    .nav-link {
+        text-align: center;
+        background-color: $white !important;
+        margin: 0 1px 0 1px;
+        border-bottom: 0 !important;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+        border-color: transparent !important;
+    }
+
+    .tab_content {
+        color: $font-color !important;
+        background-color: $white !important;
+        border: 2px solid $tab-color !important;
+        border-radius: 5px !important;
+        margin: 2px !important;
+        padding: 8px 4px !important;
+
+        &:hover {
+            background-color: $tab-color !important;
+            color: $white !important;
+        }
+
+        .icon {
+            margin-left: 5px;
+            vertical-align: middle;
+            margin-top: -10px;
+            margin-right: 0;
+        }
+    }
+
+    .active .tab_content {
+        background-color: $tab-color !important;
+        color: $white !important;
+    }
+
+    .marker .icon {
+        margin-top: -3px;
+    }
+
+    [title="Overview"] .marker {
+        font-weight: normal;
+    }
+
+    .tab_initial,
+    .tab_level_1 {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .onetopic {
+        .nav-tabs,
+        .nav-pills,
+        .nav-link {
+            background-color: $white !important;
+            margin: 0;
+        }
+    }
+}
+
+#page-my-index #page-header .card {
+    border: none !important;
+}

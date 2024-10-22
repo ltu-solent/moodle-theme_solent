@@ -16,15 +16,16 @@
 
 namespace theme_solent\output;
 
-use custom_menu_item;
-use custom_menu;
 use navigation_node;
 use stdClass;
 use action_menu;
 use context_course;
+use context_system;
+use core_course\external\course_summary_exporter;
 use html_writer;
-
-defined('MOODLE_INTERNAL') || die;
+use moodle_url;
+use theme_boost\output\core_renderer as core_renderer_base;
+use theme_solent\helper as solent_helper;
 
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
@@ -33,8 +34,7 @@ defined('MOODLE_INTERNAL') || die;
  * @copyright  2021 Sarah Cotton
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-class core_renderer extends \core_renderer {
+class core_renderer extends core_renderer_base {
 
     /** @var custom_menu_item language The language menu if created */
     protected $language = null;
@@ -45,7 +45,18 @@ class core_renderer extends \core_renderer {
      * @return string HTML to display the main header.
      */
     public function full_header() {
-		if ($this->page->include_region_main_settings_in_header_actions() &&
+        global $CFG;
+        $pagetype = $this->page->pagetype;
+        $homepage = get_home_page();
+        $homepagetype = null;
+        $context = $this->page->context;
+        // Add a special case since /my/courses is a part of the /my subsystem.
+        if ($homepage == HOMEPAGE_MY || $homepage == HOMEPAGE_MYCOURSES) {
+            $homepagetype = 'my-index';
+        } else if ($homepage == HOMEPAGE_SITE) {
+            $homepagetype = 'site-index';
+        }
+        if ($this->page->include_region_main_settings_in_header_actions() &&
                 !$this->page->blocks->is_block_present('settings')) {
             // Only include the region main settings if the page has requested it and it doesn't already have
             // the settings block on it. The region main settings are included in the settings block and
@@ -56,57 +67,78 @@ class core_renderer extends \core_renderer {
                 ['id' => 'region-main-settings-menu']
             ));
         }
-
         $header = new stdClass();
         $header->settingsmenu = $this->context_header_settings_menu();
         $header->contextheader = $this->context_header();
         $header->hasnavbar = empty($this->page->layout_options['nonavbar']);
         $header->navbar = $this->navbar();
+        if ($header->navbar == '') {
+            unset($header->hasnavbar);
+        }
         $header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
+        $iswelcome = get_config('theme_solent', 'enablewelcome');
+        if (!empty($pagetype) && !empty($homepagetype) && $pagetype == $homepagetype) {
+            if ($iswelcome) {
+                $header->welcomemessage = \core_user::welcome_message();
+            }
+        }
 
-// SU_AMEND START - Course: Header images
-		if(strpos($_SERVER['REQUEST_URI'], 'course/view')){		
-			$additionalheader = header_image();
-			$header->imageclass = $additionalheader->imageclass;
-			$header->imageselector = $additionalheader->imageselector;
-		}
-// SU_AMEND END
-        return $this->render_from_template('theme_solent/header', $header);
+        // SU_AMEND START - Course: Header images.
+        $showbanner = get_config('theme_solent', 'enablebanner');
+        if ($showbanner) {
+            $additionalheader = theme_solent_header_image();
+            $header->imageclass = $additionalheader->imageclass;
+            $header->imageselector = $additionalheader->imageselector;
+        }
+        $showcourseimage = get_config('theme_solent', 'enablecourseimage');
+        $courseimage = false;
+        if ($showcourseimage) {
+            // Course context.
+            if ($context->contextlevel == CONTEXT_COURSE && $this->page->course->id !== SITEID) {
+                $courseimage = course_summary_exporter::get_course_image($this->page->course);
+                if (!$courseimage) {
+                    $courseimage = $this->get_generated_image_for_id($this->page->course->id);
+                }
+            } else if ($context->contextlevel == CONTEXT_MODULE && $this->page->course->id !== SITEID) {
+                // Module context.
+                $courseimage = \core_course\external\course_summary_exporter::get_course_image($this->page->course);
+                if (!$courseimage) {
+                    $courseimage = $this->get_generated_image_for_id($this->page->course->id);
+                }
+            }
+        }
+        if ($courseimage) {
+            $header->courseimage = $courseimage;
+        }
+        // SU_AMEND END.
+        return $this->render_from_template('core/full_header', $header);
     }
-    
+
     /**
      * This renders the breadcrumbs
      * @return string $breadcrumbs
      */
-    public function navbar() {
-        $breadcrumbicon = get_config('theme_solent', 'breadcrumbicon');
-        $excludebreadcrumbs = explode( ',', get_config('theme_solent', 'excludebreadcrumbs'));
+    public function navbar(): string {
+        $newnav = new \theme_solent\boostnavbar($this->page);
+        return $this->render_from_template('core/navbar', $newnav);
+    }
 
-        $breadcrumbs = html_writer::tag('span', get_string('pagepath'), array('class' => 'accesshide', 'id' => 'navbar-label'));
-        $breadcrumbs .= html_writer::start_tag('nav', array('aria-labelledby' => 'navbar-label'));
-        $breadcrumbs .= html_writer::start_tag('ul', array('class' => "breadcrumb "));
-        foreach ($this->page->navbar->get_items() as $item) {
-
-            if(!in_array($item->text, $excludebreadcrumbs)) {
-                // Test for single space hide section name trick.
-                if ((strlen($item->text) == 1) && ($item->text[0] == ' ')) {
-                    continue;
-                }
-
-                $breadcrumbs .= html_writer::start_tag('li');
-                $breadcrumbs .= $this->render($item);
-                if(!$item->is_last()) {
-                    $breadcrumbs .= html_writer::tag('span', '', array('class' => 'icon ' . $breadcrumbicon));
-                }
-                $breadcrumbs .= html_writer::end_tag('li');                
-            }
+    /**
+     * Return navbar if required at bottom of the page.
+     *
+     * @return string HTML for navbar.
+     */
+    public function bottom_navbar(): string {
+        if (!get_config('theme_solent', 'enablebottomnavbar')) {
+            return '';
         }
-        $breadcrumbs .= html_writer::end_tag('ul');
-        $breadcrumbs .= html_writer::end_tag('nav');
-
-        return $breadcrumbs;
+        $navbar =
+            html_writer::start_div("bottomnavbar") .
+                $this->navbar() .
+            html_writer::end_div();
+        return $navbar;
     }
 
     /**
@@ -124,6 +156,31 @@ class core_renderer extends \core_renderer {
     }
 
     /**
+     * Returns a search box.
+     *
+     * @param  string $id     The search box wrapper div id, defaults to an autogenerated one.
+     * @return string         HTML with the search form hidden by default.
+     */
+    public function search_box($id = false) {
+        global $CFG;
+
+        // Accessing $CFG directly as using \core_search::is_global_search_enabled would
+        // result in an extra included file for each site, even the ones where global search
+        // is disabled.
+        if (!has_capability('moodle/search:query', context_system::instance())) {
+            return '';
+        }
+
+        $data = [
+            'action' => new moodle_url('/course/search.php'),
+            'hiddenfields' => (object) [],
+            'inputname' => 'q',
+            'searchstring' => get_string('search'),
+            ];
+        return $this->render_from_template('core/search_input_navbar', $data);
+    }
+
+    /**
      * Gathers communications and extra dash info to be contextually incorporated.
      *
      * @return string Rendered HTML
@@ -131,14 +188,15 @@ class core_renderer extends \core_renderer {
     public function solentzone() {
         $content = '';
         // Separating into different types so we can prioritise and group them.
-        // More free html
+        // More free html.
         $banners = [];
         // Use notification objects for alerts.
         $alerts = [];
-        // Links to resources
+        // Links to resources.
         $dashlinks = [];
-        // Links to Reports
+        // Links to Reports.
         $reports = [];
+        $notices = [];
         // Plugins.
         $pluginswithfunction = get_plugins_with_function('solentzone_alerts', 'lib.php');
         foreach ($pluginswithfunction as $plugins) {
@@ -150,6 +208,49 @@ class core_renderer extends \core_renderer {
             if ($alert instanceof \core\output\notification) {
                 $content .= $this->render($alert);
             }
+        }
+        $pluginswithfunction = get_plugins_with_function('solentzone_notices', 'lib.php');
+        foreach ($pluginswithfunction as $plugins) {
+            foreach ($plugins as $function) {
+                $notices = $function($notices);
+            }
+        }
+        foreach ($notices as $notice) {
+            $content .= html_writer::div(format_text($notice), 'solentzone-notice border p-2 mb-2');
+        }
+        if ($content != '') {
+            $content = html_writer::div($content, 'solentzone m-2');
+        }
+        return $content;
+    }
+
+    /**
+     * Footer menu
+     *
+     * @return stdClass Context for footer menu template
+     */
+    public function solent_footer_menu() {
+        $content = new stdClass();
+        $content->vertical = [];
+        $columns = ['study', 'organise', 'support', 'solentfutures'];
+        foreach ($columns as $column) {
+            $menuconfig = get_config('theme_solent', $column . 'menuitems');
+            $menu = new vertical_footer_menu($menuconfig, get_string($column, 'theme_solent'));
+            if ($menu->count() > 0) {
+                $content->vertical[] = $this->render($menu);
+            }
+        }
+        // Terms and conditions.
+        $menuconfig = get_config('theme_solent', 'tandcsmenuitems');
+        $menu = new tandcs_footer_menu($menuconfig);
+        if ($menu->count() > 0) {
+            $content->tandcs = $this->render($menu);
+        }
+        // Social links.
+        $menuconfig = get_config('theme_solent', 'socialmenuitems');
+        $menu = new social_footer_menu($menuconfig);
+        if ($menu->count() > 0) {
+            $content->social = $this->render($menu);
         }
         return $content;
     }
