@@ -36,12 +36,12 @@ $string['backgroundimage'] = 'Background image';
 $string['backgroundimage_desc'] = 'The image to display as a background of the site. The background image you upload here will override the background image in your theme preset files.';
 $string['blockwidth'] = 'Block width';
 $string['blockwidth_desc'] = 'Block area width in pixels';
+$string['bootswatch'] = 'Bootswatch';
+$string['bootswatch_desc'] = 'A bootswatch is a set of Bootstrap variables and css to style Bootstrap';
 $string['brandcolor'] = 'Brand colour';
 $string['brandcolor_desc'] = 'The accent colour.';
 $string['breadcrumbicon'] = 'The breadcrumb fontawesome icon.';
 $string['breadcrumbicon_desc'] = 'The breadcrumb fontawesome icon.';
-$string['bootswatch'] = 'Bootswatch';
-$string['bootswatch_desc'] = 'A bootswatch is a set of Bootstrap variables and css to style Bootstrap';
 
 $string['choosereadme'] = 'Solent is a modern highly-customisable theme. This theme is intended to be used directly, or as a parent theme when creating new themes utilising Bootstrap 4.';
 $string['colours_settings'] = 'Colour settings';
@@ -60,10 +60,10 @@ $string['customselectors_desc'] = 'This allows you to specify other types of med
     Each line should contain a css selector for fitvids to operate on. e.g. <code>iframe[src*=\'facebook.com\/plugins\/video.php\']</code>
 ';
 
-$string['descriptors'] = 'Module and course descriptors';
-$string['descriptors_desc'] = 'Module and course descriptor settings';
 $string['descriptorfolder'] = 'Module descriptors folder';
 $string['descriptorfolder_desc'] = 'ID of module descriptors folder activity';
+$string['descriptors'] = 'Module and course descriptors';
+$string['descriptors_desc'] = 'Module and course descriptor settings';
 $string['drawerwidth'] = 'Navdrawer width';
 $string['drawerwidth_desc'] = 'Navdrawer width in pixels';
 
@@ -131,13 +131,13 @@ $string['modulerunsfrom'] = 'Module runs: ';
 $string['navbarheight'] = 'Navbar height';
 $string['navbarheight_desc'] = 'Navbar height in pixels';
 $string['navigationsettings'] = 'Navigation settings';
-$string['nomoduledescriptor'] = 'No module descriptor available';
 $string['nobootswatch'] = 'None';
+$string['nomoduledescriptor'] = 'No module descriptor available';
 
-$string['otherlogin'] = 'All other users, please <a href="#login" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="#login">Click here to log in</a>';
 $string['organise'] = 'Organise';
 $string['organisemenuitems'] = 'Organise menu items';
 $string['organisemenuitems_desc'] = 'Organise menu items';
+$string['otherlogin'] = 'All other users, please <a href="#login" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="#login">Click here to log in</a>';
 
 $string['pluginname'] = 'Solent';
 $string['preset'] = 'Theme preset';
@@ -145,10 +145,10 @@ $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.
 $string['presetfiles'] = 'Additional theme preset files';
 $string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href="https://docs.moodle.org/dev/Solent_Presets">Solent presets</a> for information on creating and sharing your own preset files, and see the <a href="http://moodle.net/Solent">Presets repository</a> for presets that others have shared.';
 $string['presetsettings'] = 'Preset settings';
-$string['privacy:metadata'] = 'The Solent theme does not store any personal data about any user.';
-$string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
 $string['privacy:drawernavclosed'] = 'The current preference for the navigation drawer is closed.';
 $string['privacy:drawernavopen'] = 'The current preference for the navigation drawer is open.';
+$string['privacy:metadata'] = 'The Solent theme does not store any personal data about any user.';
+$string['privacy:metadata:preference:draweropennav'] = 'The user\'s preference for hiding or showing the drawer menu navigation.';
 
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will be injected at the end of the style sheet.';
@@ -183,7 +183,7 @@ $string['tandcsmenuitems'] = 'Terms & Conditions menu items';
 $string['tandcsmenuitems_desc'] = 'Terms & Conditions menu items';
 $string['totop'] = 'Back to top';
 
-$string['vidmaxwidth'] = 'Video MaxWidth';
-$string['vidmaxwidth_desc'] = 'Resizes videos, but limited the width to this size. 0 means, it will fill large screens.';
 $string['vidmaxheight'] = 'Video MaxHeight';
 $string['vidmaxheight_desc'] = 'Resizes videos, but limited the height to this size. 0 means, it will fill large screens.';
+$string['vidmaxwidth'] = 'Video MaxWidth';
+$string['vidmaxwidth_desc'] = 'Resizes videos, but limited the width to this size. 0 means, it will fill large screens.';

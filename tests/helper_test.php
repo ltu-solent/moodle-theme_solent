@@ -35,14 +35,14 @@ global $CFG;
 /**
  * Helper class tests
  */
-class helper_test extends advanced_testcase {
+final class helper_test extends advanced_testcase {
 
     /**
      * Test show unit descriptor
      * @covers \theme_solent\helper::course_unit_descriptor
      * @return void
      */
-    public function test_course_unit_descriptor() {
+    public function test_course_unit_descriptor(): void {
         $this->resetAfterTest();
         set_config('moduledescriptor', 'Module descriptor: [modulecode] [startenddates]', 'theme_solent');
         set_config('coursedescriptor', 'Course descriptor: [modulecode]', 'theme_solent');
@@ -118,7 +118,7 @@ class helper_test extends advanced_testcase {
      * @covers \theme_solent\helper::get_category_type
      * @dataProvider get_category_type_provider
      */
-    public function test_get_category_type($category, $response) {
+    public function test_get_category_type($category, $response): void {
         $this->resetAfterTest();
         $cat = $this->getDataGenerator()->create_category($category);
         $type = helper::get_category_type($cat);
@@ -172,7 +172,7 @@ class helper_test extends advanced_testcase {
      * @covers \theme_solent\helper::is_module
      * @dataProvider is_module_provider
      */
-    public function test_is_module($category, $response) {
+    public function test_is_module($category, $response): void {
         $this->resetAfterTest();
         $catid = null;
         if ($category) {
@@ -219,7 +219,7 @@ class helper_test extends advanced_testcase {
      * @covers \theme_solent\helper::is_module
      * @dataProvider is_course_provider
      */
-    public function test_is_course($category, $response) {
+    public function test_is_course($category, $response): void {
         $this->resetAfterTest();
         $catid = null;
         if ($category) {
