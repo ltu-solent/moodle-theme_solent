@@ -25,7 +25,7 @@
 
 namespace theme_solent\local;
 
-use html_writer;
+use core\output\html_writer;
 use theme_solent\helper;
 
 /**

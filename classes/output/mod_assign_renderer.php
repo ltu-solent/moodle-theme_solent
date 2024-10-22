@@ -27,9 +27,14 @@ namespace theme_solent\output;
 
 use assign;
 use core\context;
+use core_table\output\html_table;
+use core_table\output\html_table_cell;
+use core_table\output\html_table_row;
+use core\output\html_writer;
+use core\output\pix_icon;
 use mod_assign\output\assign_submission_status;
 use mod_assign\output\renderer as renderer_base;
-use moodle_url;
+use core\url;
 
 /**
  * Assign renderer overrride
@@ -40,22 +45,22 @@ class mod_assign_renderer extends renderer_base {
      * Modified the table param and does not return a value.
      * Solent: This needs to be overridden here because the function is private in the private class.
      *
-     * @param \html_table $table The table to append the row of data to
+     * @param html_table $table The table to append the row of data to
      * @param string $first The first column text
      * @param string $second The second column text
      * @param array $firstattributes The first column attributes (optional)
      * @param array $secondattributes The second column attributes (optional)
      * @return void
      */
-    private function add_table_row_tuple(\html_table $table, $first, $second, $firstattributes = [],
+    private function add_table_row_tuple(html_table $table, $first, $second, $firstattributes = [],
             $secondattributes = []) {
-        $row = new \html_table_row();
-        $cell1 = new \html_table_cell($first);
+        $row = new html_table_row();
+        $cell1 = new html_table_cell($first);
         $cell1->header = true;
         if (!empty($firstattributes)) {
             $cell1->attributes = $firstattributes;
         }
-        $cell2 = new \html_table_cell($second);
+        $cell2 = new html_table_cell($second);
         if (!empty($secondattributes)) {
             $cell2->attributes = $secondattributes;
         }
@@ -77,7 +82,7 @@ class mod_assign_renderer extends renderer_base {
 
         $o .= $this->output->box_start('boxaligncenter submissionsummarytable');
 
-        $t = new \html_table();
+        $t = new html_table();
         $t->attributes['class'] = 'generaltable table-bordered';
 
         $warningmsg = '';
@@ -153,7 +158,7 @@ class mod_assign_renderer extends renderer_base {
                 $userslist = [];
                 foreach ($members as $member) {
                     $urlparams = ['id' => $member->id, 'course' => $status->courseid];
-                    $url = new \moodle_url('/user/view.php', $urlparams);
+                    $url = new url('/user/view.php', $urlparams);
                     if ($status->view == assign_submission_status::GRADER_VIEW && $status->blindmarking) {
                         $userslist[] = $member->alias;
                     } else {
@@ -312,7 +317,7 @@ class mod_assign_renderer extends renderer_base {
         }
 
         $o .= $warningmsg;
-        $o .= \html_writer::table($t);
+        $o .= html_writer::table($t);
         $o .= $this->output->box_end();
 
         $o .= $this->output->container_end();
@@ -363,7 +368,7 @@ class mod_assign_renderer extends renderer_base {
                                           'submissionsummary' => $submissionsummary];
             $o .= $this->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
 
-            $t = new \html_table();
+            $t = new html_table();
 
             if ($submission) {
                 $cell1content = get_string('submissionstatus', 'assign');
@@ -404,16 +409,16 @@ class mod_assign_renderer extends renderer_base {
                                    'action' => 'grade',
                                    'returnaction' => $history->returnaction,
                                    'returnparams' => $returnparams];
-                    $url = new \moodle_url('/mod/assign/view.php', $urlparams);
-                    $icon = new \pix_icon('gradefeedback',
+                    $url = new url('/mod/assign/view.php', $urlparams);
+                    $icon = new pix_icon('gradefeedback',
                                             get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
                                             'mod_assign');
                     $title .= $this->output->action_icon($url, $icon);
                 }
-                $cell = new \html_table_cell($title);
+                $cell = new html_table_cell($title);
                 $cell->attributes['class'] = 'feedbacktitle';
                 $cell->colspan = 2;
-                $t->data[] = new \html_table_row([$cell]);
+                $t->data[] = new html_table_row([$cell]);
 
                 // Grade.
                 $cell1content = get_string('gradenoun');
@@ -454,7 +459,7 @@ class mod_assign_renderer extends renderer_base {
 
             }
 
-            $o .= \html_writer::table($t);
+            $o .= html_writer::table($t);
         }
         $o .= $this->box_end();
 
@@ -546,7 +551,7 @@ class mod_assign_renderer extends renderer_base {
             // Who sees this? Do I need to be more discriminating?
 
             $o .= '<span data-quercus="disable-selectall"></span>';
-            $resetfilterurl = new moodle_url('/mod/assign/view.php', [
+            $resetfilterurl = new url('/mod/assign/view.php', [
                 'action' => 'grading',
                 'id' => $cmid,
                 'treset' => 1,

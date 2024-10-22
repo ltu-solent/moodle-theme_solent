@@ -28,7 +28,7 @@ namespace theme_solent\output\core;
 defined('MOODLE_INTERNAL') || die();
 
 use import_course_search;
-use html_writer;
+use core\output\html_writer;
 use restore_course_search;
 use html_table;
 use html_table_row;

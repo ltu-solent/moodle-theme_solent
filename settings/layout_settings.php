@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core\lang_string;
+
 $page = new admin_settingpage('theme_solent_layout', get_string('layoutsettings', 'theme_solent'));
 
 // Navdrawer width (Not using).

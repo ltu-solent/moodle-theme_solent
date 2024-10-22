@@ -16,15 +16,12 @@
 
 namespace theme_solent\output;
 
-use navigation_node;
 use stdClass;
-use action_menu;
 use core\context;
 use core_course\external\course_summary_exporter;
-use html_writer;
-use moodle_url;
+use core\output\html_writer;
+use core\url;
 use theme_boost\output\core_renderer as core_renderer_base;
-use theme_solent\helper as solent_helper;
 
 /**
  * Renderers to align Moodle's HTML with that expected by Bootstrap
@@ -171,7 +168,7 @@ class core_renderer extends core_renderer_base {
         }
 
         $data = [
-            'action' => new moodle_url('/course/search.php'),
+            'action' => new url('/course/search.php'),
             'hiddenfields' => (object) [],
             'inputname' => 'q',
             'searchstring' => get_string('search'),

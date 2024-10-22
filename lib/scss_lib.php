@@ -26,7 +26,7 @@
  /**
   * Load scss required for theme
   *
-  * @param theme_config $theme
+  * @param core\output\theme_config $theme
   * @return string SCSS
   */
 function theme_solent_get_main_scss_content($theme) {
@@ -61,7 +61,7 @@ function theme_solent_get_main_scss_content($theme) {
 /**
  * Inject additional SCSS.
  *
- * @param theme_config $theme The theme config object.
+ * @param core\output\theme_config $theme The theme config object.
  * @return string
  */
 function theme_solent_get_extra_scss($theme) {
@@ -77,7 +77,7 @@ function theme_solent_get_extra_scss($theme) {
 /**
  * Inject scss early doors
  *
- * @param theme_config $theme
+ * @param core\output\theme_config $theme
  * @return string Additional scss
  */
 function theme_solent_get_pre_scss($theme) {

@@ -25,6 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core\lang_string;
 
 $page = new admin_settingpage('theme_solent_resources', new lang_string('resources_settings', 'theme_solent'));
 

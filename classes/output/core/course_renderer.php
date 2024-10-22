@@ -26,6 +26,7 @@
 namespace theme_solent\output\core;
 
 use stdClass;
+use core\output\html_writer;
 use core_course_category;
 use coursecat_helper;
 use core_course_list_element;
@@ -52,12 +53,12 @@ class course_renderer extends \core_course_renderer {
         if ($course instanceof stdClass) {
             $course = new core_course_list_element($course);
         }
-        $content = \html_writer::start_tag('div');
+        $content = html_writer::start_tag('div');
         $courseoverviewfiles = $this->course_overview_files($course);
         if (!empty($courseoverviewfiles)) {
             $content .= $courseoverviewfiles;
         }
-        $content .= \html_writer::start_tag('div');
+        $content .= html_writer::start_tag('div');
         // SU_AMEND_START: Add unit descriptor if available.
         $content .= helper::course_unit_descriptor($course);
         // SU_AMEND_END.
@@ -65,8 +66,8 @@ class course_renderer extends \core_course_renderer {
         $content .= $this->course_contacts($course);
         $content .= $this->course_category_name($chelper, $course);
         $content .= $this->course_custom_fields($course);
-        $content .= \html_writer::end_tag('div');
-        $content .= \html_writer::end_tag('div');
+        $content .= html_writer::end_tag('div');
+        $content .= html_writer::end_tag('div');
         return $content;
     }
 }

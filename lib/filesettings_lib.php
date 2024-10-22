@@ -38,7 +38,7 @@
 function theme_solent_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = []) {
     static $theme;
     if (empty($theme)) {
-        $theme = theme_config::load('solent');
+        $theme = core\output\theme_config::load('solent');
     }
     if ($filearea == 'headerdefaultimage') {
         return $theme->setting_file_serve('headerdefaultimage', $args, $forcedownload, $options);

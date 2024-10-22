@@ -27,9 +27,9 @@ namespace theme_solent;
 
 use core\context;
 use core_course_category;
-use filter_manager;
-use moodle_exception;
-use moodle_url;
+use core_filters\filter_manager;
+use core\exception\moodle_exception;
+use core\url;
 use stdClass;
 
 /**
@@ -67,7 +67,7 @@ class helper {
                             break;
                         case 1: // URL.
                             try {
-                                $item->url = new moodle_url($setting);
+                                $item->url = new url($setting);
                             } catch (moodle_exception $exception) {
                                 // We're not actually worried about this, we don't want to mess up the display
                                 // just for a wrongly entered URL.
@@ -144,7 +144,7 @@ class helper {
      * Get url for unit descriptor document
      *
      * @param object $course Course object
-     * @return array|null [moodle_url, filename]
+     * @return array|null [core\url, filename]
      */
     public static function get_unit_descriptor_file_url($course) {
         global $DB;
@@ -186,7 +186,7 @@ class helper {
         if (!$file) {
             return null;
         }
-        $url = moodle_url::make_pluginfile_url(
+        $url = url::make_pluginfile_url(
             $file->contextid,
             'mod_folder',
             'content',

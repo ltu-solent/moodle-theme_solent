@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core\output\html_writer;
+
 require_once('lib/theme_lib.php');
 require_once('lib/scss_lib.php');
 require_once('lib/filesettings_lib.php');
@@ -144,13 +146,13 @@ function theme_solent_user_preferences(): array {
             'type' => PARAM_BOOL,
             'null' => NULL_NOT_ALLOWED,
             'default' => false,
-            'permissioncallback' => [core_user::class, 'is_current_user'],
+            'permissioncallback' => [core\user::class, 'is_current_user'],
         ],
         'drawer-open-index' => [
             'type' => PARAM_BOOL,
             'null' => NULL_NOT_ALLOWED,
             'default' => true,
-            'permissioncallback' => [core_user::class, 'is_current_user'],
+            'permissioncallback' => [core\user::class, 'is_current_user'],
         ],
     ];
 }

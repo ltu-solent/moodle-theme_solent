@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core\lang_string;
+
 $page = new admin_settingpage('theme_solent_images', get_string('imagesettings', 'theme_solent'));
 
 // Background image setting.

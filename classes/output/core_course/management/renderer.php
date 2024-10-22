@@ -28,11 +28,11 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->dirroot . "/course/classes/management_renderer.php");
 
 use stdClass;
-use html_writer;
+use core\output\html_writer;
 use core_course_category;
 use core_course_list_element;
 use course_listing;
-use moodle_url;
+use core\url;
 use theme_solent\helper;
 
 /**
@@ -84,7 +84,7 @@ class renderer extends \core_course_management_renderer {
             $checkboxclass = 'd-none';
         }
 
-        $viewcourseurl = new moodle_url($this->page->url, ['courseid' => $course->id]);
+        $viewcourseurl = new url($this->page->url, ['courseid' => $course->id]);
 
         $html  = html_writer::start_tag('li', $attributes);
         $html .= html_writer::start_div('clearfix');
@@ -151,7 +151,7 @@ class renderer extends \core_course_management_renderer {
                     'data-action' => 'select',
             ];
         }
-        $viewcourseurl = new moodle_url($this->page->url, ['courseid' => $course->id]);
+        $viewcourseurl = new url($this->page->url, ['courseid' => $course->id]);
         $categoryname = core_course_category::get($course->category)->get_formatted_name();
 
         $html  = html_writer::start_tag('li', $attributes);

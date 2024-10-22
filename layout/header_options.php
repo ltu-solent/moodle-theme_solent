@@ -32,7 +32,7 @@ require_login($course);
 require_capability('moodle/course:update', $coursecontext);
 
 $PAGE->set_context($coursecontext);
-$PAGE->set_url(new moodle_url('/theme/solent/layout/header_options.php', ['course' => $course, 'opt' => $opt]));
+$PAGE->set_url(new core\url('/theme/solent/layout/header_options.php', ['course' => $course, 'opt' => $opt]));
 $PAGE->set_title('Header options');
 $PAGE->set_heading('Header options');
 $PAGE->set_pagelayout('report');

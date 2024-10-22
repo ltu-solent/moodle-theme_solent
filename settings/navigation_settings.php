@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+use core\lang_string;
+
 $page = new admin_settingpage('theme_solent_navigation', new lang_string('navigationsettings', 'theme_solent'));
 
 // Prepare hide nodes options.
