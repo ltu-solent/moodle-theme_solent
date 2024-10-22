@@ -25,7 +25,7 @@
 
 namespace theme_solent;
 
-use context_course;
+use core\context;
 use core_course_category;
 use filter_manager;
 use moodle_exception;
@@ -215,7 +215,7 @@ class helper {
             return $content;
         }
 
-        $coursecontext = context_course::instance($course->id);
+        $coursecontext = context\course::instance($course->id);
         $filterman = filter_manager::instance();
         $descriptor = '';
         if ($cattype == 'modules') {

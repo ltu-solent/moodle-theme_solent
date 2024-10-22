@@ -19,8 +19,7 @@ namespace theme_solent\output;
 use navigation_node;
 use stdClass;
 use action_menu;
-use context_course;
-use context_system;
+use core\context;
 use core_course\external\course_summary_exporter;
 use html_writer;
 use moodle_url;
@@ -167,7 +166,7 @@ class core_renderer extends core_renderer_base {
         // Accessing $CFG directly as using \core_search::is_global_search_enabled would
         // result in an extra included file for each site, even the ones where global search
         // is disabled.
-        if (!has_capability('moodle/search:query', context_system::instance())) {
+        if (!has_capability('moodle/search:query', context\system::instance())) {
             return '';
         }
 

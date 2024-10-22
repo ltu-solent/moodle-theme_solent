@@ -27,7 +27,7 @@ require_once('../../../config.php');
 
 $course = required_param('course', PARAM_INT);
 $opt = required_param('opt', PARAM_ALPHANUM);
-$coursecontext = context_course::instance($course);
+$coursecontext = core\context\course::instance($course);
 require_login($course);
 require_capability('moodle/course:update', $coursecontext);
 

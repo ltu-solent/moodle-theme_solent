@@ -41,7 +41,7 @@ foreach ($iterator as $presetfile) {
     }
 }
 // Add preset files uploaded.
-$context = context_system::instance();
+$context = core\context\system::instance();
 $fs = get_file_storage();
 $files = $fs->get_area_files($context->id, 'theme_solent', 'preset', 0, 'itemid, filepath, filename', false);
 foreach ($files as $file) {

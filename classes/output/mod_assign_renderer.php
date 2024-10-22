@@ -26,7 +26,7 @@
 namespace theme_solent\output;
 
 use assign;
-use context_module;
+use core\context;
 use mod_assign\output\assign_submission_status;
 use mod_assign\output\renderer as renderer_base;
 use moodle_url;
@@ -479,7 +479,7 @@ class mod_assign_renderer extends renderer_base {
         // Store the normally rendered table so that we can append contextual notifications before returning.
         $rendered = parent::render_assign_grading_table($table);
         $o = '';
-        $assign = new assign(context_module::instance($cm->id), $cm, $cm->get_course());
+        $assign = new assign(context\module::instance($cm->id), $cm, $cm->get_course());
         // This is not a Summative assignment.
         if ($cm->idnumber == '') {
             $o .= $this->output->notification(get_string('assign_formativeinfo', 'theme_solent'), \core\notification::INFO);

@@ -34,7 +34,7 @@ function theme_solent_get_main_scss_content($theme) {
     $scss = '';
     $filename = !empty($theme->settings->preset) ? $theme->settings->preset : null;
     $fs = get_file_storage();
-    $context = context_system::instance();
+    $context = core\context\system::instance();
     $iterator = new DirectoryIterator($CFG->dirroot . '/theme/solent/scss/preset/');
     $presetisset = '';
     foreach ($iterator as $pfile) {

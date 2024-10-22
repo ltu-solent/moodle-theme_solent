@@ -26,6 +26,7 @@
 namespace theme_solent;
 
 use advanced_testcase;
+use core\context;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -96,7 +97,7 @@ class helper_test extends advanced_testcase {
         $manager = $this->getDataGenerator()->create_user();
         $other = $this->getDataGenerator()->create_user();
 
-        $systemcontext = \context_system::instance();
+        $systemcontext = context\system::instance();
         $halfhalfroleid = $this->getDataGenerator()->create_role(['archetype' => 'manager']);
         // Give the manager role with the capability to manage data requests.
         assign_capability('moodle/category:viewhiddencategories', CAP_PREVENT, $halfhalfroleid, $systemcontext->id, true);

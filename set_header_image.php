@@ -33,7 +33,7 @@ global $DB;
 $c = required_param('course', PARAM_INT);
 $o = required_param('opt', PARAM_ALPHANUM);
 require_login($c);
-require_capability('moodle/course:update', context_course::instance($c));
+require_capability('moodle/course:update', core\context\course::instance($c));
 
 $opt = $DB->get_record('theme_header', ['course' => $c]);
 if ($opt) {
