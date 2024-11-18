@@ -181,8 +181,8 @@ class core_renderer extends core_renderer_base {
      *
      * @return string Rendered HTML
      */
-    public function solentzone() {
-        $content = '';
+    public function course_content_header($onlyifnotcalledbefore = false) {
+        $content = parent::course_content_header($onlyifnotcalledbefore);
         // Separating into different types so we can prioritise and group them.
         // More free html.
         $banners = [];

@@ -69,7 +69,7 @@ function theme_solent_header_image() {
     }
 
     if ($isediting) {
-        $url = new moodle_url('/theme/solent/layout/header_options.php',
+        $url = new core\url('/theme/solent/layout/header_options.php',
             ['course' => $COURSE->id, 'opt' => $record->opt]);
         $header->imageselector = html_writer::link($url, 'Select header image', ['class' => 'header-image-link btn btn-secondary']);
     }
