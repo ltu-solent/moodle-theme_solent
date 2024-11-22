@@ -32,9 +32,6 @@ use theme_boost\output\core_renderer as core_renderer_base;
  */
 class core_renderer extends core_renderer_base {
 
-    /** @var custom_menu_item language The language menu if created */
-    protected $language = null;
-
     /**
      * Wrapper for header elements.
      *
