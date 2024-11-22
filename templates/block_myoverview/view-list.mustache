@@ -38,27 +38,18 @@
 
 <ul class="list-group">
     {{#courses}}
-        <li class="list-group-item course-listitem border-left-0 border-right-0 border-top-0 px-2 rounded-0"
+        <li class="list-group-item course-listitem border-start-0 border-end-0 border-top-0 px-2 rounded-0"
             data-region="course-content"
             data-course-id="{{{id}}}">
             <div class="row">
                 <div class="col-md-2 d-flex align-items-center mb-sm-3 mb-md-0" aria-hidden="true">
                     <a href="{{viewurl}}" tabindex="-1"  class="mw-100 w-100">
-                        <div class="card-img dashboard-list-img mw-100" style='background-image: url("{{{courseimage}}}");'>
-                            <span class="sr-only">{{#str}}aria:courseimage, core_course{{/str}}</span>
+                        <div class="rounded list-image mw-100" style='background-image: url("{{{courseimage}}}");'>
+                            <span class="sr-only">{{fullname}}</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-9 d-flex flex-column">
-                        <div class="text-muted muted d-flex flex-wrap">
-                            {{#showcoursecategory}}
-                                <div class="pl-1 pr-1">|</div>
-                            {{/showcoursecategory}}
-                            <span class="sr-only">
-                                {{#str}}aria:courseshortname, core_course{{/str}}
-                            </span>
-                            <div>{{{shortname}}}</div>
-                        </div>
                     <a href="{{viewurl}}" class="aalink coursename">
                         {{> core_course/favouriteicon }}
                         <span class="sr-only">
@@ -66,20 +57,23 @@
                         </span>
                         {{{fullname}}}
                     </a>
-                    {{#showcoursecategory}}
-                        <div class="text-muted muted d-flex flex-wrap">
-                            <span class="sr-only">
-                                {{#str}}aria:coursecategory, core_course{{/str}}
-                            </span>
-                            <span class="categoryname">
-                                {{{coursecategory}}}
-                            </span>
-                        </div>
-                    {{/showcoursecategory}}
+                    <div class="text-muted muted d-flex flex-wrap">
+                        <span class="sr-only">
+                            {{#str}}aria:coursecategory, core_course{{/str}}
+                        </span>
+                        <span class="categoryname">
+                            {{{coursecategory}}}
+                        </span>
+                        <div class="px-1">|</div>
+                        <span class="sr-only">
+                            {{#str}}aria:courseshortname, core_course{{/str}}
+                        </span>
+                        <div>{{{shortname}}}</div>
+                    </div>
                     {{> theme_solent/solent/startenddates }}
                     {{^visible}}
                         <div class="d-flex flex-wrap">
-                            <span class="badge badge-info">{{#str}} hiddenfromstudents {{/str}}</span>
+                            <span class="badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
                         </div>
                     {{/visible}}
                     {{#hasprogress}}
