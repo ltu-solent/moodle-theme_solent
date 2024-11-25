@@ -21,6 +21,7 @@
         position: absolute;
         width: 100%;
         bottom: 0;
+        background: rgba($solent-navy, 1);
         .page-header-headings {
             padding: 0 $spacer;
             background: rgba($solent-navy, 1);
@@ -30,6 +31,19 @@
                 margin: map-get($spacers, 2) 0;
                 font-weight: $font-weight-normal;
             }
+        }
+        .text-muted {
+            color: $gray-300 !important;
+        }
+        .page-header-image {
+            .userinitials,
+            .userpicture {
+                margin-left: 1rem;
+            }
+        }
+        .activityiconcontainer {
+            background-color: $gray-300;
+            border-radius: 0;
         }
     }
     .welcome {

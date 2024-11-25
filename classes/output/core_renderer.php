@@ -176,6 +176,7 @@ class core_renderer extends core_renderer_base {
     /**
      * Gathers communications and extra dash info to be contextually incorporated.
      *
+     * @param bool $onlyifnotcalledbefore output content only if it has not been output before
      * @return string Rendered HTML
      */
     public function course_content_header($onlyifnotcalledbefore = false) {
@@ -218,4 +219,156 @@ class core_renderer extends core_renderer_base {
         return $content;
     }
 
+    /**
+     * Renders the context header for the page.
+     *
+     * @param array $headerinfo Heading information.
+     * @param int $headinglevel What 'h' level to make the heading.
+     * @return string A rendered context header.
+     */
+    public function context_header($headerinfo = null, $headinglevel = 1): string {
+        global $DB, $USER, $CFG;
+        $context = $this->page->context;
+        $heading = null;
+        $imagedata = null;
+        $userbuttons = null;
+
+        // Make sure to use the heading if it has been set.
+        if (isset($headerinfo['heading'])) {
+            $heading = $headerinfo['heading'];
+        } else {
+            $heading = $this->page->heading;
+        }
+
+        // The user context currently has images and buttons. Other contexts may follow.
+        if ((isset($headerinfo['user']) || $context->contextlevel == CONTEXT_USER) && $this->page->pagetype !== 'my-index') {
+            if (isset($headerinfo['user'])) {
+                $user = $headerinfo['user'];
+            } else {
+                // Look up the user information if it is not supplied.
+                $user = $DB->get_record('user', ['id' => $context->instanceid]);
+            }
+
+            // If the user context is set, then use that for capability checks.
+            if (isset($headerinfo['usercontext'])) {
+                $context = $headerinfo['usercontext'];
+            }
+
+            // Only provide user information if the user is the current user, or a user which the current user can view.
+            // When checking user_can_view_profile(), either:
+            // If the page context is course, check the course context (from the page object) or;
+            // If page context is NOT course, then check across all courses.
+            $course = ($this->page->context->contextlevel == CONTEXT_COURSE) ? $this->page->course : null;
+
+            if (user_can_view_profile($user, $course)) {
+                // Use the user's full name if the heading isn't set.
+                if (empty($heading)) {
+                    $heading = fullname($user);
+                }
+                // SSU_AMEND_START: Profileimage size.
+                $imagedata = $this->user_picture($user, ['size' => 64]);
+                // SSU_AMEND_END.
+
+                // Check to see if we should be displaying a message button.
+                if (!empty($CFG->messaging) && has_capability('moodle/site:sendmessage', $context)) {
+                    $userbuttons = [
+                        'messages' => [
+                            'buttontype' => 'message',
+                            'title' => get_string('message', 'message'),
+                            'url' => new url('/message/index.php', ['id' => $user->id]),
+                            'image' => 't/message',
+                            'linkattributes' => \core_message\helper::messageuser_link_params($user->id),
+                            'page' => $this->page,
+                        ],
+                    ];
+
+                    if ($USER->id != $user->id) {
+                        $iscontact = \core_message\api::is_contact($USER->id, $user->id);
+                        $isrequested = \core_message\api::get_contact_requests_between_users($USER->id, $user->id);
+                        $contacturlaction = '';
+                        $linkattributes = \core_message\helper::togglecontact_link_params(
+                            $user,
+                            $iscontact,
+                            true,
+                            !empty($isrequested),
+                        );
+                        // If the user is not a contact.
+                        if (!$iscontact) {
+                            if ($isrequested) {
+                                // We just need the first request.
+                                $requests = array_shift($isrequested);
+                                if ($requests->userid == $USER->id) {
+                                    // If the user has requested to be a contact.
+                                    $contacttitle = 'contactrequestsent';
+                                } else {
+                                    // If the user has been requested to be a contact.
+                                    $contacttitle = 'waitingforcontactaccept';
+                                }
+                                $linkattributes = array_merge($linkattributes, [
+                                    'class' => 'disabled',
+                                    'tabindex' => '-1',
+                                ]);
+                            } else {
+                                // If the user is not a contact and has not requested to be a contact.
+                                $contacttitle = 'addtoyourcontacts';
+                                $contacturlaction = 'addcontact';
+                            }
+                            $contactimage = 't/addcontact';
+                        } else {
+                            // If the user is a contact.
+                            $contacttitle = 'removefromyourcontacts';
+                            $contacturlaction = 'removecontact';
+                            $contactimage = 't/removecontact';
+                        }
+                        $userbuttons['togglecontact'] = [
+                                'buttontype' => 'togglecontact',
+                                'title' => get_string($contacttitle, 'message'),
+                                'url' => new \core\url('/message/index.php', [
+                                        'user1' => $USER->id,
+                                        'user2' => $user->id,
+                                        $contacturlaction => $user->id,
+                                        'sesskey' => sesskey(),
+                                    ]
+                                ),
+                                'image' => $contactimage,
+                                'linkattributes' => $linkattributes,
+                                'page' => $this->page,
+                        ];
+                    }
+
+                    $this->page->requires->string_for_js('changesmadereallygoaway', 'moodle');
+                }
+            } else {
+                $heading = null;
+            }
+        }
+
+        $prefix = null;
+        if ($context->contextlevel == CONTEXT_MODULE) {
+            if ($this->page->course->format === 'singleactivity') {
+                $heading = format_string($this->page->course->fullname, true, ['context' => $context]);
+            } else {
+                $heading = $this->page->cm->get_formatted_name();
+                $iconurl = $this->page->cm->get_icon_url();
+                $iconclass = $iconurl->get_param('filtericon') ? '' : 'nofilter';
+                $iconattrs = [
+                    'class' => "icon activityicon $iconclass",
+                    'aria-hidden' => 'true',
+                ];
+                $imagedata = html_writer::img($iconurl->out(false), '', $iconattrs);
+                $purposeclass = plugin_supports('mod', $this->page->activityname, FEATURE_MOD_PURPOSE);
+                $purposeclass .= ' activityiconcontainer icon-size-6';
+                $purposeclass .= ' modicon_' . $this->page->activityname;
+                $isbranded = component_callback('mod_' . $this->page->activityname, 'is_branded', [], false);
+                $imagedata = html_writer::tag('div', $imagedata, ['class' => $purposeclass . ($isbranded ? ' isbranded' : '')]);
+                if (!empty($USER->editing)) {
+                    $prefix = get_string('modulename', $this->page->activityname);
+                }
+            }
+        }
+        // SSU_AMEND_START: Point to own context_header.
+        $contextheader = new \theme_solent\output\context_header($heading, $headinglevel, $imagedata, $userbuttons, $prefix);
+        // SSU_AMEND_END.
+        return $this->render($contextheader);
+    }
 }

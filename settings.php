@@ -27,6 +27,7 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingsolent', get_string('configtitle', 'theme_solent'));
     require('settings/layout_settings.php');
     require('settings/navigation_settings.php');
+    require('settings/course_settings.php');
     require('settings/image_settings.php');
     require('settings/resources_settings.php');
     require('settings/presets_settings.php');
