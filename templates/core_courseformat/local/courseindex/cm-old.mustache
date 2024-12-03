@@ -35,8 +35,10 @@
         {{#isactive}}active{{/isactive}}
         {{#hascmrestrictions}}restrictions{{/hascmrestrictions}}
         {{^accessvisible}}dimmed{{/accessvisible}}
-        {{#url}} d-flex {{/url}} {{^url}} d-flex {{/url}}"
-    id="{{uniqid}}-course-index-cm-{{id}}"
+        d-flex
+        {{#indent}} indented {{/indent}}
+        {{#hasdelegatedsection}}py-0{{/hasdelegatedsection}}"
+    id="course-index-cm-{{id}}"
     data-for="cm"
     data-id="{{id}}"
     role="treeitem"
@@ -73,6 +75,6 @@
 </li>
 {{#js}}
 require(['core_courseformat/local/courseindex/cm'], function(component) {
-    component.init('{{uniqid}}-course-index-cm-{{id}}');
+    component.init('course-index-cm-{{id}}');
 });
 {{/js}}
