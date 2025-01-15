@@ -476,7 +476,7 @@ class mod_assign_renderer extends renderer_base {
      */
     public function render_assign_grading_table(\assign_grading_table $table) {
         global $DB;
-        // SU_AMEND_START: Workflow notifications.
+        // SSU_AMEND_START: Workflow notifications.
         $cmid = $table->get_course_module_id();
         $courseid = $table->get_course_id();
         $modinfo = get_fast_modinfo($courseid);
@@ -504,7 +504,6 @@ class mod_assign_renderer extends renderer_base {
             $prefs = json_decode($gradingprefs, true);
         }
         $parammapping = ['tifirst' => 'i_first', 'tilast' => 'i_last'];
-        $showprefwarning = false;
         $showfilterwarning = false;
         foreach ($parammapping as $paramkey => $tablekey) {
             $param = optional_param($paramkey, null, PARAM_RAW);
@@ -512,66 +511,61 @@ class mod_assign_renderer extends renderer_base {
                 $prefs[$tablekey] = $param;
             }
             if ($prefs[$tablekey] != '') {
-                $showprefwarning = true;
+                $showfilterwarning = true;
             }
         }
 
-        $workflowanchor = '';
         if ($assign->get_instance()->markingworkflow) {
             $workflowfilter = get_user_preferences('assign_workflowfilter');
             if (!empty($workflowfilter)) {
                 $showfilterwarning = true;
-                $workflowanchor = 'id_general';
             }
         }
         if ($assign->get_instance()->markingallocation) {
             $markerfilter = get_user_preferences('assign_markerfilter');
             if (!empty($markerfilter)) {
                 $showfilterwarning = true;
-                $workflowanchor = 'id_general';
             }
         }
         if ($assign->is_any_submission_plugin_enabled()) {
             $filter = get_user_preferences('assign_filter');
             if (!empty($filter)) {
                 $showfilterwarning = true;
-                $workflowanchor = 'id_general';
             }
         }
         if ($table->currpage > 0) {
             $showfilterwarning = true;
         }
 
+        $search = optional_param('search', '', PARAM_NOTAGS);
+        $userid = optional_param('userid', null, PARAM_INT);
+        if ($search || $userid) {
+            $showfilterwarning = true;
+        }
+
         // Neither false nor zero.
         $groupfiltering = groups_get_activity_group($cm);
 
-        if ($showfilterwarning || $showprefwarning || $groupfiltering) {
-            // Do I need to check which workflow states are available. Are we only concerned with releasing?
-            // How do we do anything more clever than that?
-            // Who sees this? Do I need to be more discriminating?
-
+        if ($showfilterwarning || $groupfiltering) {
+            // This is used by js to disable selectall and row select.
             $o .= '<span data-quercus="disable-selectall"></span>';
             $resetfilterurl = new url('/mod/assign/view.php', [
                 'action' => 'grading',
                 'id' => $cmid,
-                'treset' => 1,
-            ], $workflowanchor);
-            $msg = '';
-            if ($groupfiltering) {
-                $msg .= get_string('assign_resetgroupfiltering', 'theme_solent');
-            }
-            if ($showprefwarning) {
-                $msg .= get_string('assign_resetprefs', 'theme_solent', ['url' => $resetfilterurl->out()]);
-            }
-            if ($showfilterwarning) {
-                $msg .= get_string('assign_resetworkflow', 'theme_solent', ['url' => $resetfilterurl->out()]);
-            }
-
+                'group' => 0,
+                'status' => '',
+                'workflowfilter' => '',
+                'markingallocationfilter' => '',
+                'suspendedparticipantsfilter' => 0,
+                'tifirst' => '',
+                'tilast' => '',
+            ]);
+            $msg = get_string('assign_resetfilters', 'theme_solent', ['url' => $resetfilterurl->out()]);
             $resetstring = get_string('assign_filterwarning', 'theme_solent', ['msg' => $msg]);
             $o .= $this->output->notification($resetstring, \core\notification::WARNING);
         }
         $o .= $rendered;
-        // SU_AMEND_END.
+        // SSU_AMEND_END.
         return $o;
     }
 }
