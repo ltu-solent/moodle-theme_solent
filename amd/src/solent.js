@@ -1,3 +1,26 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Theme Solent
+ *
+ * @module     theme_solent/solent
+ * @author     Mark Sharp <mark.sharp@solent.ac.uk>
+ * @copyright 2022 Southampton Solent University {@link https://www.solent.ac.uk}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 import {get_string as getString} from 'core/str';
 import Notification from 'core/notification';
 
@@ -7,7 +30,7 @@ import Notification from 'core/notification';
 export const totop = () => {
     let strings = getString('totop', 'theme_solent');
     let footer = document.querySelector('#page-footer');
-    let page = document.querySelector('#page');
+    let page = document.querySelector('html');
     let button = document.createElement('button');
     strings.then(function(string) {
         button.setAttribute('id', 'back-to-top');
@@ -17,9 +40,7 @@ export const totop = () => {
         footer.after(button);
         // This function fades the button in when the page is scrolled down or fades it out
         // if the user is at the top of the page again.
-        // Please note that Boost in Moodle 4.0 does not scroll the window object / whole body tag anymore,
-        // it scrolls the #page element instead.
-        page.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {
             if (page.scrollTop > 220) {
                 button.style.display = 'block';
             } else {

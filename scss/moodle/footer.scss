@@ -131,6 +131,9 @@ footer {
     /* Move the back to top button when right drawer is shown. */
     right: calc(#{$drawer-right-width} + 2rem);
 }
+.hasstickyfooter #back-to-top {
+    bottom: calc(1rem + calc(max(80px, calc(0.9375rem * 8))));
+}
 /* Goto top button */
 
 .bottomnavbar {
