@@ -23,15 +23,16 @@ Feature: Formative assignment warning on the grading page
       | activity | name           | course | idnumber   |
       | assign   | Quercus1       | C1     | Quercus1   |
     And I am on the "Quercus1" Activity page logged in as teacher1
-    When I follow "View all submissions"
+    When I navigate to "Submissions" in current page administration
     Then I should not see "The marks for these assignments will not be uploaded to Quercus or Gateway (SITS) as this is not a Summative Assignment."
 
   Scenario: Formative assignment page warning
     Given the following "activities" exist:
       | activity | name           | course | idnumber   |
       | assign   | Formative1     | C1     |            |
+    ## Access the page this way becauses there's no idnumber for the assignment.
     And I log in as "teacher1"
     And I am on "Course1" course homepage
     And I follow "Formative1"
-    When I follow "View all submissions"
+    When I navigate to "Submissions" in current page administration
     Then I should see "The marks for these assignments will not be uploaded to Quercus or Gateway (SITS) as this is not a Summative Assignment."

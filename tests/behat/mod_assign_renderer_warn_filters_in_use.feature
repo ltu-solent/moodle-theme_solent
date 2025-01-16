@@ -34,50 +34,55 @@ Feature: Show warning on grading page when users are using filters
     Given I log in as "teacher1"
     And I am on "Course1" course homepage
     And I follow "Formative1"
-    And I follow "View all submissions"
-    When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
+    And I navigate to "Submissions" in current page administration
+    And I click on "Filter by name" "combobox"
+    When I select "A" in the "First name" "core_course > initials bar"
+    And I press "Apply"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should not see "Reset your table preferences"
+    And I should not see "Clear all filters"
     And I should not see "You are not displaying all users and will not be able to release your grades"
     # Return to the page without the filters in the url (this will check the preferences).
     And I am on "Course1" course homepage
     And I follow "Formative1"
-    When I follow "View all submissions"
+    When I navigate to "Submissions" in current page administration
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should not see "Reset your table preferences"
+    And I should not see "Clear all filters"
     And I should not see "You are not displaying all users and will not be able to release your grades"
-    When I click on "All" "link" in the ".initialbar.firstinitial" "css_element"
+    When I click on "Clear all" "link" in the ".tertiary-navigation" "css_element"
     Then I should see "Abe Lincoln"
     And I should see "Celia Fate"
-    When I set the field "Workflow filter" to "In review"
+    And I click on "Advanced" "button" in the ".tertiary-navigation" "css_element"
+    And I set the field "Marking state" in the ".extrafilters .dropdown-menu" "css_element" to "In review"
+    When I click on "Apply" "button" in the ".extrafilters .dropdown-menu" "css_element"
     Then I should not see "You are not displaying all users and will not be able to release your grades"
-    And I should not see "Set all Options to \"No filter\""
+    And I should not see "Clear all filters"
 
   Scenario: Summative assignment shows messages
-    Given I log in as "teacher1"
-    And I am on "Course1" course homepage
-    And I follow "Quercus1"
-    And I follow "View all submissions"
-    When I click on "A" "link" in the ".initialbar.firstinitial .page-item.A" "css_element"
+    Given I am on the "Quercus1" Activity page logged in as teacher1
+    And I navigate to "Submissions" in current page administration
+    And I click on "Filter by name" "combobox"
+    When I select "A" in the "First name" "core_course > initials bar"
+    And I press "Apply"
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should see "Reset your table preferences"
+    And I should see "Clear all filters"
     And I should see "You are not displaying all users and will not be able to release your grades"
     # Return to the page without the filters in the url (this will check the preferences).
-    And I am on "Course1" course homepage
-    And I follow "Quercus1"
-    When I follow "View all submissions"
+    And I am on the "Quercus1" Activity page
+    And I navigate to "Submissions" in current page administration
     Then I should see "Abe Lincoln"
     And I should not see "Ben Franklin"
-    And I should see "Reset your table preferences"
+    And I should see "Clear all filters"
     And I should see "You are not displaying all users and will not be able to release your grades"
-    When I click on "All" "link" in the ".initialbar.firstinitial" "css_element"
+    When I click on "Clear all" "link" in the ".tertiary-navigation" "css_element"
     Then I should see "Abe Lincoln"
     And I should see "Celia Fate"
-    When I set the field "Workflow filter" to "In review"
+    And I click on "Advanced" "button" in the ".tertiary-navigation" "css_element"
+    And I set the field "Marking state" in the ".extrafilters .dropdown-menu" "css_element" to "In review"
+    When I click on "Apply" "button" in the ".extrafilters .dropdown-menu" "css_element"
     Then I should see "You are not displaying all users and will not be able to release your grades"
-    And I should see "Set all Options to \"No filter\""
-    When I set the field "Workflow filter" to ""
+    And I should see "Clear all filters"
+    When I follow "Clear all filters"
     Then I should not see "You are not displaying all users and will not be able to release your grades"
