@@ -16,7 +16,7 @@
 /**
  * Theme Boost Union - JS code scroll-spy
  *
- * @module     theme_boost_union/scrollspy
+ * @module     theme_solent/scrollspy
  * @copyright  2022 Josha Bartsch <bartsch@itc.rwth-aachen.de>
  * @copyright  based on code from theme_fordson by Chris Kenniburg.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -34,6 +34,9 @@
  * (See original implementation: https://raw.githubusercontent.com/dbnschools/moodle-theme_fordson/master/javascript/scrollspy.js)
  */
 const initScrollSpy = () => {
+    if (!document.querySelector('.section.main')) {
+        return;
+    }
     // Unfortunately the editmode-switch carries no unique ID
     let editToggle = document.querySelector('form.editmode-switch-form');
     if (!editToggle) {
@@ -41,9 +44,9 @@ const initScrollSpy = () => {
     }
     editToggle.addEventListener('click', () => {
 
-        window.sessionStorage.setItem('edittoggled', true);
+        window.sessionStorage.setItem('solent_scrollspy_edittoggled', true);
 
-        let viewporttop = document.getElementById('page').scrollTop;
+        let viewporttop = window.scrollY;
         let closest = null;
         let closestoffset = null;
 
@@ -58,27 +61,27 @@ const initScrollSpy = () => {
             }
         });
 
-        window.sessionStorage.setItem('closestid', closest.id);
-        window.sessionStorage.setItem('closestdelta', viewporttop - closest.offsetTop);
+        window.sessionStorage.setItem('solent_scrollspy_closestid', closest.id);
+        window.sessionStorage.setItem('solent_scrollspy_closestdelta', viewporttop - closest.offsetTop);
     });
 
-    let edittoggled = window.sessionStorage.getItem('edittoggled');
+    let edittoggled = window.sessionStorage.getItem('solent_scrollspy_edittoggled');
 
     if (edittoggled) {
 
-        let closestid = window.sessionStorage.getItem('closestid');
-        let closestdelta = window.sessionStorage.getItem('closestdelta');
+        let closestid = window.sessionStorage.getItem('solent_scrollspy_closestid');
+        let closestdelta = window.sessionStorage.getItem('solent_scrollspy_closestdelta');
 
         if (closestid && closestdelta) {
             let closest = document.getElementById(closestid);
             let y = closest.offsetTop + parseInt(closestdelta);
 
-            document.getElementById('page').scrollTo(0, y);
+            window.scrollTo(0, y);
         }
 
-        window.sessionStorage.removeItem('edittoggled');
-        window.sessionStorage.removeItem('closestid');
-        window.sessionStorage.removeItem('closestdelta');
+        window.sessionStorage.removeItem('solent_scrollspy_edittoggled');
+        window.sessionStorage.removeItem('solent_scrollspy_closestid');
+        window.sessionStorage.removeItem('solent_scrollspy_closestdelta');
     }
 };
 
