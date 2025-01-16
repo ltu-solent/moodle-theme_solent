@@ -25,12 +25,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = '2023021403';
-$plugin->requires = '2022112801.00';
-$plugin->release = "v4.1.0";
+$plugin->version = '2024011600';
+$plugin->requires = '2024100700';
+$plugin->release = "v4.5.0";
+$plugin->maturity  = MATURITY_BETA;
 
 $plugin->component = 'theme_solent';
 
 $plugin->dependencies = [
-    'theme_boost' => '2022112800',
+    'theme_boost' => '2024100700',
 ];
