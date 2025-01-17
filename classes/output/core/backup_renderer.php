@@ -54,7 +54,7 @@ class backup_renderer extends \core_backup_renderer {
         if ($component->get_count() === 0) {
             $output .= $this->output->notification(get_string('nomatchingcourses', 'backup'));
 
-            $output .= html_writer::start_tag('div', ['class' => 'ics-search form-inline']);
+            $output .= html_writer::start_tag('div', ['class' => 'ics-search d-flex flex-wrap align-items-center']);
             $attrs = [
                 'type' => 'text',
                 'name' => restore_course_search::$VAR_SEARCH, // phpcs:ignore
@@ -88,7 +88,7 @@ class backup_renderer extends \core_backup_renderer {
         $output .= html_writer::start_tag('div', ['class' => 'ics-results']);
 
         $table = new html_table();
-        $table->head = ['', get_string('shortnamecourse'), get_string('fullnamecourse')];
+        $table->head = ['&nbsp;', get_string('shortnamecourse'), get_string('fullnamecourse')];
         $table->data = [];
         foreach ($component->get_results() as $course) {
             // SU_AMEND_START: Adds Unit start date (if relevant) to list of courses to import from.
@@ -127,7 +127,7 @@ class backup_renderer extends \core_backup_renderer {
         $output .= html_writer::table($table);
         $output .= html_writer::end_tag('div');
 
-        $output .= html_writer::start_tag('div', ['class' => 'ics-search form-inline']);
+        $output .= html_writer::start_tag('div', ['class' => 'ics-search d-flex flex-wrap align-items-center']);
         $attrs = [
             'type' => 'text',
             'name' => restore_course_search::$VAR_SEARCH, // phpcs:ignore
@@ -140,7 +140,7 @@ class backup_renderer extends \core_backup_renderer {
             'type' => 'submit',
             'name' => 'searchcourses',
             'value' => get_string('search'),
-            'class' => 'btn btn-secondary ml-1',
+            'class' => 'btn btn-secondary ms-1',
         ];
         $output .= html_writer::empty_tag('input', $attrs);
         $output .= html_writer::end_tag('div');
