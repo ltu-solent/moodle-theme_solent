@@ -95,8 +95,6 @@ function theme_solent_page_init(moodle_page $page) {
         require_once($CFG->dirroot . '/local/solent/lib.php');
         local_solent_page_init($page);
     }
-    $page->requires->css('/theme/solent/fonts/fontawesome5/css/all.min.css');
-    $page->requires->css('/theme/solent/fonts/fontawesome5/css/v4-shims.min.css');
 
     if ($config->enablescrollspy) {
         $page->requires->js_call_amd('theme_solent/scrollspy', 'init');
