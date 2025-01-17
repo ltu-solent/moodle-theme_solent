@@ -87,10 +87,10 @@ function theme_solent_page_init(moodle_page $page) {
     global $CFG;
     $config = get_config('theme_solent');
 
-    if (file_exists($CFG->dirroot . '/local/solent/lib.php')) {
-        require_once($CFG->dirroot . '/local/solent/lib.php');
-        local_solent_page_init($page);
-    }
+    // if (file_exists($CFG->dirroot . '/local/solent/lib.php')) {
+    //     require_once($CFG->dirroot . '/local/solent/lib.php');
+    //     local_solent_page_init($page);
+    // }
 
     if ($config->enablescrollspy) {
         $page->requires->js_call_amd('theme_solent/scrollspy', 'init');
