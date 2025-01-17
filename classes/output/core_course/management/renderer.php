@@ -87,15 +87,17 @@ class renderer extends \core_course_management_renderer {
         $viewcourseurl = new url($this->page->url, ['courseid' => $course->id]);
 
         $html  = html_writer::start_tag('li', $attributes);
+        // SSU_AMEND_START: Leave clearfix here as the border underlines mess up with flex.
         $html .= html_writer::start_div('clearfix');
+        // SSU_AMEND_END.
 
         if ($category->can_resort_courses()) {
             // In order for dnd to be available the user must be able to resort the category children..
             $html .= html_writer::div($this->output->pix_icon('i/move_2d', get_string('dndcourse')), 'float-left drag-handle');
         }
 
-        $html .= html_writer::start_div('float-left ' . $checkboxclass);
-        $html .= html_writer::start_div('custom-control custom-checkbox mr-1 ');
+        $html .= html_writer::start_div('float-start ' . $checkboxclass);
+        $html .= html_writer::start_div('custom-control custom-checkbox me-1 ');
         $html .= html_writer::empty_tag('input', $bulkcourseinput);
         $labeltext = html_writer::span(get_string('bulkactionselect', 'moodle', $text), 'sr-only');
         $html .= html_writer::tag('label', $labeltext, [
@@ -103,8 +105,11 @@ class renderer extends \core_course_management_renderer {
             'for' => 'courselistitem' . $course->id]);
         $html .= html_writer::end_div();
         $html .= html_writer::end_div();
-        $html .= html_writer::link($viewcourseurl, $text, ['class' => 'float-left coursename aalink']);
-        $html .= html_writer::start_div('float-right');
+        // SSU_AMEND_START: Don't include classes "col" or flex.
+        $html .= html_writer::link(
+            $viewcourseurl, $text, ['class' => 'text-break ps-0 mb-2 coursename aalink']);
+        $html .= html_writer::start_div('float-end');
+        // SSU_AMEND_END.
         if ($course->idnumber) {
             $html .= html_writer::tag('span', s($course->idnumber), ['class' => 'text-muted idnumber']);
         }
@@ -156,9 +161,9 @@ class renderer extends \core_course_management_renderer {
 
         $html  = html_writer::start_tag('li', $attributes);
         $html .= html_writer::start_div('clearfix');
-        $html .= html_writer::start_div('float-left');
+        $html .= html_writer::start_div('float-start');
         if ($bulkcourseinput) {
-            $html .= html_writer::start_div('custom-control custom-checkbox mr-1');
+            $html .= html_writer::start_div('custom-control custom-checkbox me-1');
             $html .= html_writer::empty_tag('input', $bulkcourseinput);
             $labeltext = html_writer::span(get_string('bulkactionselect', 'moodle', $text), 'sr-only');
             $html .= html_writer::tag('label', $labeltext, [
@@ -167,11 +172,13 @@ class renderer extends \core_course_management_renderer {
             $html .= html_writer::end_div();
         }
         $html .= html_writer::end_div();
-        $html .= html_writer::link($viewcourseurl, $text, ['class' => 'float-left coursename aalink']);
-        $html .= html_writer::tag('span', $categoryname, ['class' => 'float-left ml-3 text-muted']);
-        $html .= html_writer::start_div('float-right');
-        $html .= $this->search_listitem_actions($course);
+        $html .= html_writer::link($viewcourseurl, $text, ['class' => 'float-start coursename aalink']);
+        $html .= html_writer::tag('span', $categoryname, ['class' => 'float-start ms-3 text-muted']);
+        $html .= html_writer::start_div('float-end');
+        // SSU_AMEND_START: Swap idnumber and actions.
         $html .= html_writer::tag('span', s($course->idnumber), ['class' => 'text-muted idnumber']);
+        $html .= $this->search_listitem_actions($course);
+        // SSU_AMEND_END.
         $html .= html_writer::end_div();
         $html .= html_writer::end_div();
         $html .= html_writer::end_tag('li');
