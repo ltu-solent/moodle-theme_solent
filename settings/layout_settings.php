@@ -82,15 +82,6 @@ $setting = new admin_setting_configcheckbox($name, $title, $description, $defaul
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
-// Accessibility tool.
-$name = 'theme_solent/enableaccessibilitytool';
-$title = new lang_string('enableaccessibilitytool', 'theme_solent');
-$description = new lang_string('enableaccessibilitytool_desc', 'theme_solent');
-$default = 0;
-$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
-$page->add($setting);
-
 // Font.
 $name = 'theme_solent/fontfamily';
 $title = new lang_string('fontfamily', 'theme_solent');

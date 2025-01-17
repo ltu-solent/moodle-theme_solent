@@ -86,11 +86,7 @@ function theme_solent_header_image() {
 function theme_solent_page_init(moodle_page $page) {
     global $CFG;
     $config = get_config('theme_solent');
-    $includeaccessibilitytool = get_config('theme_solent', 'enableaccessibilitytool');
-    if ($includeaccessibilitytool && file_exists($CFG->dirroot . "/local/accessibilitytool/lib.php")) {
-        require_once($CFG->dirroot . "/local/accessibilitytool/lib.php");
-        local_accessibilitytool_page_init($page);
-    }
+
     if (file_exists($CFG->dirroot . '/local/solent/lib.php')) {
         require_once($CFG->dirroot . '/local/solent/lib.php');
         local_solent_page_init($page);
