@@ -53,12 +53,14 @@ class course_renderer extends \core_course_renderer {
         if ($course instanceof stdClass) {
             $course = new core_course_list_element($course);
         }
-        $content = html_writer::start_tag('div');
+        $content = html_writer::start_tag('div', ['class' => 'd-flex']);
+        // SSU_AMEND_START: Only output the overview files section if there's something there, otherwise you get spacing issues.
         $courseoverviewfiles = $this->course_overview_files($course);
         if (!empty($courseoverviewfiles)) {
             $content .= $courseoverviewfiles;
         }
-        $content .= html_writer::start_tag('div');
+        // SSU_AMEND_END.
+        $content .= html_writer::start_tag('div', ['class' => 'flex-grow-1']);
         // SU_AMEND_START: Add unit descriptor if available.
         $content .= helper::course_unit_descriptor($course);
         // SU_AMEND_END.
