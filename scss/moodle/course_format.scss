@@ -22,14 +22,14 @@ body.format-onetopic {
             &.marker:not(.tab_position_0.tab_level_0) {
                 a:before {
                     @extend .fa;
-                    @extend .fa-lightbulb-o;
+                    content: fa-content($fa-var-lightbulb);
                 }
             }
             &.disabled.dimmed {
                 a {
                     &:before {
                         @extend .fa;
-                        @extend .fa-eye-slash;
+                        content: fa-content($fa-var-eye-slash);
                     }
                     border-color: $gray-200;
                     color: theme-color-level('primary', 6);
