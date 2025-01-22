@@ -17,6 +17,7 @@
         clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
         border-radius: 0;
     }
+    /* This is the title bar */
     .page-context-header {
         padding: 0;
         position: absolute;
@@ -36,20 +37,25 @@
         .text-muted {
             color: $gray-300 !important;
         }
+        /* User context pages */
         .page-header-image {
             .userinitials,
             .userpicture {
                 margin-left: 1rem;
             }
         }
+        /* Activity icon in header. Do a light gray background as the icon will have a muted colour
+        and the header bar will be the solent-navy colour */
         .activityiconcontainer {
             background-color: $gray-300;
             border-radius: 0;
         }
     }
+    /* Because we have an image background, add a white background to the welcome for contrast */
     .welcome {
         background-color: rgba($white, .85);
     }
+    /* Keep old header markup in place for old pages */
     &.opt01 {
         background-image: url("/theme/solent/pix/unit-header/01.png");
     }
