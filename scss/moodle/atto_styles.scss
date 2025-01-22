@@ -219,8 +219,8 @@
     min-height: 50px;
     &:before {
         padding-right: 25px;
-        content: $fa-var-exclamation-triangle;
-        font-family: 'FontAwesome';
+        @extend .fa;
+        content: fa-content($fa-var-exclamation-triangle);
         font-size: 2em;
     }
 }
@@ -229,8 +229,8 @@
     padding: 10px;
     &:before {
         padding-right: 25px;
-        content: $fa-var-check-square;
-        font-family: 'FontAwesome';
+        @extend .fa;
+        content: fa-content($fa-var-check-square);
         font-size: 2em;
     }
 }
@@ -239,8 +239,8 @@
     padding: 10px;
     &:before {
         padding-right: 25px;
-        content: $fa-var-sliders;
-        font-family: 'FontAwesome';
+        @extend .fa;
+        content: fa-content($fa-var-sliders);
         font-size: 2em;
     }
 }
