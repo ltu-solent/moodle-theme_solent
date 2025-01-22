@@ -1,20 +1,17 @@
+/* course/index.php page */
 .coursebox {
     > .info > .coursename {
+        /* We like a proper h3 font size */
         font-size: $h3-font-size;
-    }
-    .content {
-        .courseimage img {
-            max-width: 50%;
-        }
     }
 }
 
 #page-course-index-category {
+    /* We like a border around each course rather than a list */
     .coursebox {
         padding: $spacer / 2;
         border: $border-width solid $border-color;
         margin-bottom: $spacer / 2;
-
         @include border-radius();
     }
 }
