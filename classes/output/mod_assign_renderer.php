@@ -109,7 +109,8 @@ class mod_assign_renderer extends renderer_base {
             $this->add_table_row_tuple($t, $cell1content, $cell2content);
         }
 
-        if ($status->attemptreopenmethod != ASSIGN_ATTEMPT_REOPEN_METHOD_NONE) {
+        // If multiple attempts are allowed.
+        if ($status->maxattempts > 1 || $status->maxattempts == ASSIGN_UNLIMITED_ATTEMPTS) {
             $currentattempt = 1;
             if (!$status->teamsubmissionenabled) {
                 if ($status->submission) {
@@ -238,7 +239,7 @@ class mod_assign_renderer extends renderer_base {
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], ['class' => $cell2attributes]);
         }
 
-        // SU_AMEND_START - Assignment: Cut off date/time remaining in submission status.
+        // SSU_AMEND_START - Assignment: Cut off date/time remaining in submission status.
         if ($status->view == assign_submission_status::STUDENT_VIEW) {
             $cutoffdate = 0;
             $cutoffdate = $status->cutoffdate;
@@ -250,7 +251,7 @@ class mod_assign_renderer extends renderer_base {
                 }
             }
         }
-        // SU_AMEND_END.
+        // SSU_AMEND_END.
 
         // Add time limit info if there is one.
         $timelimitenabled = get_config('assign', 'enabletimelimit') && $status->timelimit > 0;
@@ -273,19 +274,14 @@ class mod_assign_renderer extends renderer_base {
             $this->add_table_row_tuple($t, $cell1content, $cell2content, [], $cell2attributes);
         }
 
-        // Grading criteria preview.
-        if (!empty($status->gradingcontrollerpreview)) {
-            $cell1content = get_string('gradingmethodpreview', 'assign');
-            $cell2content = $status->gradingcontrollerpreview;
-            $this->add_table_row_tuple($t, $cell1content, $cell2content, [], []);
-        }
-
         // Last modified.
         if ($submission) {
             $cell1content = get_string('timemodified', 'assign');
 
             if ($submission->status != ASSIGN_SUBMISSION_STATUS_NEW) {
+                // SSU_AMEND_START: Output time date with seconds.
                 $cell2content = userdate($submission->timemodified, get_string('strftimedatetimeaccurate', 'langconfig'));
+                // SSU_AMEND_END.
             } else {
                 $cell2content = "-";
             }
@@ -319,6 +315,12 @@ class mod_assign_renderer extends renderer_base {
         $o .= $warningmsg;
         $o .= html_writer::table($t);
         $o .= $this->output->box_end();
+
+        // Grading criteria preview.
+        if (!empty($status->gradingcontrollerpreview)) {
+            $o .= $this->output->heading(get_string('gradingmethodpreview', 'assign'), 4);
+            $o .= $status->gradingcontrollerpreview;
+        }
 
         $o .= $this->output->container_end();
         return $o;
@@ -359,7 +361,9 @@ class mod_assign_renderer extends renderer_base {
             }
 
             if ($submission) {
+                // SSU_AMEND_START: Output time date with seconds.
                 $submissionsummary = userdate($submission->timemodified, '%d %B %Y, %I:%M:%S %p');
+                // SSU_AMEND_END.
             } else {
                 $submissionsummary = get_string('nosubmission', 'assign');
             }
