@@ -64,9 +64,9 @@ class vertical_footer_menu implements renderable, templatable {
      * Export template context
      *
      * @param renderer_base $output
-     * @return stdClass
+     * @return stdClass|array
      */
-    public function export_for_template(renderer_base $output) {
+    public function export_for_template(renderer_base $output): stdClass {
         $context = new stdClass();
         $context->title = $this->title;
         $context->nodes = $this->nodes;
