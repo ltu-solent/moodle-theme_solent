@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $THEME->name = 'solent';
 $THEME->sheets = [];
 $THEME->editor_sheets = [];
+$THEME->editor_scss = [];
 $THEME->parents = ['boost'];
 
 $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
