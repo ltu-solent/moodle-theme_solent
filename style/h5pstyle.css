@@ -17,11 +17,9 @@
 /* These styles cannot use the scss variables we use for the general theme,
  * so we would need to change these if we ever change the theme.
  */
-.h5p-content {
+.h5p-content,
+.h5p-audio-recorder-view {
     font-family: 'PT Sans';
     font-size: 1rem;
-    /* line-height: 1.5;
-    letter-spacing: .45px; */
     color: #1d2125;
-    /* background-color: aqua; */
 }
