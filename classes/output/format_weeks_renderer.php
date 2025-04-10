@@ -34,7 +34,7 @@ class format_weeks_renderer extends \format_weeks\output\renderer {
     public function bulk_editing_button(base $format): ?string {
         // SSU_AMEND_START: Allow disabling bulk edit button.
         $enabled = get_config('theme_solent', 'enablebulkedit');
-        if ($enabled) {
+        if ($enabled || is_siteadmin()) {
             return parent::bulk_editing_button($format);
         }
         return null;
