@@ -170,15 +170,16 @@ class helper {
         }
         $filename = substr($course->shortname, 0, strpos($course->shortname, '_'));
         $sqllike = $DB->sql_like('filename', ':filename');
-        $file = $DB->get_record_sql("
-            SELECT f.id, filename, contextid, filepath
+        $file = $DB->get_record_sql(
+            "SELECT f.id, filename, contextid, filepath
             FROM {files} f
             JOIN {context} ctx ON ctx.id = f.contextid
             WHERE ctx.instanceid = :descriptorfolderid
                 AND (component = 'mod_folder' AND filearea = 'content')
                 AND {$sqllike}
             ORDER BY timemodified DESC
-            LIMIT 1", [
+            LIMIT 1",
+            [
                 'descriptorfolderid' => $descriptorfolderid,
                 'filename' => $DB->sql_like_escape($filename) . '%',
             ]
