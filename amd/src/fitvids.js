@@ -4,6 +4,35 @@ define(['jquery', 'core/log'], function($) {
 
     "use strict"; // jshint ;_;
 
+    var shouldIgnoreVideo = function($element, ignoreList) {
+        if ($element.parents(ignoreList.join(',')).length > 0) {
+            return true;
+        }
+
+        var $id = $element.attr('id');
+        if ($id) {
+            if ($id === 'onlineaudiorecorder') {
+                return true;
+            }
+            if ($id.indexOf('mp3') >= 0) {
+                return true;
+            }
+        }
+
+        if (
+            $element.tagName &&
+            $element.tagName.toLowerCase() === 'embed' &&
+            $element.parent('object').length
+        ) {
+            return true;
+        }
+
+        if ($element.parent('.fluid-width-video-wrapper').length) {
+            return true;
+        }
+
+        return false;
+    };
     /* jshint browser:true */
     /* !
      * FitVids 1.1.
@@ -73,24 +102,10 @@ define(['jquery', 'core/log'], function($) {
 
             $allVideos.each(function() {
                 var $this = $(this);
-                if ($this.parents(ignoreList.join(',')).length > 0) {
-                    return; // Disable FitVids on this video.
-                }
 
-                var $id = $this.attr('id');
-                if ($id) {
-                    if ($id === 'onlineaudiorecorder') {
-                        return; // Disable FitVids on this 'onlineaudiorecorder' #406 and #536.
-                    }
-                    if ($id.indexOf('mp3') >= 0) {
-                        return; // Disable FitVids on this 'core media mp3' #536.
-                    }
+                if (shouldIgnoreVideo($this, ignoreList)) {
+                    return;
                 }
-
-                if (this.tagName.toLowerCase() === 'embed' && $this.parent('object').length ||
-                    $this.parent('.fluid-width-video-wrapper').length) {
-                        return;
-                    }
                 if ((!$this.css('height') && !$this.css('width')) && (isNaN($this.attr('height')) || isNaN($this.attr('width')))) {
                     $this.attr('height', 9);
                     $this.attr('width', 16);
