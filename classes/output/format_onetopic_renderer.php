@@ -18,26 +18,28 @@ namespace theme_solent\output;
 
 use core_courseformat\base;
 
-/**
- * Class format_onetopic_renderer
- *
- * @package    theme_solent
- * @copyright  2024 Southampton Solent University {@link https://www.solent.ac.uk}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-class format_onetopic_renderer extends \format_onetopic\output\renderer {
+if (class_exists('\format_onetopic\output\renderer')) {
     /**
-     * Render the enable bulk editing button.
-     * @param \core_courseformat\base $format the course format
-     * @return string|null the enable bulk button HTML (or null if no bulk available).
+     * Class format_onetopic_renderer
+     *
+     * @package    theme_solent
+     * @copyright  2024 Southampton Solent University {@link https://www.solent.ac.uk}
+     * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
      */
-    public function bulk_editing_button(base $format): ?string {
-        // SSU_AMEND_START: Allow disabling bulk edit button.
-        $enabled = get_config('theme_solent', 'enablebulkedit');
-        if ($enabled || is_siteadmin()) {
-            return parent::bulk_editing_button($format);
+    class format_onetopic_renderer extends \format_onetopic\output\renderer {
+        /**
+         * Render the enable bulk editing button.
+         * @param \core_courseformat\base $format the course format
+         * @return string|null the enable bulk button HTML (or null if no bulk available).
+         */
+        public function bulk_editing_button(base $format): ?string {
+            // SSU_AMEND_START: Allow disabling bulk edit button.
+            $enabled = get_config('theme_solent', 'enablebulkedit');
+            if ($enabled || is_siteadmin()) {
+                return parent::bulk_editing_button($format);
+            }
+            return null;
+            // SSU_AMEND_END.
         }
-        return null;
-        // SSU_AMEND_END.
     }
 }
