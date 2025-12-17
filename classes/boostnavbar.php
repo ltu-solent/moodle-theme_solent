@@ -75,15 +75,18 @@ class boostnavbar extends \theme_boost\boostnavbar {
                 case 'group-assign':
                     // Remove the 'Groups' navbar node in the Groupings, Grouping, group Overview and Assign pages.
                     $this->remove('groups');
+                    break;
                 case 'backup-backup':
                 case 'backup-restorefile':
                 case 'backup-copy':
                 case 'course-reset':
                     // Remove the 'Import' navbar node in the Backup, Restore, Copy course and Reset pages.
                     $this->remove('import');
+                    break;
                 case 'course-user':
                     $this->remove('mygrades');
                     $this->remove('grades');
+                    break;
             }
         }
         $excludebreadcrumbs = explode(',', get_config('theme_solent', 'excludebreadcrumbs'));

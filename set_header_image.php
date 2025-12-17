@@ -46,5 +46,5 @@ if ($opt) {
     $DB->insert_record('theme_header', $record);
 }
 
-header( 'Location: '.$CFG->wwwroot ."/course/view.php?id=". $c);
+header('Location: ' . $CFG->wwwroot . "/course/view.php?id=" . $c);
 // SSU_AMEND END.

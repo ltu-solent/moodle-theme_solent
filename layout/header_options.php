@@ -63,10 +63,10 @@ foreach ($files as $k => $v) {
         $options .= '
         <tr>
             <td align="left">
-                <input type="radio" id="' . $name . '" name="opt" value="' . $name .'" ' . $checked . '">
+                <input type="radio" id="' . $name . '" name="opt" value="' . $name . '" ' . $checked . '">
             </td>
             <td>
-                <label for="opt">Option ' . $name. '
+                <label for="opt">Option ' . $name . '
                     <img class="header-image-option" src="../pix/unit-header/' . $v . '">
                 </label>
             </td>

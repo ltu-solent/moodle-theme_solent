@@ -32,5 +32,4 @@ use templatable;
  * Terms and conditions footer
  */
 class tandcs_footer_menu extends vertical_footer_menu implements renderable, templatable {
-
 }

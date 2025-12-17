@@ -48,7 +48,7 @@ function theme_solent_get_main_scss_content($theme) {
     }
     if (!$presetisset) {
         $filename .= '.scss';
-        if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_solent', 'preset', 0    , '/', $filename))) {
+        if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_solent', 'preset', 0, '/', $filename))) {
             $scss .= $presetfile->get_content();
         } else {
             // Safety fallback - maybe new installs etc.
@@ -91,7 +91,7 @@ function theme_solent_get_pre_scss($theme) {
         if (empty($value)) {
             continue;
         }
-        array_map(function($target) use (&$prescss, $value) {
+        array_map(function ($target) use (&$prescss, $value) {
             $prescss .= '$' . $target . ': ' . $value . ";\n";
         }, (array) $targets);
     }

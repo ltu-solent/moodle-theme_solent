@@ -31,7 +31,6 @@ use mod_hvp_renderer as mod_hvp_renderer_base;
  * Renderer class.
  */
 class mod_hvp_renderer extends mod_hvp_renderer_base {
-
     /**
      * Alter which stylesheets are loaded for H5P.
      *

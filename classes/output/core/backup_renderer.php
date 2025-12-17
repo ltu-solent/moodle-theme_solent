@@ -36,13 +36,12 @@ use html_table_cell;
 use core\context;
 use theme_solent\helper;
 
-require_once($CFG->dirroot.'/backup/util/ui/renderer.php');
+require_once($CFG->dirroot . '/backup/util/ui/renderer.php');
 
 /**
  * Backup renderer override
  */
 class backup_renderer extends \core_backup_renderer {
-
     /**
      * Renders an import course search object
      *
@@ -107,11 +106,11 @@ class backup_renderer extends \core_backup_renderer {
                 html_writer::empty_tag('input', ['type' => 'radio', 'name' => 'importid', 'value' => $course->id,
                     'id' => $id]),
                 html_writer::label(
-                        format_string($course->shortname, true, ['context' => context\course::instance($course->id)]),
-                        $id,
-                        true,
-                        ['class' => 'd-block']
-                    ),
+                    format_string($course->shortname, true, ['context' => context\course::instance($course->id)]),
+                    $id,
+                    true,
+                    ['class' => 'd-block']
+                ),
                 format_string($course->fullname, true, ['context' => context\course::instance($course->id)]),
             ];
             $table->data[] = $row;

@@ -28,5 +28,4 @@ require_once(__DIR__ . '/../../../boost/tests/behat/behat_theme_boost_behat_navi
  * This is required for tests in other plugins that require theme_solent.
  */
 class behat_theme_solent_behat_navigation extends behat_theme_boost_behat_navigation {
-
 }

@@ -31,7 +31,6 @@ use core_h5p\output\renderer as renderer_base;
  * Renderer class
  */
 class core_h5p_renderer extends renderer_base {
-
     /**
      * Alter which stylesheets are loaded for H5P.
      *

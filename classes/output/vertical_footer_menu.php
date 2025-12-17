@@ -35,7 +35,6 @@ use theme_solent\helper;
  * Multicolumn menu
  */
 class vertical_footer_menu implements renderable, templatable {
-
     /**
      * Menu title
      *

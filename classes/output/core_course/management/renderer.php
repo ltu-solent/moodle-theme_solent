@@ -43,7 +43,6 @@ use theme_solent\helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class renderer extends \core_course_management_renderer {
-
     /**
      * Renderers a course list item.
      *
@@ -55,7 +54,6 @@ class renderer extends \core_course_management_renderer {
      * @return string
      */
     public function course_listitem(core_course_category $category, core_course_list_element $course, $selectedcourse) {
-
         $text = $course->get_formatted_name();
         // SU_AMEND_START: Unit start date: Manage categories.
         if (helper::is_module($course)) {
@@ -107,7 +105,10 @@ class renderer extends \core_course_management_renderer {
         $html .= html_writer::end_div();
         // SSU_AMEND_START: Don't include classes "col" or flex.
         $html .= html_writer::link(
-            $viewcourseurl, $text, ['class' => 'text-break ps-0 mb-2 coursename aalink']);
+            $viewcourseurl,
+            $text,
+            ['class' => 'text-break ps-0 mb-2 coursename aalink']
+        );
         $html .= html_writer::start_div('float-end');
         // SSU_AMEND_END.
         if ($course->idnumber) {

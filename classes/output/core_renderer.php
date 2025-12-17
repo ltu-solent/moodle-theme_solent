@@ -31,7 +31,6 @@ use theme_boost\output\core_renderer as core_renderer_base;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class core_renderer extends core_renderer_base {
-
     /**
      * Wrapper for header elements.
      *
@@ -49,8 +48,10 @@ class core_renderer extends core_renderer_base {
         } else if ($homepage == HOMEPAGE_SITE) {
             $homepagetype = 'site-index';
         }
-        if ($this->page->include_region_main_settings_in_header_actions() &&
-                !$this->page->blocks->is_block_present('settings')) {
+        if (
+            $this->page->include_region_main_settings_in_header_actions() &&
+            !$this->page->blocks->is_block_present('settings')
+        ) {
             // Only include the region main settings if the page has requested it and it doesn't already have
             // the settings block on it. The region main settings are included in the settings block and
             // duplicating the content causes behat failures.
@@ -321,18 +322,17 @@ class core_renderer extends core_renderer_base {
                             $contactimage = 't/removecontact';
                         }
                         $userbuttons['togglecontact'] = [
-                                'buttontype' => 'togglecontact',
-                                'title' => get_string($contacttitle, 'message'),
-                                'url' => new \core\url('/message/index.php', [
-                                        'user1' => $USER->id,
-                                        'user2' => $user->id,
-                                        $contacturlaction => $user->id,
-                                        'sesskey' => sesskey(),
-                                    ]
-                                ),
-                                'image' => $contactimage,
-                                'linkattributes' => $linkattributes,
-                                'page' => $this->page,
+                            'buttontype' => 'togglecontact',
+                            'title' => get_string($contacttitle, 'message'),
+                            'url' => new \core\url('/message/index.php', [
+                                'user1' => $USER->id,
+                                'user2' => $user->id,
+                                $contacturlaction => $user->id,
+                                'sesskey' => sesskey(),
+                            ]),
+                            'image' => $contactimage,
+                            'linkattributes' => $linkattributes,
+                            'page' => $this->page,
                         ];
                     }
 

@@ -33,5 +33,4 @@ use templatable;
  * Social footer
  */
 class social_footer_menu extends vertical_footer_menu implements renderable, templatable {
-
 }

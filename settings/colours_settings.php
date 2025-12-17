@@ -28,14 +28,24 @@ defined('MOODLE_INTERNAL') || die();
 $page = new admin_settingpage('theme_solent_colours', get_string('colours_settings', 'theme_solent'));
 
 // Raw SCSS to include before the content.
-$setting = new admin_setting_scsscode('theme_solent/scsspre',
-get_string('rawscsspre', 'theme_solent'), get_string('rawscsspre_desc', 'theme_solent'), '', PARAM_RAW);
+$setting = new admin_setting_scsscode(
+    'theme_solent/scsspre',
+    get_string('rawscsspre', 'theme_solent'),
+    get_string('rawscsspre_desc', 'theme_solent'),
+    '',
+    PARAM_RAW
+);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
 // Raw SCSS to include after the content.
-$setting = new admin_setting_scsscode('theme_solent/scss', get_string('rawscss', 'theme_solent'),
-get_string('rawscss_desc', 'theme_solent'), '', PARAM_RAW);
+$setting = new admin_setting_scsscode(
+    'theme_solent/scss',
+    get_string('rawscss', 'theme_solent'),
+    get_string('rawscss_desc', 'theme_solent'),
+    '',
+    PARAM_RAW
+);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 

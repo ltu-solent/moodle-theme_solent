@@ -37,7 +37,7 @@ $THEME->haseditswitch = true;
 $THEME->requiredblocks = '';
 $THEME->yuicssmodules = [];
 
-$THEME->scss = function($theme) {
+$THEME->scss = function ($theme) {
     return theme_solent_get_main_scss_content($theme);
 };
 

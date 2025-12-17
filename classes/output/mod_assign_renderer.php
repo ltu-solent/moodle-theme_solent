@@ -52,8 +52,13 @@ class mod_assign_renderer extends renderer_base {
      * @param array $secondattributes The second column attributes (optional)
      * @return void
      */
-    private function add_table_row_tuple(html_table $table, $first, $second, $firstattributes = [],
-            $secondattributes = []) {
+    private function add_table_row_tuple(
+        html_table $table,
+        $first,
+        $second,
+        $firstattributes = [],
+        $secondattributes = []
+    ) {
         $row = new html_table_row();
         $cell1 = new html_table_cell($first);
         $cell1->header = true;
@@ -129,8 +134,11 @@ class mod_assign_renderer extends renderer_base {
             if ($maxattempts == ASSIGN_UNLIMITED_ATTEMPTS) {
                 $cell2content = get_string('currentattempt', 'assign', $currentattempt);
             } else {
-                $cell2content = get_string('currentattemptof', 'assign',
-                    ['attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts]);
+                $cell2content = get_string(
+                    'currentattemptof',
+                    'assign',
+                    ['attemptnumber' => $currentattempt, 'maxattempts' => $maxattempts]
+                );
             }
 
             $this->add_table_row_tuple($t, $cell1content, $cell2content);
@@ -197,15 +205,19 @@ class mod_assign_renderer extends renderer_base {
 
         // Grading status.
         $cell1content = get_string('gradingstatus', 'assign');
-        if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
-            $status->gradingstatus == ASSIGN_GRADING_STATUS_NOT_GRADED) {
+        if (
+            $status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
+            $status->gradingstatus == ASSIGN_GRADING_STATUS_NOT_GRADED
+        ) {
             $cell2content = get_string($status->gradingstatus, 'assign');
         } else {
             $gradingstatus = 'markingworkflowstate' . $status->gradingstatus;
             $cell2content = get_string($gradingstatus, 'assign');
         }
-        if ($status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
-            $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED) {
+        if (
+            $status->gradingstatus == ASSIGN_GRADING_STATUS_GRADED ||
+            $status->gradingstatus == ASSIGN_MARKING_WORKFLOW_STATE_RELEASED
+        ) {
             $cell2attributes = ['class' => 'submissiongraded'];
         } else {
             $cell2attributes = ['class' => 'submissionnotgraded'];
@@ -293,20 +305,22 @@ class mod_assign_renderer extends renderer_base {
             if (!$status->teamsubmission || $status->submissiongroup != false || !$status->preventsubmissionnotingroup) {
                 foreach ($status->submissionplugins as $plugin) {
                     $pluginshowsummary = !$plugin->is_empty($submission) || !$plugin->allow_submissions();
-                    if ($plugin->is_enabled() &&
+                    if (
+                        $plugin->is_enabled() &&
                         $plugin->is_visible() &&
                         $plugin->has_user_summary() &&
                         $pluginshowsummary
                     ) {
-
                         $cell1content = $plugin->get_name();
                         $displaymode = \assign_submission_plugin_submission::SUMMARY;
-                        $pluginsubmission = new \assign_submission_plugin_submission($plugin,
+                        $pluginsubmission = new \assign_submission_plugin_submission(
+                            $plugin,
                             $submission,
                             $displaymode,
                             $status->coursemoduleid,
                             $status->returnaction,
-                            $status->returnparams);
+                            $status->returnparams
+                        );
                         $cell2content = $this->render($pluginsubmission);
                         $this->add_table_row_tuple($t, $cell1content, $cell2content);
                     }
@@ -385,18 +399,21 @@ class mod_assign_renderer extends renderer_base {
 
                 foreach ($history->submissionplugins as $plugin) {
                     $pluginshowsummary = !$plugin->is_empty($submission) || !$plugin->allow_submissions();
-                    if ($plugin->is_enabled() &&
-                            $plugin->is_visible() &&
-                            $plugin->has_user_summary() &&
-                            $pluginshowsummary) {
-
+                    if (
+                        $plugin->is_enabled() &&
+                        $plugin->is_visible() &&
+                        $plugin->has_user_summary() &&
+                        $pluginshowsummary
+                    ) {
                         $cell1content = $plugin->get_name();
-                        $pluginsubmission = new \assign_submission_plugin_submission($plugin,
-                                                                                    $submission,
-                                                                                    \assign_submission_plugin_submission::SUMMARY,
-                                                                                    $history->coursemoduleid,
-                                                                                    $history->returnaction,
-                                                                                    $history->returnparams);
+                        $pluginsubmission = new \assign_submission_plugin_submission(
+                            $plugin,
+                            $submission,
+                            \assign_submission_plugin_submission::SUMMARY,
+                            $history->coursemoduleid,
+                            $history->returnaction,
+                            $history->returnparams
+                        );
                         $cell2content = $this->render($pluginsubmission);
                         $this->add_table_row_tuple($t, $cell1content, $cell2content);
                     }
@@ -418,9 +435,11 @@ class mod_assign_renderer extends renderer_base {
                                    'returnaction' => $history->returnaction,
                                    'returnparams' => $returnparams];
                     $url = new url('/mod/assign/view.php', $urlparams);
-                    $icon = new pix_icon('gradefeedback',
-                                            get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
-                                            'mod_assign');
+                    $icon = new pix_icon(
+                        'gradefeedback',
+                        get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
+                        'mod_assign'
+                    );
                     $title .= $this->output->action_icon($url, $icon);
                 }
                 $cell = new html_table_cell($title);
@@ -448,23 +467,26 @@ class mod_assign_renderer extends renderer_base {
 
                 // Feedback from plugins.
                 foreach ($history->feedbackplugins as $plugin) {
-                    if ($plugin->is_enabled() &&
+                    if (
+                        $plugin->is_enabled() &&
                         $plugin->is_visible() &&
                         $plugin->has_user_summary() &&
-                        !$plugin->is_empty($grade)) {
-
+                        !$plugin->is_empty($grade)
+                    ) {
                         $pluginfeedback = new \assign_feedback_plugin_feedback(
-                            $plugin, $grade, \assign_feedback_plugin_feedback::SUMMARY, $history->coursemoduleid,
-                            $history->returnaction, $history->returnparams
+                            $plugin,
+                            $grade,
+                            \assign_feedback_plugin_feedback::SUMMARY,
+                            $history->coursemoduleid,
+                            $history->returnaction,
+                            $history->returnparams
                         );
 
                         $cell1content = $plugin->get_name();
                         $cell2content = $this->render($pluginfeedback);
                         $this->add_table_row_tuple($t, $cell1content, $cell2content);
                     }
-
                 }
-
             }
 
             $o .= html_writer::table($t);
