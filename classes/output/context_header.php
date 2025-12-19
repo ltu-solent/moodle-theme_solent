@@ -68,13 +68,16 @@ class context_header extends \core\output\context_header {
      */
     public function export_for_template(renderer_base $output): array {
         // Heading.
+        /* @phpstan-ignore isset.property */
         $headingtext = isset($this->heading) ? $this->heading : $output->get_page()->heading;
         // SSU_AMEND_START: Padding.
+        /* @phpstan-ignore method.notFound */
         $heading = $output->heading($headingtext, $this->headinglevel, "h2 mb-2");
         // SSU_AMEND_END.
         // Buttons.
+        $additionalbuttons = [];
+        /* @phpstan-ignore isset.property */
         if (isset($this->additionalbuttons)) {
-            $additionalbuttons = [];
             foreach ($this->additionalbuttons as $button) {
                 if (!isset($button->page)) {
                     // Include js for messaging.
@@ -98,7 +101,7 @@ class context_header extends \core\output\context_header {
             'imagedata' => $this->imagedata,
             'prefix' => $this->prefix,
             'hasadditionalbuttons' => !empty($additionalbuttons),
-            'additionalbuttons' => $additionalbuttons ?? [],
+            'additionalbuttons' => $additionalbuttons,
         ];
     }
 }

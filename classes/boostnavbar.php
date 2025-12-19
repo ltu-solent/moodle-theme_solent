@@ -42,14 +42,14 @@ class boostnavbar extends \theme_boost\boostnavbar {
         // Defines whether section items with an action should be removed by default.
         $removesections = true;
 
-        if ($this->page->context->contextlevel == CONTEXT_COURSECAT) {
+        if ($PAGE->context->contextlevel == CONTEXT_COURSECAT) {
             // Remove the 'Permissions' navbar node in the Check permissions page.
-            if ($this->page->pagetype === 'admin-roles-check') {
+            if ($PAGE->pagetype === 'admin-roles-check') {
                 $this->remove('permissions');
             }
         }
 
-        if ($this->page->context->contextlevel == CONTEXT_COURSE) {
+        if ($PAGE->context->contextlevel == CONTEXT_COURSE) {
             // Remove any duplicate navbar nodes.
             $this->remove_duplicate_items();
             // Remove 'My courses' and 'Courses' if we are in the course context.
@@ -68,7 +68,7 @@ class boostnavbar extends \theme_boost\boostnavbar {
             // $this->remove_items_that_exist_in_navigation($PAGE->secondarynav);
             // phpcs:enable
             // SU_AMEND_END.
-            switch ($this->page->pagetype) {
+            switch ($PAGE->pagetype) {
                 case 'group-groupings':
                 case 'group-grouping':
                 case 'group-overview':

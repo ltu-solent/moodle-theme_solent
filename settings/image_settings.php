@@ -53,4 +53,5 @@ $setting = new admin_setting_configstoredfile($name, $title, $description, 'logi
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+/** @var \theme_boost_admin_settingspage_tabs $settings */
 $settings->add($page);

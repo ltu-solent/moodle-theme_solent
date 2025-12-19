@@ -92,14 +92,11 @@ class helper {
     /**
      * Is this course a module page.
      *
-     * @param stdClass $course Course object
+     * @param int $categoryid
      * @return boolean
      */
-    public static function is_module($course) {
-        if (!isset($course->category)) {
-            return false;
-        }
-        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+    public static function is_module($categoryid) {
+        $category = core_course_category::get($categoryid, IGNORE_MISSING, true);
         if (!$category) {
             return false;
         }
@@ -110,14 +107,11 @@ class helper {
     /**
      * Is this course a course page.
      *
-     * @param stdClass $course Course object
+     * @param int $categoryid
      * @return boolean
      */
-    public static function is_course($course) {
-        if (!isset($course->category)) {
-            return false;
-        }
-        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+    public static function is_course($categoryid) {
+        $category = core_course_category::get($categoryid, IGNORE_MISSING, true);
         if (!$category) {
             return false;
         }
@@ -150,10 +144,10 @@ class helper {
         global $DB;
         $config = get_config('theme_solent');
         // Is this a course or a module?
-        $ismodule = self::is_module($course);
+        $ismodule = self::is_module($course->category);
         $iscourse = false;
         if (!$ismodule) {
-            $iscourse = self::is_course($course);
+            $iscourse = self::is_course($course->category);
         }
         if (!($ismodule || $iscourse)) {
             return null;
@@ -202,12 +196,13 @@ class helper {
     /**
      * Course unit descriptor
      *
-     * @param stdClass $course
+     * @param int $courseid
+     * @param int $categoryid
      * @return string Rendered descriptor
      */
-    public static function course_unit_descriptor($course): string {
+    public static function course_unit_descriptor($courseid, $categoryid): string {
         $content = '';
-        $category = core_course_category::get($course->category, IGNORE_MISSING, true);
+        $category = core_course_category::get($categoryid, IGNORE_MISSING, true);
         if (!$category) {
             return $content;
         }
@@ -216,7 +211,7 @@ class helper {
             return $content;
         }
 
-        $coursecontext = context\course::instance($course->id);
+        $coursecontext = context\course::instance($courseid);
         $filterman = filter_manager::instance();
         $descriptor = '';
         if ($cattype == 'modules') {
@@ -230,11 +225,11 @@ class helper {
         }
         // Before passing into the filter, add the courseid to module startenddate.
         // On a course page this can be inferred from context, however, in search results it needs to be explicit.
-        $descriptor = str_replace('[startenddates]', '[startenddates courseid=' . $course->id . ']', $descriptor);
+        $descriptor = str_replace('[startenddates]', '[startenddates courseid=' . $courseid . ']', $descriptor);
         // And to the modulecode.
-        $descriptor = str_replace('[modulecode]', '[modulecode courseid=' . $course->id . ']', $descriptor);
-        $descriptor = str_replace('[moduledescriptorfile]', '[moduledescriptorfile courseid=' . $course->id . ']', $descriptor);
-        $descriptor = str_replace('[externalexaminerlink]', '[externalexaminerlink courseid=' . $course->id . ']', $descriptor);
+        $descriptor = str_replace('[modulecode]', '[modulecode courseid=' . $courseid . ']', $descriptor);
+        $descriptor = str_replace('[moduledescriptorfile]', '[moduledescriptorfile courseid=' . $courseid . ']', $descriptor);
+        $descriptor = str_replace('[externalexaminerlink]', '[externalexaminerlink courseid=' . $courseid . ']', $descriptor);
         $content = $filterman->filter_text($descriptor, $coursecontext);
         return $content;
     }

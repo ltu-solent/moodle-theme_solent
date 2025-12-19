@@ -33,9 +33,10 @@ $page = new admin_settingpage('theme_solent_course', get_string('coursesettings'
 $name = 'theme_solent/enablebulkedit';
 $title = new lang_string('enablebulkedit', 'theme_solent');
 $description = new lang_string('enablebulkedit_desc', 'theme_solent');
-$default = 0;
+$default = '0';
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+/** @var \theme_boost_admin_settingspage_tabs $settings */
 $settings->add($page);

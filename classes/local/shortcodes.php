@@ -39,7 +39,7 @@ class shortcodes {
      * @param object $args The arguments of the code. Optional 'courseid'.
      * @param string|null $content The content, if the shortcode wraps content.
      * @param object $env The filter environment (contains context, noclean and originalformat).
-     * @param Closure $next The function to pass the content through to process sub shortcodes.
+     * @param \Closure $next The function to pass the content through to process sub shortcodes.
      * @return string The new content.
      */
     public static function moduledescriptor($shortcode, $args, $content, $env, $next) {
@@ -53,7 +53,7 @@ class shortcodes {
         if (!$course) {
             return '';
         }
-        $html = helper::course_unit_descriptor($course);
+        $html = helper::course_unit_descriptor($course->id, $course->category);
         return $html;
     }
 
@@ -64,7 +64,7 @@ class shortcodes {
      * @param object $args The arguments of the code. Optional 'courseid'.
      * @param string|null $content The content, if the shortcode wraps content.
      * @param object $env The filter environment (contains context, noclean and originalformat).
-     * @param Closure $next The function to pass the content through to process sub shortcodes.
+     * @param \Closure $next The function to pass the content through to process sub shortcodes.
      * @return string The link or empty string.
      */
     public static function moduledescriptorfile($shortcode, $args, $content, $env, $next) {
@@ -92,7 +92,7 @@ class shortcodes {
      * @param object $args The arguments of the code. Optional 'courseid'.
      * @param string|null $content The content, if the shortcode wraps content.
      * @param object $env The filter environment (contains context, noclean and originalformat).
-     * @param Closure $next The function to pass the content through to process sub shortcodes.
+     * @param \Closure $next The function to pass the content through to process sub shortcodes.
      * @return string The link or empty string.
      */
     public static function externalexaminerlink($shortcode, $args, $content, $env, $next) {

@@ -47,8 +47,7 @@ function theme_solent_get_main_scss_content($theme) {
         }
     }
     if (!$presetisset) {
-        $filename .= '.scss';
-        if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_solent', 'preset', 0, '/', $filename))) {
+        if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_solent', 'preset', 0, '/', $filename . 'scss'))) {
             $scss .= $presetfile->get_content();
         } else {
             // Safety fallback - maybe new installs etc.
@@ -103,12 +102,14 @@ function theme_solent_get_pre_scss($theme) {
 
     // Set the default image for the header.
     $headerbg = $theme->setting_file_url('headerdefaultimage', 'headerdefaultimage');
+    /* @phpstan-ignore-next-line */
     if (isset($headerbg)) {
         $prescss .= 'header#page-header {background-image: url("' . $headerbg . '");}';
     }
 
     // Set the background image for the login page.
     $loginbg = $theme->setting_file_url('loginimage', 'loginimage');
+    /* @phpstan-ignore-next-line */
     if (isset($loginbg)) {
         $prescss .= '.pagelayout-login #page {background-image: url("' . $loginbg . '") !important;'
             . 'background-size:cover !important; background-position:center !important;}';

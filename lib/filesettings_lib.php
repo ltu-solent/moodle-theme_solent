@@ -47,4 +47,5 @@ function theme_solent_pluginfile($course, $cm, $context, $filearea, $args, $forc
     } else {
         send_file_not_found();
     }
+    return false;
 }

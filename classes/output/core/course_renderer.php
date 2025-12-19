@@ -30,13 +30,18 @@ use core\output\html_writer;
 use core_course_category;
 use coursecat_helper;
 use core_course_list_element;
+use core_course_renderer;
 use theme_solent\helper;
+
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->dirroot . '/course/renderer.php');
 
 /**
  * Override core course renderer to add unit descriptor and external examiner info to the coursecat page.
  *
  */
-class course_renderer extends \core_course_renderer {
+class course_renderer extends core_course_renderer {
     /**
      * Returns HTML to display course content (summary, course contacts and optionally category name)
      *
@@ -62,7 +67,7 @@ class course_renderer extends \core_course_renderer {
         // SSU_AMEND_END.
         $content .= html_writer::start_tag('div', ['class' => 'flex-grow-1']);
         // SU_AMEND_START: Add unit descriptor if available.
-        $content .= helper::course_unit_descriptor($course);
+        $content .= helper::course_unit_descriptor($course->id, $course->category);
         // SU_AMEND_END.
         $content .= $this->course_summary($chelper, $course);
         $content .= $this->course_contacts($course);

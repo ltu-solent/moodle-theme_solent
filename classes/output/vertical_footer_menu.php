@@ -25,10 +25,10 @@
 
 namespace theme_solent\output;
 
-use renderable;
-use renderer_base;
+use core\output\renderable;
+use core\output\renderer_base;
+use core\output\templatable;
 use stdClass;
-use templatable;
 use theme_solent\helper;
 
 /**
@@ -65,7 +65,7 @@ class vertical_footer_menu implements renderable, templatable {
      * @param renderer_base $output
      * @return stdClass|array
      */
-    public function export_for_template(renderer_base $output): stdClass {
+    public function export_for_template(renderer_base $output) {
         $context = new stdClass();
         $context->title = $this->title;
         $context->nodes = $this->nodes;

@@ -39,8 +39,8 @@ $hidenodesoptions = [
 
 // Setting: Hide nodes in primary navigation.
 $name = 'theme_solent/hidenodesprimarynavigation';
-$title = new lang_string('hidenodesprimarynavigationsetting', 'theme_solent', null, true);
-$description = new lang_string('hidenodesprimarynavigationsetting_desc', 'theme_solent', null, true);
+$title = new lang_string('hidenodesprimarynavigationsetting', 'theme_solent');
+$description = new lang_string('hidenodesprimarynavigationsetting_desc', 'theme_solent');
 $setting = new admin_setting_configmulticheckbox($name, $title, $description, [], $hidenodesoptions);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
@@ -67,7 +67,7 @@ $page->add($setting);
 $name = 'theme_solent/enablebottomnavbar';
 $title = new lang_string('enablebottomnavbar', 'theme_solent');
 $description = new lang_string('enablebottomnavbar_desc', 'theme_solent');
-$default = 0;
+$default = '0';
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
@@ -76,7 +76,7 @@ $page->add($setting);
 $name = 'theme_solent/enablescrollspy';
 $title = new lang_string('enablescrollspy', 'theme_solent');
 $description = new lang_string('enablescrollspy_desc', 'theme_solent');
-$default = 0;
+$default = '0';
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
@@ -84,9 +84,10 @@ $page->add($setting);
 $name = 'theme_solent/enablestudentsecondarynav';
 $title = new lang_string('enablestudentsecondarynav', 'theme_solent');
 $description = new lang_string('enablestudentsecondarynav_desc', 'theme_solent');
-$default = 1;
+$default = '1';
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+/** @var \theme_boost_admin_settingspage_tabs $settings */
 $settings->add($page);

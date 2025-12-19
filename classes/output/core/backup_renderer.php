@@ -49,9 +49,11 @@ class backup_renderer extends \core_backup_renderer {
      * @return string
      */
     public function render_import_course_search(import_course_search $component) {
+        /** @var \core\output\core_renderer $core */
+        $core = $this->page->get_renderer('core');
         $output = html_writer::start_tag('div', ['class' => 'import-course-search']);
         if ($component->get_count() === 0) {
-            $output .= $this->output->notification(get_string('nomatchingcourses', 'backup'));
+            $output .= $core->notification(get_string('nomatchingcourses', 'backup'));
 
             $output .= html_writer::start_tag('div', ['class' => 'ics-search d-flex flex-wrap align-items-center']);
             $attrs = [
@@ -92,7 +94,7 @@ class backup_renderer extends \core_backup_renderer {
         foreach ($component->get_results() as $course) {
             // SU_AMEND_START: Adds Unit start date (if relevant) to list of courses to import from.
             $courseobj = get_course($course->id);
-            if (helper::is_module($courseobj)) {
+            if (helper::is_module($courseobj->category)) {
                 $course->fullname .= ' - ' . get_string('startdate', 'theme_solent', userdate($courseobj->startdate, "%d/%m/%Y"));
             }
             // SU_AMEND END.

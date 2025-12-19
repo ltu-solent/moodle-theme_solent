@@ -54,9 +54,11 @@ class renderer extends \core_course_management_renderer {
      * @return string
      */
     public function course_listitem(core_course_category $category, core_course_list_element $course, $selectedcourse) {
+        /** @var \core\output\core_renderer $output */
+        $output = $this->page->get_renderer('core');
         $text = $course->get_formatted_name();
         // SU_AMEND_START: Unit start date: Manage categories.
-        if (helper::is_module($course)) {
+        if (helper::is_module($course->category)) {
             $text .= ' (' . userdate($course->startdate, '%d/%m/%Y') . ')';
         }
         // SU_AMEND_END.
@@ -91,7 +93,7 @@ class renderer extends \core_course_management_renderer {
 
         if ($category->can_resort_courses()) {
             // In order for dnd to be available the user must be able to resort the category children..
-            $html .= html_writer::div($this->output->pix_icon('i/move_2d', get_string('dndcourse')), 'float-left drag-handle');
+            $html .= html_writer::div($output->pix_icon('i/move_2d', get_string('dndcourse')), 'float-left drag-handle');
         }
 
         $html .= html_writer::start_div('float-start ' . $checkboxclass);
@@ -135,7 +137,7 @@ class renderer extends \core_course_management_renderer {
         $text = $course->get_formatted_name();
 
         // SU_AMEND_START: Unit start date: Manage categories search.
-        if (helper::is_module($course)) {
+        if (helper::is_module($course->category)) {
             $text .= ' (' . userdate($course->startdate, '%d/%m/%Y') . ')';
         }
         // SU_AMEND_END.

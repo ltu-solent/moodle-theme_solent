@@ -47,7 +47,7 @@ $page->add($setting);
 $name = 'theme_solent/descriptorfolder';
 $title = new lang_string('descriptorfolder', 'theme_solent');
 $desc = new lang_string('descriptorfolder_desc', 'theme_solent');
-$default = 0;
+$default = '0';
 $setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_INT);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
@@ -73,7 +73,7 @@ $page->add($setting);
 $name = 'theme_solent/coursedescriptorfolder';
 $title = new lang_string('coursedescriptorfolder', 'theme_solent');
 $desc = new lang_string('coursedescriptorfolder_desc', 'theme_solent');
-$default = 0;
+$default = '0';
 $setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_INT);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
@@ -87,4 +87,5 @@ $setting = new admin_setting_configtext($name, $title, $desc, $default, PARAM_UR
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+/** @var \theme_boost_admin_settingspage_tabs $settings */
 $settings->add($page);

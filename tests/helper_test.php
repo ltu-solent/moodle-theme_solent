@@ -179,7 +179,7 @@ final class helper_test extends advanced_testcase {
             $catid = $cat->id;
         }
         $course = $this->getDataGenerator()->create_course(['category' => $catid]);
-        $ismodule = helper::is_module($course);
+        $ismodule = helper::is_module($course->category);
         $this->assertEquals($response, $ismodule);
     }
 
@@ -226,7 +226,7 @@ final class helper_test extends advanced_testcase {
             $catid = $cat->id;
         }
         $course = $this->getDataGenerator()->create_course(['category' => $catid]);
-        $ismodule = helper::is_course($course);
+        $ismodule = helper::is_course($course->category);
         $this->assertEquals($response, $ismodule);
     }
 

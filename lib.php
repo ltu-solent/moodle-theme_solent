@@ -57,14 +57,12 @@ function theme_solent_header_image() {
 
         $currentcategory = $DB->get_record('course_categories', ['id' => $COURSE->category]);
         $catname = strtolower('x' . $currentcategory->name);
-        if (isset($catname)) {
-            if (strpos($catname, 'course pages') !== false) {
-                $record->opt = '08';
-                $record->id = $DB->insert_record('theme_header', $record);
-            } else {
-                $record->opt = '01';
-                $record->id = $DB->insert_record('theme_header', $record);
-            }
+        if (strpos($catname, 'course pages') !== false) {
+            $record->opt = '08';
+            $record->id = $DB->insert_record('theme_header', $record);
+        } else {
+            $record->opt = '01';
+            $record->id = $DB->insert_record('theme_header', $record);
         }
     }
 

@@ -25,8 +25,8 @@
 
 namespace theme_solent\output;
 
-use renderable;
-use templatable;
+use core\output\renderable;
+use core\output\templatable;
 
 /**
  * Terms and conditions footer

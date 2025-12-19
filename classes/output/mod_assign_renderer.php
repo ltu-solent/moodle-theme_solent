@@ -80,12 +80,14 @@ class mod_assign_renderer extends renderer_base {
      * @return string
      */
     public function render_assign_submission_status(assign_submission_status $status) {
+        /** @var \core\output\core_renderer $output */
+        $output = $this->page->get_renderer('core');
         $o = '';
-        $o .= $this->output->container_start('submissionstatustable');
-        $o .= $this->output->heading(get_string('submissionstatusheading', 'assign'), 3);
+        $o .= $output->container_start('submissionstatustable');
+        $o .= $output->heading(get_string('submissionstatusheading', 'assign'), 3);
         $time = time();
 
-        $o .= $this->output->box_start('boxaligncenter submissionsummarytable');
+        $o .= $output->box_start('boxaligncenter submissionsummarytable');
 
         $t = new html_table();
         $t->attributes['class'] = 'generaltable table-bordered';
@@ -102,13 +104,13 @@ class mod_assign_renderer extends renderer_base {
                 if (count($status->usergroups) == 0) {
                     $notification = new \core\output\notification(get_string('noteam', 'assign'), 'error');
                     $notification->set_show_closebutton(false);
-                    $warningmsg = $this->output->notification(get_string('noteam_desc', 'assign'), 'error');
+                    $warningmsg = $output->notification(get_string('noteam_desc', 'assign'), 'error');
                 } else if (count($status->usergroups) > 1) {
                     $notification = new \core\output\notification(get_string('multipleteams', 'assign'), 'error');
                     $notification->set_show_closebutton(false);
-                    $warningmsg = $this->output->notification(get_string('multipleteams_desc', 'assign'), 'error');
+                    $warningmsg = $output->notification(get_string('multipleteams_desc', 'assign'), 'error');
                 }
-                $cell2content = $this->output->render($notification);
+                $cell2content = $output->render($notification);
             } else {
                 $cell2content = get_string('defaultteam', 'assign');
             }
@@ -174,13 +176,13 @@ class mod_assign_renderer extends renderer_base {
                         $userslist[] = $member->alias;
                     } else {
                         $fullname = fullname($member, $status->canviewfullnames);
-                        $userslist[] = $this->output->action_link($url, $fullname);
+                        $userslist[] = $output->action_link($url, $fullname);
                     }
                 }
                 if (count($userslist) > 0) {
                     $userstr = join(', ', $userslist);
                     $formatteduserstr = get_string('userswhoneedtosubmit', 'assign', $userstr);
-                    $cell2content .= $this->output->container($formatteduserstr);
+                    $cell2content .= $output->container($formatteduserstr);
                 }
 
                 $cell2attributes = ['class' => 'submissionstatus' . $status->teamsubmission->status];
@@ -330,15 +332,15 @@ class mod_assign_renderer extends renderer_base {
 
         $o .= $warningmsg;
         $o .= html_writer::table($t);
-        $o .= $this->output->box_end();
+        $o .= $output->box_end();
 
         // Grading criteria preview.
         if (!empty($status->gradingcontrollerpreview)) {
-            $o .= $this->output->heading(get_string('gradingmethodpreview', 'assign'), 4);
+            $o .= $output->heading(get_string('gradingmethodpreview', 'assign'), 4);
             $o .= $status->gradingcontrollerpreview;
         }
 
-        $o .= $this->output->container_end();
+        $o .= $output->container_end();
         return $o;
     }
 
@@ -349,6 +351,8 @@ class mod_assign_renderer extends renderer_base {
      * @return string
      */
     public function render_assign_attempt_history(\assign_attempt_history $history) {
+        /** @var \core\output\core_renderer $output */
+        $output = $this->page->get_renderer('core');
         $o = '';
 
         // Don't show the last one because it is the current submission.
@@ -362,8 +366,8 @@ class mod_assign_renderer extends renderer_base {
         }
 
         $containerid = 'attempthistory' . uniqid();
-        $o .= $this->output->heading(get_string('attempthistory', 'assign'), 3);
-        $o .= $this->box_start('attempthistory', $containerid);
+        $o .= $output->heading(get_string('attempthistory', 'assign'), 3);
+        $o .= $output->box_start('attempthistory', $containerid);
 
         foreach ($history->submissions as $i => $submission) {
             $grade = null;
@@ -386,7 +390,7 @@ class mod_assign_renderer extends renderer_base {
 
             $attemptsummaryparams = ['attemptnumber' => $submission->attemptnumber + 1,
                                           'submissionsummary' => $submissionsummary];
-            $o .= $this->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
+            $o .= $output->heading(get_string('attemptheading', 'assign', $attemptsummaryparams), 4);
 
             $t = new html_table();
             $t->caption = get_string('attemptheading', 'assign', $attemptsummaryparams);
@@ -423,7 +427,7 @@ class mod_assign_renderer extends renderer_base {
             if ($grade) {
                 // Heading 'feedback'.
                 $title = get_string('feedback', 'assign', $i);
-                $title .= $this->output->spacer(['width' => 10]);
+                $title .= $output->spacer(['width' => 10]);
                 if ($history->cangrade) {
                     // Edit previous feedback.
                     $returnparams = http_build_query($history->returnparams);
@@ -440,7 +444,7 @@ class mod_assign_renderer extends renderer_base {
                         get_string('editattemptfeedback', 'assign', $grade->attemptnumber + 1),
                         'mod_assign'
                     );
-                    $title .= $this->output->action_icon($url, $icon);
+                    $title .= $output->action_icon($url, $icon);
                 }
                 $cell = new html_table_cell($title);
                 $cell->attributes['class'] = 'feedbacktitle';
@@ -460,8 +464,8 @@ class mod_assign_renderer extends renderer_base {
                 // Graded by set to a real user. Not set can be empty or -1.
                 if (!empty($grade->grader) && is_object($grade->grader)) {
                     $cell1content = get_string('gradedby', 'assign');
-                    $cell2content = $this->output->user_picture($grade->grader) .
-                                    $this->output->spacer(['width' => 30]) . fullname($grade->grader);
+                    $cell2content = $output->user_picture($grade->grader) .
+                                    $output->spacer(['width' => 30]) . fullname($grade->grader);
                     $this->add_table_row_tuple($t, $cell1content, $cell2content);
                 }
 
@@ -491,7 +495,7 @@ class mod_assign_renderer extends renderer_base {
 
             $o .= html_writer::table($t);
         }
-        $o .= $this->box_end();
+        $o .= $output->box_end();
 
         $this->page->requires->yui_module('moodle-mod_assign-history', 'Y.one("#' . $containerid . '").history');
 
@@ -506,6 +510,8 @@ class mod_assign_renderer extends renderer_base {
      */
     public function render_assign_grading_table(\assign_grading_table $table) {
         global $DB;
+        /** @var \core\output\core_renderer $output */
+        $output = $this->page->get_renderer('core');
         // SSU_AMEND_START: Workflow notifications.
         $cmid = $table->get_course_module_id();
         $courseid = $table->get_course_id();
@@ -517,7 +523,7 @@ class mod_assign_renderer extends renderer_base {
         $assign = new assign(context\module::instance($cm->id), $cm, $cm->get_course());
         // This is not a Summative assignment.
         if ($cm->idnumber == '') {
-            $o .= $this->output->notification(get_string('assign_formativeinfo', 'theme_solent'), \core\notification::INFO);
+            $o .= $output->notification(get_string('assign_formativeinfo', 'theme_solent'), \core\notification::INFO);
             return $o . $rendered;
         }
 
@@ -592,7 +598,7 @@ class mod_assign_renderer extends renderer_base {
             ]);
             $msg = get_string('assign_resetfilters', 'theme_solent', ['url' => $resetfilterurl->out()]);
             $resetstring = get_string('assign_filterwarning', 'theme_solent', ['msg' => $msg]);
-            $o .= $this->output->notification($resetstring, \core\notification::WARNING);
+            $o .= $output->notification($resetstring, \core\notification::WARNING);
         }
         $o .= $rendered;
         // SSU_AMEND_END.

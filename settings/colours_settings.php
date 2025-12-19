@@ -49,4 +49,5 @@ $setting = new admin_setting_scsscode(
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+/** @var \theme_boost_admin_settingspage_tabs $settings */
 $settings->add($page);
