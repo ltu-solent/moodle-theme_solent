@@ -27,6 +27,7 @@ namespace theme_solent;
 
 use advanced_testcase;
 use core\context;
+use testing_data_generator;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -45,15 +46,17 @@ final class helper_test extends advanced_testcase {
         $this->resetAfterTest();
         set_config('moduledescriptor', 'Module descriptor: [modulecode] [startenddates]', 'theme_solent');
         set_config('coursedescriptor', 'Course descriptor: [modulecode]', 'theme_solent');
-        $modulecat = $this->getDataGenerator()->create_category(['name' => 'Modules', 'idnumber' => 'modules_ABCDEF']);
-        $coursecat = $this->getDataGenerator()->create_category(['name' => 'Courses', 'idnumber' => 'courses_ABCDEF']);
-        $othercat = $this->getDataGenerator()->create_category(['name' => 'Other', 'idnumber' => 'other_ABCDEF']);
-        $hiddencat = $this->getDataGenerator()->create_category([
+        /** @var testing_data_generator $generator */
+        $generator = $this->getDataGenerator();
+        $modulecat = $generator->create_category(['name' => 'Modules', 'idnumber' => 'modules_ABCDEF']);
+        $coursecat = $generator->create_category(['name' => 'Courses', 'idnumber' => 'courses_ABCDEF']);
+        $othercat = $generator->create_category(['name' => 'Other', 'idnumber' => 'other_ABCDEF']);
+        $hiddencat = $generator->create_category([
             'name' => 'Hidden',
             'idnumber' => 'hidden_HIDDEN',
             'visible' => 0,
         ]);
-        $module = $this->getDataGenerator()->create_course([
+        $module = $generator->create_course([
             'fullname' => 'Module course title',
             'shortname' => 'ABC101_A_SEM1_2023/34',
             'idnumber' => 'ABC101_A_SEM1_2023/34',
@@ -62,7 +65,7 @@ final class helper_test extends advanced_testcase {
             'category' => $modulecat->id,
         ]);
         // Hidden module in a visible category.
-        $hiddenmodule = $this->getDataGenerator()->create_course([
+        $hiddenmodule = $generator->create_course([
             'fullname' => 'Module course title',
             'shortname' => 'ABC102_A_SEM1_2023/34',
             'idnumber' => 'ABC102_A_SEM1_2023/34',
@@ -71,41 +74,41 @@ final class helper_test extends advanced_testcase {
             'category' => $modulecat->id,
             'visible' => 0,
         ]);
-        $course = $this->getDataGenerator()->create_course([
+        $course = $generator->create_course([
             'fullname' => 'Course course title',
             'shortname' => 'XXBSCABCD',
             'idnumber' => 'XXBSCABCD',
             'category' => $coursecat->id,
         ]);
-        $other = $this->getDataGenerator()->create_course([
+        $other = $generator->create_course([
             'fullname' => 'Other course title',
             'shortname' => 'OTHER',
             'idnumber' => 'OTHER',
             'category' => $othercat->id,
         ]);
         // Course itself isn't hidden, just the category it's in.
-        $hidden = $this->getDataGenerator()->create_course([
+        $hidden = $generator->create_course([
             'fullname' => 'Hidden cat course title',
             'shortname' => 'hiddenCat',
             'idnumber' => 'hiddenCat',
             'category' => $hiddencat->id,
         ]);
         // Test with user that can see hidden courses, but not hidden categories.
-        $halfhalf = $this->getDataGenerator()->create_user();
-        $teacher = $this->getDataGenerator()->create_user();
-        $manager = $this->getDataGenerator()->create_user();
-        $other = $this->getDataGenerator()->create_user();
+        $halfhalf = $generator->create_user();
+        $teacher = $generator->create_user();
+        $manager = $generator->create_user();
+        $other = $generator->create_user();
 
         $systemcontext = context\system::instance();
-        $halfhalfroleid = $this->getDataGenerator()->create_role(['archetype' => 'manager']);
+        $halfhalfroleid = $generator->create_role(['archetype' => 'manager']);
         // Give the manager role with the capability to manage data requests.
         assign_capability('moodle/category:viewhiddencategories', CAP_PREVENT, $halfhalfroleid, $systemcontext->id, true);
         assign_capability('moodle/course:viewhiddencourses', CAP_ALLOW, $halfhalfroleid, $systemcontext->id, true);
-        $this->getDataGenerator()->enrol_user($teacher->id, $module->id, 'editingteacher');
-        $this->getDataGenerator()->enrol_user($teacher->id, $course->id, 'editingteacher');
-        $this->getDataGenerator()->enrol_user($teacher->id, $hiddenmodule->id, 'editingteacher');
-        $this->getDataGenerator()->enrol_user($teacher->id, $other->id, 'editingteacher');
-        $this->getDataGenerator()->enrol_user($teacher->id, $hidden->id, 'editingteacher');
+        $generator->enrol_user($teacher->id, $module->id, 'editingteacher');
+        $generator->enrol_user($teacher->id, $course->id, 'editingteacher');
+        $generator->enrol_user($teacher->id, $hiddenmodule->id, 'editingteacher');
+        $generator->enrol_user($teacher->id, $other->id, 'editingteacher');
+        $generator->enrol_user($teacher->id, $hidden->id, 'editingteacher');
     }
 
     /**
@@ -119,7 +122,9 @@ final class helper_test extends advanced_testcase {
      */
     public function test_get_category_type($category, $response): void {
         $this->resetAfterTest();
-        $cat = $this->getDataGenerator()->create_category($category);
+        /** @var testing_data_generator $generator */
+        $generator = $this->getDataGenerator();
+        $cat = $generator->create_category($category);
         $type = helper::get_category_type($cat);
         $this->assertEquals($response, $type);
     }
@@ -173,12 +178,14 @@ final class helper_test extends advanced_testcase {
      */
     public function test_is_module($category, $response): void {
         $this->resetAfterTest();
+        /** @var testing_data_generator $generator */
+        $generator = $this->getDataGenerator();
         $catid = null;
         if ($category) {
-            $cat = $this->getDataGenerator()->create_category(['idnumber' => $category]);
+            $cat = $generator->create_category(['idnumber' => $category]);
             $catid = $cat->id;
         }
-        $course = $this->getDataGenerator()->create_course(['category' => $catid]);
+        $course = $generator->create_course(['category' => $catid]);
         $ismodule = helper::is_module($course->category);
         $this->assertEquals($response, $ismodule);
     }
@@ -220,12 +227,14 @@ final class helper_test extends advanced_testcase {
      */
     public function test_is_course($category, $response): void {
         $this->resetAfterTest();
+        /** @var testing_data_generator $generator */
+        $generator = $this->getDataGenerator();
         $catid = null;
         if ($category) {
-            $cat = $this->getDataGenerator()->create_category(['idnumber' => $category]);
+            $cat = $generator->create_category(['idnumber' => $category]);
             $catid = $cat->id;
         }
-        $course = $this->getDataGenerator()->create_course(['category' => $catid]);
+        $course = $generator->create_course(['category' => $catid]);
         $ismodule = helper::is_course($course->category);
         $this->assertEquals($response, $ismodule);
     }
