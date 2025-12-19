@@ -8,23 +8,6 @@ parameters:
         -
             message: '#^Variable (?:\$THEME) might not be defined\.$#'
             reportUnmatched: false
-        -
-            message: '#^If condition is always true\.$#'
-            identifier: if.alwaysTrue
-            count: 2
-            path: classes/output/mod_assign_renderer.php
-
-        -
-            message: '#^Left side of && is always true\.$#'
-            identifier: booleanAnd.leftAlwaysTrue
-            count: 1
-            path: classes/output/mod_assign_renderer.php
-
-        -
-            message: '#^Negated boolean expression is always false\.$#'
-            identifier: booleanNot.alwaysFalse
-            count: 1
-            path: classes/output/mod_assign_renderer.php
 
         -
             message: '#^Parameter \#1 \$data of function http_build_query expects array\|object, string given\.$#'
@@ -54,12 +37,6 @@ parameters:
             message: '#^Parameter \#6 \$returnparams of class assign_submission_plugin_submission constructor expects array, string given\.$#'
             identifier: argument.type
             count: 2
-            path: classes/output/mod_assign_renderer.php
-
-        -
-            message: '#^Ternary operator condition is always true\.$#'
-            identifier: ternary.alwaysTrue
-            count: 1
             path: classes/output/mod_assign_renderer.php
 
         -
