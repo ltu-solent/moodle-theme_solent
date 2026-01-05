@@ -27,13 +27,10 @@ namespace theme_solent;
 
 use advanced_testcase;
 use core\context;
-use testing_data_generator;
 
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
-
-require_once($CFG->dirroot . '/lib/testing/generator/data_generator.php');
 
 /**
  * Helper class tests
