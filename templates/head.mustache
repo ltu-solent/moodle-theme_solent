@@ -15,7 +15,22 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 {{!
+    @template theme_solent/head
+
     Page header.
+
+    Context variables required for this template:
+    * output - The core renderer for the page
+    Example context (json):
+    {
+        "output": {
+            "doctype": "<!DOCTYPE html>",
+            "page_title": "Test page",
+            "favicon": "favicon.ico",
+            standard_head_html": "<script ...>",
+         }
+    }
+
 }}
 {{{ output.doctype }}}
 <html {{{ output.htmlattributes }}}>
