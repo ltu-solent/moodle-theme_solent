@@ -40,7 +40,7 @@
         "instructiontext": "Click the radio button next to an image to select it. You will automatically redirected back to the previous page.",
         "action": "/theme/solent/set_header_image.php",
         "formid": "header-image-form",
-        "options": "<tr><td align=\"left\"><input type=\"radio\" id=\"dots\" name=\"opt\" value=\"dots\" checked=\"checked\"></td><td><label for=\"opt\">Option dots<img class=\"header-image-option\" src=\"../pix/unit-header/image1.jpg\"></label></td></tr>",
+        "options": "<tr><td><input type=\"radio\" id=\"dots\" name=\"opt\" value=\"dots\" checked=\"checked\"></td><td><img class=\"header-image-option\" src=\"../pix/unit-header/image1.jpg\" alt=\"dots\"></td></tr>",
         "course": 1,
         "id": "headerimageform"
     }
@@ -54,7 +54,7 @@
 				<table>
 					{{{options}}}					
 				</table>
-				<input type="hidden" id="course" name="course" value="{{course}}"/>
+				<input type="hidden" id="course" name="course" value="{{course}}">
 			</fieldset>
 		</form>	
 </div>
