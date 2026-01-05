@@ -35,7 +35,7 @@ global $CFG;
 /**
  * Helper class tests
  */
-final class helper_test extends advanced_testcase {
+final class helper_test extends \advanced_testcase {
     /**
      * Test show unit descriptor
      * @covers \theme_solent\helper::course_unit_descriptor
