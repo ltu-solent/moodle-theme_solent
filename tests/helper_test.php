@@ -33,6 +33,8 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
+require_once($CFG->dirroot . '/lib/testing/generator/data_generator.php');
+
 /**
  * Helper class tests
  */
