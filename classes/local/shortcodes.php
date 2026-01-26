@@ -109,10 +109,10 @@ class shortcodes {
         }
 
         // Is this a course or a module?
-        $ismodule = helper::is_module($course);
+        $ismodule = helper::is_module($course->category);
         $iscourse = false;
         if (!$ismodule) {
-            $iscourse = helper::is_course($course);
+            $iscourse = helper::is_course($course->category);
         }
         if (!($ismodule || $iscourse)) {
             return '';
