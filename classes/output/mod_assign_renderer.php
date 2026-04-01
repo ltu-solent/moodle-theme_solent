@@ -86,7 +86,11 @@ class mod_assign_renderer extends renderer_base {
         $o .= $output->container_start('submissionstatustable');
         $o .= $output->heading(get_string('submissionstatusheading', 'assign'), 3);
         $time = time();
-
+        // SSU_AMEND_START: Add Additional JS for rubric grading form element.
+        if (class_exists('local_solent\helper')) {
+            $this->page->requires->js_call_amd('local_solent/rubrics', 'init');
+        }
+        // SSU_AMEND_END.
         $o .= $output->box_start('boxaligncenter submissionsummarytable');
 
         $t = new html_table();
