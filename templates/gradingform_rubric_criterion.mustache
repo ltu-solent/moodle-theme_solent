@@ -1,0 +1,59 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_solent/gradingform_rubric_criterion
+
+    TODO describe template gradingform_rubric_criterion
+
+    Example context (json):
+    {
+    }
+}}
+<div class="criterion-{{id}} {{class}}" id="{{elementname}}-criteria-{{id}}">
+    {{#displayeditfull}}
+    <div class="controls">
+        // Fill in later.
+    </div>
+    {{/displayeditfull}}
+    {{#displayeditfrozen}}
+        // Fill in later.
+    {{/displayeditfrozen}}
+    <h6>{{{description}}}</h6>
+    <button class="criterion-toggle btn btn-icon icon-no-margin text-reset p-0 font-weight-bold mb-0 ms-auto"
+            type="button"
+            data-toggle="collapse"
+            href="#criteria-{{id}}"
+            aria-expanded="false"
+            aria-controls="criteria-{{id}}">
+            <span class="collapsed-icon">
+                {{#pix}} t/collapsed, core {{/pix}}
+                <span class="sr-only">{{#str}} expandcriterion, core_grades {{/str}}</span>
+            </span>
+            <span class="expanded-icon">
+                {{#pix}} t/expanded, core {{/pix}}
+                <span class="sr-only">{{#str}} collapsecriterion, core_grades {{/str}}</span>
+            </span>
+    </button>
+    <div class="collapse" id="criteria-{{id}}" role="radiogroup" aria-labelledby="criterion-description-{{id}}">
+        {{#levels}}
+        <div class="{{class}}" id="level-wrapper">
+        <p>{{definition}}</p>
+        <div>{{score}}</div>
+        </div>
+        {{/levels}}
+    </div>
+</div>
