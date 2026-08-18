@@ -58,9 +58,11 @@ class renderer extends \core_course_management_renderer {
         $output = $this->page->get_renderer('core');
         $text = $course->get_formatted_name();
         // SU_AMEND_START: Unit start date: Manage categories.
-        if (helper::is_module($course->category)) {
-            $text .= ' (' . userdate($course->startdate, '%d/%m/%Y') . ')';
-        }
+        $startend = [
+            'start' => $course->startdate > 0 ? userdate($course->startdate, '%d/%m/%Y') : get_string('nostart', 'theme_solent'),
+            'end' => $course->enddate > 0 ? userdate($course->enddate, '%d/%m/%Y') : get_string('noend', 'theme_solent'),
+        ];
+        $text .= ' (' . join(' - ', $startend) . ')';
         // SU_AMEND_END.
         $attributes = [
                 'class' => 'listitem listitem-course list-group-item list-group-item-action',
@@ -137,9 +139,11 @@ class renderer extends \core_course_management_renderer {
         $text = $course->get_formatted_name();
 
         // SU_AMEND_START: Unit start date: Manage categories search.
-        if (helper::is_module($course->category)) {
-            $text .= ' (' . userdate($course->startdate, '%d/%m/%Y') . ')';
-        }
+        $startend = [
+            'start' => $course->startdate > 0 ? userdate($course->startdate, '%d/%m/%Y') : get_string('nostart', 'theme_solent'),
+            'end' => $course->enddate > 0 ? userdate($course->enddate, '%d/%m/%Y') : get_string('noend', 'theme_solent'),
+        ];
+        $text .= ' (' . join(' - ', $startend) . ')';
         // SU_AMEND_END.
 
         $attributes = [

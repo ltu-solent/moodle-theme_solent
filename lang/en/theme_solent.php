@@ -130,7 +130,9 @@ $string['navbarheight'] = 'Navbar height';
 $string['navbarheight_desc'] = 'Navbar height in pixels';
 $string['navigationsettings'] = 'Navigation settings';
 $string['nobootswatch'] = 'None';
+$string['noend'] = 'No end date';
 $string['nomoduledescriptor'] = 'No module descriptor available';
+$string['nostart'] = 'No start date';
 
 $string['organise'] = 'Organise';
 $string['organisemenuitems'] = 'Organise menu items';
