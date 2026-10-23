@@ -105,17 +105,21 @@ class renderer extends \core_course_management_renderer {
             'for' => 'courselistitem' . $course->id]);
         $html .= html_writer::end_div();
         $html .= html_writer::end_div();
-        // SSU_AMEND_START: Don't include classes "col" or flex.
+        // SSU_AMEND_START: Don't include classes "col" and fix floats.
         $html .= html_writer::link(
             $viewcourseurl,
             $text,
             ['class' => 'text-break ps-0 mb-2 coursename aalink']
         );
         $html .= html_writer::start_div('float-end');
-        // SSU_AMEND_END.
         if ($course->idnumber) {
-            $html .= html_writer::tag('span', s($course->idnumber), ['class' => 'text-muted idnumber']);
+            $html .= html_writer::tag(
+                'span',
+                s($course->idnumber),
+                ['class' => 'text-muted idnumber']
+            );
         }
+        // SSU_AMEND_END.
         $html .= $this->course_listitem_actions($category, $course);
         $html .= html_writer::end_div();
         $html .= html_writer::end_div();
